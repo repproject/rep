@@ -1,0 +1,6 @@
+alter table kmig_kb_prc_stat MODIFY column 10Y_GAP_ROR FLOAT(10,2)
+;
+/* INDEX 추가*/
+ALTER TABLE temp ADD INDEX(keyword(20));
+/* INDEX DROP */
+ALTER TABLE KMIG_KB_PRC_STAT DROP INDEX 1M_RISE_PRC_2;

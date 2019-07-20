@@ -1,0 +1,27 @@
+INSERT INTO `rep`.`kadm_com_cd_lst`
+(`COM_CD_GRP`,
+`COM_CD_GRP_NM`,
+`COM_CD_GRP_DESC`,
+`REF1`,
+`REF2`,
+`REF3`,
+`REF4`,
+`REF5`,
+`REG_USER_ID`,
+`REG_DTM`,
+`CHG_USER_ID`,
+`CHG_DTM`)
+VALUES
+("FUNC_CL",
+"기능구분",
+"기능의 구분값",
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+1000000001,
+NOW(),
+1000000001,
+NOW())
+;

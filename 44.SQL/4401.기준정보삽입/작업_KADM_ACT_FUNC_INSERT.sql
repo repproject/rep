@@ -1,0 +1,20 @@
+INSERT INTO `rep`.`kadm_act_func`
+(`ACT_ID`,
+`FUNC_ID`,
+`ACT_FUNC_REL_DESC`,
+`EXEC_SEQ`,
+`USE_YN`,
+`REG_USER_ID`,
+`REG_DTM`,
+`CHG_USER_ID`,
+`CHG_DTM`)
+VALUES
+('NV_DC_SALE',
+'INS_NV_SALE',
+'네이버 매물정보 갱신',
+1,
+'Y',
+1000000001,
+NOW(),
+1000000001,
+NOW());

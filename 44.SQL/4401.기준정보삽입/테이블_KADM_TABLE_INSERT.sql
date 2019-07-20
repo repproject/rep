@@ -1,0 +1,14 @@
+INSERT INTO `rep`.`kadm_table`
+(`TBL_NM`,
+`TBL_DESC`,
+`REG_USER_ID`,
+`REG_DTM`,
+`CHG_USER_ID`,
+`CHG_DTM`)
+VALUES
+('KMIG_NV_SALE',
+'네이버매물',
+1000000001,
+NOW(),
+1000000001,
+NOW());

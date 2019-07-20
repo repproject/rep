@@ -1,0 +1,20 @@
+INSERT INTO `rep`.`kadm_job_act`
+(`JOB_ID`,
+`ACT_ID`,
+`JOB_ACT_REL_DESC`,
+`EXEC_SEQ`,
+`USE_YN`,
+`REG_USER_ID`,
+`REG_DTM`,
+`CHG_USER_ID`,
+`CHG_DTM`)
+VALUES
+('KBUP001',
+'KB_UP_CMPX_TYP_MPRC',
+'KB주택형월별시세 갱신',
+1,
+'Y',
+1000000001,
+NOW(),
+1000000001,
+NOW());

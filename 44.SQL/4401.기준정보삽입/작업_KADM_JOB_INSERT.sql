@@ -1,0 +1,33 @@
+SELECT * FROM KADM_JOB
+;
+INSERT INTO `rep`.`kadm_job`
+(`JOB_ID`,
+`JOB_NM`,
+`JOB_DESC`,
+`JOB_CL_CD`,
+`USE_YN`,
+`REF1`,
+`REF2`,
+`REF3`,
+`REF4`,
+`REF5`,
+`REG_USER_ID`,
+`REG_DTM`,
+`CHG_USER_ID`,
+`CHG_DTM`)
+VALUES
+('KBUP001',
+'KB주택형별월별KB시세 갱신',
+'KB주택형별월별KB시세 갱신한다.',
+'KB',
+'Y',
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+1000000001,
+NOW(),
+1000000001,
+NOW());
+
