@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tm:TermDictionary xmlns:tm="http://exerd.com/term-model" version="1.1">
+  <term name="공통" description="common" physicalName="COM"/>
+  <term name="코드" description="code" physicalName="CD"/>
+  <term name="명" description="name" physicalName="NM"/>
+  <term name="그룹" description="group" physicalName="GRP"/>
+  <term name="ID" description="id" physicalName="ID"/>
+  <term name="참조" description="reference" physicalName="REF"/>
+  <term name="설명" description="description" physicalName="DESC"/>
+  <term name="등록" description="register" physicalName="REG">
+    <synonyms>생성</synonyms>
+  </term>
+  <term name="자" description="user" physicalName="USER">
+    <synonyms>사용자</synonyms>
+  </term>
+  <term name="수정" description="change" physicalName="CHG"/>
+  <term name="일시" physicalName="DTM">
+    <synonyms>시각</synonyms>
+  </term>
+  <term name="부동산" description="real estate" physicalName="RET"/>
+  <term name="대" description="big" physicalName="BIG"/>
+  <term name="지역" description="region" physicalName="REGN"/>
+  <term name="KB" description="국민은행" physicalName="KB"/>
+  <term name="레벨" description="level" physicalName="LV"/>
+  <term name="아파트" physicalName="APT"/>
+  <term name="소" description="small" physicalName="SMALL"/>
+  <term name="중" description="Middle" physicalName="MID"/>
+  <term name="단지" description="Complex" physicalName="CMPX"/>
+  <term name="형" description="type" physicalName="TYP"/>
+  <term name="일련번호" description="Sequence" physicalName="SEQ"/>
+  <term name="물건" description="Complex" physicalName="CMPX"/>
+  <term name="식별자" description="Identifier" physicalName="IDF"/>
+  <term name="X" description="X" physicalName="X"/>
+  <term name="Y" description="Y" physicalName="Y"/>
+  <term name="좌표" description="Coordinate" physicalName="COOR"/>
+  <term name="값" description="Value" physicalName="VAL"/>
+  <term name="주택" description="House" physicalName="HOUSE"/>
+  <term name="시세" description="Price" physicalName="PRC"/>
+  <term name="기준" description="Standard" physicalName="STD"/>
+  <term name="년월" description="Year Month" physicalName="YYMM"/>
+  <term name="평균" description="Average" physicalName="AVG"/>
+  <term name="가격" description="Price" physicalName="PRC"/>
+  <term name="가" description="Price" physicalName="PRC"/>
+  <term name="상위" description="up" physicalName="UP"/>
+  <term name="일반" description="General" physicalName="GNRL"/>
+  <term name="하위" description="Down" physicalName="DOWN"/>
+  <term name="매매"/>
+  <term name="전세" description="JeonSe" physicalName="JS"/>
+  <term name="작업" description="Job" physicalName="JOB"/>
+  <term name="목록" description="List" physicalName="LST"/>
+  <term name="액션" description="Action" physicalName="ACT"/>
+  <term name="분류" description="Classify" physicalName="CL"/>
+  <term name="기능" description="Function" physicalName="FUNC"/>
+  <term name="구분" description="Classify" physicalName="CL"/>
+  <term name="대상" description="Target" physicalName="TGT"/>
+  <term name="테이블" description="Table" physicalName="TBL"/>
+  <term name="Function" description="Function" physicalName="FUNC"/>
+  <term name="소스" description="Source" physicalName="SRC"/>
+  <term name="관계" description="Relation" physicalName="REL"/>
+  <term name="여부" description="Yes/No" physicalName="YN"/>
+  <term name="사용" description="Use" physicalName="USE"/>
+  <term name="순서" description="Sequence" physicalName="SEQ"/>
+  <term name="실행" physicalName="EXEC"/>
+  <term name="대표" description="represent" physicalName="RPSN"/>
+  <term name="면적" description="area" physicalName="AREA"/>
+  <term name="전용" description="only" physicalName="ONLY"/>
+  <term name="공급" description="Supply" physicalName="SPLY"/>
+  <term name="행정" description="Haengjeong-dong" physicalName="HJD"/>
+  <term name="법정" description="Legal" physicalName="LEGL"/>
+  <term name="동" physicalName="DONG"/>
+  <term name="정부" description="GoverMent" physicalName="GOV"/>
+  <term name="서열" description="Grade" physicalName="GRD"/>
+  <term name="일" description="Yead Month Day" physicalName="YMD"/>
+  <term name="폐지" description="Close" physicalName="CLOS"/>
+  <term name="최종" description="Final" physicalName="FINL"/>
+  <term name="최하" description="Lowset" physicalName="LWST"/>
+  <term name="주민" description="resident" physicalName="RSDT"/>
+  <term name="지적" physicalName="JIJC"/>
+  <term name="전체" description="whole" physicalName="WHL"/>
+  <term name="네이버" description="Naver" physicalName="NV"/>
+  <term name="세대" description="Household" physicalName="HSHL"/>
+  <term name="총" description="Total" physicalName="TOT"/>
+  <term name="수" description="Count" physicalName="CNT"/>
+  <term name="통계" description="statistics" physicalName="stat"/>
+  <term name="상승률" description="rate of rise" physicalName="ROR"/>
+  <term name="준공" description="Completion" physicalName="CMPL"/>
+  <term name="건설" description="Build" physicalName="BLD"/>
+  <term name="사" description="Company" physicalName="CO"/>
+  <term name="회사" description="Company" physicalName="CO"/>
+  <term name="주차" description="Park" physicalName="PARK"/>
+  <term name="대수" description="Count" physicalName="CNT"/>
+  <term name="당" description="Per" physicalName="PER"/>
+  <term name="난방" description="Heat" physicalName="HEAT"/>
+  <term name="방식" description="Way" physicalName="WAY"/>
+  <term name="연료" description="Fuel" physicalName="FUEL"/>
+  <term name="용적률" description="Floor Area Ratio" physicalName="FAR"/>
+  <term name="건폐율" description="The Building To Land Ratio" physicalName="BTLR"/>
+  <term name="최고" description="Max" physicalName="MAX"/>
+  <term name="층" description="Floor" physicalName="FLR"/>
+  <term name="최저" description="Min" physicalName="MIN"/>
+  <term name="관리" description="Management" physicalName="MGMT"/>
+  <term name="사무소" description="Company" physicalName="CO"/>
+  <term name="전화번호" description="Telephone" physicalName="TEL"/>
+  <term name="사업" description="Business" physicalName="BIZ"/>
+  <term name="시행" description="Implement" physicalName="IMPL"/>
+  <term name="단계" description="Step" physicalName="STEP"/>
+  <term name="지하철" description="Subway" physicalName="SBWY"/>
+  <term name="버스" description="Bus" physicalName="BUS"/>
+  <term name="정보" description="Information" physicalName="INFO"/>
+  <term name="시공" description="Build" physicalName="BLD"/>
+  <term name="선정" description="Choice" physicalName="CHC"/>
+  <term name="예상" description="Expectation" physicalName="EXP"/>
+  <term name="배정" description="Assign" physicalName="ASGN"/>
+  <term name="조합" description="Guild" physicalName="GULD"/>
+  <term name="권역" description="권역" physicalName="GWON"/>
+  <term name="종류" description="Kind" physicalName="KND"/>
+  <term name="카테고리" description="Category" physicalName="CTGR"/>
+  <term name="현관" description="Door" physicalName="DOOR"/>
+  <term name="구조" description="Structure" physicalName="STRC"/>
+  <term name="방" description="Room" physicalName="ROOM"/>
+  <term name="욕실" description="Bathroom" physicalName="BATH"/>
+  <term name="분양" description="Sale Of Housing" physicalName="SOH"/>
+  <term name="타입" description="Type" physicalName="TYP"/>
+  <term name="이미지" description="Image" physicalName="IMG"/>
+  <term name="주소" description="Address" physicalName="ADDR"/>
+  <term name="URL" physicalName="URL"/>
+  <term name="텔레그램" description="Telegram" physicalName="TLGR"/>
+  <term name="수신" description="Recieve" physicalName="RCV"/>
+  <term name="대상" description="Target" physicalName="TGT"/>
+  <term name="메세지" description="Message" physicalName="MSG"/>
+  <term name="내용" description="Contents" physicalName="CNTS"/>
+  <term name="수도" description="Water Supply" physicalName="WASP"/>
+  <term name="배관" description="Pipe" physicalName="PIPE"/>
+  <term name="교체" description="Replace" physicalName="RPLC"/>
+  <term name="임대" description="Rent" physicalName="RENT"/>
+  <term name="장기" description="Long Term" physicalName="LNGT"/>
+  <term name="국민" description="Nation" physicalName="NATN"/>
+  <term name="공공" description="Public" physicalName="PBLC"/>
+  <term name="기타" description="Etc" physicalName="ETC"/>
+  <term name="영구" description="Forever" physicalName="FEVR"/>
+  <term name="민간" description="Enterprise" physicalName="ENT"/>
+  <term name="MIG" description="Migration" physicalName="MIG"/>
+  <term name="사유" description="R" physicalName="RSN"/>
+  <term name="NUM" physicalName="NUM"/>
+  <term name="완료" description="Complete" physicalName="CMPL"/>
+  <term name="한글" physicalName="HAN"/>
+</tm:TermDictionary>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<e:DomainDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:e="http://exerd.tomato.com/model" UUID="DDefinition_7ZiRUNN2Eee0GoJE-JYm8g" productId="com.tomato.db.mysql" version="2.4.8.20170711-1106">
+  <domain UUID="Domain_7ZiRUdN2Eee0GoJE-JYm8g" name="문자" suggestedDataType="VARCHAR(255)">
+    <domain UUID="Domain_7ZiRUtN2Eee0GoJE-JYm8g" name="주민등록번호" suggestedDataType="VARCHAR(13)"/>
+    <domain UUID="Domain_7ZiRU9N2Eee0GoJE-JYm8g" name="주소"/>
+    <domain UUID="Domain_7ZiRVNN2Eee0GoJE-JYm8g" name="웹주소"/>
+    <domain UUID="Domain_7Zi4YNN2Eee0GoJE-JYm8g" name="전화번호" suggestedDataType="VARCHAR(30)"/>
+    <domain UUID="Domain_7Zi4YdN2Eee0GoJE-JYm8g" name="이메일" suggestedDataType="VARCHAR(40)"/>
+    <domain UUID="Domain_7Zi4YtN2Eee0GoJE-JYm8g" name="이름" suggestedDataType="VARCHAR(50)"/>
+  </domain>
+  <domain UUID="Domain_7Zi4Y9N2Eee0GoJE-JYm8g" name="KSCC">
+    <domain UUID="Domain_7Zi4ZNN2Eee0GoJE-JYm8g" name="KSCC대분류코드" suggestedDataType="VARCHAR(2)"/>
+    <domain UUID="Domain_7Zi4ZdN2Eee0GoJE-JYm8g" name="KSCC중분류코드" suggestedDataType="VARCHAR(5)"/>
+    <domain UUID="Domain_7Zi4ZtN2Eee0GoJE-JYm8g" name="KSCC소분류코드" suggestedDataType="VARCHAR(7)"/>
+    <domain UUID="Domain_7Zi4Z9N2Eee0GoJE-JYm8g" name="KSCC한자표기" suggestedDataType="VARCHAR(100)"/>
+    <domain UUID="Domain_7Zi4aNN2Eee0GoJE-JYm8g" name="KSCC영문표기" suggestedDataType="VARCHAR(100)"/>
+  </domain>
+  <domain UUID="Domain_7Zi4adN2Eee0GoJE-JYm8g" name="시간">
+    <domain UUID="Domain_7Zi4atN2Eee0GoJE-JYm8g" name="년월" suggestedDataType="VARCHAR(6)"/>
+  </domain>
+  <domain UUID="Domain_7Zi4a9N2Eee0GoJE-JYm8g" name="부동산">
+    <domain UUID="Domain_7Zi4bNN2Eee0GoJE-JYm8g" name="단지명" suggestedDataType="VARCHAR(100)"/>
+    <domain UUID="Domain_7Zi4bdN2Eee0GoJE-JYm8g" name="지역명" suggestedDataType="VARCHAR(20)"/>
+    <domain UUID="Domain_7Zi4btN2Eee0GoJE-JYm8g" comment="단위:만원" name="부동산가격" suggestedDataType="DECIMAL(10)"/>
+  </domain>
+  <domain UUID="Domain_7Zi4b9N2Eee0GoJE-JYm8g" name="공통">
+    <domain UUID="Domain_7Zi4cNN2Eee0GoJE-JYm8g" name="공통코드그룹ID" suggestedDataType="VARCHAR(20)"/>
+    <domain UUID="Domain_7Zi4cdN2Eee0GoJE-JYm8g" name="공통코드그룹명" suggestedDataType="VARCHAR(100)"/>
+    <domain UUID="Domain_7Zi4ctN2Eee0GoJE-JYm8g" name="공통코드그룹설명" suggestedDataType="VARCHAR(200)"/>
+    <domain UUID="Domain_7Zi4c9N2Eee0GoJE-JYm8g" name="공통코드" suggestedDataType="VARCHAR(20)"/>
+    <domain UUID="Domain_7Zi4dNN2Eee0GoJE-JYm8g" name="공통코드명" suggestedDataType="VARCHAR(100)"/>
+  </domain>
+  <domain UUID="Domain_7Zi4ddN2Eee0GoJE-JYm8g" name="KB">
+    <domain UUID="Domain_7Zi4dtN2Eee0GoJE-JYm8g" name="KB지역코드" suggestedDataType="VARCHAR(6)"/>
+    <domain UUID="Domain_7Zi4d9N2Eee0GoJE-JYm8g" name="물건식별자ID" suggestedDataType="VARCHAR(9)"/>
+    <domain UUID="Domain_7Zi4eNN2Eee0GoJE-JYm8g" name="좌표값" suggestedDataType="FLOAT"/>
+    <domain UUID="Domain_7ZjfcNN2Eee0GoJE-JYm8g" name="주택형일련번호" suggestedDataType="DECIMAL(3)"/>
+    <domain UUID="Domain_7ZjfcdN2Eee0GoJE-JYm8g" name="주택형명" suggestedDataType="VARCHAR(50)"/>
+  </domain>
+  <domain UUID="Domain_7ZjfctN2Eee0GoJE-JYm8g" name="사용자">
+    <domain UUID="Domain_7Zjfc9N2Eee0GoJE-JYm8g" name="사용자ID" suggestedDataType="DECIMAL(10)"/>
+  </domain>
+  <domain UUID="Domain_7ZjfdNN2Eee0GoJE-JYm8g" name="일시" suggestedDataType="DATETIME"/>
+  <domain UUID="Domain_7ZjfddN2Eee0GoJE-JYm8g" name="객체" suggestedDataType="BLOB">
+    <domain UUID="Domain_7ZjfdtN2Eee0GoJE-JYm8g" name="이미지" suggestedDataType="VARBINARY"/>
+    <domain UUID="Domain_7Zjfd9N2Eee0GoJE-JYm8g" name="오디오" suggestedDataType="VARBINARY"/>
+  </domain>
+  <domain UUID="Domain_7ZjfeNN2Eee0GoJE-JYm8g" name="참조" suggestedDataType="VARCHAR(100)"/>
+  <domain UUID="Domain_7ZjfedN2Eee0GoJE-JYm8g" name="아파트코드" suggestedDataType="VARCHAR(9)"/>
+</e:DomainDefinition>
