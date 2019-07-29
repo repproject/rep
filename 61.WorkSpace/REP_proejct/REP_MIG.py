@@ -23,6 +23,7 @@ NVsleeptime = 2
 def migRetBigAreaCode():    #박지일
     print("Function migRetBigAreaCode")
     url = REP_URL.KB부동산과거시세조회URL
+    print(url)
     soup = getBeautifulShopFromKB(url)
 
     for child in soup.find("select", id="부동산대지역코드"):
@@ -251,10 +252,12 @@ def getBeautifulShopFromKB(url):    #BeautifulShop Class로 특정 Page를 Retur
                 REP_COM.log("getBeautifulShopFromKB Restart","ERROR")
 
             r = get(url)
+            print(r)
             soup = BeautifulSoup(r.content.decode('utf-8', 'replace'),"html5lib")
             return soup
         except Exception as e:
             REP_COM.log("getBeautifulShopFromKB Exception 발생" + str(e),"ERROR")
+            print(url)
             print("Connection refused by the server..")
             print("Let me sleep for 10 seconds")
             print("ZZzzzz...")

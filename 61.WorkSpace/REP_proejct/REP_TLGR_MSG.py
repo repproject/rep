@@ -1,4 +1,4 @@
-import telegram
+#import telegram
 import REP_DAO
 my_token = '495069941:AAHXf-j_f97clXuEI5P0lpnbyPKcUfmVtYs' #JBoozleBot
 #chat_id = 436714227

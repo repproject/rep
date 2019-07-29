@@ -6,7 +6,7 @@ import REP_COM
 
 repDBHost = "ceasar.iptime.org"
 repDBUser = "repwas"
-repDBPassword = "5427"
+repDBPassword = "0(repwas)"
 repDBdb = "rep"
 rebDBcharset = 'utf8'
 
