@@ -1,5 +1,3 @@
-import REP_URL
-import REP_DAO
 from requests import get
 from bs4 import BeautifulSoup
 import urllib.request

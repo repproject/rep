@@ -260,7 +260,7 @@ def SELECT_RET_SMALL_AREA_CD2tup():
 def SELECT_RET_LEGL_REGN_CD():
     conn = repDBConnect()
     curs = conn.cursor()
-    sql = "SELECT LEGL_REGN_CD FROM kred_legl_regn WHERE LV_CD = '3' AND LEGL_REGN_CD > (SELECT MAX(GOV_LEGL_DONG_CD) FROM KMIG_NV_CMPX) ORDER BY LEGL_REGN_CD ASC"
+    sql = "SELECT LEGL_DONG_CD FROM KRED_LEGL_DONG WHERE LV_CD = '3' ORDER BY LEGL_DONG_CD ASC"
     curs.execute(sql)
     tup = curs.fetchall()
     conn.close()

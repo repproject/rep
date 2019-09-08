@@ -10,7 +10,7 @@ def main():
 #    REP_TLGR_MSG.checkMessage() #Telegram 메시지 확인 - Bot으로부터 온 메시지를 확인.
 
     #JOB수행
-    REP_JOB.doJOB('KBDC005')
+    REP_JOB.doJOB('NVDC001')
 
 if __name__ == '__main__':
     #try:

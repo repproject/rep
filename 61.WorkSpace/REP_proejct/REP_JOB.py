@@ -1,6 +1,7 @@
 import REP_DAO
 import REP_MIG
 import REP_COM
+import REP_NAVER
 
 def doJOB(JOB_ID):    #JOB수행
     FuncTuple = REP_DAO.SELECT_FUNCbyJOB_ID2tup(JOB_ID)
@@ -46,7 +47,7 @@ def func_DEL_KB_CMPX_TYP():REP_DAO.DELETE_KMIG_KB_CMPX_TYP()
 def func_INS_KB_CMPX_TYP(): REP_MIG.migComplexTyp()
 def func_DEL_KB_CMPX_TYP_MPRC():REP_DAO.DELETE_KMIG_KB_CMPX_TYP_MON_PRC()
 def func_INS_KB_CMPX_TYP_MPRC(): REP_MIG.migMontlyPrice()
-def func_DEL_NV_CMPX(): print("func_DEL_NV_CMPX")
+def func_DEL_NV_CMPX(): REP_NAVER. print("func_DEL_NV_CMPX")
 def func_INS_NV_CMPX(): print("func_INS_NV_CMPX")
 def func_UPD_NV_CMPX():
     try :
