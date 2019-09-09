@@ -1,7 +1,11 @@
+from typing import Any, Union, Tuple
+
 import pymysql
 import REP_Main
 import REP_TLGR_MSG
 import REP_COM
+import REP_SQL
+
 
 
 repDBHost = "ceasar.iptime.org"
@@ -14,9 +18,62 @@ rebDBcharset = 'utf8'
 def repDBConnect():  # DBConnection
     return pymysql.connect(host=repDBHost, user=repDBUser, password=repDBPassword, db=repDBdb, charset=rebDBcharset)
 
-
 def getrepDBcursor():
     return repDBConnect().cursor()
+
+def fetch(sqlId,dicParam):
+    conn = repDBConnect()
+    curs = conn.cursor(pymysql.cursors.DictCursor)
+    sql = REP_SQL.redSqlDic[sqlId]
+    curs.execute(sql)
+    dic: Union[Tuple, Any] = curs.fetchall()
+    conn.close()
+    return dic
+
+def INSERT_KMIG_NV_CMPX(dicNvCmpx):  # 네이버아파트코드삽입
+    # DBConnection
+    conn = repDBConnect()
+    curs = conn.cursor()
+
+    # 초기변수 세팅
+    user_id = REP_Main.userid
+
+    # SQL
+    sql = """INSERT INTO KMIG_NV_CMPX (NV_CMPX_ID, NV_CMPX_NM, GOV_LEGL_DONG_CD, NV_CMPX_KND, BAS_ADDR, DTL_ADDR , X_COOR_VAL , Y_COOR_VAL , TOT_HSHL_CNT , TOT_DONG_CNT , MAX_FLR , MIN_FLR , CMPL_YYMM, SALE_CNT, JS_CNT, WS_CNT, SHRT_RENT_CNT, `REG_USER_ID`, `REG_DTM`, `CHG_USER_ID`, `CHG_DTM`) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,NOW(),%s,NOW())"""
+
+    try:
+        curs.execute(sql, (dicNvCmpx['NV_CMPX_ID'].strip(),
+                           dicNvCmpx['NV_CMPX_NM'].strip(),
+                           dicNvCmpx['GOV_LEGL_DONG_CD'].strip(),
+                           dicNvCmpx['NV_CMPX_KND'].strip(),
+                           dicNvCmpx['BAS_ADDR'].strip(),
+                           dicNvCmpx['DTL_ADDR'].strip(),
+                           dicNvCmpx['X_COOR_VAL'],
+                           dicNvCmpx['Y_COOR_VAL'],
+                           dicNvCmpx['TOT_HSHL_CNT'],
+                           dicNvCmpx['TOT_DONG_CNT'],
+                           dicNvCmpx['MAX_FLR'],
+                           dicNvCmpx['MIN_FLR'],
+                           dicNvCmpx['CMPL_YYMM'].strip(),
+                           dicNvCmpx['SALE_CNT'],
+                           dicNvCmpx['JS_CNT'],
+                           dicNvCmpx['WS_CNT'],
+                           dicNvCmpx['SHRT_RENT_CNT'],
+                           user_id,user_id))
+    except pymysql.IntegrityError as err:  # 기존에 네이버아파트 코드가 존재할 수 있음
+        print("[E]네이버아파트코드 중복")
+
+    conn.commit()
+    conn.close()
+
+def SELECT_RET_LEGL_REGN_CD():
+    conn = repDBConnect()
+    curs = conn.cursor()
+    sql = "SELECT LEGL_DONG_CD FROM KRED_LEGL_DONG WHERE LV_CD = '3' ORDER BY LEGL_DONG_CD ASC"
+    curs.execute(sql)
+    tup = curs.fetchall()
+    conn.close()
+    return tup
 
 
 def INSERT_KMIG_KB_BIG_REGN(dicRetBigArea):  # 대지역코드 삽입
@@ -257,14 +314,7 @@ def SELECT_RET_SMALL_AREA_CD2tup():
     return tup
 
 
-def SELECT_RET_LEGL_REGN_CD():
-    conn = repDBConnect()
-    curs = conn.cursor()
-    sql = "SELECT LEGL_DONG_CD FROM KRED_LEGL_DONG WHERE LV_CD = '3' ORDER BY LEGL_DONG_CD ASC"
-    curs.execute(sql)
-    tup = curs.fetchall()
-    conn.close()
-    return tup
+
 
 
 def SELECT_RET_CMPX_CD2dic():
@@ -478,7 +528,6 @@ def UPDATE_KMIG_KB_CMPX_001(dicKBCmpx):
     conn.commit()
     conn.close()
 
-
 def UPDATE_KMIG_KB_CMPX_TYP_MON_PRC(curs, dicCmpxTypMonPrc):  # 물건식별자 삽입
     # DBConnection
     # conn = repDBConnect()
@@ -493,4 +542,5 @@ def UPDATE_KMIG_KB_CMPX_TYP_MON_PRC(curs, dicCmpxTypMonPrc):  # 물건식별자 
     sql += " AND STD_YYMM = '" + dicCmpxTypMonPrc['STD_YYMM'] + "'"
 
     curs.execute(sql)
+
 

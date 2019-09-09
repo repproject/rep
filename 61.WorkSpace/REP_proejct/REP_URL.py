@@ -8,6 +8,9 @@ KB부동산지도조회Json = "http://nland.kbstar.com/quics?page=B046949&QActio
 #네이버부동산 = "http://land.naver.com/article/"
 네이버부동산 = "http://land.naver.com"
 
+#신규
+NaverComplexListURL = "https://new.land.naver.com/api/regions/complexes?cortarNo="
+
 
 def makeGetURL(JOB_CL,SITE_CL,TR_ID,dicGetParam):
     #작업분류 (JOB_CL - NV-Naver부동산 KB-KB부동산)

@@ -1,13 +1,15 @@
-#-*- coding:utf-8 -*-
-import re
-import requests
-from datetime import datetime
-from bs4 import BeautifulSoup
-import REP_DAO
-import REP_URL
-import REP_COM
+# -*- coding:utf-8 -*-
+# import REP_DAO
 import time
+
+from REP_DAO import *
+from REP_URL import *
+import REP_COM
 import REP_MIG
+import REP_URL
+import REP_DAO
+import json
+
 
 # def get_naver_realasset():
 #     url = 'http://land.naver.com/article/articleList.nhn?' \
@@ -54,29 +56,43 @@ import REP_MIG
 #     return df
 
 def get_naver_realasset():
-    tupLeglCode = REP_DAO.SELECT_RET_LEGL_REGN_CD();
-    for LeglCode in tupLeglCode:
+    global json
+    dicLeglCodeList = fetch("selectLeglLv3Dong", "")
+    print(dicLeglCodeList)
+
+    for dicLeglCode in dicLeglCodeList:
         time.sleep(2)
-        url = REP_URL.getURLNaverAptcode('A01','A1',REP_COM.tuple2Str(LeglCode))
+        url = NaverComplexListURL + dicLeglCode['LEGL_DONG_CD']
         print(url)
-        #r = requests.get(url)
-        soup = soup = REP_MIG.getBeautifulShopFromKB(url) #BeautifulShop 공통 리턴 사용 (try catch 사용을 위해)
 
-#    print(soup.find_all('', {'class': 'list_name'}))
-        list_name = soup.find_all('', {'class': 'list_name'})
+        page = REP_MIG.get_html(url)
+        print(page)
 
-        for list in list_name:
-            print(list.find("a").get('hscp_no'))
-            print(list.find("a").text) #단지명
-            print(list.find("a").get('mapx'))
-            print(list.find("a").get('mapy'))
+        jsonPage = json.loads(page)
+        for json in jsonPage['complexList']:
+            print(json)
 
-            dicNvAptCode = {'NV_CMPX_ID': list.find("a").get('hscp_no')
-                           , 'NV_CMPX_NM': list.find("a").text
-                           , 'GOV_LEGL_DONG_CD': LeglCode
-                           , 'X_COOR_VAL': list.find("a").get('mapx')
-                           , 'Y_COOR_VAL': list.find("a").get('mapy')}
-            REP_DAO.INSERT_KMIG_NV_APT_CODE(dicNvAptCode)
+            #print(sJSon['주택형일련번호'], sJSon['주택형'])
+            #dicRetComplex = {'CMPX_IDF_ID': Complex['CMPX_IDF_ID'], 'HOUSE_TYP_SEQ': sJSon['주택형일련번호'],HOUSE_TYP_NM': sJSon['주택형']}
+            #REP_DAO.INSERT_KMIG_KB_CMPX_TYP(dicRetComplex)
+        #time.sleep(sleeptime)
+
+        #    print(soup.find_all('', {'class': 'list_name'}))
+        # list_name = soup.find_all('', {'class': 'list_name'})
+        #
+        # for list in list_name:
+        #     print(list.find("a").get('hscp_no'))
+        #     print(list.find("a").text)  # 단지명
+        #     print(list.find("a").get('mapx'))
+        #     print(list.find("a").get('mapy'))
+        #
+        #     dicNvAptCode = {'NV_CMPX_ID': list.find("a").get('hscp_no')
+        #         , 'NV_CMPX_NM': list.find("a").text
+        #         , 'GOV_LEGL_DONG_CD': LeglCode
+        #         , 'X_COOR_VAL': list.find("a").get('mapx')
+        #         , 'Y_COOR_VAL': list.find("a").get('mapy')}
+        #     REP_DAO.INSERT_KMIG_NV_APT_CODE(dicNvAptCode)
+
 
 if __name__ == '__main__':
     get_naver_realasset()

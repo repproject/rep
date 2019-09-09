@@ -2,71 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8c653bd5-f5b3-47e3-9a18-87a213a5b921" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../41.ExERD/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/../../41.ExERD/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/REP_MIG_MAPP.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/REP_MIG_NAVER.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/REP_SQL.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/REP_TABLE.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../42.DA5/REP.damx" beforeDir="false" afterPath="$PROJECT_DIR$/../../42.DA5/REP.damx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../42.DA5/wordict5_참조모델표준화.db" beforeDir="false" afterPath="$PROJECT_DIR$/../../42.DA5/wordict5_참조모델표준화.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동MIG.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/강원도_법정동코드 조회자료.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/강원도_법정동코드목록.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/강원도_법정동코드목록/법정동코드 조회자료.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/경기도_법정동코드 조회자료.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/경기도_법정동코드목록.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/경기도_법정동코드목록/법정동코드 조회자료.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/경상남도_법정동코드 조회자료.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/경상남도_법정동코드목록.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/경상남도_법정동코드목록/법정동코드 조회자료/법정동코드 조회자료.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/경상북도_법정동코드 조회자료.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/경상북도_서울특별시_법정동코드목록.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/경상북도_서울특별시_법정동코드목록/법정동코드 조회자료/법정동코드 조회자료.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/광주광역시_법정동코드 조회자료.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/광주광역시_법정동코드목록.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/광주광역시_법정동코드목록/법정동코드 조회자료/법정동코드 조회자료.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/대구광역시_법정동코드 조회자료.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/대구광역시_법정동코드목록.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/대구광역시_법정동코드목록/법정동코드 조회자료/법정동코드 조회자료.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/대전광역시_법정동코드 조회자료.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/대전광역시_법정동코드목록.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/대전광역시_법정동코드목록/법정동코드 조회자료/법정동코드 조회자료.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/부산광역시_법정동코드 조회자료.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/부산광역시_법정동코드목록.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/부산광역시_법정동코드목록/법정동코드 조회자료/법정동코드 조회자료.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/서울특별시_법정동코드 조회자료.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/서울특별시_법정동코드목록.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/서울특별시_법정동코드목록/법정동코드 조회자료/법정동코드 조회자료.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/세종특별자치시_법정동코드 조회자료.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/세종특별자치시_법정동코드목록.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/세종특별자치시_법정동코드목록/법정동코드 조회자료/법정동코드 조회자료.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/울산광역시_법정동코드 조회자료.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/울산광역시_법정동코드목록.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/울산광역시_법정동코드목록/법정동코드 조회자료/법정동코드 조회자료.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/인천광역시_법정동코드 조회자료.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/인천광역시_법정동코드목록.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/인천광역시_법정동코드목록/법정동코드 조회자료/법정동코드 조회자료.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/전라남도_법정동코드 조회자료.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/전라남도_법정동코드목록.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/전라남도_법정동코드목록/법정동코드 조회자료/법정동코드 조회자료.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/전라북도_법정동코드 조회자료.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/전라북도_법정동코드목록.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/전라북도_법정동코드목록/법정동코드 조회자료/법정동코드 조회자료.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/제주특별자치도_법정동코드 조회자료.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/제주특별자치도_법정동코드목록.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/제주특별자치도_법정동코드목록/법정동코드 조회자료/법정동코드 조회자료.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/충청남도_법정동코드 조회자료.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/충청남도_법정동코드목록.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/충청남도_법정동코드목록/법정동코드 조회자료/법정동코드 조회자료.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/충청북도_법정동코드 조회자료.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/충청북도_법정동코드목록.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동Mig자료/충청북도_법정동코드목록/법정동코드 조회자료/법정동코드 조회자료.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동코드 전체자료.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동코드 전체자료/강원도_법정동코드 조회자료.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../45.Data/법정동Mig/법정동코드 전체자료/법정동코드 전체자료.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/REP_DAO.py" beforeDir="false" afterPath="$PROJECT_DIR$/REP_DAO.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/REP_JOB.py" beforeDir="false" afterPath="$PROJECT_DIR$/REP_JOB.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/REP_MIG.py" beforeDir="false" afterPath="$PROJECT_DIR$/REP_MIG.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/REP_Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/REP_Main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/REP_NAVER.py" beforeDir="false" afterPath="$PROJECT_DIR$/REP_NAVER.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/REP_NAVER_APT_CODE.py" beforeDir="false" afterPath="$PROJECT_DIR$/REP_NAVER_APT_CODE.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/REP_URL.py" beforeDir="false" afterPath="$PROJECT_DIR$/REP_URL.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -75,14 +20,14 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/REP_NAVER.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="60" column="18" selection-start-line="60" selection-start-column="18" selection-end-line="60" selection-end-column="18" />
+            <state relative-caret-position="508">
+              <caret line="63" column="19" lean-forward="true" selection-start-line="63" selection-start-column="19" selection-end-line="63" selection-end-column="19" />
               <folding>
-                <element signature="e#22#31#0" expanded="true" />
+                <element signature="e#40#51#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -91,19 +36,84 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/REP_URL.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="7" column="42" lean-forward="true" selection-start-line="7" selection-start-column="42" selection-end-line="7" selection-end-column="42" />
+            <state relative-caret-position="152">
+              <caret line="8" column="32" lean-forward="true" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
+              <folding>
+                <element signature="e#0#24#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/REP_DAO.py">
+        <entry file="file://$PROJECT_DIR$/REP_TLGR_MSG.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="264" column="25" selection-start-line="264" selection-start-column="25" selection-end-line="264" selection-end-column="25" />
+            <state relative-caret-position="95">
+              <caret line="5" column="19" lean-forward="true" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/REP_TABLE.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="133">
+              <caret line="7" column="21" lean-forward="true" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/REP_MIG_MAPP.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="266">
+              <caret line="14" column="28" lean-forward="true" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/REP_COM.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="10" column="20" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/REP_SQL.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="76">
+              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/REP_NAVER_APT_CODE.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/REP_MIG_NAVER.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="280">
+              <caret line="38" column="21" lean-forward="true" selection-start-line="38" selection-start-column="21" selection-end-line="38" selection-end-column="21" />
               <folding>
-                <element signature="e#0#14#0" expanded="true" />
+                <element signature="e#40#51#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/REP_MIG.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2223">
+              <caret line="33" column="24" lean-forward="true" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="24" />
+              <folding>
+                <element signature="e#0#24#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -111,10 +121,29 @@
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
       <find>네이버부동산동별아파트리스트</find>
       <find>SELECT_RET_LEGL_REGN_CD</find>
+      <find>SELECT_RET_LEGL_REGN_CDrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr</find>
+      <find>dic</find>
+      <find>getBeautifulShopFromKB</find>
+      <find>get_html</find>
+      <find>DictCursor</find>
+      <find>json</find>
+      <find>INSERT_KMIG_KB_CMPX_TYP</find>
+      <find>INSERT</find>
+      <find>byDic</find>
+      <find>BYDIC</find>
+      <find>NV_CMPX</find>
+      <find>detailAddress</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -123,23 +152,21 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/REP_DAO.py" />
         <option value="$PROJECT_DIR$/REP_URL.py" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectConfigurationFiles">
-    <option name="files">
-      <list>
-        <option value="$PROJECT_DIR$/.idea/REP_proejct.iml" />
-        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
-        <option value="$PROJECT_DIR$/.idea/misc.xml" />
-        <option value="$PROJECT_DIR$/.idea/modules.xml" />
+        <option value="$PROJECT_DIR$/REP_NAVER.py" />
+        <option value="$PROJECT_DIR$/SQL_RED.py" />
+        <option value="$PROJECT_DIR$/RED_SQL.py" />
+        <option value="$PROJECT_DIR$/REP_TABLE.py" />
+        <option value="$PROJECT_DIR$/REP_MIG_MAPP.py" />
+        <option value="$PROJECT_DIR$/REP_DAO.py" />
+        <option value="$PROJECT_DIR$/REP_SQL.py" />
+        <option value="$PROJECT_DIR$/REP_MIG_NAVER.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1280" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
     <option name="width" value="1280" />
     <option name="height" value="1040" />
   </component>
@@ -149,6 +176,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -160,11 +188,11 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../.." />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
@@ -179,7 +207,28 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.REP_MIG_NAVER">
+    <configuration name="REP_MIG_NAVER" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="REP_proejct" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/REP_MIG_NAVER.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="REP_NAVER" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="REP_proejct" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -203,6 +252,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.REP_MIG_NAVER" />
         <item itemvalue="Python.REP_NAVER" />
       </list>
     </recent_temporary>
@@ -222,51 +272,162 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1540583" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1536643" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Python Console" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.329718" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.329718" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.43275487" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/REP_URL.py">
+    <entry file="file://$PROJECT_DIR$/jiil_sample.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="7" column="42" lean-forward="true" selection-start-line="7" selection-start-column="42" selection-end-line="7" selection-end-column="42" />
+        <state>
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/REP_DAO.py">
+    <entry file="file://$PROJECT_DIR$/ss">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="264" column="25" selection-start-line="264" selection-start-column="25" selection-end-line="264" selection-end-column="25" />
+        <state>
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/REP_JOB.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/REP_Main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/REP_DAO.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="519">
+          <caret line="55" column="48" lean-forward="true" selection-start-line="55" selection-start-column="48" selection-end-line="55" selection-end-column="48" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RED_SQL.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1" column="53" selection-start-line="1" selection-start-column="53" selection-end-line="1" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SQL_RED.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" lean-forward="true" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/REP_TLGR_MSG.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="19" lean-forward="true" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/REP_TABLE.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="21" lean-forward="true" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/REP_SQL.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/REP_NAVER_APT_CODE.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/REP_URL.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="32" lean-forward="true" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/REP_NAVER.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="60" column="18" selection-start-line="60" selection-start-column="18" selection-end-line="60" selection-end-column="18" />
+        <state relative-caret-position="508">
+          <caret line="63" column="19" lean-forward="true" selection-start-line="63" selection-start-column="19" selection-end-line="63" selection-end-column="19" />
           <folding>
-            <element signature="e#22#31#0" expanded="true" />
+            <element signature="e#40#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/REP_COM.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="20" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/REP_MIG.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2223">
+          <caret line="33" column="24" lean-forward="true" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/REP_MIG_MAPP.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="28" lean-forward="true" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/REP_MIG_NAVER.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="38" column="21" lean-forward="true" selection-start-line="38" selection-start-column="21" selection-end-line="38" selection-end-column="21" />
+          <folding>
+            <element signature="e#40#51#0" expanded="true" />
           </folding>
         </state>
       </provider>
