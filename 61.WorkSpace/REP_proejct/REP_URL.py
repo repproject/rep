@@ -9,6 +9,7 @@ KB부동산지도조회Json = "http://nland.kbstar.com/quics?page=B046949&QActio
 네이버부동산 = "http://land.naver.com"
 
 #신규
+NaverTimeStamp = 2
 NaverComplexListURL = "https://new.land.naver.com/api/regions/complexes?cortarNo="
 
 

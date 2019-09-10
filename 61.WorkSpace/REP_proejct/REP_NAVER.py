@@ -61,7 +61,7 @@ def get_naver_realasset():
     print(dicLeglCodeList)
 
     for dicLeglCode in dicLeglCodeList:
-        time.sleep(2)
+        time.sleep(NaverTimeStamp)
         url = NaverComplexListURL + dicLeglCode['LEGL_DONG_CD']
         print(url)
 

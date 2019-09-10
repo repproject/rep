@@ -1,12 +1,13 @@
 from typing import Any, Union, Tuple
-
 import pymysql
 import REP_Main
 import REP_TLGR_MSG
 import REP_COM
 import REP_SQL
-
-
+from REP_DAO import *
+from REP_TABLE import *
+from REP_MIG_MAPP import *
+import json
 
 repDBHost = "ceasar.iptime.org"
 repDBUser = "repwas"
@@ -21,6 +22,21 @@ def repDBConnect():  # DBConnection
 def getrepDBcursor():
     return repDBConnect().cursor()
 
+def getTableDic(tableName):
+    dicTBL = dicTable[tableName]
+    initializeTableDic(dicTBL)
+    return dicTBL
+
+def setJson2TableDic(tableName,jSon):
+    dicTBL = getTableDic(tableName)
+    for col in dicMigMapp[tableName].keys():
+        try:
+            dicTBL[dicMigMapp[tableName][col]] = jSon[col]
+        except Exception as e:
+            str(e)
+            print("migNaverComplexList json Parsing Error" + str(e) + col)
+    return dicTBL
+
 def fetch(sqlId,dicParam):
     conn = repDBConnect()
     curs = conn.cursor(pymysql.cursors.DictCursor)
@@ -29,6 +45,46 @@ def fetch(sqlId,dicParam):
     dic: Union[Tuple, Any] = curs.fetchall()
     conn.close()
     return dic
+
+def insertByDic(tableName,dicTBL):
+    # DBConnection
+    conn = repDBConnect()
+    curs = conn.cursor()
+
+    sql = "INSERT INTO "
+    sql += tableName
+    sql += " ("
+
+    sql2 = ""
+
+    for colName in dicTBL.keys():
+        sql += colName
+        sql += ","
+        if(colName != 'REG_USER_ID' and colName != 'CHG_USER_ID' and colName != 'REG_DTM' and colName != 'CHG_DTM' ):
+            if(str(type(dicTBL[colName])) == "<class 'str'>"):
+                sql2 += "'"
+                sql2 += dicTBL[colName]
+                sql2 += "'"
+            else:
+                sql2 += str(dicTBL[colName])
+            sql2 += ','
+
+    sql = sql[0:-1]
+    sql += ") VALUES ("
+    sql += sql2
+    sql += "'" + str(dicTBL['REG_USER_ID']) + "'" + ",NOW(),"+"'"+str(dicTBL['CHG_USER_ID'])+"'"+",NOW())"
+
+    print(sql)
+    curs.execute(sql)
+    conn.commit()
+    conn.close()
+
+    #for i in range(0,len(dicTBL.keys()) - 2):
+    #    sql += "%s,"
+    #sql += "NOW(),%s,NOW())"
+
+
+
 
 def INSERT_KMIG_NV_CMPX(dicNvCmpx):  # 네이버아파트코드삽입
     # DBConnection
