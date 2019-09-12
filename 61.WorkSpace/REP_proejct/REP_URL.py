@@ -11,6 +11,7 @@ KB부동산지도조회Json = "http://nland.kbstar.com/quics?page=B046949&QActio
 #신규
 NaverTimeStamp = 2
 NaverComplexListURL = "https://new.land.naver.com/api/regions/complexes?cortarNo="
+NaverComplexDtlURL = "https://new.land.naver.com/api/complexes/"
 
 
 def makeGetURL(JOB_CL,SITE_CL,TR_ID,dicGetParam):

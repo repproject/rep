@@ -19,8 +19,9 @@ rebDBcharset = 'utf8'
 def repDBConnect():  # DBConnection
     return pymysql.connect(host=repDBHost, user=repDBUser, password=repDBPassword, db=repDBdb, charset=rebDBcharset)
 
-def getrepDBcursor():
+def getrepDBcursor(): #DBCursor
     return repDBConnect().cursor()
+
 
 def getTableDic(tableName):
     dicTBL = dicTable[tableName]
@@ -79,12 +80,13 @@ def insertByDic(tableName,dicTBL):
     conn.commit()
     conn.close()
 
-    #for i in range(0,len(dicTBL.keys()) - 2):
-    #    sql += "%s,"
-    #sql += "NOW(),%s,NOW())"
+#update 공통 Dictionary에 존재하는 KEY에 대해서만 UPDATE문장을 만들어 준다.
+def UPDATECombyDic(TABLE_NAME,dic):
+    sql = "UPDATE " + TABLE_NAME + " SET "
+    for child in dic.keys():
+        sql += " " + child + " = '" + str(dic[child]) + "', "
 
-
-
+    return sql[0:-2] #마지막 Comma는 제외
 
 def INSERT_KMIG_NV_CMPX(dicNvCmpx):  # 네이버아파트코드삽입
     # DBConnection
@@ -130,7 +132,6 @@ def SELECT_RET_LEGL_REGN_CD():
     tup = curs.fetchall()
     conn.close()
     return tup
-
 
 def INSERT_KMIG_KB_BIG_REGN(dicRetBigArea):  # 대지역코드 삽입
     # DBConnection
@@ -542,14 +543,6 @@ def UPDATE_KADM_TLGR_USER_RCV_TGT_YN(dicTlgrUser):
     conn.commit()
     conn.close()
     return returnCode
-
-#update 공통 Dictionary에 존재하는 KEY에 대해서만 UPDATE문장을 만들어 준다.
-def UPDATECombyDic(TABLE_NAME,dic):
-    sql = "UPDATE " + TABLE_NAME + " SET "
-    for child in dic.keys():
-        sql += " " + child + " = '" + str(dic[child]) + "', "
-
-    return sql[0:-2] #마지막 Comma는 제외r
 
 def INSERT_KMIG_NV_CMPX_TYP(dicNVComplexType,conn,curs):
         # DBConnection

@@ -19,4 +19,16 @@ dicMigMapp = {
             'rentCount': 'WS_CNT',
             'shortTermRentCount': 'SHRT_RENT_CNT',
         }
+    ,
+    'KMIG_NV_CMPX_IMG':
+        {
+            'imageSrc': 'IMG_CORS',
+            'imageId': 'IMG_ID',
+            'newOldGbn': 'NEW_OLD_CL',
+            'smallCategoryName': 'IMG_CTGR_NM',
+            'explaination': 'IMG_DESC',
+            'registYmdt': 'IMG_REG_DTM',
+            'imageOrder': 'IMG_SORT'
+        }
+
 }
