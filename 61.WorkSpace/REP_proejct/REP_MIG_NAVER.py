@@ -63,9 +63,7 @@ def updNaverComplexDtl():
             except pymysql.IntegrityError as err:  # 기존에 네이버아파트 코드가 존재할 수 있음
                 log("네이버물건이미지 중복" + 'NV_CMPX_ID : ', "D")
 
-        #네이버물건상세UPDATE
-
-
-         time.sleep(NaverTimeStamp)
+            #네이버물건상세UPDATE
+        time.sleep(NaverTimeStamp)
 if __name__ == '__main__':
-    updNaverComplexDtl()
+    migNaverComplexList()
