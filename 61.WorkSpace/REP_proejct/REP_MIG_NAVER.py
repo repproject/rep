@@ -21,6 +21,7 @@ def migNaverComplexList():
         log(url,"I")
 
         page = REP_MIG.get_html(url)
+        print(page)
         jsonPage = json.loads(page)
 
         for jsonComplex in jsonPage['complexList']:
@@ -47,6 +48,7 @@ def updNaverComplexDtl():
         log(url,"I")
 
         page = REP_MIG.get_html(url)
+        print(page)
         jsonPage = json.loads(page)
         print(jsonPage)
 
