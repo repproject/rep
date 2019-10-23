@@ -1,9 +1,9 @@
-import pandas as pd
 from bs4 import BeautifulSoup
 import urllib
 import pymysql
 from datetime import datetime
 from REP_SQL import *
+from REP_COM import *
 from REP_DAO import *
 
 dicTable = { "GOV_LEGL_DONG_CD" : "",
@@ -105,10 +105,11 @@ def migAptTrade():
                     dicTable['CHG_USER_ID'] = 1000000002
                     dicTable['REAL_DEAL_CMPX_KND'] = '아파트'
 
-                    insertByDic('KMIG_DEAL_DTL', dicTable)
+                    insertBasicByTBLDic('KMIG_DEAL_DTL', dicTable)
 
-                except:
+                except Exception as e:
                     print("error " + dicLeglCode['LEGL_DONG_CD'] + ym['STD_YYMM'])
+                    print(e)
 
 
 ##item_list = []
