@@ -15,19 +15,18 @@ repDBPassword = "0(repwas)"
 repDBdb = "rep"
 rebDBcharset = 'utf8'
 
-
 def repDBConnect():  # DBConnection
     return pymysql.connect(host=repDBHost, user=repDBUser, password=repDBPassword, db=repDBdb, charset=rebDBcharset)
 
 def getrepDBcursor(): #DBCursor
     return repDBConnect().cursor()
 
-
 def getTableDic(tableName):
     dicTBL = dicTable[tableName]
     initializeTableDic(dicTBL)
     return dicTBL
 
+#JSON을 TABLE DIC으로 변환한다.
 def setJson2TableDic(tableName,jSon):
     dicTBL = getTableDic(tableName)
     for col in dicMigMapp[tableName].keys():
@@ -38,6 +37,7 @@ def setJson2TableDic(tableName,jSon):
             print("migNaverComplexList json Parsing Error" + str(e) + col)
     return dicTBL
 
+#sqlId로 SQL을 가져와 Data를 fetch한다.
 def fetch(sqlId,dicParam):
     conn = repDBConnect()
     curs = conn.cursor(pymysql.cursors.DictCursor)
@@ -47,7 +47,8 @@ def fetch(sqlId,dicParam):
     conn.close()
     return dic
 
-def insertByDic(tableName,dicTBL):
+#TableDic으로 INSERT문을 만들어 넣는다.
+def insertBasicByTBLDic(tableName,dicTBL):
     # DBConnection
     conn = repDBConnect()
     curs = conn.cursor()
@@ -59,12 +60,16 @@ def insertByDic(tableName,dicTBL):
     sql2 = ""
 
     for colName in dicTBL.keys():
+        if str(type(dicTBL[colName])) == "<class 'str'>" and colName != 'REG_DTM' and colName != 'CHG_DTM':
+            if len(dicTBL[colName]) == 0:
+                continue
+
         sql += colName
         sql += ","
         if(colName != 'REG_USER_ID' and colName != 'CHG_USER_ID' and colName != 'REG_DTM' and colName != 'CHG_DTM' ):
             if(str(type(dicTBL[colName])) == "<class 'str'>"):
                 sql2 += "'"
-                sql2 += dicTBL[colName]
+                sql2 += dicTBL[colName].replace("'","''")
                 sql2 += "'"
             else:
                 sql2 += str(dicTBL[colName])
@@ -74,18 +79,40 @@ def insertByDic(tableName,dicTBL):
     sql += ") VALUES ("
     sql += sql2
     sql += "'" + str(dicTBL['REG_USER_ID']) + "'" + ",NOW(),"+"'"+str(dicTBL['CHG_USER_ID'])+"'"+",NOW())"
+    print(sql)
+
+    curs.execute(sql)
+    conn.commit()
+    conn.close()
+
+#기본조건(=)을 가진 update
+def updateBaiscByTBLDic(tableName,dicTBL,dicBaiscCond):
+    conn = repDBConnect()
+    curs = conn.cursor()
+    sql = UPDATECombyDic(tableName,dicTBL,0)
+    sql += ",CHG_DTM = NOW()"
+
+    flagStart = 1
+    for dicCondKey in dicBaiscCond.keys():
+        if flagStart:
+            sql += " WHERE "
+        else:
+            sql += " AND "
+
+        sql += dicCondKey + " = " + str(dicBaiscCond[dicCondKey])
 
     print(sql)
+
     curs.execute(sql)
     conn.commit()
     conn.close()
 
 #update 공통 Dictionary에 존재하는 KEY에 대해서만 UPDATE문장을 만들어 준다.
-def UPDATECombyDic(TABLE_NAME,dic):
+def UPDATECombyDic(TABLE_NAME,dic,isValidateNull):
     sql = "UPDATE " + TABLE_NAME + " SET "
     for child in dic.keys():
-        sql += " " + child + " = '" + str(dic[child]) + "', "
-
+        if isValidateNull == 1 or len(str(dic[child])) > 0:
+            sql += " " + child + " = '" + str(dic[child]).replace("'","''") + "', "
     return sql[0:-2] #마지막 Comma는 제외
 
 def INSERT_KMIG_NV_CMPX(dicNvCmpx):  # 네이버아파트코드삽입
