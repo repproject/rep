@@ -1,0 +1,157 @@
+{https://new.land.naver.com/api/complexes/117522?sameAddressGroup=false
+	"photos": [],
+	"complexDetail": {
+		"complexNo": "117522",
+		"complexName": "힐스테이트미사역 11-1BL",
+		"cortarNo": "4145010900",
+		"realEstateTypeCode": "OBYG",
+		"realEstateTypeName": "오피스텔분양권",
+		"detailAddress": "미사택지개발사업지구 중심상업용지 11-1BL",
+		"latitude": 37.562929,
+		"longitude": 127.190881,
+		"totalHouseholdCount": 676,
+		"totalLeaseHouseholdCount": 0,
+		"highFloor": 30,
+		"lowFloor": 28,
+		"completionYearMonth": "202008",
+		"totalDongCount": 4,
+		"maxSupplyArea": 187.71,
+		"minSupplyArea": 49.4,
+		"dealCount": 68,
+		"rentCount": 0,
+		"leaseCount": 0,
+		"shortTermRentCount": 0,
+		"isBookmarked": false,
+		"batlRatio": "0",
+		"btlRatio": "0",
+		"parkingCountByHousehold": 0.84,
+		"constructionCompanyName": "현대엔지니어링(주)",
+		"heatMethodTypeCode": "HT005",
+		"heatFuelTypeCode": "HF002",
+		"pyoengNames": "49A㎡, 161A㎡, 187A",
+		"address": "경기도 하남시 망월동",
+		"roadAddressPrefix": "경기도 하남시"
+	},
+	"complexPyeongDetailList": [
+		{
+			"pyeongNo": "1",
+			"supplyAreaDouble": 49.4,
+			"supplyArea": "49.4",
+			"pyeongName": "49A",
+			"supplyPyeong": "14.94",
+			"pyeongName2": "14A",
+			"exclusiveArea": "22.34",
+			"exclusivePyeong": "6.75",
+			"householdCountByPyeong": "452",
+			"realEstateTypeCode": "B02",
+			"exclusiveRate": "45",
+			"grandPlanList": [
+				{
+					"imageId": "117522@20170818152114829975",
+					"imageOrder": 0,
+					"imageSrc": "/20170818_226/hscp_img_1503037274768PqO0a_JPEG/photoinfra_1503037274420.jpg",
+					"imageType": "1"
+				}
+			],
+			"articleStatistics": {
+				"pyeongNo": "1",
+				"dealCount": "20",
+				"leaseCount": "0",
+				"rentCount": "0",
+				"shortTermRentCount": "0",
+				"dealPriceMin": "1억 4,800",
+				"dealPriceMax": "1억 6,220",
+				"dealPricePerSpaceMin": "990",
+				"dealPricePerSpaceMax": "1,085",
+				"dealPriceString": "1억 4,800~1억 6,220",
+				"dealPricePerSpaceString": "(990~1,085만원/3.3㎡)",
+				"leasePriceString": "",
+				"leasePricePerSpaceString": "",
+				"leasePriceRateString": ""
+			},
+			"entranceType": "계단식",
+			"isalePrice": 16620,
+			"isalePriceByLetter": "1억 6,620"
+		},
+		{
+			"pyeongNo": "2",
+			"supplyAreaDouble": 161.23,
+			"supplyArea": "161.23",
+			"pyeongName": "161A",
+			"supplyPyeong": "48.77",
+			"pyeongName2": "48A",
+			"exclusiveArea": "72.93",
+			"exclusivePyeong": "22.06",
+			"householdCountByPyeong": "25",
+			"realEstateTypeCode": "B02",
+			"exclusiveRate": "45",
+			"grandPlanList": [
+				{
+					"imageId": "117522@20170818152121701144",
+					"imageOrder": 1,
+					"imageSrc": "/20170818_210/hscp_img_1503037281645yzhNv_JPEG/photoinfra_1503037281227.jpg",
+					"imageType": "2"
+				}
+			],
+			"articleStatistics": {
+				"pyeongNo": "2",
+				"dealCount": "7",
+				"leaseCount": "0",
+				"rentCount": "0",
+				"shortTermRentCount": "0",
+				"dealPriceMin": "4억 8,850",
+				"dealPriceMax": "5억 7,370",
+				"dealPricePerSpaceMin": "1,002",
+				"dealPricePerSpaceMax": "1,176",
+				"dealPriceString": "4억 8,850~5억 7,370",
+				"dealPricePerSpaceString": "(1,002~1,176만원/3.3㎡)",
+				"leasePriceString": "",
+				"leasePricePerSpaceString": "",
+				"leasePriceRateString": ""
+			},
+			"entranceType": "계단식",
+			"isalePrice": 41060,
+			"isalePriceByLetter": "4억 1,060"
+		},
+		{
+			"pyeongNo": "3",
+			"supplyAreaDouble": 187.71,
+			"supplyArea": "187.71",
+			"pyeongName": "187A",
+			"supplyPyeong": "56.78",
+			"pyeongName2": "56A",
+			"exclusiveArea": "84.91",
+			"exclusivePyeong": "25.68",
+			"householdCountByPyeong": "199",
+			"realEstateTypeCode": "B02",
+			"exclusiveRate": "45",
+			"grandPlanList": [
+				{
+					"imageId": "117522@20170818152129369100",
+					"imageOrder": 2,
+					"imageSrc": "/20170818_226/hscp_img_1503037289286I9PXe_JPEG/photoinfra_1503037288881.jpg",
+					"imageType": "3"
+				}
+			],
+			"articleStatistics": {
+				"pyeongNo": "3",
+				"dealCount": "58",
+				"leaseCount": "0",
+				"rentCount": "0",
+				"shortTermRentCount": "0",
+				"dealPriceMin": "4억 9,370",
+				"dealPriceMax": "6억 4,450",
+				"dealPricePerSpaceMin": "869",
+				"dealPricePerSpaceMax": "1,135",
+				"dealPriceString": "4억 9,370~6억 4,450",
+				"dealPricePerSpaceString": "(869~1,135만원/3.3㎡)",
+				"leasePriceString": "",
+				"leasePricePerSpaceString": "",
+				"leasePriceRateString": ""
+			},
+			"entranceType": "계단식",
+			"isalePrice": 50430,
+			"isalePriceByLetter": "5억 430"
+		}
+	]
+}

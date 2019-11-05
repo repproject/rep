@@ -47,7 +47,6 @@ def updNaverComplexDtl():
         log(url,"I")
 
         page = REP_MIG.get_html(url)
-        print(page)
         jsonPage = json.loads(page)
         print(jsonPage)
 
@@ -61,15 +60,14 @@ def updNaverComplexDtl():
 
             try:
                 insertBasicByTBLDic('KMIG_NV_CMPX_IMG', dicKMIG_NV_CMPX_IMG)
+                dicKMIG_NV_CMPX_IMG = None;
             except pymysql.IntegrityError as err:  # 기존에 네이버아파트 코드가 존재할 수 있음
                 log("네이버물건이미지 중복" + 'NV_CMPX_ID : ', "D")
 
         #네이버물건상세갱신
-        print(jsonPage['complexDetail'])
         dicKMIG_NV_CMPX = setJson2TableDic('KMIG_NV_CMPX', jsonPage['complexDetail'])
         dicKMIG_NV_CMPX['REG_USER_ID'] = userid
         dicKMIG_NV_CMPX['CHG_USER_ID'] = userid
-        print(dicKMIG_NV_CMPX)
 
         dicBasicCond = {}
         dicBasicCond['NV_CMPX_ID'] =  dicCmpxId['NV_CMPX_ID']
@@ -88,18 +86,16 @@ def updNaverComplexDtl():
 
             try:
                 insertBasicByTBLDic('KMIG_NV_CMPX_RBLD', dicKMIG_NV_CMPX_IMG)
+                dicKMIG_NV_CMPX_IMG = None;
             except pymysql.IntegrityError as err:  # 기존에 네이버아파트 코드가 존재할 수 있음
                 log("네이버물건재건축 중복" + 'NV_CMPX_ID : ' + dicCmpxId['NV_CMPX_ID'] , "D")
 
         # 네이버물건형 INSERT
         for jsonPageNvCmpxTyp in jsonPage['complexPyeongDetailList']:
-            print("네이버물건형 INSERT")
-            print(jsonPageNvCmpxTyp)
             dicKMIG_NV_CMPX_TYP = setJson2TableDic('KMIG_NV_CMPX_TYP', jsonPageNvCmpxTyp)
             dicKMIG_NV_CMPX_TYP['NV_CMPX_ID'] = dicCmpxId['NV_CMPX_ID']
             dicKMIG_NV_CMPX_TYP['REG_USER_ID'] = userid
             dicKMIG_NV_CMPX_TYP['CHG_USER_ID'] = userid
-            print(dicKMIG_NV_CMPX_TYP)
 
             try:
                 insertBasicByTBLDic('KMIG_NV_CMPX_TYP', dicKMIG_NV_CMPX_TYP)
@@ -109,17 +105,15 @@ def updNaverComplexDtl():
             if jsonPageNvCmpxTyp.get('grandPlanList', False):
                 #네이버물건형이미지 INSERT
                 for jsonPageNvCmpxTypImg in jsonPageNvCmpxTyp['grandPlanList']:
-                    print("네이버물건형이미지 INSERT")
-                    print(jsonPageNvCmpxTypImg)
                     dicKMIG_NV_CMPX_TYP_IMG = setJson2TableDic('KMIG_NV_CMPX_TYP_IMG', jsonPageNvCmpxTypImg)
                     dicKMIG_NV_CMPX_TYP_IMG['NV_CMPX_ID'] = dicCmpxId['NV_CMPX_ID']
                     dicKMIG_NV_CMPX_TYP_IMG['NV_CMPX_TYP_SEQ'] = dicKMIG_NV_CMPX_TYP['NV_CMPX_TYP_SEQ']
                     dicKMIG_NV_CMPX_TYP_IMG['REG_USER_ID'] = userid
                     dicKMIG_NV_CMPX_TYP_IMG['CHG_USER_ID'] = userid
-                    print(dicKMIG_NV_CMPX_TYP_IMG)
 
                     try:
                         insertBasicByTBLDic('KMIG_NV_CMPX_TYP_IMG', dicKMIG_NV_CMPX_TYP_IMG)
+                        dicKMIG_NV_CMPX_TYP_IMG = None;
                     except pymysql.IntegrityError as err:  # 기존에 네이버아파트 코드가 존재할 수 있음
                         log("네이버물건형이미지 중복" + 'NV_CMPX_ID : ' + dicCmpxId['NV_CMPX_ID'] + "/" + dicKMIG_NV_CMPX_TYP['NV_CMPX_TYP_SEQ'], "D")
 
@@ -135,10 +129,11 @@ def updNaverComplexDtl():
                 dicKMIG_NV_CMPX_TYP_STAT['CHG_USER_ID'] = userid
                 print(dicKMIG_NV_CMPX_TYP_STAT)
 
-            try:
-                insertBasicByTBLDic('KMIG_NV_CMPX_TYP_STAT', dicKMIG_NV_CMPX_TYP_STAT)
-            except pymysql.IntegrityError as err:  # 기존에 네이버아파트 코드가 존재할 수 있음
-                log("네이버물건형통계 중복" + 'NV_CMPX_ID : ' + dicCmpxId['NV_CMPX_ID'] + "/" + dicKMIG_NV_CMPX_TYP['NV_CMPX_TYP_SEQ'], "D")
+                try:
+                    insertBasicByTBLDic('KMIG_NV_CMPX_TYP_STAT', dicKMIG_NV_CMPX_TYP_STAT)
+                    dicKMIG_NV_CMPX_TYP_STAT = None;
+                except pymysql.IntegrityError as err:  # 기존에 네이버아파트 코드가 존재할 수 있음
+                    log("네이버물건형통계 중복" + 'NV_CMPX_ID : ' + dicCmpxId['NV_CMPX_ID'] + "/" + dicKMIG_NV_CMPX_TYP['NV_CMPX_TYP_SEQ'], "D")
 
         #네이버물건상세UPDATE
         time.sleep(NaverTimeStamp)

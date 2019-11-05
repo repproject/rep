@@ -1,0 +1,442 @@
+{https://new.land.naver.com/api/complexes/12266?sameAddressGroup=false
+	"photos": [
+		{
+			"imageKey": "12266",
+			"imageSrc": "/20110421_73/land_system_1303383635626Erqab_JPEG/detail_12266_5.jpg",
+			"imageType": "IA1",
+			"imageId": "12266@20110421200035668350",
+			"etcItem1": "104696",
+			"newOldGbn": "OLD",
+			"smallCategoryName": "",
+			"registYmdt": "20100514180910",
+			"imageOrder": 0
+		},
+		{
+			"imageKey": "12266",
+			"imageSrc": "/20110421_190/land_system_1303383633162Wv7ST_JPEG/detail_12266_4.jpg",
+			"imageType": "IA1",
+			"imageId": "12266@20110421200033206374",
+			"etcItem1": "104695",
+			"newOldGbn": "OLD",
+			"smallCategoryName": "",
+			"registYmdt": "20100514180910",
+			"imageOrder": 0
+		},
+		{
+			"imageKey": "12266",
+			"imageSrc": "/20110421_85/land_system_1303383632830wA1UU_JPEG/detail_12266_3.jpg",
+			"imageType": "IA1",
+			"imageId": "12266@20110421200032867833",
+			"etcItem1": "104694",
+			"newOldGbn": "OLD",
+			"smallCategoryName": "",
+			"registYmdt": "20100514180910",
+			"imageOrder": 0
+		},
+		{
+			"imageKey": "12266",
+			"imageSrc": "/20110421_121/land_system_1303382875872P3geR_JPEG/detail_12266_9.jpg",
+			"imageType": "IA1",
+			"imageId": "12266@20110421194755921531",
+			"etcItem1": "104807",
+			"newOldGbn": "OLD",
+			"smallCategoryName": "",
+			"registYmdt": "20100514180910",
+			"imageOrder": 0
+		},
+		{
+			"imageKey": "12266",
+			"imageSrc": "/20110421_259/land_system_1303382875596oh331_JPEG/detail_12266_8.jpg",
+			"imageType": "IA2",
+			"imageId": "12266@20110421194755633899",
+			"etcItem1": "104806",
+			"newOldGbn": "OLD",
+			"smallCategoryName": "",
+			"registYmdt": "20100514180910",
+			"imageOrder": 0
+		},
+		{
+			"imageKey": "12266",
+			"imageSrc": "/20110421_148/land_system_1303383631998ARh3T_JPEG/detail_12266_0.jpg",
+			"imageType": "IB4",
+			"imageId": "12266@20110421200032044790",
+			"etcItem1": "104691",
+			"newOldGbn": "OLD",
+			"smallCategoryName": "",
+			"registYmdt": "20100514180910",
+			"imageOrder": 0
+		},
+		{
+			"imageKey": "12266",
+			"imageSrc": "/20110421_98/land_system_1303383636100VedfK_JPEG/detail_12266_7.jpg",
+			"imageType": "IB7",
+			"imageId": "12266@20110421200036141215",
+			"etcItem1": "104698",
+			"newOldGbn": "OLD",
+			"smallCategoryName": "",
+			"registYmdt": "20100514180910",
+			"imageOrder": 0
+		},
+		{
+			"imageKey": "12266",
+			"imageSrc": "/20110421_145/land_system_1303383635867vG5Ee_JPEG/detail_12266_6.jpg",
+			"imageType": "IB7",
+			"imageId": "12266@20110421200035912101",
+			"etcItem1": "104697",
+			"newOldGbn": "OLD",
+			"smallCategoryName": "",
+			"registYmdt": "20100514180910",
+			"imageOrder": 0
+		},
+		{
+			"imageKey": "12266",
+			"imageSrc": "/20110421_127/land_system_13033836325508Lcpx_JPEG/detail_12266_2.jpg",
+			"imageType": "IB7",
+			"imageId": "12266@20110421200032596441",
+			"etcItem1": "104693",
+			"newOldGbn": "OLD",
+			"smallCategoryName": "",
+			"registYmdt": "20100514180910",
+			"imageOrder": 0
+		},
+		{
+			"imageKey": "12266",
+			"imageSrc": "/20110421_146/land_system_1303383632250apbr2_JPEG/detail_12266_1.jpg",
+			"imageType": "IB7",
+			"imageId": "12266@20110421200032301732",
+			"etcItem1": "104692",
+			"newOldGbn": "OLD",
+			"smallCategoryName": "",
+			"registYmdt": "20100514180910",
+			"imageOrder": 0
+		}
+	],
+	"complexDetail": {
+		"complexNo": "12266",
+		"complexName": "아남타워현대",
+		"cortarNo": "1168010100",
+		"realEstateTypeCode": "OPST",
+		"realEstateTypeName": "오피스텔",
+		"detailAddress": "702-10",
+		"roadAddress": "테헤란로 311",
+		"latitude": 37.503749,
+		"longitude": 127.04478,
+		"totalHouseholdCount": 299,
+		"totalLeaseHouseholdCount": 0,
+		"highFloor": 20,
+		"lowFloor": 20,
+		"completionYearMonth": "200002",
+		"totalDongCount": 1,
+		"maxSupplyArea": 203.18,
+		"minSupplyArea": 69.87,
+		"dealCount": 1,
+		"rentCount": 11,
+		"leaseCount": 0,
+		"shortTermRentCount": 0,
+		"isBookmarked": false,
+		"batlRatio": "1045",
+		"btlRatio": "58",
+		"parkingCountByHousehold": 1.1,
+		"constructionCompanyName": "현대산업개발주식회사",
+		"heatMethodTypeCode": "HT002",
+		"heatFuelTypeCode": "HF001",
+		"pyoengNames": "69A㎡, 74B㎡, 78㎡, 101㎡, 107㎡, 113㎡, 141㎡, 149㎡, 189㎡, 203",
+		"buildingRegister": "rrhZbEQ/HLDIi/WKaTFEZakFeuHOy1WQ",
+		"address": "서울시 강남구 역삼동",
+		"roadAddressPrefix": "서울시 강남구"
+	},
+	"complexPyeongDetailList": [
+		{
+			"pyeongNo": "1",
+			"supplyAreaDouble": 69.87,
+			"supplyArea": "69.87",
+			"pyeongName": "69A",
+			"supplyPyeong": "21.13",
+			"pyeongName2": "21A",
+			"exclusiveArea": "36",
+			"exclusivePyeong": "10.89",
+			"householdCountByPyeong": "13",
+			"realEstateTypeCode": "A02",
+			"exclusiveRate": "52",
+			"grandPlanList": [
+				{
+					"imageId": "12266@20120227161521696392",
+					"imageOrder": 0,
+					"imageSrc": "/20120227_111/hscp_img_1330326921540sl2EU_JPEG/GW70711_1330326920173.jpg",
+					"imageType": "1"
+				}
+			],
+			"articleStatistics": {
+				"pyeongNo": "1",
+				"dealCount": "0",
+				"leaseCount": "0",
+				"rentCount": "2",
+				"shortTermRentCount": "0",
+				"dealPriceString": "",
+				"dealPricePerSpaceString": "",
+				"leasePriceString": "",
+				"leasePricePerSpaceString": "",
+				"leasePriceRateString": "",
+				"rentPriceString": "1,000/75",
+				"rentDepositPriceMin": "1,000",
+				"rentPriceMin": "75",
+				"rentDepositPriceMax": "1,000",
+				"rentPriceMax": "75"
+			},
+			"entranceType": "계단식"
+		},
+		{
+			"pyeongNo": "2",
+			"supplyAreaDouble": 74.14,
+			"supplyArea": "74.14",
+			"pyeongName": "74B",
+			"supplyPyeong": "22.42",
+			"pyeongName2": "22B",
+			"exclusiveArea": "38.2",
+			"exclusivePyeong": "11.55",
+			"householdCountByPyeong": "26",
+			"realEstateTypeCode": "A02",
+			"exclusiveRate": "52",
+			"grandPlanList": [
+				{
+					"imageId": "12266@20120220170604914299",
+					"imageOrder": 1,
+					"imageSrc": "/20120220_4/hscp_img_1329725164825vChAg_JPEG/GW70711_1329725163290.jpg",
+					"imageType": "2"
+				}
+			],
+			"articleStatistics": {
+				"pyeongNo": "2",
+				"dealCount": "0",
+				"leaseCount": "0",
+				"rentCount": "1",
+				"shortTermRentCount": "0",
+				"dealPriceString": "",
+				"dealPricePerSpaceString": "",
+				"leasePriceString": "",
+				"leasePricePerSpaceString": "",
+				"leasePriceRateString": "",
+				"rentPriceString": "1,000/80",
+				"rentDepositPriceMin": "1,000",
+				"rentPriceMin": "80",
+				"rentDepositPriceMax": "1,000",
+				"rentPriceMax": "80"
+			},
+			"entranceType": "계단식"
+		},
+		{
+			"pyeongNo": "3",
+			"supplyAreaDouble": 78.02,
+			"supplyArea": "78.02",
+			"pyeongName": "78",
+			"supplyPyeong": "23.6",
+			"pyeongName2": "23",
+			"exclusiveArea": "40.2",
+			"exclusivePyeong": "12.16",
+			"householdCountByPyeong": "156",
+			"realEstateTypeCode": "A02",
+			"exclusiveRate": "52",
+			"grandPlanList": [
+				{
+					"imageId": "12266@20120220170405343158",
+					"imageOrder": 2,
+					"imageSrc": "/20120220_180/hscp_img_1329725045271HFQXP_JPEG/GW70711_1329725043763.jpg",
+					"imageType": "3"
+				}
+			],
+			"articleStatistics": {
+				"pyeongNo": "3",
+				"dealCount": "1",
+				"leaseCount": "0",
+				"rentCount": "7",
+				"shortTermRentCount": "0",
+				"dealPriceMin": "2억 3,900",
+				"dealPriceMax": "2억 3,900",
+				"dealPricePerSpaceMin": "1,013",
+				"dealPricePerSpaceMax": "1,013",
+				"dealPriceString": "2억 3,900",
+				"dealPricePerSpaceString": "(1,013만원/3.3㎡)",
+				"leasePriceString": "",
+				"leasePricePerSpaceString": "",
+				"leasePriceRateString": "",
+				"rentPriceString": "1,000/80~1,000/85",
+				"rentDepositPriceMin": "1,000",
+				"rentPriceMin": "80",
+				"rentDepositPriceMax": "1,000",
+				"rentPriceMax": "85"
+			},
+			"entranceType": "계단식"
+		},
+		{
+			"pyeongNo": "4",
+			"supplyAreaDouble": 101.94,
+			"supplyArea": "101.94",
+			"pyeongName": "101",
+			"supplyPyeong": "30.83",
+			"pyeongName2": "30",
+			"exclusiveArea": "52.52",
+			"exclusivePyeong": "15.88",
+			"householdCountByPyeong": "13",
+			"realEstateTypeCode": "A02",
+			"exclusiveRate": "52",
+			"grandPlanList": [
+				{
+					"imageId": "12266@20120220170332064538",
+					"imageOrder": 3,
+					"imageSrc": "/20120220_63/hscp_img_1329725011947n5Frm_JPEG/GW70711_1329725010470.jpg",
+					"imageType": "4"
+				}
+			],
+			"entranceType": "계단식"
+		},
+		{
+			"pyeongNo": "5",
+			"supplyAreaDouble": 107.28,
+			"supplyArea": "107.28",
+			"pyeongName": "107",
+			"supplyPyeong": "32.45",
+			"pyeongName2": "32",
+			"exclusiveArea": "55.27",
+			"exclusivePyeong": "16.71",
+			"householdCountByPyeong": "26",
+			"realEstateTypeCode": "A02",
+			"exclusiveRate": "52",
+			"grandPlanList": [
+				{
+					"imageId": "12266@20120220170321909761",
+					"imageOrder": 4,
+					"imageSrc": "/20120220_169/hscp_img_13297250018172F625_JPEG/GW70711_1329725000015.jpg",
+					"imageType": "5"
+				}
+			],
+			"entranceType": "계단식"
+		},
+		{
+			"pyeongNo": "6",
+			"supplyAreaDouble": 113.13,
+			"supplyArea": "113.13",
+			"pyeongName": "113",
+			"supplyPyeong": "34.22",
+			"pyeongName2": "34",
+			"exclusiveArea": "58.29",
+			"exclusivePyeong": "17.63",
+			"householdCountByPyeong": "26",
+			"realEstateTypeCode": "A02",
+			"exclusiveRate": "52",
+			"grandPlanList": [
+				{
+					"imageId": "12266@20120220170214062141",
+					"imageOrder": 5,
+					"imageSrc": "/20120220_23/hscp_img_1329724933977YyGhu_JPEG/GW70711_1329724932504.jpg",
+					"imageType": "6"
+				}
+			],
+			"articleStatistics": {
+				"pyeongNo": "6",
+				"dealCount": "0",
+				"leaseCount": "0",
+				"rentCount": "1",
+				"shortTermRentCount": "0",
+				"dealPriceString": "",
+				"dealPricePerSpaceString": "",
+				"leasePriceString": "",
+				"leasePricePerSpaceString": "",
+				"leasePriceRateString": "",
+				"rentPriceString": "2,000/120",
+				"rentDepositPriceMin": "2,000",
+				"rentPriceMin": "120",
+				"rentDepositPriceMax": "2,000",
+				"rentPriceMax": "120"
+			},
+			"entranceType": "계단식"
+		},
+		{
+			"pyeongNo": "7",
+			"supplyAreaDouble": 141.23,
+			"supplyArea": "141.23",
+			"pyeongName": "141",
+			"supplyPyeong": "42.72",
+			"pyeongName2": "42",
+			"exclusiveArea": "72.76",
+			"exclusivePyeong": "22",
+			"householdCountByPyeong": "2",
+			"realEstateTypeCode": "A02",
+			"exclusiveRate": "52",
+			"grandPlanList": [
+				{
+					"imageId": "12266@20120220170155684625",
+					"imageOrder": 6,
+					"imageSrc": "/20120220_80/hscp_img_1329724915563mIktM_JPEG/GW70711_1329724914333.jpg",
+					"imageType": "7"
+				}
+			],
+			"entranceType": "계단식"
+		},
+		{
+			"pyeongNo": "8",
+			"supplyAreaDouble": 149.85,
+			"supplyArea": "149.85",
+			"pyeongName": "149",
+			"supplyPyeong": "45.32",
+			"pyeongName2": "45",
+			"exclusiveArea": "77.21",
+			"exclusivePyeong": "23.35",
+			"householdCountByPyeong": "26",
+			"realEstateTypeCode": "A02",
+			"exclusiveRate": "52",
+			"grandPlanList": [
+				{
+					"imageId": "12266@20120220170140301074",
+					"imageOrder": 7,
+					"imageSrc": "/20120220_187/hscp_img_1329724900198BWiSp_JPEG/GW70711_1329724898753.jpg",
+					"imageType": "8"
+				}
+			],
+			"entranceType": "계단식"
+		},
+		{
+			"pyeongNo": "10",
+			"supplyAreaDouble": 189.04,
+			"supplyArea": "189.04",
+			"pyeongName": "189",
+			"supplyPyeong": "57.18",
+			"pyeongName2": "57",
+			"exclusiveArea": "97.39",
+			"exclusivePyeong": "29.46",
+			"householdCountByPyeong": "1",
+			"realEstateTypeCode": "A02",
+			"exclusiveRate": "52",
+			"grandPlanList": [
+				{
+					"imageId": "12266@20120220170113315006",
+					"imageOrder": 8,
+					"imageSrc": "/20120220_72/hscp_img_1329724873194puwir_JPEG/GW70711_1329724871846.jpg",
+					"imageType": "10"
+				}
+			],
+			"entranceType": "계단식"
+		},
+		{
+			"pyeongNo": "11",
+			"supplyAreaDouble": 203.18,
+			"supplyArea": "203.18",
+			"pyeongName": "203",
+			"supplyPyeong": "61.46",
+			"pyeongName2": "61",
+			"exclusiveArea": "104.68",
+			"exclusivePyeong": "31.66",
+			"householdCountByPyeong": "10",
+			"realEstateTypeCode": "A02",
+			"exclusiveRate": "52",
+			"grandPlanList": [
+				{
+					"imageId": "12266@20120220170055865744",
+					"imageOrder": 9,
+					"imageSrc": "/20120220_121/hscp_img_1329724855792hm2VA_JPEG/GW70711_1329724853956.jpg",
+					"imageType": "11"
+				}
+			],
+			"entranceType": "계단식"
+		}
+	]
+}

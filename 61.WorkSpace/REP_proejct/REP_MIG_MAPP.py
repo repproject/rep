@@ -89,5 +89,10 @@ dicMigMapp = {
             'leasePriceString' : 'JS_PRC_STR',
             'leasePricePerSpaceString' : 'JS_PYNG_PER_PRC_STR',
             'leasePriceRateString' : 'JS_PRC_RATE_STR',
+            'rentPriceString' : 'WS_PRC_STR',
+            'rentDepositPriceMin' : 'WS_DPST_MSML_AMT_STR',
+            'rentPriceMin' : 'WS_MSML_PRC_STR',
+            'rentDepositPriceMax' : 'WS_DPST_MBIG_AMT_STR',
+            'rentPriceMax' : 'WS_MBIG_PRC_STR'
         }
 }
