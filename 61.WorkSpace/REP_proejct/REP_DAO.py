@@ -2,7 +2,7 @@ from typing import Any, Union, Tuple
 import pymysql
 import REP_Main
 import REP_TLGR_MSG
-import REP_COM
+from REP_COM import *
 import REP_SQL
 from REP_DAO import *
 from REP_TABLE import *
@@ -22,9 +22,13 @@ def getrepDBcursor(): #DBCursor
     return repDBConnect().cursor()
 
 def getTableDic(tableName):
-    dicTBL = dicTable[tableName]
-    initializeTableDic(dicTBL)
-    return dicTBL
+    try:
+        dicTBL = dicTable[tableName]
+    except KeyError as e:
+        log("REP_TABLE 미존재 : " + str(e),"E")
+    else:
+        initializeTableDic(dicTBL)
+        return dicTBL
 
 #JSON을 TABLE DIC으로 변환한다.
 def setJson2TableDic(tableName,jSon):
@@ -111,6 +115,7 @@ def updateBaiscByTBLDic(tableName,dicTBL,dicBaiscCond):
 def UPDATECombyDic(TABLE_NAME,dic,isValidateNull):
     sql = "UPDATE " + TABLE_NAME + " SET "
     for child in dic.keys():
+        #빈값은 갱신 제외
         if isValidateNull == 1 or len(str(dic[child])) > 0:
             sql += " " + child + " = '" + str(dic[child]).replace("'","''") + "', "
     return sql[0:-2] #마지막 Comma는 제외
