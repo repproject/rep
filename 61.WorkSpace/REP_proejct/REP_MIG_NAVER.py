@@ -85,8 +85,8 @@ def updNaverComplexDtl():
             print(dicKMIG_NV_CMPX)
 
             try:
-                insertBasicByTBLDic('KMIG_NV_CMPX_RBLD', dicKMIG_NV_CMPX_IMG)
-                dicKMIG_NV_CMPX_IMG = None;
+                insertBasicByTBLDic('KMIG_NV_CMPX_RBLD', dicKMIG_NV_CMPX_RBLD)
+                dicKMIG_NV_CMPX_RBLD = None;
             except pymysql.IntegrityError as err:  # 기존에 네이버아파트 코드가 존재할 수 있음
                 log("네이버물건재건축 중복" + 'NV_CMPX_ID : ' + dicCmpxId['NV_CMPX_ID'] , "D")
 
@@ -123,8 +123,6 @@ def updNaverComplexDtl():
                 dicKMIG_NV_CMPX_TYP_STAT = setJson2TableDic('KMIG_NV_CMPX_TYP_STAT', jsonPageNvCmpxTyp['articleStatistics'])
                 dicKMIG_NV_CMPX_TYP_STAT['NV_CMPX_ID'] = dicCmpxId['NV_CMPX_ID']
                 dicKMIG_NV_CMPX_TYP_STAT['NV_CMPX_TYP_SEQ'] = dicKMIG_NV_CMPX_TYP['NV_CMPX_TYP_SEQ']
-                dicKMIG_NV_CMPX_TYP_STAT['MSML_PYNG_PER_AMT'] = dicKMIG_NV_CMPX_TYP_STAT['MSML_PYNG_PER_AMT'].replace(",", "")
-                dicKMIG_NV_CMPX_TYP_STAT['MBIG_PYNG_PER_AMT'] = dicKMIG_NV_CMPX_TYP_STAT['MBIG_PYNG_PER_AMT'].replace(",", "")
                 dicKMIG_NV_CMPX_TYP_STAT['REG_USER_ID'] = userid
                 dicKMIG_NV_CMPX_TYP_STAT['CHG_USER_ID'] = userid
                 print(dicKMIG_NV_CMPX_TYP_STAT)
