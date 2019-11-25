@@ -75,41 +75,42 @@ def migAptTrade():
 
     for dicLeglCode in dicLeglCodeList:
 
-        for ym in ymList :
+        try:
+            for ym in ymList :
 
-            API_KEY = "n%2Bx3ws990OxspyqgFNBV0oppRCCskpT5taMq4aQx7VyV%2B7JQrn5snqBWdlWuL%2F8IScN0Jbo62Z6Grm7BjBP1%2BQ%3D%3D"
-            url="http://openapi.molit.go.kr/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTradeDev"
-            url=url+"?&LAWD_CD="+dicLeglCode['LEGL_DONG_CD']+"&DEAL_YMD="+ym['STD_YYMM']+"&serviceKey="+API_KEY+"&numOfRows=9999"
+                API_KEY = "n%2Bx3ws990OxspyqgFNBV0oppRCCskpT5taMq4aQx7VyV%2B7JQrn5snqBWdlWuL%2F8IScN0Jbo62Z6Grm7BjBP1%2BQ%3D%3D"
+                url="http://openapi.molit.go.kr/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTradeDev"
+                url=url+"?&LAWD_CD="+dicLeglCode['LEGL_DONG_CD']+"&DEAL_YMD="+ym['STD_YYMM']+"&serviceKey="+API_KEY+"&numOfRows=9999"
+                #print(url)
+                resultXML = urllib.request.urlopen(url)
+                result = resultXML.read()
+                #print(result)
+                xmlsoup = BeautifulSoup(result, 'lxml-xml')
+                te = xmlsoup.findAll("item")
+
+                for t in te:
+                        for dic1 in dicMapp.keys():
+
+                            try:
+                                dicTable[dicMapp[dic1]] = t.find(dic1).text
+
+                            except:
+                                dicTable[dicMapp[dic1]] = ""
+
+                        dicTable["DEAL_AMT"] = dicTable["DEAL_AMT"].replace(" ", "").replace(",", "")
+                        dicTable['GOV_LEGL_DONG_CD'] = dicLeglCode['LEGL_DONG_CD']
+                        dicTable['DEAL_YYMM'] = ym['STD_YYMM']
+                        dicTable['REG_USER_ID'] = 1000000002
+                        dicTable['CHG_USER_ID'] = 1000000002
+                        dicTable['REAL_DEAL_CMPX_KND'] = '아파트'
+
+                        insertBasicByTBLDic('KMIG_DEAL_DTL', dicTable)
+
+        except Exception as e:
+            print("error " + dicLeglCode['LEGL_DONG_CD'] + ym['STD_YYMM'])
             print(url)
-            resultXML = urllib.request.urlopen(url)
-            result = resultXML.read()
-            print(result)
-            xmlsoup = BeautifulSoup(result, 'lxml-xml')
-            te = xmlsoup.findAll("item")
+            print(e)
 
-            for t in te:
-
-                try :
-                    for dic1 in dicMapp.keys():
-
-                        try:
-                            dicTable[dicMapp[dic1]] = t.find(dic1).text
-
-                        except:
-                            dicTable[dicMapp[dic1]] = ""
-
-                    dicTable["DEAL_AMT"] = dicTable["DEAL_AMT"].replace(" ", "").replace(",", "")
-                    dicTable['GOV_LEGL_DONG_CD'] = dicLeglCode['LEGL_DONG_CD']
-                    dicTable['DEAL_YYMM'] = ym['STD_YYMM']
-                    dicTable['REG_USER_ID'] = 1000000002
-                    dicTable['CHG_USER_ID'] = 1000000002
-                    dicTable['REAL_DEAL_CMPX_KND'] = '아파트'
-
-                    insertBasicByTBLDic('KMIG_DEAL_DTL', dicTable)
-
-                except Exception as e:
-                    print("error " + dicLeglCode['LEGL_DONG_CD'] + ym['STD_YYMM'])
-                    print(e)
 
 
 ##item_list = []

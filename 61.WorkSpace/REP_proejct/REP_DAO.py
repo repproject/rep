@@ -83,7 +83,7 @@ def insertBasicByTBLDic(tableName,dicTBL):
     sql += ") VALUES ("
     sql += sql2
     sql += "'" + str(dicTBL['REG_USER_ID']) + "'" + ",NOW(),"+"'"+str(dicTBL['CHG_USER_ID'])+"'"+",NOW())"
-    print(sql)
+    #print(sql)
 
     curs.execute(sql)
     conn.commit()
