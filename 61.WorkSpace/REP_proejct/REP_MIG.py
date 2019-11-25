@@ -270,7 +270,9 @@ def get_html(url):
     resp = ''
     while resp == '':
         try:
-            resp = get(url)
+            #resp = get(url)
+            headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+            resp = requests.get(url, headers=headers)
 
             if resp.status_code == 200:
                 _html = resp.text
