@@ -15,7 +15,7 @@ INSERT INTO `rep`.`kadm_act`
 `CHG_USER_ID`,
 `CHG_DTM`)
 VALUES
-('KB_UP_CMPX_TYP_MPRC',
+('NV_UP_CMPX',
 'KB주택형월별시세 갱신',
 'KB주택형월별시세 갱신',
 'Y',

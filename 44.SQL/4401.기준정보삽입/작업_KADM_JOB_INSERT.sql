@@ -1,4 +1,12 @@
-SELECT * FROM KADM_JOB
+#UPDATE
+SELECT * FROM 
+KADM_JOB
+/*SET USE_YN = 'N'
+  , CHG_USER_ID = 1000000001
+  , CHG_DTM = NOW()*/
+#WHERE JOB_ID IN ('NVIN001','SLUP001','STUP001')
+WHERE 1=1
+
 ;
 INSERT INTO `rep`.`kadm_job`
 (`JOB_ID`,
@@ -16,10 +24,10 @@ INSERT INTO `rep`.`kadm_job`
 `CHG_USER_ID`,
 `CHG_DTM`)
 VALUES
-('KBUP001',
-'KB주택형별월별KB시세 갱신',
-'KB주택형별월별KB시세 갱신한다.',
-'KB',
+('NVUP001',
+'네이버부동산 갱신',
+'네이버 단지 정보를 갱신한다',
+'NV',
 'Y',
 NULL,
 NULL,

@@ -32,13 +32,14 @@ def getTableDic(tableName):
 
 #JSON을 TABLE DIC으로 변환한다.
 def setJson2TableDic(tableName,jSon):
+    global Log
     dicTBL = getTableDic(tableName)
     for col in dicMigMapp[tableName].keys():
         try:
             dicTBL[dicMigMapp[tableName][col]] = jSon[col]
         except Exception as e:
-            str(e)
-            print("migNaverComplexList json Parsing Error" + str(e) + col)
+            pass
+            Log.debug("migNaverComplexList json Parsing Error" + str(e) + col)
     return dicTBL
 
 #sqlId로 SQL을 가져와 Data를 fetch한다.
@@ -89,6 +90,16 @@ def insertBasicByTBLDic(tableName,dicTBL):
     conn.commit()
     conn.close()
 
+def insertListByTBLDic(tableName,listDicTBL):
+    # DBConnection
+    conn = repDBConnect()
+    curs = conn.cursor()
+#        for dicTBL in listDicTBL:
+#        pass
+
+    conn.commit()
+    conn.close()
+
 #기본조건(=)을 가진 update
 def updateBaiscByTBLDic(tableName,dicTBL,dicBaiscCond):
     conn = repDBConnect()
@@ -104,8 +115,6 @@ def updateBaiscByTBLDic(tableName,dicTBL,dicBaiscCond):
             sql += " AND "
 
         sql += dicCondKey + " = " + str(dicBaiscCond[dicCondKey])
-
-    print(sql)
 
     curs.execute(sql)
     conn.commit()
@@ -426,10 +435,10 @@ def SELECT_RET_CMPX_TYP_CD2dic():
     return dic
 
 
-def SELECT_FUNCbyJOB_ID2tup(JOB_ID):
+def SELECT_FUNCbyJOB_ID2dic(JOB_ID):
     conn = repDBConnect()
-    curs = conn.cursor()
-    sql = "SELECT F.FUNC_ID FROM KADM_JOB J , KADM_JOB_ACT JA, KADM_ACT A, KADM_ACT_FUNC AF, KADM_FUNC F WHERE " \
+    curs = conn.cursor(pymysql.cursors.DictCursor)
+    sql = "SELECT J.JOB_ID, J.JOB_NM, F.FUNC_ID, F.FUNC_NM, A.ACT_ID, A.ACT_NM, F.FUNC_ID, F.FUNC_NM FROM KADM_JOB J , KADM_JOB_ACT JA, KADM_ACT A, KADM_ACT_FUNC AF, KADM_FUNC F WHERE " \
           "J.JOB_ID = JA.JOB_ID AND JA.ACT_ID = A.ACT_ID AND A.ACT_ID = AF.ACT_ID AND AF.FUNC_ID = F.FUNC_ID AND " \
           "AF.USE_YN = 'Y' AND JA.USE_YN = 'Y' AND J.JOB_ID = %s ORDER BY JA.EXEC_SEQ ASC, AF.EXEC_SEQ ASC "
     curs.execute(sql, (JOB_ID))

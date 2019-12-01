@@ -9,12 +9,19 @@ INSERT INTO `rep`.`kadm_job_act`
 `CHG_USER_ID`,
 `CHG_DTM`)
 VALUES
-('KBUP001',
-'KB_UP_CMPX_TYP_MPRC',
-'KB주택형월별시세 갱신',
+('NVUP001',
+'NV_UP_CMPX_INFO',
+'네이버 단지정보 갱신',
 1,
 'Y',
 1000000001,
 NOW(),
 1000000001,
 NOW());
+
+#DELETE
+SELECT *
+FROM KADM_JOB_ACT
+#WHERE ACT_ID = 'NV_UP_CMPX_INFO'
+WHERE JOB_ID = 'NVUP001'
+;

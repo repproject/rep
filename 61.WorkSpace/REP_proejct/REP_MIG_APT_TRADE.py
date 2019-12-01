@@ -70,18 +70,22 @@ dicMapp= {"지역코드" : "GOV_LEGL_DONG_CD",
 def migAptTrade():
 
     # 법정동, 연월 전체가져오기
-    dicLeglCodeList = fetch("selectLeglLv2Dong", "")
+
+    dicLeglCodeList = fetch("selectDupLeglLv2Dong", "")
+    #dicLeglCodeList = fetch("selectLeglLv2Dong", "")
+    #dicLeglCodeList = fetch("selectOmitLeglLv2Dong","") #누락본 검증
     ymList = fetch("selectYYMM", "")
 
     for dicLeglCode in dicLeglCodeList:
 
-        try:
+        #try:
             for ym in ymList :
 
                 API_KEY = "n%2Bx3ws990OxspyqgFNBV0oppRCCskpT5taMq4aQx7VyV%2B7JQrn5snqBWdlWuL%2F8IScN0Jbo62Z6Grm7BjBP1%2BQ%3D%3D"
                 url="http://openapi.molit.go.kr/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTradeDev"
+                #url=url+"?&LAWD_CD="+dicLeglCode['LEGL_DONG_CD']+"&DEAL_YMD="+ym['STD_YYMM']+"&serviceKey="+API_KEY+"&numOfRows=9999"
                 url=url+"?&LAWD_CD="+dicLeglCode['LEGL_DONG_CD']+"&DEAL_YMD="+ym['STD_YYMM']+"&serviceKey="+API_KEY+"&numOfRows=9999"
-                #print(url)
+                print(url)
                 resultXML = urllib.request.urlopen(url)
                 result = resultXML.read()
                 #print(result)
@@ -106,10 +110,10 @@ def migAptTrade():
 
                         insertBasicByTBLDic('KMIG_DEAL_DTL', dicTable)
 
-        except Exception as e:
-            print("error " + dicLeglCode['LEGL_DONG_CD'] + ym['STD_YYMM'])
-            print(url)
-            print(e)
+        #except Exception as e:
+        #    print("error " + dicLeglCode['LEGL_DONG_CD'] + ym['STD_YYMM'])
+        #    print(url)
+        #    print(e)
 
 
 
