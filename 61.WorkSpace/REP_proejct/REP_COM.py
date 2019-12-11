@@ -1,13 +1,13 @@
 # import REP_TLGR_MSG
 import logging.handlers
 from datetime import date, timedelta, datetime
+import REP_TLGR_MSG
+import math
 
 userid = 1000000001
 
-
 def tuple2Str(tuple):
     return "%s" % tuple
-
 
 def log(Message, Level):  # ERROR INFO Debug
     try:
@@ -23,7 +23,6 @@ def log(Message, Level):  # ERROR INFO Debug
             print(str(Message))
     except Exception as e:
         print("텔레그램 Exception 발생")
-
 
 class Logger:
     streamHandler = logging.StreamHandler()
@@ -75,7 +74,6 @@ class Logger:
 
 LogObject = Logger()
 Log = LogObject.logger
-
 
 class BatchContext:
     userId = 0000000000
@@ -140,27 +138,48 @@ class BatchContext:
 class BatchRowCounter:
     totalRowCount = 0   #총 건수
     interval = 0        #출력 단위
+    MessageInterval = 0 #메세지 출력 단위
     unit = None         #단위 : 숫자,갯수
     count = 0           #현재 건수
-    beforeCount = 0     #이전 건수
     printCount = 0      #이전 출력 건수
+    MessagePrintCount = 0  # 이전 출력 건수
+    Name = None         #출력 메시지명
 
-    def __init__(self, totalRowCount, interval, unit = "Number"):
+    def __init__(self, Name, totalRowCount, interval, unit = "N", MessageInterval=0, MessageUnit = None):
         self.count = 0
         self.beforeCount = 0
         self.printCount = 0
+        self.MessagePrintCount = 0
         self.totalRowCount = totalRowCount
         self.interval = interval
         self.unit = unit
+        self.MessageInterval = MessageInterval
+        self.MessageUnit = MessageUnit
+        self.Name = Name
 
     def Cnt(self,count = 1):
-        self.BeforeCount = self.count
         self.count += count
-        if(self.unit == "Number"):
+        global Log
+
+        if(self.unit == "N"):
             if((self.printCount + self.interval <= self.count)): #기출력 값보다
                 self.printCount += self.interval
-                global Log
-                Log.info("BatchRowCounter : [" + str(self.printCount) + "/" + str(self.totalRowCount) + "]")
+                Log.info(self.Name + "BatchRowCounter : [" + str(self.printCount) + "/" + str(self.totalRowCount) + "]")
+
+        if (self.MessageUnit == "N"):
+            if ((self.MessagePrintCount + self.MessageInterval <= self.count)):  # 기출력 값보다
+                self.MessagePrintCount += self.MessageInterval
+                REP_TLGR_MSG.sendMessage(self.Name + "BatchRowCounter : [" + str(self.MessagePrintCount) + "/" + str(self.totalRowCount) + "]")
+
+        if(self.unit == "P"):
+            if(self.printCount + math.floor(self.totalRowCount*self.interval/100) <= self.count): #기출력 값보다
+                self.printCount += math.floor(self.totalRowCount*self.interval/100)
+                Log.info(self.Name + "BatchRowCounter : [" + str(self.printCount) + "/" + str(self.totalRowCount) + "]")
+
+        if(self.MessageUnit == "P"):
+            if(self.MessagePrintCount + math.floor(self.MessageInterval*self.MessageInterval/100) <= self.count): #기출력 값보다
+                self.MessagePrintCount += math.floor(self.totalRowCount*self.MessageInterval/100)
+                REP_TLGR_MSG.sendMessage(self.Name + "BatchRowCounter : [" + str(self.MessagePrintCount) + "/" + str(self.totalRowCount) + "]")
 
 def LogFunction_TEST(self, index_no, package_name, name):
     log_message_list = index_no, package_name, name

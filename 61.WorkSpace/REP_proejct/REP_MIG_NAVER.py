@@ -7,6 +7,7 @@ from REP_TABLE import *
 from REP_MIG_MAPP import *
 import REP_URL
 import REP_MIG
+from REP_TLGR_MSG import *
 import json
 
 userid = 1000000011
@@ -36,18 +37,20 @@ def migNaverComplexList():
             except pymysql.IntegrityError as err:  # 기존에 네이버아파트 코드가 존재할 수 있음
                 log("네이버물건 중복" + 'NV_CMPX_ID : ' + dicKMIG_NV_CMPX['NV_CMPX_ID'],"D")
         time.sleep(NaverTimeStamp)
-        
+
 def updNaverComplexDtl(batchContext = None):
     #초기 세팅 - 로그
+
     global LogObejct
     batchContext.setFuncName("updNaverComplexDtl")
     LogObejct = Logger(batchContext.getLogName())
     Log.info(batchContext.getLogName()  + "####################START[updNaverComplexDtl]####################")
+    sendMessage(batchContext.getLogName() + "START[updNaverComplexDtl]")
 
     # 네이버 단지 전체가져오기
     dicCmpxIdList = fetch("selectCmpxIdAll", "")
     # 네이버 단지 전체 건수를 기준으로 출력
-    rowCounter = BatchRowCounter(dicCmpxIdList.__len__(),1)
+    rowCounter = BatchRowCounter(batchContext.getLogName(), dicCmpxIdList.__len__(),1,"N",10,"P")
 
     for dicCmpxId in dicCmpxIdList:
         Log.info(batchContext.getLogName() + str(dicCmpxId))
