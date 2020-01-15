@@ -48,12 +48,12 @@ def checkMessage():
 #        print(u.message)
 
 def sendMessage(str):
-    print("메시지 송신" + str)
+    #print("메시지 송신" + str)
     bot = telegram.Bot(token=my_token)  # bot을 선언합니다.
     chat_id_tup = REP_DAO.SELECT_kadm_tlgr_RCV_usertup() #사용자 조회
     for chatid in chat_id_tup:
         str_chatid=''.join(chatid)
-        print("메시지 송신" + str + str_chatid)
+        #print("메시지 송신" + str + str_chatid)
         bot.sendMessage(chat_id=int(str_chatid), text=str)
 
 #if __name__ == '__main__':

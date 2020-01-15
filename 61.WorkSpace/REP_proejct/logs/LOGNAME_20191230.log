@@ -1,0 +1,78 @@
+[2019-12-30 21:50:00,662][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'roadAddressPrefix'roadAddressPrefix
+[2019-12-30 21:50:00,663][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'roadAddress'roadAddress
+[2019-12-30 21:50:00,663][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'totalLeaseHouseholdCount'totalLeaseHouseholdCount
+[2019-12-30 21:50:00,663][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'batlRatio'batlRatio
+[2019-12-30 21:50:00,663][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'btlRatio'btlRatio
+[2019-12-30 21:50:00,663][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'maxSupplyArea'maxSupplyArea
+[2019-12-30 21:50:00,664][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'minSupplyArea'minSupplyArea
+[2019-12-30 21:50:00,664][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'parkingCountByHousehold'parkingCountByHousehold
+[2019-12-30 21:50:00,664][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'constructionCompanyName'constructionCompanyName
+[2019-12-30 21:50:00,664][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'heatMethodTypeCode'heatMethodTypeCode
+[2019-12-30 21:50:00,664][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'heatFuelTypeCode'heatFuelTypeCode
+[2019-12-30 21:50:00,664][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'pyoengNames'pyoengNames
+[2019-12-30 21:50:00,664][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'managementOfficeTelNo'managementOfficeTelNo
+[2019-12-30 21:50:00,664][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'buildingRegister'buildingRegister
+[2019-12-30 21:50:00,676][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'roadAddressPrefix'roadAddressPrefix
+[2019-12-30 21:50:00,676][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'roadAddress'roadAddress
+[2019-12-30 21:50:00,676][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'totalLeaseHouseholdCount'totalLeaseHouseholdCount
+[2019-12-30 21:50:00,676][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'batlRatio'batlRatio
+[2019-12-30 21:50:00,676][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'btlRatio'btlRatio
+[2019-12-30 21:50:00,676][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'maxSupplyArea'maxSupplyArea
+[2019-12-30 21:50:00,676][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'minSupplyArea'minSupplyArea
+[2019-12-30 21:50:00,676][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'parkingCountByHousehold'parkingCountByHousehold
+[2019-12-30 21:50:00,677][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'constructionCompanyName'constructionCompanyName
+[2019-12-30 21:50:00,677][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'heatMethodTypeCode'heatMethodTypeCode
+[2019-12-30 21:50:00,677][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'heatFuelTypeCode'heatFuelTypeCode
+[2019-12-30 21:50:00,677][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'pyoengNames'pyoengNames
+[2019-12-30 21:50:00,677][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'managementOfficeTelNo'managementOfficeTelNo
+[2019-12-30 21:50:00,677][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'buildingRegister'buildingRegister
+[2019-12-30 21:50:02,746][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'roadAddressPrefix'roadAddressPrefix
+[2019-12-30 21:50:02,746][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'roadAddress'roadAddress
+[2019-12-30 21:50:02,746][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'totalLeaseHouseholdCount'totalLeaseHouseholdCount
+[2019-12-30 21:50:02,747][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'batlRatio'batlRatio
+[2019-12-30 21:50:02,747][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'btlRatio'btlRatio
+[2019-12-30 21:50:02,747][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'maxSupplyArea'maxSupplyArea
+[2019-12-30 21:50:02,747][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'minSupplyArea'minSupplyArea
+[2019-12-30 21:50:02,747][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'parkingCountByHousehold'parkingCountByHousehold
+[2019-12-30 21:50:02,747][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'constructionCompanyName'constructionCompanyName
+[2019-12-30 21:50:02,747][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'heatMethodTypeCode'heatMethodTypeCode
+[2019-12-30 21:50:02,747][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'heatFuelTypeCode'heatFuelTypeCode
+[2019-12-30 21:50:02,747][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'pyoengNames'pyoengNames
+[2019-12-30 21:50:02,748][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'managementOfficeTelNo'managementOfficeTelNo
+[2019-12-30 21:50:02,748][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'buildingRegister'buildingRegister
+[2019-12-30 22:08:12,634][INFO|REP_JOB.py:70] >> ####################START[setJob]####################
+[2019-12-30 22:08:12,651][INFO|REP_JOB.py:72] >> [{'JOB_ID': 'NVIN001', 'JOB_SEQ': Decimal('1'), 'EXEC_PERD_CD': 'DD', 'EXEC_MM': '', 'EXEC_DD': '', 'EXEC_HH': '00', 'EXEC_MI': '00', 'EXEC_DAY_CD': '', 'CYCL_MI': ''}]
+[2019-12-30 22:13:47,840][INFO|REP_JOB.py:71] >> ####################START[setJob]####################
+[2019-12-30 22:13:47,852][INFO|REP_JOB.py:73] >> [{'JOB_ID': 'NVIN001', 'JOB_SEQ': Decimal('1'), 'EXEC_PERD_CD': 'DD', 'EXEC_MM': '', 'EXEC_DD': '', 'EXEC_HH': '00', 'EXEC_MI': '00', 'EXEC_DAY_CD': '', 'CYCL_MI': ''}]
+[2019-12-30 22:13:47,852][INFO|REP_JOB.py:99] >> ####################END[setJob]####################
+[2019-12-30 23:30:59,943][INFO|REP_JOB.py:10] >> ####################START[doJOB : NVIN001]####################
+[2019-12-30 23:31:52,174][INFO|REP_JOB.py:10] >> ####################START[doJOB : NVIN001]####################
+[2019-12-30 23:32:59,776][INFO|REP_JOB.py:10] >> ####################START[doJOB : NVIN001]####################
+[2019-12-30 23:45:00,637][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'roadAddressPrefix'roadAddressPrefix
+[2019-12-30 23:45:00,638][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'roadAddress'roadAddress
+[2019-12-30 23:45:00,638][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'totalLeaseHouseholdCount'totalLeaseHouseholdCount
+[2019-12-30 23:45:00,638][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'batlRatio'batlRatio
+[2019-12-30 23:45:00,638][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'btlRatio'btlRatio
+[2019-12-30 23:45:00,638][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'maxSupplyArea'maxSupplyArea
+[2019-12-30 23:45:00,638][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'minSupplyArea'minSupplyArea
+[2019-12-30 23:45:00,638][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'parkingCountByHousehold'parkingCountByHousehold
+[2019-12-30 23:45:00,638][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'constructionCompanyName'constructionCompanyName
+[2019-12-30 23:45:00,638][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'heatMethodTypeCode'heatMethodTypeCode
+[2019-12-30 23:45:00,638][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'heatFuelTypeCode'heatFuelTypeCode
+[2019-12-30 23:45:00,638][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'pyoengNames'pyoengNames
+[2019-12-30 23:45:00,638][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'managementOfficeTelNo'managementOfficeTelNo
+[2019-12-30 23:45:00,638][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'buildingRegister'buildingRegister
+[2019-12-30 23:45:00,643][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'roadAddressPrefix'roadAddressPrefix
+[2019-12-30 23:45:00,644][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'roadAddress'roadAddress
+[2019-12-30 23:45:00,644][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'totalLeaseHouseholdCount'totalLeaseHouseholdCount
+[2019-12-30 23:45:00,644][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'batlRatio'batlRatio
+[2019-12-30 23:45:00,644][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'btlRatio'btlRatio
+[2019-12-30 23:45:00,644][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'maxSupplyArea'maxSupplyArea
+[2019-12-30 23:45:00,644][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'minSupplyArea'minSupplyArea
+[2019-12-30 23:45:00,644][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'parkingCountByHousehold'parkingCountByHousehold
+[2019-12-30 23:45:00,644][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'constructionCompanyName'constructionCompanyName
+[2019-12-30 23:45:00,644][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'heatMethodTypeCode'heatMethodTypeCode
+[2019-12-30 23:45:00,644][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'heatFuelTypeCode'heatFuelTypeCode
+[2019-12-30 23:45:00,644][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'pyoengNames'pyoengNames
+[2019-12-30 23:45:00,644][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'managementOfficeTelNo'managementOfficeTelNo
+[2019-12-30 23:45:00,644][DEBUG|REP_DAO.py:42] >> migNaverComplexList json Parsing Error'buildingRegister'buildingRegister

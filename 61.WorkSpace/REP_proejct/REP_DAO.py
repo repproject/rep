@@ -7,6 +7,7 @@ import REP_SQL
 from REP_DAO import *
 from REP_TABLE import *
 from REP_MIG_MAPP import *
+from REP_TLGR_MSG import *
 import json
 
 repDBHost = "ceasar.iptime.org"
@@ -22,10 +23,13 @@ def getrepDBcursor(): #DBCursor
     return repDBConnect().cursor()
 
 def getTableDic(tableName):
+    global Log
     try:
         dicTBL = dicTable[tableName]
     except KeyError as e:
-        log("REP_TABLE 미존재 : " + str(e),"E")
+        Log.Error("REP_TABLE 미존재 : " + str(e))
+    except Exception as e:
+        Log.Error(str(e))
     else:
         initializeTableDic(dicTBL)
         return dicTBL
@@ -72,19 +76,21 @@ def insertBasicByTBLDic(tableName,dicTBL):
         sql += colName
         sql += ","
         if(colName != 'REG_USER_ID' and colName != 'CHG_USER_ID' and colName != 'REG_DTM' and colName != 'CHG_DTM' ):
-            if(str(type(dicTBL[colName])) == "<class 'str'>"):
-                sql2 += "'"
-                sql2 += dicTBL[colName].replace("'","''")
-                sql2 += "'"
+            if(dicTBL[colName] != None):
+                if(str(type(dicTBL[colName])) == "<class 'str'>"):
+                    sql2 += "'"
+                    sql2 += dicTBL[colName].replace("'","''")
+                    sql2 += "'"
+                else:
+                    sql2 += str(dicTBL[colName])
             else:
-                sql2 += str(dicTBL[colName])
+                sql2 += "''"
             sql2 += ','
 
     sql = sql[0:-1]
     sql += ") VALUES ("
     sql += sql2
     sql += "'" + str(dicTBL['REG_USER_ID']) + "'" + ",NOW(),"+"'"+str(dicTBL['CHG_USER_ID'])+"'"+",NOW())"
-    #print(sql)
 
     curs.execute(sql)
     conn.commit()
@@ -102,30 +108,43 @@ def insertListByTBLDic(tableName,listDicTBL):
 
 #기본조건(=)을 가진 update
 def updateBaiscByTBLDic(tableName,dicTBL,dicBaiscCond):
-    conn = repDBConnect()
-    curs = conn.cursor()
-    sql = UPDATECombyDic(tableName,dicTBL,0)
-    sql += ",CHG_DTM = NOW()"
+    global Log
+    try:
+        conn = repDBConnect()
+        curs = conn.cursor()
+        sql = UPDATECombyDic(tableName,dicTBL,0)
+        sql += ",CHG_DTM = NOW()"
 
-    flagStart = 1
-    for dicCondKey in dicBaiscCond.keys():
-        if flagStart:
-            sql += " WHERE "
-        else:
-            sql += " AND "
+        flagStart = 1
+        for dicCondKey in dicBaiscCond.keys():
+            if flagStart:
+                sql += " WHERE "
+                flagStart = 0
+            else:
+                sql += " AND "
 
-        sql += dicCondKey + " = " + str(dicBaiscCond[dicCondKey])
+            sql += dicCondKey + " = " + "'" + str(dicBaiscCond[dicCondKey]) + "'"
 
-    curs.execute(sql)
-    conn.commit()
-    conn.close()
+        curs.execute(sql)
+        Log.debug(sql)
+        conn.commit()
+        conn.close()
+
+    except Exception as e:
+
+        Log.error("####################ERROR[updateBaiscByTBLDic]####################")
+        Log.error("SQL ERROR :" + sql)
+        sendMessage("SQL ERROR : " + sql)
+        Log.error("Exception :" + str(e))
+        sendMessage("Exception :" + str(e))
+        return False
 
 #update 공통 Dictionary에 존재하는 KEY에 대해서만 UPDATE문장을 만들어 준다.
 def UPDATECombyDic(TABLE_NAME,dic,isValidateNull):
     sql = "UPDATE " + TABLE_NAME + " SET "
     for child in dic.keys():
         #빈값은 갱신 제외
-        if isValidateNull == 1 or len(str(dic[child])) > 0:
+        if isValidateNull == 1 or len(str(dic[child])) > 0 and dic[child] != None :
             sql += " " + child + " = '" + str(dic[child]).replace("'","''") + "', "
     return sql[0:-2] #마지막 Comma는 제외
 

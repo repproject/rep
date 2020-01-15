@@ -4,12 +4,14 @@ from datetime import date, timedelta, datetime
 import REP_TLGR_MSG
 import math
 
+
 userid = 1000000001
 
 def tuple2Str(tuple):
     return "%s" % tuple
 
 def log(Message, Level):  # ERROR INFO Debug
+    global Log
     try:
         if Level == "E":
             Message = "[E]" + Message
@@ -22,7 +24,7 @@ def log(Message, Level):  # ERROR INFO Debug
             Message = "[I]" + Message
             print(str(Message))
     except Exception as e:
-        print("텔레그램 Exception 발생")
+        Log.Error("텔레그램 Exception 발생" + str(e))
 
 class Logger:
     streamHandler = logging.StreamHandler()

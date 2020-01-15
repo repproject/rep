@@ -1,0 +1,14 @@
+[2020-01-16 02:14:35,524][INFO|REP_MIG_NAVER.py:23] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################START[migNaverComplexList]####################
+[2020-01-16 02:14:37,269][INFO|REP_MIG_NAVER.py:56] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################END[migNaverComplexList]####################
+[2020-01-16 02:14:38,902][DEBUG|REP_DAO.py:129] >> UPDATE KADM_JOB_FUNC_EXEC SET  JOB_ID = 'NVIN001',  FUNC_ID = 'INS_NV_CMPX',  ACT_ID = 'NV_IN_CMPX',  EXEC_DTM = '20200116021435',  EXEC_STAT_CD = 'T',  END_DTM = '20200116021438',CHG_DTM = NOW() WHERE JOB_ID = 'NVIN001' AND FUNC_ID = 'INS_NV_CMPX' AND ACT_ID = 'NV_IN_CMPX' AND EXEC_DTM = '20200116021435'
+[2020-01-16 02:14:38,912][DEBUG|REP_DAO.py:129] >> UPDATE KADM_JOB_EXEC SET  JOB_ID = 'NVIN001',  EXEC_DTM = '20200116021433',  EXEC_STAT_CD = 'T',  END_DTM = '20200116021438',  CHG_USER_ID = '1000000001',CHG_DTM = NOW() WHERE JOB_ID = 'NVIN001' AND EXEC_DTM = '20200116021433'
+[2020-01-16 02:14:38,922][DEBUG|REP_DAO.py:129] >> UPDATE KADM_JOB_SCHD SET  JOB_ID = 'NVIN001',  JOB_SEQ = '1',  IMDI_EXEC_YN = 'N',  CHG_USER_ID = '1000000001',CHG_DTM = NOW() WHERE JOB_ID = 'NVIN001' AND JOB_SEQ = '1'
+[2020-01-16 02:14:38,925][ERROR|REP_JOB.py:212] >> ####################END[doImidiateJOB]####################
+[2020-01-16 02:14:39,927][INFO|REP_JOB.py:156] >> ####################START[doImidiateJOB]####################
+[2020-01-16 02:14:39,934][ERROR|REP_JOB.py:212] >> ####################END[doImidiateJOB]####################
+[2020-01-16 02:14:40,934][INFO|REP_JOB.py:156] >> ####################START[doImidiateJOB]####################
+[2020-01-16 02:14:40,941][ERROR|REP_JOB.py:212] >> ####################END[doImidiateJOB]####################
+[2020-01-16 02:14:41,941][INFO|REP_JOB.py:156] >> ####################START[doImidiateJOB]####################
+[2020-01-16 02:14:41,947][ERROR|REP_JOB.py:212] >> ####################END[doImidiateJOB]####################
+[2020-01-16 02:14:42,947][INFO|REP_JOB.py:156] >> ####################START[doImidiateJOB]####################
+[2020-01-16 02:14:42,952][ERROR|REP_JOB.py:212] >> ####################END[doImidiateJOB]####################

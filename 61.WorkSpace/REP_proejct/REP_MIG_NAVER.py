@@ -9,34 +9,50 @@ import REP_URL
 import REP_MIG
 from REP_TLGR_MSG import *
 import json
+import schedule
+import time
 
 userid = 1000000011
 
-def migNaverComplexList():
-    # 법정동 전체가져오기
-    dicLeglCodeList = fetch("selectLeglLv3Dong", "")
+def migNaverComplexList(batchContext = None):
+    #초기세팅 Log
+    try:
+        global LogObejct
+        batchContext.setFuncName("migNaverComplexList")
+        LogObejct = Logger(batchContext.getLogName())
+        Log.info(batchContext.getLogName()+"####################START[migNaverComplexList]####################")
+        sendMessage("START[migNaverComplexList]")
 
-    for dicLeglCode in dicLeglCodeList:
-        #url호출
-        url = NaverComplexListURL + dicLeglCode['LEGL_DONG_CD']
-        log(url,"I")
+        # 법정동 전체가져오기
+        dicLeglCodeList = fetch("selectLeglLv3Dong", "")
 
-        page = REP_MIG.get_html(url)
-        print(page)
-        jsonPage = json.loads(page)
+        for dicLeglCode in dicLeglCodeList:
 
-        for jsonComplex in jsonPage['complexList']:
-            #json To tableDic
-            dicKMIG_NV_CMPX = setJson2TableDic('KMIG_NV_CMPX', jsonComplex)
-            dicKMIG_NV_CMPX['GOV_LEGL_DONG_CD']=dicLeglCode['LEGL_DONG_CD']
-            dicKMIG_NV_CMPX['REG_USER_ID'] = userid
-            dicKMIG_NV_CMPX['CHG_USER_ID'] = userid
+            #url호출
+            url = NaverComplexListURL + dicLeglCode['LEGL_DONG_CD']
+            Log.info(batchContext.getLogName() + url)
+            page = REP_MIG.get_html(url)
+            Log.debug(batchContext.getLogName() + page)
+            jsonPage = json.loads(page)
 
-            try:
-                insertBasicByTBLDic('KMIG_NV_CMPX',dicKMIG_NV_CMPX)
-            except pymysql.IntegrityError as err:  # 기존에 네이버아파트 코드가 존재할 수 있음
-                log("네이버물건 중복" + 'NV_CMPX_ID : ' + dicKMIG_NV_CMPX['NV_CMPX_ID'],"D")
-        time.sleep(NaverTimeStamp)
+            for jsonComplex in jsonPage['complexList']:
+                #json To tableDic
+                dicKMIG_NV_CMPX = setJson2TableDic('KMIG_NV_CMPX', jsonComplex)
+                dicKMIG_NV_CMPX['GOV_LEGL_DONG_CD']=dicLeglCode['LEGL_DONG_CD']
+                dicKMIG_NV_CMPX['REG_USER_ID'] = userid
+                dicKMIG_NV_CMPX['CHG_USER_ID'] = userid
+
+                try:
+                    insertBasicByTBLDic('KMIG_NV_CMPX',dicKMIG_NV_CMPX)
+                except pymysql.IntegrityError as err:  # 기존에 네이버아파트 코드가 존재할 수 있음
+                    Log.debug(batchContext.getLogName() + "네이버물건 중복" + 'NV_CMPX_ID : ' + dicKMIG_NV_CMPX['NV_CMPX_ID'])
+            time.sleep(NaverTimeStamp)
+    except Exception as e:
+        Log.Error(batchContext.getLogName() + "####################ERROR[migNaverComplexList]####################")
+        sendMessage("ERROR[migNaverComplexList]")
+
+    Log.info(batchContext.getLogName()+"####################END[migNaverComplexList]####################")
+    sendMessage("END[migNaverComplexList]")
 
 def updNaverComplexDtl(batchContext = None):
     #초기 세팅 - 로그
@@ -146,4 +162,5 @@ def updNaverComplexDtl(batchContext = None):
         time.sleep(NaverTimeStamp)
 
 if __name__ == '__main__':
-    updNaverComplexDtl()
+    migNaverComplexList()
+

@@ -136,4 +136,65 @@ dicTable = {
             'CHG_USER_ID': None,
             'CHG_DTM': None,
         }
+    ,'KADM_JOB_EXEC' :
+        {
+            'JOB_ID' : None,
+            'EXEC_DTM' : None,
+            'EXEC_STAT_CD' : None,
+            'STA_DTM' : None,
+            'END_DTM' : None,
+            'EXEC_PARM1' : None,
+            'EXEC_PARM2' : None,
+            'EXEC_PARM3' : None,
+            'EXEC_PARM4' : None,
+            'EXEC_PARM5' : None,
+            'EXEC_PARM6' : None,
+            'EXEC_PARM7' : None,
+            'EXEC_PARM8' : None,
+            'EXEC_PARM9' : None,
+            'EXEC_PARM10' : None,
+            'REG_USER_ID' : None,
+            'REG_DTM' : None,
+            'CHG_USER_ID' : None,
+            'CHG_DTM' : None
+        }
+    ,'KADM_JOB_FUNC_EXEC':
+        {
+            'JOB_ID': None,
+            'ACT_ID': None,
+            'FUNC_ID': None,
+            'EXEC_DTM' : None,
+            'EXEC_STAT_CD' : None,
+            'STA_DTM' : None,
+            'END_DTM' : None,
+            'EXEC_PARM1' : None,
+            'EXEC_PARM2' : None,
+            'EXEC_PARM3' : None,
+            'EXEC_PARM4' : None,
+            'EXEC_PARM5' : None,
+            'EXEC_PARM6' : None,
+            'EXEC_PARM7' : None,
+            'EXEC_PARM8' : None,
+            'EXEC_PARM9' : None,
+            'EXEC_PARM10' : None,
+            'REG_USER_ID' : None,
+            'REG_DTM' : None,
+            'CHG_USER_ID' : None,
+            'CHG_DTM' : None
+        }
+    ,'KADM_JOB_SCHD':
+        {
+            'JOB_ID' : None,
+            'JOB_SEQ' : None,
+            'EXEC_PERD_CD' : None,
+            'EXEC_MM' : None,
+            'EXEC_DD' : None,
+            'EXEC_HH' : None,
+            'EXEC_MI' : None,
+            'EXEC_DAY_CD' : None,
+            'CYCL_MI' : None,
+            'IMDI_EXEC_YN' : None,
+            'USE_YN' : None,
+            'DEL_YN' : None,
+        }
 }

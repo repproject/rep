@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8c653bd5-f5b3-47e3-9a18-87a213a5b921" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../31.분석/네이버전문분석.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../31.분석/네이버전문분석.xlsx" afterDir="false" />
+    <list default="true" id="8c653bd5-f5b3-47e3-9a18-87a213a5b921" name="Default Changelist" comment="공통SQL함수에대한 None 값 예외 처리 변경&#10;스케쥴러 즉시수행여부 개발 완료&#10;추가개발필요 : JOB 변경시 변경사항을 스케쥴러에 반영하는 부분 개발 필요">
       <change beforePath="$PROJECT_DIR$/../../42.DA5/REP.damx" beforeDir="false" afterPath="$PROJECT_DIR$/../../42.DA5/REP.damx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../42.DA5/wordict5_참조모델표준화.db" beforeDir="false" afterPath="$PROJECT_DIR$/../../42.DA5/wordict5_참조모델표준화.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../44.SQL/4401.기준정보삽입/작업_KADM_ACT_FUNC_INSERT.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../44.SQL/4401.기준정보삽입/작업_KADM_ACT_FUNC_INSERT.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../44.SQL/4401.기준정보삽입/작업_KADM_ACT_INSERT.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../44.SQL/4401.기준정보삽입/작업_KADM_ACT_INSERT.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../44.SQL/4401.기준정보삽입/작업_KADM_JOB_ACT_INSERT.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../44.SQL/4401.기준정보삽입/작업_KADM_JOB_ACT_INSERT.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../44.SQL/4401.기준정보삽입/작업_KADM_JOB_INSERT.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../44.SQL/4401.기준정보삽입/작업_KADM_JOB_INSERT.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../44.SQL/4401.기준정보삽입/작업_작업내역조회.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../44.SQL/4401.기준정보삽입/작업_작업내역조회.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../51.Dev/Column2REP_TABLE.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../51.Dev/Column2REP_TABLE.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/REP_COM.py" beforeDir="false" afterPath="$PROJECT_DIR$/REP_COM.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/REP_DAO.py" beforeDir="false" afterPath="$PROJECT_DIR$/REP_DAO.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/REP_JOB.py" beforeDir="false" afterPath="$PROJECT_DIR$/REP_JOB.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/REP_MIG_APT_TRADE.py" beforeDir="false" afterPath="$PROJECT_DIR$/REP_MIG_APT_TRADE.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/REP_MIG_NAVER.py" beforeDir="false" afterPath="$PROJECT_DIR$/REP_MIG_NAVER.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/REP_SQL.py" beforeDir="false" afterPath="$PROJECT_DIR$/REP_SQL.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/REP_TABLE.py" beforeDir="false" afterPath="$PROJECT_DIR$/REP_TABLE.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/REP_TLGR_MSG.py" beforeDir="false" afterPath="$PROJECT_DIR$/REP_TLGR_MSG.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../71.DataAnal/7101.과거시세현황/LV2별최고평당가아파트목록.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../71.DataAnal/7101.과거시세현황/대표단지목록검토.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../71.DataAnal/7101.과거시세현황/대표단지목록검토2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../71.DataAnal/7101.과거시세현황/지역별최고평당가아파트추출.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../71.DataAnal/7101.과거시세현황/지역별최고평당가아파트추출.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../71.DataAnal/JIIL_TEST.R" beforeDir="false" afterPath="$PROJECT_DIR$/../../71.DataAnal/JIIL_TEST.R" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,8 +32,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/REP_MIG_NAVER.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="502">
-              <caret line="43" column="49" lean-forward="true" selection-start-line="43" selection-start-column="49" selection-end-line="43" selection-end-column="49" />
+            <state relative-caret-position="228">
+              <caret line="30" selection-start-line="30" selection-end-line="30" />
               <folding>
                 <element signature="e#23#34#0" expanded="true" />
               </folding>
@@ -40,25 +42,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/REP_COM.py">
+        <entry file="file://$PROJECT_DIR$/REP_SQL.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="728">
-              <caret line="161" column="26" selection-start-line="161" selection-start-column="26" selection-end-line="161" selection-end-column="26" />
-              <folding>
-                <element signature="e#21#44#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/REP_MIG_APT_TRADE.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1159">
-              <caret line="64" column="23" selection-start-line="64" selection-start-column="23" selection-end-line="64" selection-end-column="23" />
-              <folding>
-                <element signature="e#0#29#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="247">
+              <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
             </state>
           </provider>
         </entry>
@@ -66,8 +53,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/REP_JOB.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="60" selection-start-line="60" selection-end-line="60" />
+            <state relative-caret-position="87">
+              <caret line="197" column="36" lean-forward="true" selection-start-line="197" selection-start-column="36" selection-end-line="197" selection-end-column="36" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
               </folding>
@@ -76,21 +63,24 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/REP_SQL.py">
+        <entry file="file://$PROJECT_DIR$/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="3" column="76" selection-start-line="3" selection-start-column="76" selection-end-line="3" selection-end-column="76" />
+            <state relative-caret-position="114">
+              <caret line="6" lean-forward="true" selection-start-line="5" selection-start-column="25" selection-end-line="6" />
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/REP_DAO.py">
+        <entry file="file://$PROJECT_DIR$/REP_TLGR_MSG.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="939">
-              <caret line="92" column="13" selection-start-line="92" selection-start-column="13" selection-end-line="92" selection-end-column="13" />
+            <state relative-caret-position="665">
+              <caret line="57" selection-start-line="57" selection-end-line="57" />
               <folding>
-                <element signature="e#0#36#0" expanded="true" />
+                <element signature="e#0#15#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -108,12 +98,45 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test.py">
+        <entry file="file://$PROJECT_DIR$/REP_MIG.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="494">
-              <caret line="27" selection-start-line="27" selection-end-line="27" />
+            <state relative-caret-position="-304">
+              <caret line="23" column="14" lean-forward="true" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
               <folding>
-                <element signature="e#0#14#0" expanded="true" />
+                <element signature="e#0#24#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/REP_MIG_APT_RENT.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="513">
+              <caret line="71" column="31" lean-forward="true" selection-start-line="71" selection-start-column="31" selection-end-line="71" selection-end-column="31" />
+              <folding>
+                <element signature="e#0#19#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/REP_MIG_MAPP.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="18" column="47" selection-start-line="18" selection-start-column="47" selection-end-line="18" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/REP_MIG_APT_TRADE.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-337">
+              <caret line="64" column="23" selection-start-line="64" selection-start-column="23" selection-end-line="64" selection-end-column="23" />
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -130,16 +153,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>byDic</find>
-      <find>curs.</find>
-      <find>dicKMIG_NV_CMPX</find>
-      <find>func_INS_NV_CMPX</find>
-      <find>''</find>
-      <find>NaverComplexListURL</find>
-      <find>update</find>
-      <find>MGMT_CO_TEL</find>
-      <find>explaination</find>
-      <find>get_html</find>
       <find>cortarAddress</find>
       <find>UPDATECombyDic</find>
       <find>getTableDic</find>
@@ -156,10 +169,20 @@
       <find>json</find>
       <find>Batch</find>
       <find>Context</find>
+      <find>Logger</find>
+      <find>rowCoun</find>
+      <find>dicKMIG_NV_CMPX</find>
       <find>setJson2TableDic</find>
+      <find>print(sql</find>
+      <find>KADM_JOB_EXEC</find>
       <find>updateBaiscByTBLDic</find>
       <find>insertBasicByTBLDic</find>
+      <find>except</find>
+      <find>sql</find>
+      <find>update</find>
       <find>print</find>
+      <find>ㅓㅒㅠ_ㄴㅊ</find>
+      <find>JOB_SCHD</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -177,14 +200,15 @@
         <option value="$PROJECT_DIR$/REP_Main.py" />
         <option value="$PROJECT_DIR$/REP_URL.py" />
         <option value="$PROJECT_DIR$/REP_MIG.py" />
-        <option value="$PROJECT_DIR$/REP_TABLE.py" />
         <option value="$PROJECT_DIR$/REP_MIG_MAPP.py" />
-        <option value="$PROJECT_DIR$/REP_JOB.py" />
         <option value="$PROJECT_DIR$/REP_MIG_APT_TRADE.py" />
-        <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/REP_SQL.py" />
-        <option value="$PROJECT_DIR$/REP_DAO.py" />
+        <option value="$PROJECT_DIR$/REP_TLGR_MSG.py" />
+        <option value="$PROJECT_DIR$/REP_TABLE.py" />
+        <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/REP_COM.py" />
+        <option value="$PROJECT_DIR$/REP_DAO.py" />
+        <option value="$PROJECT_DIR$/REP_JOB.py" />
         <option value="$PROJECT_DIR$/REP_MIG_NAVER.py" />
       </list>
     </option>
@@ -199,8 +223,8 @@
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-12" />
     <option name="y" value="-12" />
-    <option name="width" value="1923" />
-    <option name="height" value="1050" />
+    <option name="width" value="3864" />
+    <option name="height" value="2124" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -208,6 +232,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -219,16 +244,10 @@
               <item name="REP_proejct" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
-            <path>
-              <item name="REP_proejct" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; Python 3.7 (rep) &gt;" type="70bed36:NamedLibraryElementNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -461,26 +480,33 @@
       <option name="project" value="LOCAL" />
       <updated>1574677604321</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Log, BatchContext, BatchRowCounter 추가">
+      <created>1576307449679</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1576307449679</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="2575" height="1415" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20834975" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20677432" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.329718" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.68846005" visible="true" weight="0.2961808" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.784167" weight="0.22915043" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.6805829" visible="true" weight="0.41075605" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.7810162" weight="0.39360872" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3289183" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.22837101" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.81127596" weight="0.33773378" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.38113797" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.31153998" side_tool="true" visible="true" weight="0.2961808" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.3194171" side_tool="true" visible="true" weight="0.41075605" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.31722525" />
       <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -548,7 +574,8 @@
     <MESSAGE value="네이버 물건 및 물건형 MIG 완료" />
     <MESSAGE value="네이버 물건형 MIG 개발 완료" />
     <MESSAGE value="네이버 매물 테이블 반영" />
-    <option name="LAST_COMMIT_MESSAGE" value="네이버 매물 테이블 반영" />
+    <MESSAGE value="Log, BatchContext, BatchRowCounter 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="Log, BatchContext, BatchRowCounter 추가" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
@@ -590,13 +617,6 @@
     <entry file="file://$PROJECT_DIR$/RED_SQL.py" />
     <entry file="file://$PROJECT_DIR$/SQL_RED.py" />
     <entry file="file://$PROJECT_DIR$/REP_NAVER_APT_CODE.py" />
-    <entry file="file://$PROJECT_DIR$/REP_TLGR_MSG.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/REP_NAVER.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="722">
@@ -638,65 +658,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/ProgramData/Anaconda3/envs/rep/Lib/site-packages/pymysql/protocol.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4009">
-          <caret line="219" selection-start-line="219" selection-end-line="219" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/ProgramData/Anaconda3/envs/rep/Lib/site-packages/pymysql/connections.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="12521">
           <caret line="683" selection-start-line="683" selection-end-line="683" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/REP_MIG.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1881">
-          <caret line="114" column="39" selection-start-line="114" selection-start-column="39" selection-end-line="114" selection-end-column="55" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/REP_TABLE.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2166">
-          <caret line="114" column="29" selection-start-line="114" selection-start-column="29" selection-end-line="114" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/REP_MIG_MAPP.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="18" column="47" lean-forward="true" selection-start-line="18" selection-start-column="47" selection-end-line="18" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/REP_MIG_APT_RENT.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="18" column="23" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/ProgramData/Anaconda3/envs/rep/Lib/site-packages/pymysql/err.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="812">
-          <caret line="108" selection-start-line="108" selection-end-line="108" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
         </state>
       </provider>
     </entry>
@@ -707,12 +672,94 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="12" lean-forward="true" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/ProgramData/Anaconda3/envs/rep/Lib/site-packages/pymysql/err.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2014">
+          <caret line="108" column="19" selection-start-line="108" selection-start-column="19" selection-end-line="108" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/runREPSchedule.bat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="82" lean-forward="true" selection-start-line="2" selection-start-column="82" selection-end-line="2" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/ProgramData/Anaconda3/envs/rep/Lib/site-packages/pymysql/protocol.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4009">
+          <caret line="219" selection-start-line="219" selection-end-line="219" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/REP_TABLE.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3572">
+          <caret line="188" column="34" selection-start-line="188" selection-start-column="34" selection-end-line="188" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/REP_COM.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1083">
+          <caret line="201" column="46" lean-forward="true" selection-start-line="201" selection-start-column="46" selection-end-line="201" selection-end-column="46" />
+          <folding>
+            <element signature="e#22#45#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/REP_DAO.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-741">
+          <caret line="192" column="16" lean-forward="true" selection-start-line="192" selection-start-column="16" selection-end-line="192" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/REP_SQL.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/REP_JOB.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="87">
+          <caret line="197" column="36" lean-forward="true" selection-start-line="197" selection-start-column="36" selection-end-line="197" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        <state relative-caret-position="114">
+          <caret line="6" lean-forward="true" selection-start-line="5" selection-start-column="25" selection-end-line="6" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/REP_TLGR_MSG.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="665">
+          <caret line="57" selection-start-line="57" selection-end-line="57" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -726,46 +773,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/REP_SQL.py">
+    <entry file="file://$PROJECT_DIR$/REP_MIG.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="76" selection-start-line="3" selection-start-column="76" selection-end-line="3" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/REP_JOB.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="60" selection-start-line="60" selection-end-line="60" />
+        <state relative-caret-position="-304">
+          <caret line="23" column="14" lean-forward="true" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
           <folding>
-            <element signature="e#0#20#0" expanded="true" />
+            <element signature="e#0#24#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/REP_DAO.py">
+    <entry file="file://$PROJECT_DIR$/REP_MIG_APT_RENT.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="939">
-          <caret line="92" column="13" selection-start-line="92" selection-start-column="13" selection-end-line="92" selection-end-column="13" />
+        <state relative-caret-position="513">
+          <caret line="71" column="31" lean-forward="true" selection-start-line="71" selection-start-column="31" selection-end-line="71" selection-end-column="31" />
           <folding>
-            <element signature="e#0#36#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/REP_COM.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="728">
-          <caret line="161" column="26" selection-start-line="161" selection-start-column="26" selection-end-line="161" selection-end-column="26" />
-          <folding>
-            <element signature="e#21#44#0" expanded="true" />
+            <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/REP_MIG_APT_TRADE.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1159">
+        <state relative-caret-position="-337">
           <caret line="64" column="23" selection-start-line="64" selection-start-column="23" selection-end-line="64" selection-end-column="23" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
@@ -773,10 +803,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/REP_MIG_MAPP.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="18" column="47" selection-start-line="18" selection-start-column="47" selection-end-line="18" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/REP_MIG_NAVER.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="502">
-          <caret line="43" column="49" lean-forward="true" selection-start-line="43" selection-start-column="49" selection-end-line="43" selection-end-column="49" />
+        <state relative-caret-position="228">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
           <folding>
             <element signature="e#23#34#0" expanded="true" />
           </folding>

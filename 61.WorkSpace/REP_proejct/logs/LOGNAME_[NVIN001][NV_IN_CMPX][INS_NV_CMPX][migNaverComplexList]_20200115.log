@@ -1,0 +1,215 @@
+[2020-01-15 02:23:53,410][INFO|REP_MIG_NAVER.py:24] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################START[migNaverComplexList]####################
+[2020-01-15 02:23:55,222][INFO|REP_MIG_NAVER.py:33] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]https://new.land.naver.com/api/regions/complexes?cortarNo=1111010100
+[2020-01-15 02:23:55,300][DEBUG|REP_MIG_NAVER.py:35] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]{"complexList":[{"complexNo":"12076","complexName":"청운벽산빌리지","cortarNo":"1111010100","realEstateTypeCode":"APT","realEstateTypeName":"아파트","detailAddress":"1","latitude":37.591282,"longitude":126.96834,"totalHouseholdCount":126,"totalBuildingCount":9,"highFloor":3,"lowFloor":1,"completionYearMonth":"198811","dealCount":0,"leaseCount":0,"rentCount":0,"shortTermRentCount":0,"cortarAddress":"서울시 종로구 청운동"},{"complexNo":"11696","complexName":"청운현대","cortarNo":"1111010100","realEstateTypeCode":"APT","realEstateTypeName":"아파트","detailAddress":"56-45","latitude":37.586174,"longitude":126.967425,"totalHouseholdCount":60,"totalBuildingCount":4,"highFloor":5,"lowFloor":5,"completionYearMonth":"200010","dealCount":0,"leaseCount":0,"rentCount":0,"shortTermRentCount":0,"cortarAddress":"서울시 종로구 청운동"}]}
+[2020-01-15 02:23:55,301][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'roadAddressPrefix'roadAddressPrefix
+[2020-01-15 02:23:55,301][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'roadAddress'roadAddress
+[2020-01-15 02:23:55,301][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'totalLeaseHouseholdCount'totalLeaseHouseholdCount
+[2020-01-15 02:23:55,301][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'batlRatio'batlRatio
+[2020-01-15 02:23:55,301][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'btlRatio'btlRatio
+[2020-01-15 02:23:55,301][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'maxSupplyArea'maxSupplyArea
+[2020-01-15 02:23:55,301][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'minSupplyArea'minSupplyArea
+[2020-01-15 02:23:55,301][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'parkingCountByHousehold'parkingCountByHousehold
+[2020-01-15 02:23:55,302][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'constructionCompanyName'constructionCompanyName
+[2020-01-15 02:23:55,302][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'heatMethodTypeCode'heatMethodTypeCode
+[2020-01-15 02:23:55,302][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'heatFuelTypeCode'heatFuelTypeCode
+[2020-01-15 02:23:55,302][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'pyoengNames'pyoengNames
+[2020-01-15 02:23:55,302][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'managementOfficeTelNo'managementOfficeTelNo
+[2020-01-15 02:23:55,302][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'buildingRegister'buildingRegister
+[2020-01-15 02:23:55,323][DEBUG|REP_MIG_NAVER.py:48] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]네이버물건 중복NV_CMPX_ID : 12076
+[2020-01-15 02:23:55,323][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'roadAddressPrefix'roadAddressPrefix
+[2020-01-15 02:23:55,323][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'roadAddress'roadAddress
+[2020-01-15 02:23:55,323][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'totalLeaseHouseholdCount'totalLeaseHouseholdCount
+[2020-01-15 02:23:55,323][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'batlRatio'batlRatio
+[2020-01-15 02:23:55,323][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'btlRatio'btlRatio
+[2020-01-15 02:23:55,324][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'maxSupplyArea'maxSupplyArea
+[2020-01-15 02:23:55,324][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'minSupplyArea'minSupplyArea
+[2020-01-15 02:23:55,324][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'parkingCountByHousehold'parkingCountByHousehold
+[2020-01-15 02:23:55,324][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'constructionCompanyName'constructionCompanyName
+[2020-01-15 02:23:55,324][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'heatMethodTypeCode'heatMethodTypeCode
+[2020-01-15 02:23:55,324][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'heatFuelTypeCode'heatFuelTypeCode
+[2020-01-15 02:23:55,324][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'pyoengNames'pyoengNames
+[2020-01-15 02:23:55,324][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'managementOfficeTelNo'managementOfficeTelNo
+[2020-01-15 02:23:55,324][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'buildingRegister'buildingRegister
+[2020-01-15 02:23:55,337][DEBUG|REP_MIG_NAVER.py:48] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]네이버물건 중복NV_CMPX_ID : 11696
+[2020-01-15 02:23:57,339][INFO|REP_MIG_NAVER.py:33] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]https://new.land.naver.com/api/regions/complexes?cortarNo=1111010200
+[2020-01-15 02:23:57,411][DEBUG|REP_MIG_NAVER.py:35] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]{"complexList":[{"complexNo":"11536","complexName":"신현","cortarNo":"1111010200","realEstateTypeCode":"APT","realEstateTypeName":"아파트","detailAddress":"6-13","latitude":37.583537,"longitude":126.967824,"totalHouseholdCount":20,"totalBuildingCount":2,"highFloor":5,"lowFloor":5,"completionYearMonth":"200203","dealCount":1,"leaseCount":0,"rentCount":2,"shortTermRentCount":0,"cortarAddress":"서울시 종로구 신교동"}]}
+[2020-01-15 02:23:57,411][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'roadAddressPrefix'roadAddressPrefix
+[2020-01-15 02:23:57,411][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'roadAddress'roadAddress
+[2020-01-15 02:23:57,411][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'totalLeaseHouseholdCount'totalLeaseHouseholdCount
+[2020-01-15 02:23:57,412][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'batlRatio'batlRatio
+[2020-01-15 02:23:57,412][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'btlRatio'btlRatio
+[2020-01-15 02:23:57,412][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'maxSupplyArea'maxSupplyArea
+[2020-01-15 02:23:57,412][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'minSupplyArea'minSupplyArea
+[2020-01-15 02:23:57,412][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'parkingCountByHousehold'parkingCountByHousehold
+[2020-01-15 02:23:57,412][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'constructionCompanyName'constructionCompanyName
+[2020-01-15 02:23:57,412][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'heatMethodTypeCode'heatMethodTypeCode
+[2020-01-15 02:23:57,412][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'heatFuelTypeCode'heatFuelTypeCode
+[2020-01-15 02:23:57,412][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'pyoengNames'pyoengNames
+[2020-01-15 02:23:57,412][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'managementOfficeTelNo'managementOfficeTelNo
+[2020-01-15 02:23:57,413][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'buildingRegister'buildingRegister
+[2020-01-15 02:23:57,427][DEBUG|REP_MIG_NAVER.py:48] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]네이버물건 중복NV_CMPX_ID : 11536
+[2020-01-15 02:23:59,427][INFO|REP_MIG_NAVER.py:33] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]https://new.land.naver.com/api/regions/complexes?cortarNo=1111010300
+[2020-01-15 02:23:59,496][DEBUG|REP_MIG_NAVER.py:35] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]{"complexList":[]}
+[2020-01-15 02:24:01,496][INFO|REP_MIG_NAVER.py:33] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]https://new.land.naver.com/api/regions/complexes?cortarNo=1111010400
+[2020-01-15 02:24:01,571][DEBUG|REP_MIG_NAVER.py:35] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]{"complexList":[]}
+[2020-01-15 02:24:03,572][INFO|REP_MIG_NAVER.py:33] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]https://new.land.naver.com/api/regions/complexes?cortarNo=1111010500
+[2020-01-15 02:24:03,655][DEBUG|REP_MIG_NAVER.py:35] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]{"complexList":[]}
+[2020-01-15 02:24:05,656][INFO|REP_MIG_NAVER.py:33] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]https://new.land.naver.com/api/regions/complexes?cortarNo=1111010600
+[2020-01-15 02:24:05,717][DEBUG|REP_MIG_NAVER.py:35] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]{"complexList":[]}
+[2020-01-15 02:24:07,717][INFO|REP_MIG_NAVER.py:33] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]https://new.land.naver.com/api/regions/complexes?cortarNo=1111010700
+[2020-01-15 02:24:07,771][DEBUG|REP_MIG_NAVER.py:35] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]{"complexList":[{"complexNo":"12550","complexName":"광화문플래티넘","cortarNo":"1111010700","realEstateTypeCode":"OPST","realEstateTypeName":"오피스텔","detailAddress":"156","latitude":37.574351,"longitude":126.973509,"totalHouseholdCount":226,"totalBuildingCount":1,"highFloor":16,"lowFloor":16,"completionYearMonth":"200310","dealCount":9,"leaseCount":0,"rentCount":27,"shortTermRentCount":0,"cortarAddress":"서울시 종로구 적선동"}]}
+[2020-01-15 02:24:07,772][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'roadAddressPrefix'roadAddressPrefix
+[2020-01-15 02:24:07,772][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'roadAddress'roadAddress
+[2020-01-15 02:24:07,772][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'totalLeaseHouseholdCount'totalLeaseHouseholdCount
+[2020-01-15 02:24:07,772][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'batlRatio'batlRatio
+[2020-01-15 02:24:07,772][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'btlRatio'btlRatio
+[2020-01-15 02:24:07,772][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'maxSupplyArea'maxSupplyArea
+[2020-01-15 02:24:07,772][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'minSupplyArea'minSupplyArea
+[2020-01-15 02:24:07,772][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'parkingCountByHousehold'parkingCountByHousehold
+[2020-01-15 02:24:07,772][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'constructionCompanyName'constructionCompanyName
+[2020-01-15 02:24:07,772][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'heatMethodTypeCode'heatMethodTypeCode
+[2020-01-15 02:24:07,772][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'heatFuelTypeCode'heatFuelTypeCode
+[2020-01-15 02:24:07,772][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'pyoengNames'pyoengNames
+[2020-01-15 02:24:07,773][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'managementOfficeTelNo'managementOfficeTelNo
+[2020-01-15 02:24:07,773][DEBUG|REP_DAO.py:43] >> migNaverComplexList json Parsing Error'buildingRegister'buildingRegister
+[2020-01-15 02:24:07,787][DEBUG|REP_MIG_NAVER.py:48] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]네이버물건 중복NV_CMPX_ID : 12550
+[2020-01-15 02:46:48,515][INFO|REP_MIG_NAVER.py:24] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################START[migNaverComplexList]####################
+[2020-01-15 02:46:50,261][INFO|REP_MIG_NAVER.py:57] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################END[migNaverComplexList]####################
+[2020-01-15 02:48:03,409][INFO|REP_MIG_NAVER.py:24] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################START[migNaverComplexList]####################
+[2020-01-15 02:48:05,138][INFO|REP_MIG_NAVER.py:57] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################END[migNaverComplexList]####################
+[2020-01-15 02:48:36,547][INFO|REP_MIG_NAVER.py:23] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################START[migNaverComplexList]####################
+[2020-01-15 02:48:38,315][INFO|REP_MIG_NAVER.py:56] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################END[migNaverComplexList]####################
+[2020-01-15 02:48:57,440][INFO|REP_MIG_NAVER.py:23] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################START[migNaverComplexList]####################
+[2020-01-15 02:48:59,188][INFO|REP_MIG_NAVER.py:56] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################END[migNaverComplexList]####################
+[2020-01-15 02:55:31,857][INFO|REP_MIG_NAVER.py:23] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################START[migNaverComplexList]####################
+[2020-01-15 02:55:33,632][INFO|REP_MIG_NAVER.py:56] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################END[migNaverComplexList]####################
+[2020-01-15 02:55:36,332][INFO|REP_JOB.py:12] >> ####################START[doJOB : NVIN001]####################
+[2020-01-15 02:55:37,987][INFO|REP_JOB.py:18] >> ####################START[doFunc : {'JOB_ID': 'NVIN001', 'JOB_NM': '네이버부동산 삽입', 'FUNC_ID': 'INS_NV_CMPX', 'FUNC_NM': '네이버 부동산 단지 삽입', 'ACT_ID': 'NV_IN_CMPX', 'ACT_NM': '네이버단지삽입', 'F.FUNC_ID': 'INS_NV_CMPX', 'F.FUNC_NM': '네이버 부동산 단지 삽입'}]####################
+[2020-01-15 02:55:37,997][INFO|REP_MIG_NAVER.py:23] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################START[migNaverComplexList]####################
+[2020-01-15 02:55:39,742][INFO|REP_MIG_NAVER.py:56] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################END[migNaverComplexList]####################
+[2020-01-15 02:58:29,362][INFO|REP_MIG_NAVER.py:23] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################START[migNaverComplexList]####################
+[2020-01-15 02:58:31,100][INFO|REP_MIG_NAVER.py:56] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################END[migNaverComplexList]####################
+[2020-01-15 02:58:32,804][ERROR|REP_DAO.py:129] >> ####################ERROR[updateBaiscByTBLDic]####################
+[2020-01-15 02:58:32,804][ERROR|REP_DAO.py:130] >> SQL ERROR :UPDATE KADM_JOB_EXEC SET  JOB_ID = 'NVIN001',  JOB_SEQ = '1',  IMDI_EXEC_YN = 'N',  CHG_USER_ID = '1000000001',CHG_DTM = NOW()
+[2020-01-15 02:58:35,468][INFO|REP_JOB.py:12] >> ####################START[doJOB : NVIN001]####################
+[2020-01-15 02:58:37,140][INFO|REP_JOB.py:18] >> ####################START[doFunc : {'JOB_ID': 'NVIN001', 'JOB_NM': '네이버부동산 삽입', 'FUNC_ID': 'INS_NV_CMPX', 'FUNC_NM': '네이버 부동산 단지 삽입', 'ACT_ID': 'NV_IN_CMPX', 'ACT_NM': '네이버단지삽입', 'F.FUNC_ID': 'INS_NV_CMPX', 'F.FUNC_NM': '네이버 부동산 단지 삽입'}]####################
+[2020-01-15 02:58:37,150][INFO|REP_MIG_NAVER.py:23] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################START[migNaverComplexList]####################
+[2020-01-15 02:58:38,882][INFO|REP_MIG_NAVER.py:56] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################END[migNaverComplexList]####################
+[2020-01-15 02:59:17,295][INFO|REP_MIG_NAVER.py:23] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################START[migNaverComplexList]####################
+[2020-01-15 02:59:19,042][INFO|REP_MIG_NAVER.py:56] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################END[migNaverComplexList]####################
+[2020-01-15 03:05:49,980][INFO|REP_MIG_NAVER.py:23] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################START[migNaverComplexList]####################
+[2020-01-15 03:05:51,715][INFO|REP_MIG_NAVER.py:56] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################END[migNaverComplexList]####################
+[2020-01-15 03:15:06,302][INFO|REP_MIG_NAVER.py:23] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################START[migNaverComplexList]####################
+[2020-01-15 03:15:08,768][INFO|REP_MIG_NAVER.py:56] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################END[migNaverComplexList]####################
+[2020-01-15 03:15:10,468][INFO|REP_JOB.py:212] >> ####################END[doImidiateJOB]####################
+[2020-01-15 03:15:11,468][INFO|REP_JOB.py:156] >> ####################START[doImidiateJOB]####################
+[2020-01-15 03:15:11,474][INFO|REP_JOB.py:212] >> ####################END[doImidiateJOB]####################
+[2020-01-15 03:15:12,474][INFO|REP_JOB.py:156] >> ####################START[doImidiateJOB]####################
+[2020-01-15 03:15:12,480][INFO|REP_JOB.py:212] >> ####################END[doImidiateJOB]####################
+[2020-01-15 03:15:13,480][INFO|REP_JOB.py:156] >> ####################START[doImidiateJOB]####################
+[2020-01-15 03:15:13,496][INFO|REP_JOB.py:212] >> ####################END[doImidiateJOB]####################
+[2020-01-15 03:15:14,497][INFO|REP_JOB.py:156] >> ####################START[doImidiateJOB]####################
+[2020-01-15 03:15:14,502][INFO|REP_JOB.py:212] >> ####################END[doImidiateJOB]####################
+[2020-01-15 03:16:07,249][INFO|REP_MIG_NAVER.py:23] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################START[migNaverComplexList]####################
+[2020-01-15 03:16:09,084][INFO|REP_MIG_NAVER.py:56] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################END[migNaverComplexList]####################
+[2020-01-15 03:16:35,027][INFO|REP_MIG_NAVER.py:23] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################START[migNaverComplexList]####################
+[2020-01-15 03:16:36,910][INFO|REP_MIG_NAVER.py:56] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################END[migNaverComplexList]####################
+[2020-01-15 03:18:12,174][INFO|REP_MIG_NAVER.py:23] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################START[migNaverComplexList]####################
+[2020-01-15 03:18:13,892][INFO|REP_MIG_NAVER.py:56] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################END[migNaverComplexList]####################
+[2020-01-15 03:18:15,547][DEBUG|REP_DAO.py:126] >> UPDATE KADM_JOB_FUNC_EXEC SET  JOB_ID = 'NVIN001',  FUNC_ID = 'INS_NV_CMPX',  ACT_ID = 'NV_IN_CMPX',  EXEC_DTM = '20200115031812',  EXEC_STAT_CD = 'T',  END_DTM = '20200115031815',CHG_DTM = NOW() WHERE JOB_ID = 'NVIN001' AND FUNC_ID = 'INS_NV_CMPX' AND ACT_ID = 'NV_IN_CMPX' AND EXEC_DTM = '20200115031812'
+[2020-01-15 03:18:15,557][DEBUG|REP_DAO.py:126] >> UPDATE KADM_JOB_EXEC SET  JOB_ID = 'NVIN001',  EXEC_DTM = '20200115031810',  EXEC_STAT_CD = 'T',  END_DTM = '20200115031815',  CHG_USER_ID = '1000000001',CHG_DTM = NOW() WHERE JOB_ID = 'NVIN001' AND EXEC_DTM = '20200115031810'
+[2020-01-15 03:18:15,566][DEBUG|REP_DAO.py:126] >> UPDATE KADM_JOB_SCHD SET  JOB_ID = 'NVIN001',  JOB_SEQ = '1',  IMDI_EXEC_YN = 'N',  CHG_USER_ID = '1000000001',CHG_DTM = NOW() WHERE JOB_ID = 'NVIN001' AND JOB_SEQ = '1'
+[2020-01-15 03:18:15,569][INFO|REP_JOB.py:212] >> ####################END[doImidiateJOB]####################
+[2020-01-15 03:18:16,570][INFO|REP_JOB.py:156] >> ####################START[doImidiateJOB]####################
+[2020-01-15 03:18:16,574][INFO|REP_JOB.py:212] >> ####################END[doImidiateJOB]####################
+[2020-01-15 03:18:17,574][INFO|REP_JOB.py:156] >> ####################START[doImidiateJOB]####################
+[2020-01-15 03:18:17,579][INFO|REP_JOB.py:212] >> ####################END[doImidiateJOB]####################
+[2020-01-15 03:18:18,579][INFO|REP_JOB.py:156] >> ####################START[doImidiateJOB]####################
+[2020-01-15 03:18:18,592][INFO|REP_JOB.py:212] >> ####################END[doImidiateJOB]####################
+[2020-01-15 03:18:19,592][INFO|REP_JOB.py:156] >> ####################START[doImidiateJOB]####################
+[2020-01-15 03:18:19,598][INFO|REP_JOB.py:212] >> ####################END[doImidiateJOB]####################
+[2020-01-15 03:18:20,600][INFO|REP_JOB.py:156] >> ####################START[doImidiateJOB]####################
+[2020-01-15 03:18:20,606][INFO|REP_JOB.py:212] >> ####################END[doImidiateJOB]####################
+[2020-01-15 03:23:04,384][INFO|REP_MIG_NAVER.py:23] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################START[migNaverComplexList]####################
+[2020-01-15 03:23:06,117][INFO|REP_MIG_NAVER.py:56] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################END[migNaverComplexList]####################
+[2020-01-15 03:23:07,767][DEBUG|REP_DAO.py:126] >> UPDATE KADM_JOB_FUNC_EXEC SET  JOB_ID = 'NVIN001',  FUNC_ID = 'INS_NV_CMPX',  ACT_ID = 'NV_IN_CMPX',  EXEC_DTM = '20200115032304',  EXEC_STAT_CD = 'T',  END_DTM = '20200115032307',CHG_DTM = NOW() WHERE JOB_ID = 'NVIN001' AND FUNC_ID = 'INS_NV_CMPX' AND ACT_ID = 'NV_IN_CMPX' AND EXEC_DTM = '20200115032304'
+[2020-01-15 03:23:07,774][DEBUG|REP_DAO.py:126] >> UPDATE KADM_JOB_EXEC SET  JOB_ID = 'NVIN001',  EXEC_DTM = '20200115032302',  EXEC_STAT_CD = 'T',  END_DTM = '20200115032307',  CHG_USER_ID = '1000000001',CHG_DTM = NOW() WHERE JOB_ID = 'NVIN001' AND EXEC_DTM = '20200115032302'
+[2020-01-15 03:23:07,781][ERROR|REP_DAO.py:132] >> ####################ERROR[updateBaiscByTBLDic]####################
+[2020-01-15 03:23:07,781][ERROR|REP_DAO.py:133] >> SQL ERROR :UPDATE KADM_JOB_SCHD SET  JOB_ID = 'NVIN001',  JOB_SEQ = '1',  IMDI_EXEC_YN = 'N',  CHG_USER_ID = '1000000001',CHG_DTM = NOW() WHERE JOB_ID = 'NVIN001' AND AA = '1'
+[2020-01-15 03:23:53,454][INFO|REP_MIG_NAVER.py:23] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################START[migNaverComplexList]####################
+[2020-01-15 03:23:55,175][INFO|REP_MIG_NAVER.py:56] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################END[migNaverComplexList]####################
+[2020-01-15 03:23:56,855][DEBUG|REP_DAO.py:126] >> UPDATE KADM_JOB_FUNC_EXEC SET  JOB_ID = 'NVIN001',  FUNC_ID = 'INS_NV_CMPX',  ACT_ID = 'NV_IN_CMPX',  EXEC_DTM = '20200115032353',  EXEC_STAT_CD = 'T',  END_DTM = '20200115032356',CHG_DTM = NOW() WHERE JOB_ID = 'NVIN001' AND FUNC_ID = 'INS_NV_CMPX' AND ACT_ID = 'NV_IN_CMPX' AND EXEC_DTM = '20200115032353'
+[2020-01-15 03:23:56,863][DEBUG|REP_DAO.py:126] >> UPDATE KADM_JOB_EXEC SET  JOB_ID = 'NVIN001',  EXEC_DTM = '20200115032351',  EXEC_STAT_CD = 'T',  END_DTM = '20200115032356',  CHG_USER_ID = '1000000001',CHG_DTM = NOW() WHERE JOB_ID = 'NVIN001' AND EXEC_DTM = '20200115032351'
+[2020-01-15 03:23:56,872][ERROR|REP_DAO.py:132] >> ####################ERROR[updateBaiscByTBLDic]####################
+[2020-01-15 03:23:56,872][ERROR|REP_DAO.py:133] >> SQL ERROR :UPDATE KADM_JOB_SCHD SET  JOB_ID = 'NVIN001',  JOB_SEQ = '1',  IMDI_EXEC_YN = 'N',  CHG_USER_ID = '1000000001',CHG_DTM = NOW() WHERE JOB_ID = 'NVIN001' AND AA = '1'
+[2020-01-15 03:23:56,872][ERROR|REP_DAO.py:134] >> Exception :(1054, "Unknown column 'AA' in 'where clause'")
+[2020-01-15 03:23:58,519][ERROR|REP_JOB.py:212] >> ####################END[doImidiateJOB]####################
+[2020-01-15 03:23:59,519][INFO|REP_JOB.py:156] >> ####################START[doImidiateJOB]####################
+[2020-01-15 03:23:59,534][INFO|REP_JOB.py:12] >> ####################START[doJOB : NVIN001]####################
+[2020-01-15 03:24:01,176][INFO|REP_JOB.py:18] >> ####################START[doFunc : {'JOB_ID': 'NVIN001', 'JOB_NM': '네이버부동산 삽입', 'FUNC_ID': 'INS_NV_CMPX', 'FUNC_NM': '네이버 부동산 단지 삽입', 'ACT_ID': 'NV_IN_CMPX', 'ACT_NM': '네이버단지삽입', 'F.FUNC_ID': 'INS_NV_CMPX', 'F.FUNC_NM': '네이버 부동산 단지 삽입'}]####################
+[2020-01-15 03:24:01,185][INFO|REP_MIG_NAVER.py:23] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################START[migNaverComplexList]####################
+[2020-01-15 03:24:02,935][INFO|REP_MIG_NAVER.py:56] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################END[migNaverComplexList]####################
+[2020-01-15 03:24:33,564][INFO|REP_MIG_NAVER.py:23] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################START[migNaverComplexList]####################
+[2020-01-15 03:24:35,267][INFO|REP_MIG_NAVER.py:56] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################END[migNaverComplexList]####################
+[2020-01-15 03:24:36,958][DEBUG|REP_DAO.py:126] >> UPDATE KADM_JOB_FUNC_EXEC SET  JOB_ID = 'NVIN001',  FUNC_ID = 'INS_NV_CMPX',  ACT_ID = 'NV_IN_CMPX',  EXEC_DTM = '20200115032433',  EXEC_STAT_CD = 'T',  END_DTM = '20200115032436',CHG_DTM = NOW() WHERE JOB_ID = 'NVIN001' AND FUNC_ID = 'INS_NV_CMPX' AND ACT_ID = 'NV_IN_CMPX' AND EXEC_DTM = '20200115032433'
+[2020-01-15 03:24:36,967][DEBUG|REP_DAO.py:126] >> UPDATE KADM_JOB_EXEC SET  JOB_ID = 'NVIN001',  EXEC_DTM = '20200115032431',  EXEC_STAT_CD = 'T',  END_DTM = '20200115032436',  CHG_USER_ID = '1000000001',CHG_DTM = NOW() WHERE JOB_ID = 'NVIN001' AND EXEC_DTM = '20200115032431'
+[2020-01-15 03:24:36,975][ERROR|REP_DAO.py:132] >> ####################ERROR[updateBaiscByTBLDic]####################
+[2020-01-15 03:24:36,976][ERROR|REP_DAO.py:133] >> SQL ERROR :UPDATE KADM_JOB_SCHD SET  JOB_ID = 'NVIN001',  JOB_SEQ = '1',  IMDI_EXEC_YN = 'N',  CHG_USER_ID = '1000000001',CHG_DTM = NOW() WHERE JOB_ID = 'NVIN001' AND AA = '1'
+[2020-01-15 03:24:36,976][ERROR|REP_DAO.py:134] >> Exception :(1054, "Unknown column 'AA' in 'where clause'")
+[2020-01-15 03:24:38,676][ERROR|REP_JOB.py:212] >> ####################END[doImidiateJOB]####################
+[2020-01-15 03:24:39,676][INFO|REP_JOB.py:156] >> ####################START[doImidiateJOB]####################
+[2020-01-15 03:24:39,700][INFO|REP_JOB.py:12] >> ####################START[doJOB : NVIN001]####################
+[2020-01-15 03:24:41,387][INFO|REP_JOB.py:18] >> ####################START[doFunc : {'JOB_ID': 'NVIN001', 'JOB_NM': '네이버부동산 삽입', 'FUNC_ID': 'INS_NV_CMPX', 'FUNC_NM': '네이버 부동산 단지 삽입', 'ACT_ID': 'NV_IN_CMPX', 'ACT_NM': '네이버단지삽입', 'F.FUNC_ID': 'INS_NV_CMPX', 'F.FUNC_NM': '네이버 부동산 단지 삽입'}]####################
+[2020-01-15 03:24:41,406][INFO|REP_MIG_NAVER.py:23] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################START[migNaverComplexList]####################
+[2020-01-15 03:24:43,152][INFO|REP_MIG_NAVER.py:56] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################END[migNaverComplexList]####################
+[2020-01-15 03:24:44,812][DEBUG|REP_DAO.py:126] >> UPDATE KADM_JOB_FUNC_EXEC SET  JOB_ID = 'NVIN001',  FUNC_ID = 'INS_NV_CMPX',  ACT_ID = 'NV_IN_CMPX',  EXEC_DTM = '20200115032441',  EXEC_STAT_CD = 'T',  END_DTM = '20200115032444',CHG_DTM = NOW() WHERE JOB_ID = 'NVIN001' AND FUNC_ID = 'INS_NV_CMPX' AND ACT_ID = 'NV_IN_CMPX' AND EXEC_DTM = '20200115032441'
+[2020-01-15 03:24:44,831][DEBUG|REP_DAO.py:126] >> UPDATE KADM_JOB_EXEC SET  JOB_ID = 'NVIN001',  EXEC_DTM = '20200115032439',  EXEC_STAT_CD = 'T',  END_DTM = '20200115032444',  CHG_USER_ID = '1000000001',CHG_DTM = NOW() WHERE JOB_ID = 'NVIN001' AND EXEC_DTM = '20200115032439'
+[2020-01-15 03:24:44,840][ERROR|REP_DAO.py:132] >> ####################ERROR[updateBaiscByTBLDic]####################
+[2020-01-15 03:24:44,840][ERROR|REP_DAO.py:133] >> SQL ERROR :UPDATE KADM_JOB_SCHD SET  JOB_ID = 'NVIN001',  JOB_SEQ = '1',  IMDI_EXEC_YN = 'N',  CHG_USER_ID = '1000000001',CHG_DTM = NOW() WHERE JOB_ID = 'NVIN001' AND AA = '1'
+[2020-01-15 03:24:44,840][ERROR|REP_DAO.py:134] >> Exception :(1054, "Unknown column 'AA' in 'where clause'")
+[2020-01-15 03:24:46,541][ERROR|REP_JOB.py:212] >> ####################END[doImidiateJOB]####################
+[2020-01-15 03:24:47,542][INFO|REP_JOB.py:156] >> ####################START[doImidiateJOB]####################
+[2020-01-15 03:24:47,555][INFO|REP_JOB.py:12] >> ####################START[doJOB : NVIN001]####################
+[2020-01-15 20:37:47,852][INFO|REP_MIG_NAVER.py:23] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################START[migNaverComplexList]####################
+[2020-01-15 20:37:50,018][INFO|REP_MIG_NAVER.py:56] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################END[migNaverComplexList]####################
+[2020-01-15 20:37:52,092][DEBUG|REP_DAO.py:126] >> UPDATE KADM_JOB_FUNC_EXEC SET  JOB_ID = 'NVIN001',  FUNC_ID = 'INS_NV_CMPX',  ACT_ID = 'NV_IN_CMPX',  EXEC_DTM = '20200115203747',  EXEC_STAT_CD = 'T',  END_DTM = '20200115203752',CHG_DTM = NOW() WHERE JOB_ID = 'NVIN001' AND FUNC_ID = 'INS_NV_CMPX' AND ACT_ID = 'NV_IN_CMPX' AND EXEC_DTM = '20200115203747'
+[2020-01-15 20:37:52,098][DEBUG|REP_DAO.py:126] >> UPDATE KADM_JOB_EXEC SET  JOB_ID = 'NVIN001',  EXEC_DTM = '20200115203745',  EXEC_STAT_CD = 'T',  END_DTM = '20200115203752',  CHG_USER_ID = '1000000001',CHG_DTM = NOW() WHERE JOB_ID = 'NVIN001' AND EXEC_DTM = '20200115203745'
+[2020-01-15 20:37:52,103][ERROR|REP_DAO.py:132] >> ####################ERROR[updateBaiscByTBLDic]####################
+[2020-01-15 20:37:52,103][ERROR|REP_DAO.py:133] >> SQL ERROR :UPDATE KADM_JOB_SCHD SET  JOB_ID = 'NVIN001',  JOB_SEQ = '1',  IMDI_EXEC_YN = 'N',  CHG_USER_ID = '1000000001',CHG_DTM = NOW() WHERE JOB_ID = 'NVIN001' AND AA = '1'
+[2020-01-15 20:37:52,103][ERROR|REP_DAO.py:134] >> Exception :(1054, "Unknown column 'AA' in 'where clause'")
+[2020-01-15 20:37:54,169][ERROR|REP_JOB.py:212] >> ####################END[doImidiateJOB]####################
+[2020-01-15 20:37:55,169][INFO|REP_JOB.py:156] >> ####################START[doImidiateJOB]####################
+[2020-01-15 20:37:55,189][INFO|REP_JOB.py:12] >> ####################START[doJOB : NVIN001]####################
+[2020-01-15 20:37:57,266][INFO|REP_JOB.py:18] >> ####################START[doFunc : {'JOB_ID': 'NVIN001', 'JOB_NM': '네이버부동산 삽입', 'FUNC_ID': 'INS_NV_CMPX', 'FUNC_NM': '네이버 부동산 단지 삽입', 'ACT_ID': 'NV_IN_CMPX', 'ACT_NM': '네이버단지삽입', 'F.FUNC_ID': 'INS_NV_CMPX', 'F.FUNC_NM': '네이버 부동산 단지 삽입'}]####################
+[2020-01-15 20:37:57,283][INFO|REP_MIG_NAVER.py:23] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################START[migNaverComplexList]####################
+[2020-01-15 20:37:59,398][INFO|REP_MIG_NAVER.py:56] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################END[migNaverComplexList]####################
+[2020-01-15 20:38:01,461][DEBUG|REP_DAO.py:126] >> UPDATE KADM_JOB_FUNC_EXEC SET  JOB_ID = 'NVIN001',  FUNC_ID = 'INS_NV_CMPX',  ACT_ID = 'NV_IN_CMPX',  EXEC_DTM = '20200115203757',  EXEC_STAT_CD = 'T',  END_DTM = '20200115203801',CHG_DTM = NOW() WHERE JOB_ID = 'NVIN001' AND FUNC_ID = 'INS_NV_CMPX' AND ACT_ID = 'NV_IN_CMPX' AND EXEC_DTM = '20200115203757'
+[2020-01-15 20:38:01,478][DEBUG|REP_DAO.py:126] >> UPDATE KADM_JOB_EXEC SET  JOB_ID = 'NVIN001',  EXEC_DTM = '20200115203755',  EXEC_STAT_CD = 'T',  END_DTM = '20200115203801',  CHG_USER_ID = '1000000001',CHG_DTM = NOW() WHERE JOB_ID = 'NVIN001' AND EXEC_DTM = '20200115203755'
+[2020-01-15 20:38:01,494][ERROR|REP_DAO.py:132] >> ####################ERROR[updateBaiscByTBLDic]####################
+[2020-01-15 20:38:01,495][ERROR|REP_DAO.py:133] >> SQL ERROR :UPDATE KADM_JOB_SCHD SET  JOB_ID = 'NVIN001',  JOB_SEQ = '1',  IMDI_EXEC_YN = 'N',  CHG_USER_ID = '1000000001',CHG_DTM = NOW() WHERE JOB_ID = 'NVIN001' AND AA = '1'
+[2020-01-15 20:38:01,496][ERROR|REP_DAO.py:134] >> Exception :(1054, "Unknown column 'AA' in 'where clause'")
+[2020-01-15 20:38:03,545][ERROR|REP_JOB.py:212] >> ####################END[doImidiateJOB]####################
+[2020-01-15 20:38:04,546][INFO|REP_JOB.py:156] >> ####################START[doImidiateJOB]####################
+[2020-01-15 20:38:04,575][INFO|REP_JOB.py:12] >> ####################START[doJOB : NVIN001]####################
+[2020-01-15 20:38:06,632][INFO|REP_JOB.py:18] >> ####################START[doFunc : {'JOB_ID': 'NVIN001', 'JOB_NM': '네이버부동산 삽입', 'FUNC_ID': 'INS_NV_CMPX', 'FUNC_NM': '네이버 부동산 단지 삽입', 'ACT_ID': 'NV_IN_CMPX', 'ACT_NM': '네이버단지삽입', 'F.FUNC_ID': 'INS_NV_CMPX', 'F.FUNC_NM': '네이버 부동산 단지 삽입'}]####################
+[2020-01-15 20:38:06,648][INFO|REP_MIG_NAVER.py:23] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################START[migNaverComplexList]####################
+[2020-01-15 20:38:08,769][INFO|REP_MIG_NAVER.py:56] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################END[migNaverComplexList]####################
+[2020-01-15 20:38:10,864][DEBUG|REP_DAO.py:126] >> UPDATE KADM_JOB_FUNC_EXEC SET  JOB_ID = 'NVIN001',  FUNC_ID = 'INS_NV_CMPX',  ACT_ID = 'NV_IN_CMPX',  EXEC_DTM = '20200115203806',  EXEC_STAT_CD = 'T',  END_DTM = '20200115203810',CHG_DTM = NOW() WHERE JOB_ID = 'NVIN001' AND FUNC_ID = 'INS_NV_CMPX' AND ACT_ID = 'NV_IN_CMPX' AND EXEC_DTM = '20200115203806'
+[2020-01-15 20:38:10,880][DEBUG|REP_DAO.py:126] >> UPDATE KADM_JOB_EXEC SET  JOB_ID = 'NVIN001',  EXEC_DTM = '20200115203804',  EXEC_STAT_CD = 'T',  END_DTM = '20200115203810',  CHG_USER_ID = '1000000001',CHG_DTM = NOW() WHERE JOB_ID = 'NVIN001' AND EXEC_DTM = '20200115203804'
+[2020-01-15 20:38:10,885][ERROR|REP_DAO.py:132] >> ####################ERROR[updateBaiscByTBLDic]####################
+[2020-01-15 20:38:10,885][ERROR|REP_DAO.py:133] >> SQL ERROR :UPDATE KADM_JOB_SCHD SET  JOB_ID = 'NVIN001',  JOB_SEQ = '1',  IMDI_EXEC_YN = 'N',  CHG_USER_ID = '1000000001',CHG_DTM = NOW() WHERE JOB_ID = 'NVIN001' AND AA = '1'
+[2020-01-15 20:38:10,886][ERROR|REP_DAO.py:134] >> Exception :(1054, "Unknown column 'AA' in 'where clause'")
+[2020-01-15 20:38:12,963][ERROR|REP_JOB.py:212] >> ####################END[doImidiateJOB]####################
+[2020-01-15 20:38:13,964][INFO|REP_JOB.py:156] >> ####################START[doImidiateJOB]####################
+[2020-01-15 20:38:13,974][INFO|REP_JOB.py:12] >> ####################START[doJOB : NVIN001]####################
+[2020-01-15 20:38:16,023][INFO|REP_JOB.py:18] >> ####################START[doFunc : {'JOB_ID': 'NVIN001', 'JOB_NM': '네이버부동산 삽입', 'FUNC_ID': 'INS_NV_CMPX', 'FUNC_NM': '네이버 부동산 단지 삽입', 'ACT_ID': 'NV_IN_CMPX', 'ACT_NM': '네이버단지삽입', 'F.FUNC_ID': 'INS_NV_CMPX', 'F.FUNC_NM': '네이버 부동산 단지 삽입'}]####################
+[2020-01-15 20:38:16,039][INFO|REP_MIG_NAVER.py:23] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################START[migNaverComplexList]####################
+[2020-01-15 20:38:20,220][INFO|REP_MIG_NAVER.py:56] >> [NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]####################END[migNaverComplexList]####################
+[2020-01-15 20:38:22,359][DEBUG|REP_DAO.py:126] >> UPDATE KADM_JOB_FUNC_EXEC SET  JOB_ID = 'NVIN001',  FUNC_ID = 'INS_NV_CMPX',  ACT_ID = 'NV_IN_CMPX',  EXEC_DTM = '20200115203816',  EXEC_STAT_CD = 'T',  END_DTM = '20200115203822',CHG_DTM = NOW() WHERE JOB_ID = 'NVIN001' AND FUNC_ID = 'INS_NV_CMPX' AND ACT_ID = 'NV_IN_CMPX' AND EXEC_DTM = '20200115203816'
+[2020-01-15 20:38:22,367][DEBUG|REP_DAO.py:126] >> UPDATE KADM_JOB_EXEC SET  JOB_ID = 'NVIN001',  EXEC_DTM = '20200115203813',  EXEC_STAT_CD = 'T',  END_DTM = '20200115203822',  CHG_USER_ID = '1000000001',CHG_DTM = NOW() WHERE JOB_ID = 'NVIN001' AND EXEC_DTM = '20200115203813'
+[2020-01-15 20:38:22,385][ERROR|REP_DAO.py:132] >> ####################ERROR[updateBaiscByTBLDic]####################
+[2020-01-15 20:38:22,385][ERROR|REP_DAO.py:133] >> SQL ERROR :UPDATE KADM_JOB_SCHD SET  JOB_ID = 'NVIN001',  JOB_SEQ = '1',  IMDI_EXEC_YN = 'N',  CHG_USER_ID = '1000000001',CHG_DTM = NOW() WHERE JOB_ID = 'NVIN001' AND AA = '1'
+[2020-01-15 20:38:22,385][ERROR|REP_DAO.py:134] >> Exception :(1054, "Unknown column 'AA' in 'where clause'")
+[2020-01-15 20:38:24,447][ERROR|REP_JOB.py:212] >> ####################END[doImidiateJOB]####################
+[2020-01-15 20:38:25,447][INFO|REP_JOB.py:156] >> ####################START[doImidiateJOB]####################
+[2020-01-15 20:38:25,461][INFO|REP_JOB.py:12] >> ####################START[doJOB : NVIN001]####################

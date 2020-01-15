@@ -47,18 +47,10 @@ head(data_avg_deal_amt)
 
 data_avg_deal_amt$DEAL_YYMM<-as.Date(paste0(as.character(data_avg_deal_amt$DEAL_YYMM), '01'), format='%Y%m%d')
 
-str(data_avg_deal_amt$DEAL_YYMM)
-format(data_avg_deal_amt$DEAL_YYMM)
-
 plot(data_avg_deal_amt$AVG_DEAL_AMT)
 
-
-
-as.Date(data_avg_deal_amt$DEAL_YYMM,"%Y%m")
-
-
 p <- ggplot(data = data_avg_deal_amt) +
-  geom_line(aes(x = as.Date(DEAL_YYMM,"%Y%M"), y = AVG_DEAL_AMT), color = "red", linetype = 1) #+
+  geom_line(aes(x = DEAL_YYMM, y = AVG_DEAL_AMT), color = "red", linetype = 1) #+
   #(aes(x = YYMM, y = KB_APT_JS_INDX), color = "blue", linetype = 1) +
   #geom_line(aes(x = YYMM, y = INTE_RATE*20), color = "purple", linetype = 1) 
 
