@@ -16,10 +16,11 @@ userid = 1000000011
 
 def migNaverComplexList(batchContext = None):
     #초기세팅 Log
+    global Log
     try:
-        global LogObejct
+#        global LogObejct
         batchContext.setFuncName("migNaverComplexList")
-        LogObejct = Logger(batchContext.getLogName())
+#        LogObejct = Logger(batchContext.getLogName())
         Log.info(batchContext.getLogName()+"####################START[migNaverComplexList]####################")
         sendMessage("START[migNaverComplexList]")
 
@@ -52,7 +53,7 @@ def migNaverComplexList(batchContext = None):
             rowCounter.Cnt()
             time.sleep(NaverTimeStamp)
     except Exception as e:
-        Log.Error(batchContext.getLogName() + "####################ERROR[migNaverComplexList]####################")
+        Log.error(batchContext.getLogName() + "####################ERROR[migNaverComplexList]####################")
         sendMessage("ERROR[migNaverComplexList]")
 
     #Report
