@@ -26,6 +26,9 @@ def migNaverComplexList(batchContext = None):
         # 법정동 전체가져오기
         dicLeglCodeList = fetch("selectLeglLv3Dong", "")
 
+        # rowCounter 설정
+        rowCounter = BatchRowCounter(batchContext.getLogName(), dicLeglCodeList.__len__(), 1, "N", 10, "P")
+
         for dicLeglCode in dicLeglCodeList:
 
             #url호출
@@ -46,10 +49,21 @@ def migNaverComplexList(batchContext = None):
                     insertBasicByTBLDic('KMIG_NV_CMPX',dicKMIG_NV_CMPX)
                 except pymysql.IntegrityError as err:  # 기존에 네이버아파트 코드가 존재할 수 있음
                     Log.debug(batchContext.getLogName() + "네이버물건 중복" + 'NV_CMPX_ID : ' + dicKMIG_NV_CMPX['NV_CMPX_ID'])
+            rowCounter.Cnt()
             time.sleep(NaverTimeStamp)
     except Exception as e:
         Log.Error(batchContext.getLogName() + "####################ERROR[migNaverComplexList]####################")
         sendMessage("ERROR[migNaverComplexList]")
+
+    #Report
+    dicNewNVCmpxeList = fetch("selectNewNVCmpxList", "")
+    Log.info(batchContext.getLogName() + "####################Batch Report####################")
+    sendMessage("[Batch Report]")
+    Log.info(batchContext.getLogName() + "신규 네이버 단지 : " + str(dicNewNVCmpxeList.count()) + " 건")
+    sendMessage("신규 네이버 단지 : " + str(dicNewNVCmpxeList.count()) + " 건")
+    if dicNewNVCmpxeList.count() > 0 :
+        Log.info(batchContext.getLogName() + str(dicNewNVCmpxeList))
+        sendMessage(batchContext.getLogName() + str(dicNewNVCmpxeList))
 
     Log.info(batchContext.getLogName()+"####################END[migNaverComplexList]####################")
     sendMessage("END[migNaverComplexList]")

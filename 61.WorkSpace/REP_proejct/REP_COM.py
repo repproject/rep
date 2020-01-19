@@ -163,6 +163,7 @@ class BatchRowCounter:
         self.count += count
         global Log
 
+        #N = Number P = Percent
         if(self.unit == "N"):
             if((self.printCount + self.interval <= self.count)): #기출력 값보다
                 self.printCount += self.interval
@@ -179,7 +180,7 @@ class BatchRowCounter:
                 Log.info(self.Name + "BatchRowCounter : [" + str(self.printCount) + "/" + str(self.totalRowCount) + "]")
 
         if(self.MessageUnit == "P"):
-            if(self.MessagePrintCount + math.floor(self.MessageInterval*self.MessageInterval/100) <= self.count): #기출력 값보다
+            if((self.MessagePrintCount + math.floor(self.MessageInterval*self.MessageInterval/100)) <= self.count): #기출력 값보다
                 self.MessagePrintCount += math.floor(self.totalRowCount*self.MessageInterval/100)
                 REP_TLGR_MSG.sendMessage(self.Name + "BatchRowCounter : [" + str(self.MessagePrintCount) + "/" + str(self.totalRowCount) + "]")
 
