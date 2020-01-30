@@ -54,6 +54,7 @@ def migNaverComplexList(batchContext = None):
             time.sleep(NaverTimeStamp)
     except Exception as e:
         Log.error(batchContext.getLogName() + "####################ERROR[migNaverComplexList]####################")
+        Log.error(str(e))
         sendMessage("ERROR[migNaverComplexList]")
 
     #Report
@@ -80,8 +81,9 @@ def updNaverComplexDtl(batchContext = None):
 
     # 네이버 단지 전체가져오기
     dicCmpxIdList = fetch("selectCmpxIdAll", "")
+    dicCmpxIdList = fetch("selectNotUpdateNVCmpxList", "")
     # 네이버 단지 전체 건수를 기준으로 출력
-    rowCounter = BatchRowCounter(batchContext.getLogName(), dicCmpxIdList.__len__(),1,"N",10,"P")
+    rowCounter = BatchRowCounter(batchContext.getLogName(), dicCmpxIdList.__len__(),1,"N",10,"N")
 
     for dicCmpxId in dicCmpxIdList:
         Log.info(batchContext.getLogName() + str(dicCmpxId))
@@ -177,5 +179,5 @@ def updNaverComplexDtl(batchContext = None):
         time.sleep(NaverTimeStamp)
 
 if __name__ == '__main__':
-    migNaverComplexList()
+    updNaverComplexDtl()
 
