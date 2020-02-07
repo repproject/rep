@@ -95,4 +95,40 @@ dicMigMapp = {
             'rentDepositPriceMax' : 'WS_DPST_MBIG_AMT_STR',
             'rentPriceMax' : 'WS_MBIG_PRC_STR'
         }
+    ,
+    'KMIG_BB_LV1_REGN':
+        {
+            'code' : 'BB_LV1_REGN_CD',
+            'name' : 'BB_LV1_REGN_NM'
+        }
+    ,
+    'KMIG_BB_LV2_REGN':
+        {
+            'code': 'BB_LV2_REGN_CD',
+            'name': 'BB_LV2_REGN_NM'
+        }
+    ,
+    'KMIG_BB_LV3_REGN':
+        {
+            'code': 'BB_LV3_REGN_CD',
+            'name': 'BB_LV3_REGN_NM'
+        }
+    ,
+    'KMIG_BB_CMPX':
+        {
+            'code': 'BB_CMPX_ID',
+            'name': 'BB_CMPX_NM'
+        }
+    ,
+    'KMIG_BB_CMPX_TYP_MON_PRC':
+        {
+            'sdate_ym': 'STD_YYMM',
+            'sdate_ymd': 'STD_YMD',
+            'prc_l': 'DOWN_PRC',
+            'prc_h': 'UP_PRC',
+            'change_prc': 'CHG_PRC',
+            'rnt_l': 'DOWN_JS_PRC',
+            'rnt_h': 'UP_JS_PRC',
+            'change_rnt': 'CHG_JS_PRC',
+        }
 }

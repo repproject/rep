@@ -1,5 +1,5 @@
 from urllib import parse
-from urllib.parse import quote
+import urllib.parse
 
 KB부동산과거시세조회URL = "http://nland.kbstar.com/quics?page=B047172&cc=b028364:b057487"
 KB부동산과거시세조회Json = "http://nland.kbstar.com/quics?page=&QAction=763359&RType=json"
@@ -13,6 +13,79 @@ NaverTimeStamp = 2
 NaverComplexListURL = "https://new.land.naver.com/api/regions/complexes?cortarNo="
 NaverComplexDtlURL = "https://new.land.naver.com/api/complexes/"
 
+dicSiteBasic = {
+    'BB' : {
+        'SLEP_TIME' : 0.1,
+        'BAS_URL' : "www.neonet.co.kr",
+        'BAS_PRTC' : "http",
+        'ENCD' : 'euckr'
+    }
+}
+
+dicSiteDetailMapp= {
+    'BBRegn':'BB',
+    'BBPastMarketPrice' : 'BB',
+    'BBMarketPrice' : 'BB'
+}
+
+dicService = {
+    'BBRegn' : {
+        'BAS_SVC_ID' : "/novo-rebank/view/market_price/RegionData.neo",
+        'BAS_PARM' : {
+            'offerings_gbn' : 'AT',
+            'update' : '140228'
+            # LV1 http://www.neonet.co.kr/novo-rebank/view/market_price/RegionData.neo?offerings_gbn=AT&update=140228&target=lcode
+            # LV2 http://www.neonet.co.kr/novo-rebank/view/market_price/RegionData.neo?offerings_gbn=AT&lcode=01&mcode=&target=mcode&update=140228
+            # LV3 http://www.neonet.co.kr/novo-rebank/view/market_price/RegionData.neo?offerings_gbn=AT&lcode=01&mcode=130&target=sname&update=140228
+            # 단지목록 http://www.neonet.co.kr/novo-rebank/view/market_price/RegionData.neo?offerings_gbn=AT&lcode=01&mcode=100&target=complex_cd&update=140228&sname=%B8%B8%B8%AE%B5%BF
+            # http://www.neonet.co.kr/novo-rebank/view/market_price/RegionData.neo?offerings_gbn=AT&update=140228&target=complex_cd&lcode=01&mcode=100&sname=만리동
+        }
+    },
+    'BBPastMarketPrice' : {
+        'BAS_SVC_ID' : "/novo-rebank/view/market_price/PastMarketPriceList.neo",
+        'BAS_PARM': {
+            # 물건형 http://www.neonet.co.kr/novo-rebank/view/market_price/PastMarketPriceList.neo?complex_cd=A0024201
+        }
+    },
+    'BBMarketPrice' :{
+        'BAS_SVC_ID' : "/novo-rebank/view/market_price/MarketPriceData.neo",
+        'BAS_PARM' : {
+            'action' : 'COMPLEX_PERIOD_DATA'
+        }
+        #http://www.neonet.co.kr/novo-rebank/view/market_price/MarketPriceData.neo?action=COMPLEX_PERIOD_DATA&complex_cd=A0024201&pyung_cd=1&period_gbn=month&start_sdate=198001&end_sdate=202001
+    }
+
+}
+
+
+class URLMaker:
+    url = None
+    URLkey = None
+    dicParam = {}
+    siteCode = None
+    dicSite = None
+    dicService = None
+
+    def __init__(self,URLkey):
+        self.URLkey = URLkey
+        self.siteCode = dicSiteDetailMapp[URLkey]
+        self.dicSite = dicSiteBasic[self.siteCode]
+        self.dicService = dicService[URLkey]
+        self.dicParam = self.dicService['BAS_PARM']
+
+    def add(self,key,value):
+        self.dicParam[key]=value
+
+    def getURL(self):
+        self.url = self.dicSite['BAS_PRTC'] + "://" #프로토콜 http
+        self.url += urllib.parse.quote(self.dicSite['BAS_URL'] + self.dicService['BAS_SVC_ID'],encoding=self.dicSite['ENCD'])
+        self.url += "?" + urllib.parse.urlencode(self.dicParam, encoding=self.dicSite['ENCD'])
+        print(self.url)
+        return self.url
+
+def getURLQuote(url,type="utf-8"):
+    return urllib.urlretrieve(urllib.quote(url.encode(type), '/:'))
+
 
 def makeGetURL(JOB_CL,SITE_CL,TR_ID,dicGetParam):
     #작업분류 (JOB_CL - NV-Naver부동산 KB-KB부동산)
@@ -24,6 +97,11 @@ def makeGetURL(JOB_CL,SITE_CL,TR_ID,dicGetParam):
 
 NAVER부동산URL = "http://land.naver.com/article/groundPlan.nhn?"
 
+def makeURLParse(url):
+    ParseResult = urllib.parse.urlparse(url)
+    print(urllib.parse.splitquery(url))
+    return ParseResult
+
 def makeGetParam(Dic,Igubun):
     count = 0
     param = ""
@@ -32,7 +110,7 @@ def makeGetParam(Dic,Igubun):
             param += Igubun
         else:
             param += '&'
-        param += quote(key)
+        param += urllib.parse.quote(key)
         param += '='
         param += str(value)
         count = count + 1
@@ -141,3 +219,19 @@ def getURLNVSaleInquery(CMPX_CTGR, NV_CMPX_ID):
         , 'rletNo': NV_CMPX_ID
            }
     return 네이버부동산동별아파트리스트 + makeGetRealParam(Dic)
+
+
+if __name__ == '__main__':
+    #http://www.neonet.co.kr/novo-rebank/view/market_price/RegionData.neo?offerings_gbn=AT&update=140228&target=complex_cd&lcode=11&mcode=712&sname=%BE%D0%B7%AE%B8%E9
+
+    #%BE%D0%B7%AE%B8%E9
+    #%BE%D0%B7%AE%B8%E9
+    query = {
+        'target': 'complex_cd',
+        'lcode': '01',
+        'mcode': '100',
+        'sname': '압량면'
+    }
+    #target=complex_cd&lcode=01&mcode=100&sname=만리동
+    print(urllib.parse.urlencode(query, encoding='euckr'))
+

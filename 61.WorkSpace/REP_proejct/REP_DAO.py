@@ -28,8 +28,10 @@ def getTableDic(tableName):
         dicTBL = dicTable[tableName]
     except KeyError as e:
         Log.Error("REP_TABLE 미존재 : " + str(e))
+        sendMessage("REP_TABLE 미존재 : " +str(e))
     except Exception as e:
         Log.Error(str(e))
+        sendMessage(str(e))
     else:
         initializeTableDic(dicTBL)
         return dicTBL
@@ -46,14 +48,34 @@ def setJson2TableDic(tableName,jSon):
             Log.debug("migNaverComplexList json Parsing Error" + str(e) + col)
     return dicTBL
 
+#JSON을 TABLE DIC으로 변환한다.
+def setSoup2TableDic(tableName,soup):
+    global Log
+    dicTBL = getTableDic(tableName)
+    for col in dicMigMapp[tableName].keys():
+        try:
+            dicTBL[dicMigMapp[tableName][col]] = soup.find(col).text
+        except Exception as e:
+            pass
+            Log.debug("migNaverComplexList soup Parsing Error" + str(e) + col)
+    return dicTBL
+
 #sqlId로 SQL을 가져와 Data를 fetch한다.
 def fetch(sqlId,dicParam):
-    conn = repDBConnect()
-    curs = conn.cursor(pymysql.cursors.DictCursor)
-    sql = REP_SQL.redSqlDic[sqlId]
-    curs.execute(sql)
-    dic: Union[Tuple, Any] = curs.fetchall()
-    conn.close()
+    global Log
+    try:
+        conn = repDBConnect()
+        curs = conn.cursor(pymysql.cursors.DictCursor)
+        sql = REP_SQL.redSqlDic[sqlId]
+        curs.execute(sql)
+        dic: Union[Tuple, Any] = curs.fetchall()
+        conn.close()
+    except Exception as e:
+        Log.error(str(e))
+        sendMessage(str(e))
+        Log.error(sqlId + ":" + sql)
+        sendMessage(sqlId + ":" + sql)
+        return dic
     return dic
 
 #TableDic으로 INSERT문을 만들어 넣는다.
@@ -62,6 +84,26 @@ def insertBasicByTBLDic(tableName,dicTBL):
     conn = repDBConnect()
     curs = conn.cursor()
 
+    sql = makeSQLBasicByTBLDic(tableName,dicTBL)
+
+    Log.info("insertBasicByTBLDic : " + sql)
+    curs.execute(sql)
+    conn.commit()
+    conn.close()
+
+#ListTableDic을 insert후 한번에 Commit한다.
+def insertBasicByTBLDicList(tableName,listDicTBL):
+    conn = repDBConnect()
+    curs = conn.cursor()
+    for dicTBL in listDicTBL:
+        sql = makeSQLBasicByTBLDic(tableName, dicTBL)
+        Log.info("insertBasicByTBLDicList : " + sql)
+        curs.execute(sql)
+    conn.commit()
+    conn.close()
+
+#TableDic으로 INSERT문을 만들어 넣는다.(단문)
+def makeSQLBasicByTBLDic(tableName,dicTBL):
     sql = "INSERT INTO "
     sql += tableName
     sql += " ("
@@ -91,10 +133,7 @@ def insertBasicByTBLDic(tableName,dicTBL):
     sql += ") VALUES ("
     sql += sql2
     sql += "'" + str(dicTBL['REG_USER_ID']) + "'" + ",NOW(),"+"'"+str(dicTBL['CHG_USER_ID'])+"'"+",NOW())"
-
-    curs.execute(sql)
-    conn.commit()
-    conn.close()
+    return sql
 
 def insertListByTBLDic(tableName,listDicTBL):
     # DBConnection
@@ -461,16 +500,6 @@ def SELECT_FUNCbyJOB_ID2dic(JOB_ID):
           "J.JOB_ID = JA.JOB_ID AND JA.ACT_ID = A.ACT_ID AND A.ACT_ID = AF.ACT_ID AND AF.FUNC_ID = F.FUNC_ID AND " \
           "AF.USE_YN = 'Y' AND JA.USE_YN = 'Y' AND J.JOB_ID = %s ORDER BY JA.EXEC_SEQ ASC, AF.EXEC_SEQ ASC "
     curs.execute(sql, (JOB_ID))
-    tup = curs.fetchall()
-    conn.close()
-    return tup
-
-
-def SELECT_kadm_tlgr_RCV_usertup():
-    conn = repDBConnect()
-    curs = conn.cursor()
-    sql = "SELECT TLGR_USER_ID FROM kadm_tlgr_user WHERE RCV_TGT_YN = 'Y'"
-    curs.execute(sql)
     tup = curs.fetchall()
     conn.close()
     return tup

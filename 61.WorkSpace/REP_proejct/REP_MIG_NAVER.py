@@ -21,8 +21,8 @@ def migNaverComplexList(batchContext = None):
 #        global LogObejct
         batchContext.setFuncName("migNaverComplexList")
 #        LogObejct = Logger(batchContext.getLogName())
-        Log.info(batchContext.getLogName()+"####################START[migNaverComplexList]####################")
-        sendMessage("START[migNaverComplexList]")
+        Log.info(batchContext.getLogName()+"####################START[" + batchContext.getFuncName() + "]####################")
+        sendMessage("START[" + batchContext.getFuncName() + "]")
 
         # 법정동 전체가져오기
         dicLeglCodeList = fetch("selectLeglLv3Dong", "")
@@ -53,22 +53,23 @@ def migNaverComplexList(batchContext = None):
             rowCounter.Cnt()
             time.sleep(NaverTimeStamp)
     except Exception as e:
-        Log.error(batchContext.getLogName() + "####################ERROR[migNaverComplexList]####################")
+        Log.error(batchContext.getLogName() + "####################ERROR[" + batchContext.getFuncName() + "]####################")
         Log.error(str(e))
-        sendMessage("ERROR[migNaverComplexList]")
+        sendMessage("ERROR[" + batchContext.getFuncName() + "]")
+        sendMessage(str(e))
 
     #Report
     dicNewNVCmpxeList = fetch("selectNewNVCmpxList", "")
     Log.info(batchContext.getLogName() + "####################Batch Report####################")
     sendMessage("[Batch Report]")
-    Log.info(batchContext.getLogName() + "신규 네이버 단지 : " + str(dicNewNVCmpxeList.count()) + " 건")
-    sendMessage("신규 네이버 단지 : " + str(dicNewNVCmpxeList.count()) + " 건")
-    if dicNewNVCmpxeList.count() > 0 :
+    Log.info(batchContext.getLogName() + "신규 네이버 단지 : " + str(dicNewNVCmpxeList.__len__()) + " 건")
+    sendMessage("신규 네이버 단지 : " + str(dicNewNVCmpxeList.__len__()) + " 건")
+    if dicNewNVCmpxeList.__len__() > 0 :
         Log.info(batchContext.getLogName() + str(dicNewNVCmpxeList))
         sendMessage(batchContext.getLogName() + str(dicNewNVCmpxeList))
 
-    Log.info(batchContext.getLogName()+"####################END[migNaverComplexList]####################")
-    sendMessage("END[migNaverComplexList]")
+    Log.info(batchContext.getLogName()+"####################END[" + batchContext.getFuncName() + "]####################")
+    sendMessage("END[" + batchContext.getFuncName() + "]")
 
 def updNaverComplexDtl(batchContext = None):
     #초기 세팅 - 로그
@@ -91,7 +92,6 @@ def updNaverComplexDtl(batchContext = None):
          #url호출
         url = NaverComplexDtlURL + dicCmpxId['NV_CMPX_ID']
         Log.info(batchContext.getLogName() + url)
-
         page = REP_MIG.get_html(url)
         jsonPage = json.loads(page)
         Log.debug(batchContext.getLogName() + str(jsonPage))

@@ -1,5 +1,6 @@
 import telegram
 import REP_DAO
+import REP_COM
 my_token = '495069941:AAHXf-j_f97clXuEI5P0lpnbyPKcUfmVtYs' #JBoozleBot
 #chat_id = 436714227
 
@@ -42,19 +43,25 @@ def checkMessage():
                         print("[텔레그램 사용문의]", u.message.chat.id)
                         sendMessage("- 사용자등록 이름 (ex) -사용자등록 박지일\n -수신등록 \n -수신해제 \n -사용자등록 ", str(u.message.chat.id))
     except Exception as err:  # 기존에 소지역 코드가 존재할 수 있음
-        print("[텔레그램ERROR발생]")
+        REP_COM.Log.error("[텔레그램ERROR발생]")
 #        print(u.message.chat.id)
 #        print(u.message.text)
 #        print(u.message)
 
 def sendMessage(str):
-    #print("메시지 송신" + str)
+    listStr = REP_COM.splitStringSize(str,1000)
     bot = telegram.Bot(token=my_token)  # bot을 선언합니다.
-    chat_id_tup = REP_DAO.SELECT_kadm_tlgr_RCV_usertup() #사용자 조회
-    for chatid in chat_id_tup:
-        str_chatid=''.join(chatid)
-        #print("메시지 송신" + str + str_chatid)
-        bot.sendMessage(chat_id=int(str_chatid), text=str)
+    dicTlgrUserIdList = REP_DAO.fetch("selectKADM_TLGR_RCV_USER","") #사용자 조회
+
+    for dicTlgrUserId in dicTlgrUserIdList:
+        str_chatid = dicTlgrUserId['TLGR_USER_ID']
+        try:
+            for str in listStr:
+                bot.sendMessage(chat_id=int(str_chatid), text=str)
+        except Exception as e:
+            #Str 너무 긴 경우 수정 필요
+            REP_COM.Log.error("Telegram sendMessage Exception 발생 " + str(e))
+
 
 #if __name__ == '__main__':
 #    main()

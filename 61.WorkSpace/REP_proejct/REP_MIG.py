@@ -10,13 +10,149 @@ from urllib import *
 import json
 #from pandas.io.json import json_normalize
 import time
-import REP_COM
+from REP_COM import *
 import REP_TLGR_MSG
 import REP_Main
 import datetime
+from REP_TLGR_MSG import *
+import pymysql
 
 sleeptime = 1
 NVsleeptime = 2
+
+#LV1 크롤링 클래스
+class Crawling:
+    #global Log
+    funcName = None         #함수명(Lv4필수)
+    batchContext = None     #BatchContect(필수)
+
+    #초기화
+    def __init__(self,batchContext = None):
+        #self.Log = Log
+        #funcName Validation Check
+        if self.funcName == None:
+            Log.Error("funcName 미정의 Error")
+            return False
+        else:
+            #BatchContect 세팅
+            self.batchContext = batchContext
+            self.batchContext.setFuncName(self.funcName)
+
+    def run(self):
+        self.startLog() #START Log
+        self.ready()    #크롤링 전 사전 Data 준비 작업
+        self.crawl()    #URL 호출 후 삽입
+        try:
+            self.report()   #report 및 마지막 정의
+        except Exception as e:
+            Log.error("Batch Report 출력 에러" + str(e))
+            sendMessage("Batch Report 출력 에러" + str(e))
+        self.end()      #report 및 마지막 정의
+
+    def startLog(self):
+        #기본로그 출력
+        Log.info(self.batchContext.getLogName()+"####################START[" + self.batchContext.getFuncName() + "]####################")
+        sendMessage("START[" + self.batchContext.getFuncName() + "]")
+
+    #Lv2 구현
+    def ready(self):
+        pass
+
+    # Lv2 구현
+    def crawl(self):
+       pass
+
+    def report(self):
+        # Report
+        dicNewRowList = REP_DAO.fetch(self.sqlReportFetchId, "")
+        Log.info(self.batchContext.getLogName() + "####################Batch Report####################")
+        sendMessage("[Batch Report]")
+        Log.info(self.batchContext.getLogName() + "신규 건 수  : " + str(dicNewRowList.__len__()) + " 건")
+        sendMessage("신규 건수 : " + str(dicNewRowList.__len__()) + " 건")
+        if dicNewRowList.__len__() > 0:
+            Log.info(self.batchContext.getLogName() + str(dicNewRowList))
+            sendMessage(self.batchContext.getLogName() + str(dicNewRowList))
+
+    def end(self):
+        Log.info(self.batchContext.getLogName() + "####################END[" + self.batchContext.getFuncName() + "]####################")
+        sendMessage("END[" + self.batchContext.getFuncName() + "]")
+
+    def makeURL(self,dicStrdData = None):
+        url = self.selfMakeURL(dicStrdData)
+        Log.info(self.batchContext.getLogName() + url)
+        return url
+
+    #[LV4 구현]각 Lv4 Class(웹사이트(url) 별로) URL을 만드는 부분을 정의
+    def selfMakeURL(self,dicStrdData = None):
+        return "http://test.com"
+
+    #[LV4 구현]Page > 변환 > Parse > DB 반영
+    def selfSaveDB(self,page,dicStrdData = None):
+        pass
+
+    def request(self,url):
+        page = get_html(url)
+        Log.debug(self.batchContext.getLogName() + page)
+        return page
+
+    def getFuncName(self):
+        return self.funcName
+
+#LV2 Craling Class 기본 멀티
+class CrawlingBasicMulti(Crawling):
+    # [LV4/필수]URL Multi호출시 값 기준정보 세팅 SQLID
+    fetchSqlId = None
+
+    #[LV3/선택]rowCounter 설정값
+    rowCounter = None       #Multi호출시 RowCounter Setting용
+    rowCountNumber = 1
+    rowCounterInterval = "N"
+    MessageInterval = 10
+    MessageUnit = "P"
+
+    #URL Making 기준정보
+    dicStrdDataList = None
+
+    #[LV3]
+    sleepStamp = 0.1
+
+    def ready(self):
+        super().ready()
+        if self.fetchSqlId == None:
+            Log.Info("fetchSqlId 미정의 Error")
+        else:
+            self.dicStrdDataList = REP_DAO.fetch(self.fetchSqlId, "")
+            #rowCounter 세팅
+            self.setRowCounter(self.dicStrdDataList.__len__())
+
+    def crawl(self):
+        for dicStrdData in self.dicStrdDataList:
+            self.debugDicStrdData(dicStrdData)
+            url = self.makeURL(dicStrdData)
+            page = self.request(url)
+            self.selfSaveDB(page,dicStrdData)
+            self.rowCounter.Cnt()
+            time.sleep(self.sleepStamp)
+
+    def debugDicStrdData(self,dicStrdData = None):
+        Log.debug(self.batchContext.getLogName() + "DicStrdData : " + str(dicStrdData))
+
+    def setRowCounter(self,totalRowCount = None):
+        if totalRowCount == None:
+            Log.Info("totalRowCount 미정의 Error")
+            return None
+        else:
+            self.rowCounter = BatchRowCounter(self.batchContext.getLogName(), totalRowCount,self.rowCountNumber,self.rowCounterInterval,self.MessageInterval,self.MessageUnit)
+
+class CrawlingBasicSingle(Crawling):
+     def crawl(self):
+         url = self.makeURL()
+         page = self.request(url)
+         self.selfSaveDB(page)
+
+    #BatchContect 세팅
+    #self.batchContext = batchContext
+    #self.batchContext.setFuncName(self.funcName)
 
 def migRetBigAreaCode():    #박지일
     print("Function migRetBigAreaCode")
@@ -240,51 +376,8 @@ def mig_UPD_ST_001():
         print(KBparam+str(startNum) + " " + KBparam+str(EndNum))
         REP_DAO.UPDATE_KMIG_KB_PRC_STAT_001(KBparam+str(startNum),KBparam+str(EndNum))
 
-def getBeautifulShopFromKB(url):    #BeautifulShop Class로 특정 Page를 Return한다.
-    soup = ''
-    continue_flag = 0;
-    while soup == '':
-        try:
-            if continue_flag == 1:
-                continue_flag = 0;
-                REP_COM.log("getBeautifulShopFromKB Restart","ERROR")
-
-            r = get(url)
-            print(r)
-            soup = BeautifulSoup(r.content.decode('utf-8', 'replace'),"html5lib")
-            return soup
-        except Exception as e:
-            REP_COM.log("getBeautifulShopFromKB Exception 발생" + str(e),"ERROR")
-            print(url)
-            print("Connection refused by the server..")
-            print("Let me sleep for 10 seconds")
-            print("ZZzzzz...")
-            time.sleep(10)
-            print("Was a nice sleep, now let me continue...")
-            continue_flag = 1
-            continue
 
 
-def get_html(url):
-    _html = ""
-    resp = ''
-    while resp == '':
-        try:
-            #resp = get(url)
-            headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
-            resp = requests.get(url, headers=headers)
-
-            if resp.status_code == 200:
-                _html = resp.text
-            return _html
-        except Exception as e:
-            print(e)
-            print("Connection refused by the server..")
-            print("Let me sleep for 10 seconds")
-            print("ZZzzzz...")
-            time.sleep(10)
-            print("Was a nice sleep, now let me continue...")
-            continue
 
 def migNVComplexType():
     #장원영 작업완료 만세
@@ -433,6 +526,30 @@ def chkFinalChg(FUNC_ID,TBL_NM):
         return dicFinalChg
     else:
         return 0
+
+def getBeautifulShopFromKB(url):    #BeautifulShop Class로 특정 Page를 Return한다.
+    soup = ''
+    continue_flag = 0;
+    while soup == '':
+        try:
+            if continue_flag == 1:
+                continue_flag = 0;
+                REP_COM.log("getBeautifulShopFromKB Restart","ERROR")
+
+            r = get(url)
+            print(r)
+            soup = BeautifulSoup(r.content.decode('utf-8', 'replace'),"html5lib")
+            return soup
+        except Exception as e:
+            REP_COM.log("getBeautifulShopFromKB Exception 발생" + str(e),"ERROR")
+            print(url)
+            print("Connection refused by the server..")
+            print("Let me sleep for 10 seconds")
+            print("ZZzzzz...")
+            time.sleep(10)
+            print("Was a nice sleep, now let me continue...")
+            continue_flag = 1
+            continue
 
 
 

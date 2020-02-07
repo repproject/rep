@@ -1,9 +1,13 @@
 # import REP_TLGR_MSG
 import logging.handlers
 from datetime import date, timedelta, datetime
+
+from idna import unicode
+
 import REP_TLGR_MSG
 import math
-
+import requests
+import time
 
 userid = 1000000001
 
@@ -63,7 +67,7 @@ class Logger:
         # 5. logger instance에 formatter 생성
         logger.addHandler(streamHandler)
         logger.addHandler(fileHandler)
-        logger.setLevel(level=logging.DEBUG)
+        logger.setLevel(level=logging.INFO)
         self.logger = logger
 
         # 전역 로그 세팅
@@ -137,6 +141,31 @@ class BatchContext:
     #     logMessage = str(logMessage)
     #     self.Log.logger.error(self.LogName + logMessage)
 
+class simpleBatchContext:
+    userId = 0000000000
+    funcName = ""
+    LogName = ""
+
+    def __init__(self, funcName="", userId=0000000000):
+        self.funcName = funcName
+        self.setLogName()
+
+    def getFuncName(self):
+        return self.funcName
+
+    def getUserId(self):
+        return self.userId
+
+    def getLogName(self):
+        return self.LogName
+
+    def setFuncName(self, funcName):
+        self.funcName = funcName
+        self.setLogName()
+
+    def setLogName(self):
+        self.LogName = "[" + self.getFuncName() + "]"
+
 class BatchRowCounter:
     totalRowCount = 0   #총 건수
     interval = 0        #출력 단위
@@ -184,6 +213,8 @@ class BatchRowCounter:
                 self.MessagePrintCount += math.floor(self.totalRowCount*self.MessageInterval/100)
                 REP_TLGR_MSG.sendMessage(self.Name + "BatchRowCounter : [" + str(self.MessagePrintCount) + "/" + str(self.totalRowCount) + "]")
 
+
+
 def LogFunction_TEST(self, index_no, package_name, name):
     log_message_list = index_no, package_name, name
     try:
@@ -197,7 +228,43 @@ def LogFunction_TEST(self, index_no, package_name, name):
             log_message = ','.join([None])
             self.logger.debug(log_message)
 
+def get_html(url):
+    _html = ""
+    resp = ''
+    while resp == '':
+        try:
+            # resp = get(url)
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+            resp = requests.get(url, headers=headers)
+
+            if resp.status_code == 200:
+                _html = resp.text
+            return _html
+        except Exception as e:
+            print(e)
+            print("Connection refused by the server..")
+            print("Let me sleep for 10 seconds")
+            print("ZZzzzz...")
+            time.sleep(10)
+            print("Was a nice sleep, now let me continue...")
+            continue
+
+
+def splitStringSize(str,size):
+    startIndex = 0
+    list = []
+    while True:
+        if len(str) < startIndex + size:
+            list.append(str[startIndex:])
+            break
+        else:
+            list.append(str[startIndex:startIndex+size])
+            startIndex = startIndex + size
+    return list
+
+
+
 
 if __name__ == '__main__':
-    batchContext = BatchContext()
-    # LogFunction_TEST(logger,1,"TEST","Name")
+    pass

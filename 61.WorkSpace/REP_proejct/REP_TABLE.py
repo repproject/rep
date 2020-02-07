@@ -197,4 +197,91 @@ dicTable = {
             'USE_YN' : None,
             'DEL_YN' : None,
         }
+    , 'KMIG_BB_LV1_REGN':
+        {
+            'BB_LV1_REGN_CD': None,
+            'BB_LV1_REGN_NM': None,
+            'REG_USER_ID': None,
+            'REG_DTM': None,
+            'CHG_USER_ID': None,
+            'CHG_DTM': None
+        }
+    , 'KMIG_BB_LV2_REGN':
+        {
+            'BB_LV1_REGN_CD': None,
+            'BB_LV2_REGN_CD': None,
+            'BB_LV2_REGN_NM': None,
+            'BB_LV1_REGN_NM': None,
+            'REG_USER_ID': None,
+            'REG_DTM': None,
+            'CHG_USER_ID': None,
+            'CHG_DTM': None
+        }
+    , 'KMIG_BB_LV3_REGN':
+        {
+            'BB_LV1_REGN_CD': None,
+            'BB_LV2_REGN_CD': None,
+            'BB_LV3_REGN_CD': None,
+            'BB_LV3_REGN_NM': None,
+            'BB_LV1_REGN_NM': None,
+            'BB_LV2_REGN_NM': None,
+            'REG_USER_ID': None,
+            'REG_DTM': None,
+            'CHG_USER_ID': None,
+            'CHG_DTM': None
+        }
+    , 'KMIG_BB_CMPX':
+        {
+            'BB_CMPX_ID' : None,
+            'BB_CMPX_NM' : None,
+            'TOT_HSHL_CNT' : None,
+            'CMPL_YYMM' : None,
+            'BLD_CO_NM' : None,
+            'TOT_DONG_FLR_NM' : None,
+            'TOT_PARK_CNT' : None,
+            'HEAT_WAY' : None,
+            'REG_USER_ID' : None,
+            'REG_DTM' : None,
+            'CHG_USER_ID' : None,
+            'CHG_DTM' : None
+        }
+    , 'KMIG_BB_REGN_CMPX_REL':
+        {
+            'BB_LV1_REGN_CD': None,
+            'BB_LV2_REGN_CD': None,
+            'BB_LV3_REGN_CD': None,
+            'BB_CMPX_ID': None,
+            'REG_USER_ID': None,
+            'REG_DTM': None,
+            'CHG_USER_ID': None,
+            'CHG_DTM': None,
+        }
+    , 'KMIG_BB_CMPX_TYP':
+        {
+            'BB_CMPX_ID' : None,
+            'BB_CMPX_TYP_SEQ' : None,
+            'CMPX_TYP_NM' : None,
+            'SPLY_AREA' : None,
+            'REG_USER_ID' : None,
+            'REG_DTM' : None,
+            'CHG_USER_ID' : None,
+            'CHG_DTM' : None,
+        }
+    , 'KMIG_BB_CMPX_TYP_MON_PRC':
+        {
+            'BB_CMPX_ID' : None,
+            'BB_CMPX_TYP_SEQ' : None,
+            'STD_YYMM' : None,
+            'STD_YMD' : None,
+            'DOWN_PRC' : None,
+            'UP_PRC' : None,
+            'CHG_PRC' : None,
+            'DOWN_JS_PRC' : None,
+            'UP_JS_PRC' : None,
+            'CHG_JS_PRC' : None,
+            'REG_USER_ID' : None,
+            'REG_DTM' : None,
+            'CHG_USER_ID' : None,
+            'CHG_DTM' : None
+        }
 }
