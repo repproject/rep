@@ -1,5 +1,6 @@
 from idna import unicode
 
+import requests
 import REP_JOB
 import telegram
 import REP_TLGR_MSG
@@ -45,27 +46,8 @@ def sms_msg_cut(str, dstlen):
 
 
 if __name__== '__main__':
-    # batchContext = BatchContext()
-    # LogFunction_TEST(logger,1,"TEST","Name")
-    str = ""
-    for i in range(1,4097):
-        str = str + "박지일"
 
-    print(str[0:5])
-
-
-
-
-
-
-    for l in list:
-        print(l)
-
-
-
-    #main()
-    #getMessage()
-    #REP_TLGR_MSG.sendMessage("TEST")
-
-#https://blog.psangwoo.com/coding/2016/12/08/python-telegram-bot-1.html
-#박지일id : 436714227
+    url = "https://api.upbit.com/v1/market/all"
+    querystring = {"isDetails": "false"}
+    response = requests.request("GET", url, params=querystring)
+    print(response.text)

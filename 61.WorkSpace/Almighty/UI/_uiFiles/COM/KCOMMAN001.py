@@ -6,10 +6,12 @@ from UI._uiFiles.COM import *
 #from UI._uiFiles.COM.KCOMMAN002 import *
 import UI._uiFiles.COM.KCOMMAN002
 import importlib
+from UI._uiFiles.UIBasic import *
 
 #UI파일 연결
 #단, UI파일은 Python 코드 파일과 같은 디렉토리에 위치해야한다.
-form_class = uic.loadUiType("KCOMMAN001.ui")[0]
+pgm_id = 'KCOMMAN001'
+form_class = uic.loadUiType(pgm_id + ".ui")[0]
 basic_ui_route = 'UI._uiFiles.COM'
 user_id = 1000000001
 
@@ -26,8 +28,6 @@ class WindowClass(QMainWindow, form_class) :
     def loadUI(self,dicMenuLv2Action):
         sender = self.sender()
         menu = dicMenuLv2Action[sender]
-        print(type(menu))
-        print(menu)
         mod = importlib.import_module(basic_ui_route + '.' + menu[0].pgm_id)
         uiClass = getattr(mod, menu[0].pgm_id)()
         self.tabWidget.addTab(uiClass, menu[0].menu_nm)

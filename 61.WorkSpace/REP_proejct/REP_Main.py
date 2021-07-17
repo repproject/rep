@@ -13,7 +13,9 @@ def main():
     REP_JOB.doJOB('NVIN001')
 
 if __name__ == '__main__':
+    str = "hello"
+    print(type(str))
     #try:
-        main()
+#        main()
     # except Exception as e:
     #     REP_COM.log("ERROR " + str(e),"ERROR")

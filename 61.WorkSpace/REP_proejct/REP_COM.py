@@ -1,5 +1,6 @@
 # import REP_TLGR_MSG
 import logging.handlers
+import urllib
 from datetime import date, timedelta, datetime
 
 from idna import unicode
@@ -19,21 +20,18 @@ def log(Message, Level):  # ERROR INFO Debug
     try:
         if Level == "E":
             Message = "[E]" + Message
-            print(str(Message))
             # REP_TLGR_MSG.sendMessage(str(Message))
         elif Level == "D":
             Message = "[D]" + Message
-            print(str(Message))
         elif Level == "I":
             Message = "[I]" + Message
-            print(str(Message))
     except Exception as e:
         Log.Error("텔레그램 Exception 발생" + str(e))
 
 class Logger:
     streamHandler = logging.StreamHandler()
 
-    def __init__(self, LogName=""):
+    def __init__(self, LogName="", Level="DEBUG"):
         # 1. 시간 설정 (오늘 날짜)
         dt = datetime.now()
         access_day = dt.strftime('%Y%m%d')
@@ -51,7 +49,8 @@ class Logger:
         # 4. handler 생성
         streamHandler = logging.StreamHandler()
 
-        FullLogName = './logs/LOGNAME_'
+        #FullLogName = './logs/LOGNAME_'
+        FullLogName = 'D:/Log/LOGNAME_'
 
         # 전달받은 LogName이 존재하면 붙여준다.
         if (len(LogName) > 0):
@@ -67,7 +66,14 @@ class Logger:
         # 5. logger instance에 formatter 생성
         logger.addHandler(streamHandler)
         logger.addHandler(fileHandler)
-        logger.setLevel(level=logging.INFO)
+        if Level == "INFO":
+            logger.setLevel(level=logging.INFO)
+        elif Level == "DEBUG":
+            logger.setLevel(level=logging.DEBUG)
+        elif Level == "ERROR":
+            logger.setLevel(level=logging.ERROR)
+        else:
+            logger.setLevel(level=logging.INFO)
         self.logger = logger
 
         # 전역 로그 세팅
@@ -86,10 +92,12 @@ class BatchContext:
     dicFunc = {}
     funcName = ""
     LogName = ""
+    ExecDtm = ""
 
-    def __init__(self, dicFunc, funcName="", userId=0000000000):
+    def __init__(self, dicFunc, funcName="", userId=0000000000, ExecDtm = None):
         self.dicFunc = dicFunc
         self.funcName = funcName
+        self.ExecDtm = ExecDtm
         self.setLogName()
 
     def getJOB_ID(self):
@@ -118,6 +126,9 @@ class BatchContext:
 
     def getLogName(self):
         return self.LogName
+
+    def getExecDtm(self):
+        return self.ExecDtm
 
     # def getDicFunc(self):
     #     return self.dicFunc
@@ -228,19 +239,30 @@ def LogFunction_TEST(self, index_no, package_name, name):
             log_message = ','.join([None])
             self.logger.debug(log_message)
 
-def get_html(url):
+def get_html(url,method = "GET",data = None):
     _html = ""
     resp = ''
     while resp == '':
         try:
             # resp = get(url)
             headers = {
-                'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
-            resp = requests.get(url, headers=headers)
+                'User-Agent': 'Mozilla/5.0 (Macintosh; U; Mac OS X 10_6_1; en-US) AppleWebKit/530.5 (KHTML, like Gecko) Chrome/ Safari/530.5'}
+            if method == "GET":
+                preReq = urllib.request.Request(url, headers=headers)
+                req = urllib.request.urlopen(preReq)
+                resp = req.read()
 
-            if resp.status_code == 200:
-                _html = resp.text
-            return _html
+                #resp = requests.get(url, headers=headers, verify=False)
+                #resp = requests.get(url, headers=headers)
+            elif method == "POST":
+                #resp = requests.get(url, data = data)
+                preReq = urllib.request.Request(url, headers=headers)
+                req = urllib.request.urlopen(preReq)
+                resp = req.read()
+
+#            if resp.status_code == 200:
+#                _html = resp
+            return resp
         except Exception as e:
             print(e)
             print("Connection refused by the server..")

@@ -8,6 +8,8 @@ ALTER TABLE kmig_kb_cmpx_typ_mon_prc CHANGE GNRL_GAP GNRL_GAP_PRC DECIMAL(10,0)
 ALTER TABLE temp ADD INDEX(keyword(20));
 /* INDEX DROP */
 ALTER TABLE KMIG_KB_PRC_STAT DROP INDEX 1M_RISE_PRC_2;
+/* DEFAULT 추가 */
+alter table kadm_tlgr_user add column seq decimal(10,0) default 100
 
 ;
 -- KB시세통계

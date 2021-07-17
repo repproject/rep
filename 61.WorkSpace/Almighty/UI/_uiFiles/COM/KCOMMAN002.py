@@ -1,17 +1,16 @@
-from PyQt5 import uic
+import sys
 import Server.COM
 import Server.Basic
-from PyQt5.QtWidgets import *
 from PyQt5 import QtCore
 from common.ui import comUi
-from UI._uiFiles.KWidget import KWidget
+from UI._uiFiles.KWidget import *
 from UI._uiFiles.UIBasic import *
-from DAO.KADM_MENU import *
+from DAO.KADM import *
 import datetime
 
 
 pgm_id = 'KCOMMAN002'
-form_class = uic.loadUiType("KCOMMAN002.ui")[0]
+form_class = uic.loadUiType(pgm_id + ".ui")[0]
 
 class KCOMMAN002(QWidget,KWidget,form_class) :
     selectedItem = None
@@ -21,7 +20,6 @@ class KCOMMAN002(QWidget,KWidget,form_class) :
 
     def __init__(self):
         super().__init__()
-        print(self.pgm_id)
         self.setupUi(self)
         self.initUI()
 
@@ -121,11 +119,11 @@ class KCOMMAN002(QWidget,KWidget,form_class) :
 
 
             last_prt_seq = 0
-            for menu in self.tableMenu:
-                if menu.menu_lv == menu_lv + 1 and menu.up_menu_id == up_menu_id:
-                    if max_menu_id < menu.menu_id:
-                        max_menu_id = menu.menu_id
-                        last_prt_seq = menu.prnt_seq
+            for smenu in self.tableMenu:
+                if smenu.menu_lv == menu_lv + 1 and smenu.up_menu_id == up_menu_id:
+                    if max_menu_id < smenu.menu_id:
+                        max_menu_id = smenu.menu_id
+                        last_prt_seq = smenu.prnt_seq
 
             seq2 = int(max_menu_id[1:]) + 10**(7-menu_lv*2)
             new_menu_id = 'M' + str(seq2)
@@ -138,8 +136,8 @@ class KCOMMAN002(QWidget,KWidget,form_class) :
             self.tw.setCurrentItem(item)
             self.selectedItem = item
 
-            menu = Menu(new_menu_id, new_menu_lv, new_prt_seq, None, new_up_menu_id, None)
-            item.__setattr__('menu', menu)
+            new_menu = Menu(new_menu_id, new_menu_lv, new_prt_seq, None, new_up_menu_id, None)
+            item.__setattr__('menu', new_menu)
 
             self.edit_menu_id.setText(new_menu_id)
             self.edit_menu_lv.setText(str(new_menu_lv))
@@ -154,42 +152,17 @@ class KCOMMAN002(QWidget,KWidget,form_class) :
     def edit_menu_nm_Changed(self):
         self.selectedItem.setText(0,self.edit_menu_nm.text())
 
-
-
-
-
-
-
-
-# if __name__ == "__main__":
-#     # QApplication : 프로그램을 실행시켜주는 클래스
-#     app = QApplication(sys.argv)
-#
-#     # WindowClass의 인스턴스 생성
-#     myWindow = KCOMMAN002()
-#
-#     # 프로그램 화면을 보여주는 코드
-#     myWindow.show()
-#
-#     # 프로그램을 이벤트루프로 진입시키는(프로그램을 작동시키는) 코드
-#     app.exec_()
-
 if __name__ == "__main__":
-    import sys
+# QApplication : 프로그램을 실행시켜주는 클래스
     app = QApplication(sys.argv)
-    form = KCOMMAN002()
-    form.show()
-    exit(app.exec_())
+
+# WindowClass의 인스턴스 생성
+    myWindow = KCOMMAN002()
+
+#    프로그램 화면을 보여주는 코드
+    myWindow.show()
+
+# 프로그램을 이벤트루프로 진입시키는(프로그램을 작동시키는) 코드
+    app.exec_()
 
 
-# pgm_id = 'KCOMMAN002'
-#
-# def __init__(self) :
-#     super().__init__()
-#     self.setupUi(self)
-#     self.initUI()
-#
-# def initUI(self):
-#     print("load KCOMMAN002")
-#     pass
-#     #self.makeMenu()

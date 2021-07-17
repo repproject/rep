@@ -29,9 +29,24 @@ def getTable(tableName):
 
 
 
-
 if __name__ == "__main__":
     meta = makeMeta()
+    tableName = 'kadm_com_cd_dtl'
+    className = 'ComCdDtl'
+    #print(getClassTable(meta,className,tableName))
+
+
+    #for col in tbl._columns:
+    #    print("#################" + col.name + "#######################")
+    #    for attr in col.__dir__():
+    #        print(attr + " : " + str(getattr(col,attr)))
+            #print(col.attr)
+        #print(col.name.lower() + " = KColumn(")
+        #print(col.type)
+
+    #print(tbl.)
+    #print(tbl)
+
     # engine = makeEngine()
     # Session = sessionmaker(bind=engine)
     # session = Session()
@@ -39,17 +54,17 @@ if __name__ == "__main__":
     #menu = relationship("kadm_menu")
 
     # print(meta.tables)
-    # print(meta.tables.get('kadm_menu'))
+    #print(meta.tables.get('kadm_menu'))
     # menu = meta.tables.get('kadm_menu')
     # print(menu.__getattribute__())
 
-    menu = Table('kadm_menu',meta)
-    print(menu)
-    print(menu.get_children)
+    #menu = Table('kadm_menu',meta)
+    #print(menu)
+    #print(menu.get_children)
 
-
-
-
+    #print(tbl.__dir__())
+    #print(tbl._columns)
+    #print(tbl.exported_columns)
 
     # dic = {'a':'b'}
     # print(dic)

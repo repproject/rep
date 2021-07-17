@@ -9,7 +9,7 @@ KB부동산지도조회Json = "http://nland.kbstar.com/quics?page=B046949&QActio
 네이버부동산 = "http://land.naver.com"
 
 #신규
-NaverTimeStamp = 2
+NaverTimeStamp = 1.1
 NaverComplexListURL = "https://new.land.naver.com/api/regions/complexes?cortarNo="
 NaverComplexDtlURL = "https://new.land.naver.com/api/complexes/"
 
@@ -19,13 +19,34 @@ dicSiteBasic = {
         'BAS_URL' : "www.neonet.co.kr",
         'BAS_PRTC' : "http",
         'ENCD' : 'euckr'
-    }
+    },
+    'AP': {
+        'SLEP_TIME': 0.1,
+        'BAS_URL': "www.applyhome.co.kr",
+        'BAS_PRTC': "https",
+        'ENCD': 'euckr'
+    },
+    'NV':  {
+        'SLEP_TIME': 0.5,
+        'BAS_URL': "new.land.naver.com",
+        'BAS_PRTC': "https",
+        'ENCD': 'euckr'
+    },
+    'GO': {
+        'SLEP_TIME': 0.1,
+        'BAS_URL': "openapi.molit.go.kr",
+        'BAS_PRTC': "http",
+        'ENCD': 'euckr'
+    },
 }
 
 dicSiteDetailMapp= {
     'BBRegn':'BB',
     'BBPastMarketPrice' : 'BB',
-    'BBMarketPrice' : 'BB'
+    'BBMarketPrice' : 'BB',
+    'ApplyAPTList': 'AP',
+    'NVAtcl': 'NV',
+    'APTTrade' : 'GO'
 }
 
 dicService = {
@@ -39,24 +60,80 @@ dicService = {
             # LV3 http://www.neonet.co.kr/novo-rebank/view/market_price/RegionData.neo?offerings_gbn=AT&lcode=01&mcode=130&target=sname&update=140228
             # 단지목록 http://www.neonet.co.kr/novo-rebank/view/market_price/RegionData.neo?offerings_gbn=AT&lcode=01&mcode=100&target=complex_cd&update=140228&sname=%B8%B8%B8%AE%B5%BF
             # http://www.neonet.co.kr/novo-rebank/view/market_price/RegionData.neo?offerings_gbn=AT&update=140228&target=complex_cd&lcode=01&mcode=100&sname=만리동
-        }
+        },
+        'MTHD' : "GET"
     },
     'BBPastMarketPrice' : {
         'BAS_SVC_ID' : "/novo-rebank/view/market_price/PastMarketPriceList.neo",
         'BAS_PARM': {
             # 물건형 http://www.neonet.co.kr/novo-rebank/view/market_price/PastMarketPriceList.neo?complex_cd=A0024201
-        }
+        },
+        'MTHD': "GET"
     },
     'BBMarketPrice' :{
         'BAS_SVC_ID' : "/novo-rebank/view/market_price/MarketPriceData.neo",
         'BAS_PARM' : {
             'action' : 'COMPLEX_PERIOD_DATA'
-        }
+        },
+        'MTHD': "GET"
         #http://www.neonet.co.kr/novo-rebank/view/market_price/MarketPriceData.neo?action=COMPLEX_PERIOD_DATA&complex_cd=A0024201&pyung_cd=1&period_gbn=month&start_sdate=198001&end_sdate=202001
-    }
+    },
+    'ApplyAPTList': {
+        'BAS_SVC_ID': "/ai/aia/selectAPTLttotPblancListView.do",
+        'BAS_PARM': {
+        },
+        'MTHD': "POST"
+        #https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancListView.do
+    },
+    'NVAtcl': {
+        'BAS_SVC_ID': "/api/articles/complex/",
+        'BAS_PARM': {
+            'realEstateType' : 'APT:ABYG:JGC:OPST:OBYG:JGB',
+            'tradeType':'',
+            'tag':'::::::::',
+            'rentPriceMin' : '0',
+            'rentPriceMax' : '900000000',
+            'priceMin' : '0',
+            'priceMax' : '900000000',
+            'areaMin' : '0',
+            'areaMax' : '900000000',
+            'oldBuildYears' : '',
+            'recentlyBuildYears' : '',
+            'minHouseHoldCount' : '',
+            'maxHouseHoldCount' : '',
+            'showArticle' : 'false',
+            'sameAddressGroup' : 'false',
+            'minMaintenanceCost' : '',
+            'maxMaintenanceCost' : '',
+            'priceType' : 'RETAIL',
+            'type' : 'list',
+            'order' : 'dateDesc'
+        },
+        'MTHD': "GET"
+        #https://new.land.naver.com/api/articles/complex/24206?realEstateType=APT%3AABYG%3AJGC&tradeType=&tag=%3A%3A%3A%3A%3A%3A%3A%3A&rentPriceMin=0&rentPriceMax=900000000&priceMin=0&priceMax=900000000&areaMin=0&areaMax=900000000&oldBuildYears&recentlyBuildYears&minHouseHoldCount&maxHouseHoldCount&showArticle=false&sameAddressGroup=false&minMaintenanceCost&maxMaintenanceCost&priceType=RETAIL&directions=&page=1&complexNo=24206&buildingNos=&areaNos=&type=list&order=dateDesc
+    },
+    'APTTrade': {
+        'BAS_SVC_ID': "/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTradeDev",
+        'BAS_PARM': {
+            # 서비스키	ServiceKey	20	필수	-	공공데이터포털에서 받은 인증키
+            # 페이지 번호	pageNo	4	옵션	1	페이지번호
+            # 한 페이지 결과 수	numOfRows	4	옵션	10	한 페이지 결과 수
+            # 지역코드	LAWD_CD	5	필수	11110	지역코드
+            # 계약월	DEAL_YMD	6	필수	201512	계약월
+
+            'ServiceKey': 'n%2Bx3ws990OxspyqgFNBV0oppRCCskpT5taMq4aQx7VyV%2B7JQrn5snqBWdlWuL%2F8IScN0Jbo62Z6Grm7BjBP1%2BQ%3D%3D',
+            'update': '140228'
+            # LV1 http://www.neonet.co.kr/novo-rebank/view/market_price/RegionData.neo?offerings_gbn=AT&update=140228&target=lcode
+            # LV2 http://www.neonet.co.kr/novo-rebank/view/market_price/RegionData.neo?offerings_gbn=AT&lcode=01&mcode=&target=mcode&update=140228
+            # LV3 http://www.neonet.co.kr/novo-rebank/view/market_price/RegionData.neo?offerings_gbn=AT&lcode=01&mcode=130&target=sname&update=140228
+            # 단지목록 http://www.neonet.co.kr/novo-rebank/view/market_price/RegionData.neo?offerings_gbn=AT&lcode=01&mcode=100&target=complex_cd&update=140228&sname=%B8%B8%B8%AE%B5%BF
+            # http://www.neonet.co.kr/novo-rebank/view/market_price/RegionData.neo?offerings_gbn=AT&update=140228&target=complex_cd&lcode=01&mcode=100&sname=만리동
+        },
+        'MTHD': "GET"
+    },
+
 
 }
-
 
 class URLMaker:
     url = None
@@ -65,6 +142,9 @@ class URLMaker:
     siteCode = None
     dicSite = None
     dicService = None
+    mthd = None
+    postData = None
+    addStr = ""
 
     def __init__(self,URLkey):
         self.URLkey = URLkey
@@ -72,16 +152,43 @@ class URLMaker:
         self.dicSite = dicSiteBasic[self.siteCode]
         self.dicService = dicService[URLkey]
         self.dicParam = self.dicService['BAS_PARM']
+        self.mthd = self.dicService['MTHD']
+        self.url = self.getURL()
 
     def add(self,key,value):
         self.dicParam[key]=value
 
+    def deleteParam(self,key):
+        try:
+            del(self.dicParam[key])
+        except KeyError as e:
+            pass
+
+    def addString(self,str):
+        self.addStr = str
+
     def getURL(self):
         self.url = self.dicSite['BAS_PRTC'] + "://" #프로토콜 http
-        self.url += urllib.parse.quote(self.dicSite['BAS_URL'] + self.dicService['BAS_SVC_ID'],encoding=self.dicSite['ENCD'])
-        self.url += "?" + urllib.parse.urlencode(self.dicParam, encoding=self.dicSite['ENCD'])
-        print(self.url)
+        self.url += urllib.parse.quote(self.dicSite['BAS_URL'] + self.dicService['BAS_SVC_ID'] + self.addStr,encoding=self.dicSite['ENCD'])
+        if self.mthd == "GET":
+            self.url += "?" + urllib.parse.urlencode(self.dicParam, encoding=self.dicSite['ENCD'])
+        elif self.mthd == "POST":
+            pass
+
         return self.url
+
+    def printURL(self):
+        url = self.getURL()
+        if self.mthd == "POST" :
+             url += str(self.dicParam)
+        rtn = "[" + self.mthd + "]" + url
+        return rtn
+
+    def getMethod(self):
+        return self.mthd
+
+    def getDicParam(self):
+        return self.dicParam
 
 def getURLQuote(url,type="utf-8"):
     return urllib.urlretrieve(urllib.quote(url.encode(type), '/:'))

@@ -6,6 +6,7 @@ import schedule
 import time
 from REP_TLGR_MSG import *
 import REP_TABLE
+import traceback
 
 def doJOB(JOB_ID):    #JOB수행
     try :
@@ -16,10 +17,11 @@ def doJOB(JOB_ID):    #JOB수행
         for dicFunc in dicJob:
             try:
                 Log.info("####################START[doFunc : " + str(dicFunc) + "]####################")
-                batchContext = REP_COM.BatchContext(dicFunc)
 
                 now = datetime.now()
                 strNow = now.strftime("%Y%m%d%H%M%S")
+
+                batchContext = REP_COM.BatchContext(dicFunc,"",0000000000,strNow)
 
                 dicKADM_JOB_FUNC_EXEC = REP_TABLE.dicTable['KADM_JOB_FUNC_EXEC']
                 dicKADM_JOB_FUNC_EXEC['JOB_ID'] = dicFunc['JOB_ID']
@@ -53,6 +55,11 @@ def doJOB(JOB_ID):    #JOB수행
             except Exception as e:
                 # JOB 수행 ERROR 상태
                 now = datetime.now()
+                UdicKADM_JOB_FUNC_EXEC = {}
+                UdicKADM_JOB_FUNC_EXEC['JOB_ID'] = dicKADM_JOB_FUNC_EXEC['JOB_ID']
+                UdicKADM_JOB_FUNC_EXEC['FUNC_ID'] = dicKADM_JOB_FUNC_EXEC['FUNC_ID']
+                UdicKADM_JOB_FUNC_EXEC['ACT_ID'] = dicKADM_JOB_FUNC_EXEC['ACT_ID']
+                UdicKADM_JOB_FUNC_EXEC['EXEC_DTM'] = dicKADM_JOB_FUNC_EXEC['EXEC_DTM']
                 UdicKADM_JOB_FUNC_EXEC['EXEC_STAT_CD'] = 'E'    #Batch Error 종료
                 UdicKADM_JOB_FUNC_EXEC['END_DTM'] = datetime.now().strftime("%Y%m%d%H%M%S")
                 updateBaiscByTBLDic('KADM_JOB_FUNC_EXEC', UdicKADM_JOB_FUNC_EXEC, dicBasicCond)
@@ -63,8 +70,8 @@ def doJOB(JOB_ID):    #JOB수행
 
     except Exception as e:
         Log.error("####################ERROR[doJOB : " + JOB_ID + "]####################")
-        Log.error(str(e))
-        sendMessage("ERROR[doJOB : " + JOB_ID + "]" + str(e))
+        Log.error(traceback.format_exc())
+        sendMessage("ERROR[doJOB : " + JOB_ID + "]" + traceback.format_exc())
 
 def doFunc(Func,batchContext):
     if 1==0 : print('error')
@@ -153,67 +160,72 @@ def doSchedule():
     setJob()
     #JOB 초기화
     while True:
-        #즉시 수행 job 스케쥴을 가져옴
-        Log.info("####################START[doImidiateJOB]####################")
-        dicJobSchdList = fetch("selectJobSchdImdi", "")
-        count = 0
-        for dicJobSchd in dicJobSchdList:
-            # 수행시간을 기록하기 위하여 현재 시간을 가져옴
-            strNow = datetime.now().strftime("%Y%m%d%H%M%S")
+        try:
+            #즉시 수행 job 스케쥴을 가져옴
+            Log.info("####################START[doImidiateJOB]####################")
+            dicJobSchdList = fetch("selectJobSchdImdi", "")
+            count = 0
+            for dicJobSchd in dicJobSchdList:
+                # 수행시간을 기록하기 위하여 현재 시간을 가져옴
+                strNow = datetime.now().strftime("%Y%m%d%H%M%S")
 
-            #JOB 수행정보 세팅
-            dicKADM_JOB_EXEC = REP_TABLE.dicTable['KADM_JOB_EXEC']
-            dicKADM_JOB_EXEC['JOB_ID'] = dicJobSchd['JOB_ID']
-            dicKADM_JOB_EXEC['EXEC_DTM'] = strNow
-            dicKADM_JOB_EXEC['EXEC_STAT_CD'] = 'R'
-            dicKADM_JOB_EXEC['STA_DTM'] = strNow
-            dicKADM_JOB_EXEC['REG_USER_ID'] = userid
-            dicKADM_JOB_EXEC['CHG_USER_ID'] = userid
-
-            insertBasicByTBLDic('KADM_JOB_EXEC', dicKADM_JOB_EXEC)
-
-            dicBasicCond = {}
-            dicBasicCond['JOB_ID'] = dicKADM_JOB_EXEC['JOB_ID']
-            dicBasicCond['EXEC_DTM'] = dicKADM_JOB_EXEC['EXEC_DTM']
-
-            try :
-                #JOB실행
-                doJOB(dicJobSchd['JOB_ID'])
-
-                # JOB 수행 종료 상태
+                #JOB 수행정보 세팅
                 dicKADM_JOB_EXEC = REP_TABLE.dicTable['KADM_JOB_EXEC']
                 dicKADM_JOB_EXEC['JOB_ID'] = dicJobSchd['JOB_ID']
-                dicKADM_JOB_EXEC['EXEC_STAT_CD'] = 'T'
-                dicKADM_JOB_EXEC['STA_DTM'] = None
-                dicKADM_JOB_EXEC['END_DTM'] = datetime.now().strftime("%Y%m%d%H%M%S")
-                dicKADM_JOB_EXEC['REG_USER_ID'] =None
+                dicKADM_JOB_EXEC['EXEC_DTM'] = strNow
+                dicKADM_JOB_EXEC['EXEC_STAT_CD'] = 'R'
+                dicKADM_JOB_EXEC['STA_DTM'] = strNow
+                dicKADM_JOB_EXEC['REG_USER_ID'] = userid
                 dicKADM_JOB_EXEC['CHG_USER_ID'] = userid
 
-                updateBaiscByTBLDic('KADM_JOB_EXEC', dicKADM_JOB_EXEC, dicBasicCond)
+                insertBasicByTBLDic('KADM_JOB_EXEC', dicKADM_JOB_EXEC)
 
-            except Exception as e:
-                Log.Error("Error in doImidiateJOB" + str(e))
-                dicKADM_JOB_EXEC['EXEC_STAT_CD'] = 'E'
-                dicKADM_JOB_EXEC['END_DTM'] = datetime.now().strftime("%Y%m%d%H%M%S")
-                updateBaiscByTBLDic('KADM_JOB_EXEC', dicKADM_JOB_EXEC, dicBasicCond)
+                dicBasicCond = {}
+                dicBasicCond['JOB_ID'] = dicKADM_JOB_EXEC['JOB_ID']
+                dicBasicCond['EXEC_DTM'] = dicKADM_JOB_EXEC['EXEC_DTM']
 
-            # 즉시수행여부를 꺾어버림
-            dicKADM_JOB_SCHD = REP_TABLE.dicTable['KADM_JOB_SCHD']
-            dicKADM_JOB_SCHD['JOB_ID'] = dicJobSchd['JOB_ID']
-            dicKADM_JOB_SCHD['JOB_SEQ'] = dicJobSchd['JOB_SEQ']
-            dicKADM_JOB_SCHD['IMDI_EXEC_YN'] = 'N'  # 즉시수행여부를 N으로 변경
-            dicKADM_JOB_SCHD['CHG_USER_ID'] = userid
+                try :
+                    #JOB실행
+                    doJOB(dicJobSchd['JOB_ID'])
 
-            dicBasicCond = {}
-            dicBasicCond['JOB_ID'] = dicJobSchd['JOB_ID']
-            dicBasicCond['JOB_SEQ'] = dicJobSchd['JOB_SEQ']
+                    # JOB 수행 종료 상태
+                    dicKADM_JOB_EXEC = REP_TABLE.dicTable['KADM_JOB_EXEC']
+                    dicKADM_JOB_EXEC['JOB_ID'] = dicJobSchd['JOB_ID']
+                    dicKADM_JOB_EXEC['EXEC_STAT_CD'] = 'T'
+                    dicKADM_JOB_EXEC['STA_DTM'] = None
+                    dicKADM_JOB_EXEC['END_DTM'] = datetime.now().strftime("%Y%m%d%H%M%S")
+                    dicKADM_JOB_EXEC['REG_USER_ID'] =None
+                    dicKADM_JOB_EXEC['CHG_USER_ID'] = userid
 
-            updateBaiscByTBLDic('KADM_JOB_SCHD', dicKADM_JOB_SCHD, dicBasicCond)
+                    updateBaiscByTBLDic('KADM_JOB_EXEC', dicKADM_JOB_EXEC, dicBasicCond)
 
-        Log.error("####################END[doImidiateJOB]####################")
+                except Exception as e:
+                    Log.Error("Error in doImidiateJOB" + traceback.format_exc())
+                    dicKADM_JOB_EXEC['EXEC_STAT_CD'] = 'E'
+                    dicKADM_JOB_EXEC['END_DTM'] = datetime.now().strftime("%Y%m%d%H%M%S")
+                    updateBaiscByTBLDic('KADM_JOB_EXEC', dicKADM_JOB_EXEC, dicBasicCond)
 
-        schedule.run_pending()
-        time.sleep(1)
+                # 즉시수행여부를 꺾어버림
+                dicKADM_JOB_SCHD = REP_TABLE.dicTable['KADM_JOB_SCHD']
+                dicKADM_JOB_SCHD['JOB_ID'] = dicJobSchd['JOB_ID']
+                dicKADM_JOB_SCHD['JOB_SEQ'] = dicJobSchd['JOB_SEQ']
+                dicKADM_JOB_SCHD['IMDI_EXEC_YN'] = 'N'  # 즉시수행여부를 N으로 변경
+                dicKADM_JOB_SCHD['CHG_USER_ID'] = userid
+
+                dicBasicCond = {}
+                dicBasicCond['JOB_ID'] = dicJobSchd['JOB_ID']
+                dicBasicCond['JOB_SEQ'] = dicJobSchd['JOB_SEQ']
+
+                updateBaiscByTBLDic('KADM_JOB_SCHD', dicKADM_JOB_SCHD, dicBasicCond)
+
+            Log.error("####################END[doImidiateJOB]####################")
+
+            schedule.run_pending()
+            time.sleep(1)
+        except Exception as e:
+            Log.error(traceback.format_exc())
+            sendMessage("doJob Error" + traceback.format_exc())
+
 
 if __name__ == '__main__':
     doSchedule()

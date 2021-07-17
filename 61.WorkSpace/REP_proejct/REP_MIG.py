@@ -16,6 +16,10 @@ import REP_Main
 import datetime
 from REP_TLGR_MSG import *
 import pymysql
+import gc
+import traceback
+
+
 
 sleeptime = 1
 NVsleeptime = 2
@@ -39,9 +43,13 @@ class Crawling:
             self.batchContext.setFuncName(self.funcName)
 
     def run(self):
-        self.startLog() #START Log
-        self.ready()    #크롤링 전 사전 Data 준비 작업
-        self.crawl()    #URL 호출 후 삽입
+        try:
+            self.startLog() #START Log
+            self.ready()    #크롤링 전 사전 Data 준비 작업
+            self.crawl()    #URL 호출 후 삽입
+        except Exception as e:
+            Log.error("Crawling run Error : " + traceback.format_exc())
+            sendMessage("Crawling run Error : " +traceback.format_exc())
         try:
             self.report()   #report 및 마지막 정의
         except Exception as e:
@@ -77,9 +85,9 @@ class Crawling:
         Log.info(self.batchContext.getLogName() + "####################END[" + self.batchContext.getFuncName() + "]####################")
         sendMessage("END[" + self.batchContext.getFuncName() + "]")
 
-    def makeURL(self,dicStrdData = None):
-        url = self.selfMakeURL(dicStrdData)
-        Log.info(self.batchContext.getLogName() + url)
+    def makeURL(self,dicStrdData = None,reCnt = None):
+        url = self.selfMakeURL(dicStrdData,reCnt)
+        Log.info(self.batchContext.getLogName() + " ReCnt : " + str(reCnt) + url.printURL())
         return url
 
     #[LV4 구현]각 Lv4 Class(웹사이트(url) 별로) URL을 만드는 부분을 정의
@@ -87,16 +95,31 @@ class Crawling:
         return "http://test.com"
 
     #[LV4 구현]Page > 변환 > Parse > DB 반영
-    def selfSaveDB(self,page,dicStrdData = None):
+    def selfSaveDB(self,page,dicStrdData = None,url = None):
         pass
 
     def request(self,url):
-        page = get_html(url)
-        Log.debug(self.batchContext.getLogName() + page)
+        page = get_html(url.getURL(),url.getMethod(),url.getDicParam())
+        Log.debug(self.batchContext.getLogName() + str(page))
         return page
 
     def getFuncName(self):
         return self.funcName
+
+class DataStrd:
+    #Crawling의 기준 data list
+    listStrdData = None
+    #현재 참조중인 index
+    index = 0
+
+    def __init__(self,listStrdData):
+        #리스트 자료형을 객체에 세팅한다.
+        self.listStrdData = listStrdData
+        self.index = 0
+
+    #현재 자료를 가져온다.
+    def getCurrentData(self):
+        return self.listStrdData[self.index]
 
 #LV2 Craling Class 기본 멀티
 class CrawlingBasicMulti(Crawling):
@@ -118,21 +141,35 @@ class CrawlingBasicMulti(Crawling):
 
     def ready(self):
         super().ready()
-        if self.fetchSqlId == None:
-            Log.Info("fetchSqlId 미정의 Error")
-        else:
-            self.dicStrdDataList = REP_DAO.fetch(self.fetchSqlId, "")
-            #rowCounter 세팅
-            self.setRowCounter(self.dicStrdDataList.__len__())
+        self.dicStrdDataList = self.getListStrdDataList()
+        #rowCounter 세팅
+        self.setRowCounter(self.dicStrdDataList.__len__())
 
     def crawl(self):
         for dicStrdData in self.dicStrdDataList:
-            self.debugDicStrdData(dicStrdData)
-            url = self.makeURL(dicStrdData)
-            page = self.request(url)
-            self.selfSaveDB(page,dicStrdData)
-            self.rowCounter.Cnt()
-            time.sleep(self.sleepStamp)
+            try:
+                reCnt = 0
+
+                while True:
+                    reCnt = reCnt + 1
+                    self.debugDicStrdData(dicStrdData)
+                    url = self.makeURL(dicStrdData,reCnt)
+                    page = self.request(url)
+                    self.selfSaveDB(page,dicStrdData,url)
+                    time.sleep(self.sleepStamp)
+                    if self.isReCrwal(url,page,dicStrdData,reCnt) == False:
+                        self.rowCounter.Cnt()
+                        break
+                gc.collect()
+            except Exception as e:
+                Log.error(self.batchContext.getLogName() + traceback.format_exc())
+                sendMessage(traceback.format_exc())
+
+    def getListStrdDataList(self):
+        return REP_DAO.fetch(self.fetchSqlId, "")
+
+    def isReCrwal(self,url,page,dicStrdData,reCnt):
+        return False
 
     def debugDicStrdData(self,dicStrdData = None):
         Log.debug(self.batchContext.getLogName() + "DicStrdData : " + str(dicStrdData))
@@ -157,7 +194,6 @@ class CrawlingBasicSingle(Crawling):
 def migRetBigAreaCode():    #박지일
     print("Function migRetBigAreaCode")
     url = REP_URL.KB부동산과거시세조회URL
-    print(url)
     soup = getBeautifulShopFromKB(url)
 
     for child in soup.find("select", id="부동산대지역코드"):

@@ -8,3 +8,6 @@ def merge(table):
     except Exception as e :
         print("Basic Except : " + e)
         return False
+
+def getCode(com_cd_grp):
+    pass

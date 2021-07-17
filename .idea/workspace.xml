@@ -2,7 +2,60 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="37d72c1e-d59a-4372-8adc-0cc5cf05dc9c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/B2B/B2B_MIG_Stock.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/REP_MASK.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/REP_MASK_CP.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/REP_MASK_CP2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/REP_MIG_APPLY.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/42.DA5/REP.damx" beforeDir="false" afterPath="$PROJECT_DIR$/42.DA5/REP.damx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/44.SQL/4400.기본SQL/ALTER.sql" beforeDir="false" afterPath="$PROJECT_DIR$/44.SQL/4400.기본SQL/ALTER.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/.idea/REP_proejct.iml" beforeDir="false" afterPath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/.idea/REP_proejct.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/REP_COM.py" beforeDir="false" afterPath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/REP_COM.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/REP_DAO.py" beforeDir="false" afterPath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/REP_DAO.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/REP_MIG.py" beforeDir="false" afterPath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/REP_MIG.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/REP_MIG_BB.py" beforeDir="false" afterPath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/REP_MIG_BB.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/REP_MIG_NAVER.py" beforeDir="false" afterPath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/REP_MIG_NAVER.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/REP_SQL.py" beforeDir="false" afterPath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/REP_SQL.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/REP_TLGR_MSG.py" beforeDir="false" afterPath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/REP_TLGR_MSG.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/REP_URL.py" beforeDir="false" afterPath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/REP_URL.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/logs/LOGNAME_20191127.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/logs/LOGNAME_20191128.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/logs/LOGNAME_20191129.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/logs/LOGNAME_20191130.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/logs/LOGNAME_20191202.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/logs/LOGNAME_20191209.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/logs/LOGNAME_20191211.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/logs/LOGNAME_20191212.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/logs/LOGNAME_20191228.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/logs/LOGNAME_20191229.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/logs/LOGNAME_20191230.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/logs/LOGNAME_20191231.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/logs/LOGNAME_20200102.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/logs/LOGNAME_20200103.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/logs/LOGNAME_20200104.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/logs/LOGNAME_20200105.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/logs/LOGNAME_20200107.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/logs/LOGNAME_20200108.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/logs/LOGNAME_20200109.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/logs/LOGNAME_20200110.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/logs/LOGNAME_20200111.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/logs/LOGNAME_20200112.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/logs/LOGNAME_20200113.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/logs/LOGNAME_20200114.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/logs/LOGNAME_20200115.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/logs/LOGNAME_20200116.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/logs/LOGNAME_[NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]_20200115.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/logs/LOGNAME_[NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]_20200116.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/logs/LOGNAME_[NVUP001][NV_UP_CMPX_INFO][UPD_NV_CMPX][updNaverComplexDtl]_20191129.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/logs/LOGNAME_[NVUP001][NV_UP_CMPX_INFO][UPD_NV_CMPX][updNaverComplexDtl]_20191130.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/logs/LOGNAME_[NVUP001][NV_UP_CMPX_INFO][UPD_NV_CMPX][updNaverComplexDtl]_20191202.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/logs/LOGNAME_[NVUP001][NV_UP_CMPX_INFO][UPD_NV_CMPX][updNaverComplexDtl]_20191209.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/logs/LOGNAME_[NVUP001][NV_UP_CMPX_INFO][UPD_NV_CMPX][updNaverComplexDtl]_20191212.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/logs/LOGNAME_[NVUP001][NV_UP_CMPX_INFO][UPD_NV_CMPX][updNaverComplexDtl]_20191228.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/61.WorkSpace/REP_proejct/test.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,26 +65,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/61.WorkSpace/REP_proejct/REP_Main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
-              <folding>
-                <element signature="e#0#14#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/61.WorkSpace/REP_proejct/REP_MIG_NAVER.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="30" column="51" selection-start-line="30" selection-start-column="51" selection-end-line="30" selection-end-column="51" />
-              <folding>
-                <element signature="e#40#51#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="280">
+              <caret line="43" column="41" selection-start-line="43" selection-start-column="41" selection-end-line="43" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -64,13 +102,16 @@
         <option value="$PROJECT_DIR$/61.WorkSpace/REP_proejct/REP_NAVER_APT_CODE.py" />
         <option value="$PROJECT_DIR$/61.WorkSpace/REP_proejct/REP_MIG.py" />
         <option value="$PROJECT_DIR$/61.WorkSpace/REP_proejct/REP_NAVER.py" />
+        <option value="$PROJECT_DIR$/61.WorkSpace/REP_proejct/REP_DAO.py" />
+        <option value="$PROJECT_DIR$/61.WorkSpace/REP_proejct/REP_MASK.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1280" />
-    <option name="width" value="1280" />
-    <option name="height" value="1040" />
+    <option name="x" value="-11" />
+    <option name="y" value="-11" />
+    <option name="width" value="1923" />
+    <option name="height" value="2100" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -120,7 +161,28 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.REP_NAVER">
+  <component name="RunManager" selected="Python.REP_MASK">
+    <configuration name="REP_MASK" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="rep" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/61.WorkSpace/REP_proejct" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/61.WorkSpace/REP_proejct/REP_MASK.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="REP_Main" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="rep" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -165,6 +227,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.REP_MASK" />
         <item itemvalue="Python.REP_NAVER" />
         <item itemvalue="Python.REP_Main" />
       </list>
@@ -220,14 +283,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="2576" height="1056" extended-state="6" />
+    <frame x="-7" y="-7" width="2575" height="1415" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.10992908" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.10988578" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49881798" weight="0.3286334" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49881798" weight="0.32833466" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -308,19 +371,9 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/61.WorkSpace/REP_proejct/REP_NAVER_APT_CODE.py" />
-    <entry file="file://$PROJECT_DIR$/61.WorkSpace/REP_proejct/REP_DAO.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/61.WorkSpace/REP_proejct/REP_Main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
+        <state relative-caret-position="285">
           <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
@@ -328,13 +381,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/61.WorkSpace/REP_proejct/REP_COM.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/61.WorkSpace/REP_proejct/REP_DAO.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="33" column="27" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/61.WorkSpace/REP_proejct/REP_MASK.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="608">
+          <caret line="32" column="19" lean-forward="true" selection-start-line="32" selection-start-column="19" selection-end-line="32" selection-end-column="19" />
+          <folding>
+            <element signature="e#23#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/61.WorkSpace/REP_proejct/REP_MIG_NAVER.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="30" column="51" selection-start-line="30" selection-start-column="51" selection-end-line="30" selection-end-column="51" />
-          <folding>
-            <element signature="e#40#51#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="280">
+          <caret line="43" column="41" selection-start-line="43" selection-start-column="41" selection-end-line="43" selection-end-column="41" />
         </state>
       </provider>
     </entry>

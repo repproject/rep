@@ -1,70 +1,139 @@
 import telegram
+from telegram.ext import Updater, MessageHandler, Filters
+
 import REP_DAO
 import REP_COM
+import time
 my_token = '495069941:AAHXf-j_f97clXuEI5P0lpnbyPKcUfmVtYs' #JBoozleBot
+my_token2 = '1074073870:AAFnhfEFR9vYBMOUU666jE0Iy5RqdQON4Ew' #JMaskBot
 #chat_id = 436714227
 
-def checkMessage():
-    try:
-        bot = telegram.Bot(token=my_token)  # bot을 선언합니다.
-        updates = bot.getUpdates()  # 업데이트 내역을 받아옵니다.
+def checkMessage(bot):
 
-        for u in updates:  # 내역중 메세지를 출력합니다.
-            print(u.message.message_id)
-            dicTlgrMsg = {'TLGR_MSG_ID': u.message.message_id, 'TLGR_MSG_CNTS': str(u)}
-            if REP_DAO.INSERT_KADM_TLGR_MSG(dicTlgrMsg) == '100':   #INSERT가 정상일때
-                if u.message.text[0] == '-': #정의된명령어
+    LogObejct = REP_COM.Logger("TELEGRAM")
+    Log = LogObejct.logger
+    Log.info("start telegram bot")
+
+    while True :
+        try:
+            updates = bot.getUpdates(offset=1000,limit = 1000, timeout=10)  # 업데이트 내역을 받아옵니다.
+            for u in updates:  # 내역중 메세지를 출력합니다.
+                Log.info("Updating...")
+                print(u.message)
+                dicTlgrMsg = {'TLGR_MSG_ID': u.message.message_id, 'TLGR_MSG_CNTS': str(u)}
+                try:
+                    rtn = REP_DAO.INSERT_KADM_TLGR_MSG(dicTlgrMsg)
+                except Exception as err:
+                    rtn = '0'
+                    Log.error("[텔레그램 Message Insert ERROR 발생]" + str(err))
+                    #sendMessage2("[텔레그램 ERROR 발생]" + str(err), 436714227)
+
+                if rtn == '100':   #INSERT가 정상일때
+                    Log.info("신규메세지 : " + str(dicTlgrMsg))
+                    #if u.message.text[0] == '-': #정의된명령어
                     splitMessage = u.message.text.split(' ')
-                    if splitMessage[0][1:] == "등록" :
-                        print("[텔레그램 사용자등록]",u.message.chat.id,splitMessage[1])
-                        dicTlgrUser= {'TLGR_USER_ID': u.message.chat.id, 'TLGR_USER_NM': splitMessage[1],'RCV_TGT_YN' : 'Y'}
-                        if(REP_DAO.INSERT_KADM_TLGR_USER(dicTlgrUser) == '100'):
-                            sendMessage("[텔레그램 사용자등록 완료] " + str(u.message.chat.id) + " " + splitMessage[1])
-                            print("[텔레그램 사용자등록 완료] " + str(u.message.chat.id) + " " + splitMessage[1])
+                    if splitMessage[0][1:] == "등록"  or splitMessage[0][0:] == "등록":
+                        print("####################")
+                        print(u.message.chat.last_name)
+                        if u.message.chat.last_name == None:
+                            name = u.message.chat.first_name
                         else:
-                            print("[텔레그램 사용자등록 실패] " + str(u.message.chat.id) + " " + splitMessage[1])
+                            name = u.message.chat.last_name + u.message.chat.first_name
+                        dicTlgrUser= {'TLGR_USER_ID': u.message.chat.id, 'TLGR_USER_NM': name,  'RCV_TGT_YN' : 'Y', 'SEND_CL_CD' : 'M'}
+                        Log.info("[텔레그램 신규 사용자 등록" + str(dicTlgrUser))
+                        if(REP_DAO.INSERT_KADM_TLGR_USER(dicTlgrUser) == '100'):
+                            sendMessage2("[텔레그램 사용자등록 완료] " + str(dicTlgrUser),436714227)
+                            sendMessage2("[텔레그램 사용자등록 완료] " + str(dicTlgrUser),int(u.message.chat.id))
+                            print("[텔레그램 사용자등록 완료] " + str(u.message.chat.id) + " " + dicTlgrUser['TLGR_USER_NM'])
+                        else:
+                            print("[텔레그램 사용자등록 실패] " + str(u.message.chat.id) + " " + dicTlgrUser['TLGR_USER_NM'])
+                            sendMessage2("[텔레그램 사용자등록 실패] " + str(dicTlgrUser), int(u.message.chat.id))
                     elif splitMessage[0][1:] == "수신해제":
-                        print("[텔레그램 수신해제]", u.message.chat.id)
+                        print("[텔레그램 수신해제]" + str(u.message.chat.id))
                         dicTlgrUser = {'TLGR_USER_ID': u.message.chat.id, 'RCV_TGT_YN': 'N'}
                         if(REP_DAO.UPDATE_KADM_TLGR_USER_RCV_TGT_YN(dicTlgrUser) == '100'):
-                            sendMessage("[텔레그램 수신해제 완료] " + str(u.message.chat.id))
-                            print("[텔레그램 수신해제 완료] " + str(u.message.chat.id))
+                            sendMessage2("[텔레그램 수신해제 완료] " + str(dicTlgrUser),436714227)
+                            sendMessage2("[텔레그램 수신해제 완료] " + str(dicTlgrUser),int(u.message.chat.id))
+                            print("[텔레그램 수신해제 완료] " + str(u.message.chat.id) + " " + dicTlgrUser['TLGR_USER_NM'])
                         else:
-                            print("[텔레그램 수신해제 실패] " + str(u.message.chat.id) + " " + splitMessage[1])
+                            print("[텔레그램 수신해제 실패] " + str(u.message.chat.id) + " " + dicTlgrUser['TLGR_USER_NM'])
+                            sendMessage2("[텔레그램 수신해제 실패] " + str(dicTlgrUser), int(u.message.chat.id))
                     elif splitMessage[0][1:] == "수신등록":
                         print("[텔레그램 수신등록]", u.message.chat.id)
                         dicTlgrUser = {'TLGR_USER_ID': u.message.chat.id, 'RCV_TGT_YN': 'Y'}
                         if(REP_DAO.UPDATE_KADM_TLGR_USER_RCV_TGT_YN(dicTlgrUser) == '100'):
-                            sendMessage("[텔레그램 수신등록 완료] " + str(u.message.chat.id))
-                            print("[텔레그램 수신등록 완료] " + str(u.message.chat.id))
+                            sendMessage2("[텔레그램 수신등록 완료] " + str(dicTlgrUser),436714227)
+                            sendMessage2("[텔레그램 수신등록 완료] " + str(dicTlgrUser),int(u.message.chat.id))
+                            print("[텔레그램 수신등록 완료] " + str(u.message.chat.id) + " " + str(dicTlgrUser))
                         else:
-                            print("[텔레그램 수신등록 실패] " + str(u.message.chat.id) + " " + splitMessage[1])
-                    elif splitMessage[0][1:] == "?" or splitMessage[0][1:] == "사용문의":
+                            print("[텔레그램 수신등록 실패] " + str(u.message.chat.id) + " " + str(dicTlgrUser))
+                            sendMessage2("[텔레그램 수신등록 실패] " + str(dicTlgrUser),int(u.message.chat.id))
+                    elif splitMessage[0][1:] == "?" or splitMessage[0][1:] == "사용문의" or splitMessage[0][1:] == "start":
                         print("[텔레그램 사용문의]", u.message.chat.id)
-                        sendMessage("- 사용자등록 이름 (ex) -사용자등록 박지일\n -수신등록 \n -수신해제 \n -사용자등록 ", str(u.message.chat.id))
-    except Exception as err:  # 기존에 소지역 코드가 존재할 수 있음
-        REP_COM.Log.error("[텔레그램ERROR발생]")
-#        print(u.message.chat.id)
-#        print(u.message.text)
-#        print(u.message)
+                        sendMessage2("-등록 : 최초등록 \n-수신등록 : 수신여부Y \n-수신해제 : 수신여부N\n채널들어와서\n ☞-등록 이라고 입력하면됩니다", u.message.chat.id)
+                else:
+                    Log.debug("중복")
+                splitMessage = None
+            time.sleep(0.5)
+        except Exception as err:
+             Log.error("[텔레그램 ERROR 발생]" + str(err))
+             sendMessage2("[텔레그램 ERROR 발생]" + str(err),436714227)
 
-def sendMessage(str):
+
+
+def sendMessage(str,token = my_token, id = None):
     listStr = REP_COM.splitStringSize(str,1000)
-    bot = telegram.Bot(token=my_token)  # bot을 선언합니다.
-    dicTlgrUserIdList = REP_DAO.fetch("selectKADM_TLGR_RCV_USER","") #사용자 조회
+    bot = telegram.Bot(token=token)  # bot을 선언합니다.
+    if token == my_token:
+        dicTlgrUserIdList = REP_DAO.fetch("selectKADM_TLGR_RCV_USER_Boozle", "")  # 사용자 조회
+    elif token == my_token2:
+        dicTlgrUserIdList = REP_DAO.fetch("selectKADM_TLGR_RCV_USER","") #사용자 조회
 
-    for dicTlgrUserId in dicTlgrUserIdList:
-        str_chatid = dicTlgrUserId['TLGR_USER_ID']
-        try:
-            for str in listStr:
-                bot.sendMessage(chat_id=int(str_chatid), text=str)
-        except Exception as e:
-            #Str 너무 긴 경우 수정 필요
-            REP_COM.Log.error("Telegram sendMessage Exception 발생 " + str(e))
+    if id == None:
+        for dicTlgrUserId in dicTlgrUserIdList:
+            str_chatid = dicTlgrUserId['TLGR_USER_ID']
+            try:
+                for str in listStr:
+                    bot.sendMessage(chat_id=int(str_chatid), text=str)
+            except Exception as e:
+                #Str 너무 긴 경우 수정 필요
+                REP_COM.Log.error("Telegram sendMessage Exception 발생 " + str(e))
+    else:
+        for str in listStr:
+            bot.sendMessage(chat_id=int(id), text=str)
 
 
-#if __name__ == '__main__':
-#    main()
+def sendMessage2(str,id=None):
+    if id == None:
+        sendMessage(str,my_token2)
+    else:
+        sendMessage(str, my_token2, id)
+
+def runBot():
+    bot = telegram.Bot(token=my_token2)  # bot을 선언합니다.
+    checkMessage(bot)
+
+
+def get_message(bot,update):
+    pass
+    #update.message.reply_text("Test입니다")
+    #update.message.reply_text(update.message.text)
+
+
+def Test():
+
+    updater = Updater(my_token2)
+
+    message_handler = MessageHandler(Filters.text, get_message)
+    updater.dispatcher.add_handler(message_handler)
+
+    updater.start_polling(timeout=3, clean=True)
+    #updater.idle()
+
+if __name__ == '__main__':
+    #Test()
+    runBot()
+
 
 #https://blog.psangwoo.com/coding/2016/12/08/python-telegram-bot-1.html
 #박지일id : 436714227

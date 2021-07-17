@@ -1,16 +1,10 @@
 # -*- coding:utf-8 -*-
-import time
 from REP_DAO import *
 from REP_URL import *
 from REP_COM import *
 from REP_TABLE import *
-from REP_MIG_MAPP import *
 import REP_URL
 import REP_MIG
-from REP_TLGR_MSG import *
-import json
-import schedule
-import time
 from bs4 import BeautifulSoup
 import urllib
 
@@ -49,7 +43,7 @@ class CrawlingBBRegnLv1(CrawlingSingleBB):
     SVC_ID = "BBRegn"
 
     # [LV3 구현]각 Lv3 Class(웹사이트(url) 별로) URL을 만드는 부분을 정의
-    def selfMakeURL(self, dicStrdData=None):
+    def selfMakeURL(self, dicStrdData=None,reCnt = None):
         url = REP_URL.URLMaker(self.SVC_ID)
         url.add("target","lcode")
         return url.getURL()
@@ -79,7 +73,7 @@ class CrawlingBBRegnLv2(CrawlingMultiBB):
     MessageUnit = "P"
 
     # [LV3 구현]각 Lv3 Class(웹사이트(url) 별로) URL을 만드는 부분을 정의
-    def selfMakeURL(self, dicStrdData=None):
+    def selfMakeURL(self, dicStrdData=None,reCnt = None):
         url = REP_URL.URLMaker(self.SVC_ID)
         url.add("target","mcode")
         url.add("lcode",dicStrdData['BB_LV1_REGN_CD'])
@@ -111,7 +105,7 @@ class CrawlingBBRegnLv3(CrawlingMultiBB):
     SVC_ID = "BBRegn"
 
     # [LV3 구현]각 Lv3 Class(웹사이트(url) 별로) URL을 만드는 부분을 정의
-    def selfMakeURL(self, dicStrdData=None):
+    def selfMakeURL(self, dicStrdData=None,reCnt = None):
         url = REP_URL.URLMaker(self.SVC_ID)
         url.add("target","sname")
         url.add("lcode",dicStrdData['BB_LV1_REGN_CD'])
@@ -147,7 +141,7 @@ class CrawlingBBCmpx(CrawlingMultiBB):
     SVC_ID = "BBRegn"
 
     # [LV3 구현]각 Lv3 Class(웹사이트(url) 별로) URL을 만드는 부분을 정의
-    def selfMakeURL(self, dicStrdData=None):
+    def selfMakeURL(self, dicStrdData=None,reCnt = None):
         url = REP_URL.URLMaker(self.SVC_ID)
         url.add("target","complex_cd")
         url.add("lcode",dicStrdData['BB_LV1_REGN_CD'])
@@ -199,7 +193,7 @@ class CrawlingBBCmpxTyp(CrawlingMultiBB):
     SVC_ID = "BBPastMarketPrice"
 
     # [LV3 구현]각 Lv3 Class(웹사이트(url) 별로) URL을 만드는 부분을 정의
-    def selfMakeURL(self, dicStrdData=None):
+    def selfMakeURL(self, dicStrdData=None,reCnt = None):
         url = REP_URL.URLMaker(self.SVC_ID)
         url.add("complex_cd",dicStrdData['BB_CMPX_ID'])
         return url.getURL()
@@ -238,7 +232,7 @@ class CrawlingBBCmpxTypMarketPrice(CrawlingMultiBB):
     SVC_ID = "BBMarketPrice"
 
     # [LV3 구현]각 Lv3 Class(웹사이트(url) 별로) URL을 만드는 부분을 정의
-    def selfMakeURL(self, dicStrdData=None):
+    def selfMakeURL(self, dicStrdData=None,reCnt = None):
         url = REP_URL.URLMaker(self.SVC_ID)
         url.add("complex_cd",dicStrdData['BB_CMPX_ID'])
         url.add("pyung_cd", dicStrdData['BB_CMPX_TYP_SEQ'])
@@ -278,6 +272,6 @@ class CrawlingBBCmpxTypMarketPrice(CrawlingMultiBB):
 
 if __name__ == '__main__':
     batchContext = simpleBatchContext("CrawlingBBCmpxTyp")
-    CrawlObject = CrawlingBBCmpxTypMarketPrice(batchContext)
+    CrawlObject = CrawlingBBRegnLv1(batchContext)
     CrawlObject.run()
     #migBBRegnLv1Code(batchContext)
