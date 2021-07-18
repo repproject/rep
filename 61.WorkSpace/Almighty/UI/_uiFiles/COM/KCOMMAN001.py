@@ -1,17 +1,14 @@
 import sys
-from PyQt5.QtWidgets import *
 from PyQt5 import uic
 import Server.COM
-from UI._uiFiles.COM import *
-#from UI._uiFiles.COM.KCOMMAN002 import *
-import UI._uiFiles.COM.KCOMMAN002
 import importlib
 from UI._uiFiles.UIBasic import *
+from common.ui.comUi import *
 
 #UI파일 연결
 #단, UI파일은 Python 코드 파일과 같은 디렉토리에 위치해야한다.
 pgm_id = 'KCOMMAN001'
-form_class = uic.loadUiType(pgm_id + ".ui")[0]
+form_class = uic.loadUiType(basic_ui_dictionary+pgm_id + ".ui")[0]
 basic_ui_route = 'UI._uiFiles.COM'
 user_id = 1000000001
 
@@ -23,6 +20,7 @@ class WindowClass(QMainWindow, form_class) :
         self.initUI()
 
     def initUI(self):
+        self.test()
         self.makeMenu()
 
     def loadUI(self,dicMenuLv2Action):
@@ -61,6 +59,10 @@ class WindowClass(QMainWindow, form_class) :
 
         self.tabWidget.removeTab(1)
         self.tabWidget.removeTab(0)
+
+    def test(self):
+        Server.COM.getJob()
+
 
 if __name__ == "__main__" :
     #QApplication : 프로그램을 실행시켜주는 클래스

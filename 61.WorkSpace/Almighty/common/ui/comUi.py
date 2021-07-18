@@ -2,74 +2,100 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import pyqtSlot
 import sys
+import Server.Basic
 
+basic_ui_route = 'UI._uiFiles.COM'
+basic_ui_dictionary = "C:/Users/Ceasar.DESKTOP-AQTREV4/PycharmProjects/rep/61.WorkSpace/Almighty/UI/_uiFiles/COM/"
+
+
+###############공통코드################
+dicCodeList ={} #코드목록
+dicCode = {}
+
+###############Edit#########################
+#setTable2Edit: Table객체를 edit으로 세팅
+#Edit 명은 edit_으로 시작해야함
 def setTable2Edit(form,table):
     for col in table.__table__.c:
         colname = str(col).split('.')[1]
         try:
             text = str(getattr(table,colname))
-            form.findChild(QLineEdit, 'edit_' + colname).setText(text)
+            getattr(form,'edit_'+colname).setText(text)
         except Exception as e:
             print("set Table to Edit Text Failure... : [" + colname + "]")
             print(e)
 
+#setEdit2Table: edit을 Table객체로 변환
+#Edit 명은 edit_으로 시작해야함
 def setEdit2Table(form,table):
     for col in table.__table__.c:
         colname = str(col).split('.')[1]
         try:
-            text = form.findChild(QLineEdit, 'edit_' + colname).text()
+            text = getattr(form,"edit_"+colname).text()
             setattr(table,colname,text)
         except Exception as e:
             print("set Edit to Table Text Failure... : [" + colname + "]")
             print(e)
 
-#def setRow2Edit(form,table):
-    # for col in dict(table).keys():
-    #     try:
-    #         text = str(dict(table)[col])
-    #         form.findChild(QLineEdit, 'edit_' + col).setText(text)
-    #     except Exception as e:
-    #         print("set Column to Edit Text Failure... : [" + col + "]")
-    #         print(e)
+#################Qtable##################
+def setTableWidgetByTableList(tableWidget,listTable,columns,headers):
+    try:
+        tableWidget.clear()
+        tableWidget.setRowCount(len(listTable))
+        tableWidget.setColumnCount(len(columns))
+        for n, row in enumerate(listTable):
+            for m, col in enumerate(columns):
+                colClass = getattr(row.__class__, col)
+                if colClass.kcom_cd_domain:  # com_cd  도메인인경우
+                    combobox = ComboBox(colClass.kcom_cd_grp)
+                    try:
+                        combobox.setCurrentText(dicCodeList[colClass.kcom_cd_grp][getattr(row, col)])
+                    except KeyError as ke:
+                        print("공통코드 미등록 >> " + colClass.kcom_cd_grp + " : " + getattr(row, col))
+                    tableWidget.setCellWidget(n, m, combobox)
+                else:
+                    newitem = QTableWidgetItem(getattr(row, col))
+                    tableWidget.setItem(n, m, newitem)
+        tableWidget.setHorizontalHeaderLabels(headers)
+    except Exception as e:
+        print('comUI.setTableWidgetByTableList : ' + str(e))
 
-data = {'col1': ['1', '2', '3', '4'],
-        'col2': ['1', '2', '1', '3'],
-        'col3': ['1', '1', '2', '1']}
+###############ComboBox####################
+class ComboBox(QComboBox):
+    def __init__(self,com_cd_grp=None):
+        super().__init__()
+        #공통코드그룹ID로 QComboBox를 세팅
+        if com_cd_grp != None:
+            for cd in dicCodeList[com_cd_grp].keys():
+                self.addItem(dicCodeList[com_cd_grp][cd])
 
-list = []
-dict = {}
+############### 코드 ################
+def getCode(grp):
+    #returnType : dictionary {com_cd:com_cd_nm}
 
-class TableView(QTableWidget):
-    def __init__(self,qtableWidget, data, *args):
-        QTableWidget.__init__(self, *args)
-        if qtableWidget != None:
-            self.setParent(qtableWidget)
-        self.data = data
-        self.setData()
-        self.resizeColumnsToContents()
-        self.resizeRowsToContents()
-        self.show()
+    #이미 코드가 존재하면 존재한 리스트를 세팅
+    if grp in dicCodeList:
+        return dicCodeList[grp]
+    result = Server.Basic.getCode(grp)
+    code = {}
+    for cd in result:
+        code[cd.com_cd] = cd.com_cd_nm
+    dicCodeList[grp] = code
+    return code
 
-    def setData(self):
-        print('setdata')
-        print(self.data.__class__)
-        # print(self.data.__bases__)
-        if str(self.data.__class__) == "<class 'list'>":
-            print(self.data.__bases__)
-            print('list list')
-        elif str(self.data.__class__) == "<class 'dict'>":
-            print("dict dict ")
-            horHeaders = []
-            print(data)
-            for n, key in enumerate(sorted(self.data.keys())):
-                print(key)
-                print(n)
-                horHeaders.append(key)
-                for m, item in enumerate(self.data[key]):
-                    newitem = QTableWidgetItem(item)
-                    self.setItem(m, n, newitem)
-            self.setHorizontalHeaderLabels(horHeaders)
+#코드세팅
+def setCode(grp):
+    #input : 공통코드그룹ID
+    if grp not in dicCodeList:
+        result = Server.Basic.getCode(grp)
+        code = {}
+        for cd in result:
+            code[cd.com_cd] = cd.com_cd_nm
+        dicCodeList[grp] = code
+        return True
+    else : return False
 
+################# 메인 ###############
 def main(args):
     app = QApplication(args)
     table = TableView(None,data, 4, 3)

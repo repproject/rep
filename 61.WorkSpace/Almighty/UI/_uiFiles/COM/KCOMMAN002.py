@@ -67,21 +67,24 @@ class KCOMMAN002(QWidget,KWidget,form_class) :
 
     @QtCore.pyqtSlot(QTreeWidgetItem,int)
     def onItemClicked(self,it,col):
-        self.selectedItem = it
-        if self.root != self.selectedItem:  #root가 아닌경우
-            menu = it.__getattribute__('menu')
-            #테이블객체 컬럼 > edit 자동매핑
-            comUi.setTable2Edit(self, menu)
-        else:
-            self.edit_menu_id.setText(None)
-            self.edit_menu_lv.setText(None)
-            self.edit_prnt_seq.setText(None)
-            self.edit_menu_nm.setText(None)
-            self.edit_up_menu_id.setText(None)
-            self.edit_fst_reg_ymd.setText(None)
-            self.edit_pgm_id.setText(None)
-
-        return True
+        try:
+            self.selectedItem = it
+            if self.root != self.selectedItem:  #root가 아닌경우
+                menu = it.__getattribute__('menu')
+                #테이블객체 컬럼 > edit 자동매핑
+                comUi.setTable2Edit(self, menu)
+            else:
+                self.edit_menu_id.setText(None)
+                self.edit_menu_lv.setText(None)
+                self.edit_prnt_seq.setText(None)
+                self.edit_menu_nm.setText(None)
+                self.edit_up_menu_id.setText(None)
+                self.edit_fst_reg_ymd.setText(None)
+                self.edit_pgm_id.setText(None)
+            return True
+        except Exception as e:
+            print('Function onItemClicked Error..')
+            print(e)
 
     def save(self):
         try:

@@ -8,10 +8,19 @@ Base = declarative_base()
 
 
 class KColumn(Column):
+    kcom_cd_domain = False
+    kcom_cd_grp = None
 
     def __init__(self, *args, **kwargs):
+
+        self.kcom_cd_domain = kwargs.pop("kcom_cd_domain", False)
+        self.kcom_cd_grp = kwargs.pop("kcom_cd_grp", None)
+
         Column.__init__(self, *args, **kwargs)
         pass
+
+    def __repr__(self):
+        return super.__repr__()+"\n" + "kcom_cd_domain : " + str(self.kcom_cd_domain) + "\n kcom_cd_grp : " + str(self.kcom_cd_grp)
 
 class last1PriorityColumn(KColumn):
     def __init__(self,*args,**kwargs):
@@ -50,7 +59,6 @@ class KTable():
 
     def __repr__(self):
         return ",'%s', '%s', '%s', '%s')>" % (self.reg_user_id, self.reg_dtm, self.chg_user_id, self.chg_dtm)
-
 
 if __name__ == "__main__":
     pass

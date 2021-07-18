@@ -23,7 +23,7 @@ def getClassTable(meta,className,tableName):
         for col in tbl._columns:
             if col.name != 'REG_USER_ID' and col.name != 'REG_DTM' and col.name != 'CHG_USER_ID' and col.name != 'CHG_DTM':
                 colParameter += ", " + col.name.lower()
-                colReprParameter += "self." + col.name.lower() + ", "
+                colReprParameter += "str(self." + col.name.lower() + "), "
                 colDeclare = "    " + col.name.lower() + " = KColumn("
                 colTypeStr = str(col.type)
                 if colTypeStr[:7] == "DECIMAL":
@@ -33,11 +33,15 @@ def getClassTable(meta,className,tableName):
                 colDeclare += coltypeDeclare
                 if col.primary_key:
                     colDeclare += ", primary_key = True"
+                if col.nullable:
+                    colDeclare += ", nullable = True"
+                else : colDeclare += ", nullable = False"
                 classDeclare += colDeclare + ")\n"
                 colInitDeclare += "        self." + col.name.lower() + " = " + col.name.lower() + "\n"
                 colReprBindStr += "'%s', "
 
-        classDeclare += "    codeList = {}\n\n"
+        #classDeclare += "    codeList = {}\n\n"
+        classDeclare += "\n"
         classDeclare += "    def __init__(self" + colParameter + "):\n"
         classDeclare += "        KTable.__init__(self)\n"
         classDeclare += colInitDeclare + "\n"
