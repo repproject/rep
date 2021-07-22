@@ -20,7 +20,7 @@ class WindowClass(QMainWindow, form_class) :
         self.initUI()
 
     def initUI(self):
-        self.test()
+        #self.test()
         self.makeMenu()
 
     def loadUI(self,dicMenuLv2Action):
@@ -60,8 +60,8 @@ class WindowClass(QMainWindow, form_class) :
         self.tabWidget.removeTab(1)
         self.tabWidget.removeTab(0)
 
-    def test(self):
-        Server.COM.getJob()
+    # def test(self):
+    #     Server.COM.getJob()
 
 
 if __name__ == "__main__" :

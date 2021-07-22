@@ -6,16 +6,13 @@ import UI._uiFiles.COM.KCOMMAN001
 
 Base = declarative_base()
 
-
 class KColumn(Column):
     kcom_cd_domain = False
     kcom_cd_grp = None
 
     def __init__(self, *args, **kwargs):
-
         self.kcom_cd_domain = kwargs.pop("kcom_cd_domain", False)
         self.kcom_cd_grp = kwargs.pop("kcom_cd_grp", None)
-
         Column.__init__(self, *args, **kwargs)
         pass
 

@@ -21,7 +21,6 @@ def getCodeLst(strComCdGrp,strComCdGrpNm):
     return s.query(ComCdLst).filter(ComCdLst.com_cd_grp.like("%"+strComCdGrp+"%")).filter(ComCdLst.com_cd_grp_nm.like("%"+strComCdGrpNm+"%")).all()
 
 def getCodeDtl(strComCdGrp):
-    print('getCodeDtl : ' + strComCdGrp)
     return s.query(ComCdDtl).filter_by(com_cd_grp=strComCdGrp).all()
 
 def setCodebyTable(tbl):

@@ -1,8 +1,11 @@
 from DAO.KTable import *
+from DAO.KTable import KTable
 from sqlalchemy import select
 from common.database.testReflect import *
 from common.database.repSqlAlchemy import *
 import datetime
+
+Base = declarative_base()
 
 class Job(Base,KTable):
     __tablename__ = 'KADM_JOB'
@@ -74,18 +77,18 @@ class ComCdLst(Base,KTable):
     ref5 = KColumn(String(100), nullable = True)
     codeList = {}
 
-    def __init__(self, com_cd_grp, com_cd_grp_nm, com_cd_grp_desc, up_com_cd_grp, del_yn, ref1, ref2, ref3, ref4, ref5):
+    def __init__(self, *args, **kwargs):
         KTable.__init__(self)
-        self.com_cd_grp = com_cd_grp
-        self.com_cd_grp_nm = com_cd_grp_nm
-        self.com_cd_grp_desc = com_cd_grp_desc
-        self.up_com_cd_grp = up_com_cd_grp
-        self.del_yn = del_yn
-        self.ref1 = ref1
-        self.ref2 = ref2
-        self.ref3 = ref3
-        self.ref4 = ref4
-        self.ref5 = ref5
+        self.com_cd_grp = kwargs.pop("com_cd_grp", False)
+        self.com_cd_grp_nm = kwargs.pop("com_cd_grp_nm", False)
+        self.com_cd_grp_desc = kwargs.pop("com_cd_grp_desc", False)
+        self.up_com_cd_grp = kwargs.pop("up_com_cd_grp", False)
+        self.del_yn = kwargs.pop("del_yn", 'N')
+        self.ref1 = kwargs.pop("ref1", False)
+        self.ref2 = kwargs.pop("ref2", False)
+        self.ref3 = kwargs.pop("ref3", False)
+        self.ref4 = kwargs.pop("ref4", False)
+        self.ref5 = kwargs.pop("ref5", False)
 
     def __repr__(self):
         return "<ComCdLst('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.com_cd_grp), str(self.com_cd_grp_nm), str(self.com_cd_grp_desc), str(self.up_com_cd_grp), str(self.del_yn), str(self.ref1), str(self.ref2), str(self.ref3), str(self.ref4), str(self.ref5) + KTable.__repr__(self))
@@ -98,7 +101,7 @@ class ComCdDtl(Base,KTable):
     com_cd_nm = KColumn(String(100), nullable = False)
     com_cd_desc = KColumn(String(1000), nullable = True)
     prnt_seq = KColumn(String(1000), nullable = False)
-    eff_open_ymd = KColumn(String(8), nullable = True)
+    eff_sta_ymd = KColumn(String(8), nullable = True)
     eff_end_ymd = KColumn(String(8), nullable = True)
     ref1 = KColumn(String(100), nullable = True)
     ref2 = KColumn(String(100), nullable = True)
@@ -106,14 +109,14 @@ class ComCdDtl(Base,KTable):
     ref4 = KColumn(String(100), nullable = True)
     ref5 = KColumn(String(100), nullable = True)
 
-    def __init__(self, com_cd_grp, com_cd, com_cd_nm, com_cd_desc, prnt_seq, eff_open_ymd, eff_end_ymd, ref1, ref2, ref3, ref4, ref5):
+    def __init__(self, com_cd_grp, com_cd, com_cd_nm, com_cd_desc, prnt_seq, eff_sta_ymd, eff_end_ymd, ref1, ref2, ref3, ref4, ref5):
         KTable.__init__(self)
         self.com_cd_grp = com_cd_grp
         self.com_cd = com_cd
         self.com_cd_nm = com_cd_nm
         self.com_cd_desc = com_cd_desc
         self.prnt_seq = prnt_seq
-        self.eff_open_ymd = eff_open_ymd
+        self.eff_sta_ymd = eff_sta_ymd
         self.eff_end_ymd = eff_end_ymd
         self.ref1 = ref1
         self.ref2 = ref2
@@ -122,11 +125,12 @@ class ComCdDtl(Base,KTable):
         self.ref5 = ref5
 
     def __repr__(self):
-        return "<ComCdDtl('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.com_cd_grp), str(self.com_cd), str(self.com_cd_nm), str(self.com_cd_desc), str(self.prnt_seq), str(self.eff_open_ymd), str(self.eff_end_ymd), str(self.ref1), str(self.ref2), str(self.ref3), str(self.ref4), str(self.ref5) + KTable.__repr__(self))
-
-
-
+        return "<ComCdDtl('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.com_cd_grp), str(self.com_cd), str(self.com_cd_nm), str(self.com_cd_desc), str(self.prnt_seq), str(self.eff_sta_ymd), str(self.eff_sta_ymd), str(self.ref1), str(self.ref2), str(self.ref3), str(self.ref4), str(self.ref5) + KTable.__repr__(self))
 
 if __name__ == "__main__" :
     #menu = Menu('test',None,None,None,None,None)
+    #list = ['a','b','c','d',1,'e','f','g','h','i','j','k']
+    #list = {'com_cd_grp' : 'ABC','com_cd_grp_nm' : 'BBB','del_yn' : 'N'}
+    #dtl = ComCdDtl(list)
+    #print(dtl)
     pass

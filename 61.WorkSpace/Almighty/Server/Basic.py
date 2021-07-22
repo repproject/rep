@@ -6,11 +6,18 @@ from common.ui.comUi import *
 def merge(table):
     try:
         s.merge(table)
-        print(table)
         s.commit()
     except Exception as e :
         print("Basic Except : " + e)
         return False
+
+def mergeList(tableList):
+    try:
+        for table in tableList:
+            s.merge(table)
+        s.commit()
+    except Exception as e :
+        print(e)
 
 dic = {}
 
