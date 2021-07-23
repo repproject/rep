@@ -42,7 +42,7 @@ class KCOMDEV020(QWidget, KWidget, form_class) :
         try:
             strComCdgrp = self.sender().item(self.sender().currentRow(),0).text()
 
-            Columns = ['com_cd_grp', 'com_cd', 'com_cd_nm', 'eff_sta_ymd', 'eff_end_ymd', 'ref1', 'ref2', 'ref3', 'ref4', 'ref5']
+            Columns = ['com_cd', 'com_cd_nm', 'eff_sta_ymd', 'eff_end_ymd', 'ref1', 'ref2', 'ref3', 'ref4', 'ref5']
             self.tableWidgetComCdDtl.setColumns(Columns)
             self.tableWidgetComCdDtl.setTableClass(ComCdDtl)
 
@@ -55,14 +55,33 @@ class KCOMDEV020(QWidget, KWidget, form_class) :
 
     def save(self):
         try:
-            if self.tableWidgetComCdGrp.currentItem() == None:
-                alert("공통코드그룹을 선택하셔야합니다.")
-                return False
-            else:
+            if self.preSave():
                 self.tableWidgetComCdGrp.mergeRow()
                 self.tableWidgetComCdDtl.mergeList()
         except Exception as e :
             print(e)
+
+    def preSave(self):
+        if self.tableWidgetComCdGrp.currentItem() == None:
+            alert("공통코드그룹을 선택하셔야합니다.")
+            return False
+
+        if self.tableWidgetComCdGrp.getTextByColName(self.tableWidgetComCdGrp.currentRow(),'com_cd_grp') == False:
+            alert('공통코드그룹ID가 없습니다.')
+            return False
+
+        for n in range(0,self.tableWidgetComCdDtl.rowCount()):
+            if self.tableWidgetComCdDtl.getTextByColName(n, "com_cd") == None:
+                alert('공통코드값이 없습니다.')
+                return False
+
+            if self.tableWidgetComCdDtl.getTextByColName(n, "com_cd_nm") == None:
+                alert('공통코드명이 없습니다.')
+                return False
+
+            if self.tableWidgetComCdDtl.getTextByColName(n, "prnt_seq") == None:
+                alert('출력순서가 없습니다.')
+                return False
 
     def addGrp(self):
         try:
