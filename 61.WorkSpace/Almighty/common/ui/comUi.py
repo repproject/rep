@@ -1,9 +1,10 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import pyqtSlot
-import sys
 from Server.Basic import *
+import sys, traceback
 import copy
+import Server.COM
 
 basic_ui_route = 'UI._uiFiles.COM'
 basic_ui_dictionary = "C:/Users/Ceasar.DESKTOP-AQTREV4/PycharmProjects/rep/61.WorkSpace/Almighty/UI/_uiFiles/COM/"
@@ -28,9 +29,14 @@ def setTable2Edit(form,table):
         try:
             text = str(getattr(table,colname))
             getattr(form,'edit_'+colname).setText(text)
-        except Exception as e:
-            print("set Table to Edit Text Failure... : [" + colname + "]")
-            print(e)
+        except AttributeError as ae:
+            setTable2EditErrorList = (
+            "'KCOMMAN020' object has no attribute 'edit_reg_user_id'",
+            "'KCOMMAN020' object has no attribute 'edit_reg_dtm'",
+            "'KCOMMAN020' object has no attribute 'edit_chg_user_id'",
+            "'KCOMMAN020' object has no attribute 'edit_chg_dtm'")
+            if str(ae) not in setTable2EditErrorList: error()
+        except : error()
     return True
 
 def setEdit2Table(form,table):
@@ -51,31 +57,17 @@ def setEdit2Table(form,table):
             print(e)
     return True
 
-############### Code ################
-def getCode(grp):
-    r"""
-        공통코드그룹ID로 코드값을 dictionary로 return 한다.
-    :param grp : 공통코드그룹ID
-    :return: dictionary {com_cd:com_cd_nm}
-    """
-    #이미 코드가 존재하면 존재하는 리스트값으로 return
-    if grp in dicCodeList:
-        return dicCodeList[grp]
-    result = getCode(grp)
-    code = {}
-    for cd in result:
-        code[cd.com_cd] = cd.com_cd_nm
-    dicCodeList[grp] = code
-    return code
+def error():logging.error(traceback.format_exc())
 
+############### Code ################
 def setCode(grp):   #코드세팅
     r"""
         공통코드그룹ID를 받아 공통코드 공통리스트 전역변수에 반영한다.
     :param grp : 공통코드그룹ID
     :return: True/False
     """
-    if grp not in dicCodeList:
-        result = getCode(grp)
+    if grp not in dicCodeList.keys():
+        result = Server.COM.getCodeDtl(grp)
         code = {}
         for cd in result:
             code[cd.com_cd] = cd.com_cd_nm
@@ -83,11 +75,22 @@ def setCode(grp):   #코드세팅
         return True
     else : return False
 
+def getCode(grp):
+    r"""
+        공통코드그룹ID로 코드값을 dictionary로 return 한다.
+    :param grp : 공통코드그룹ID
+    :return: dictionary {com_cd:com_cd_nm}
+    """
+    #이미 코드가 존재하면 존재하는 리스트값으로 return
+    if grp in dicCodeList.keys(): return dicCodeList[grp]
+    setCode(grp)
+    return dicCodeList[grp]
+
 ############Table############
 class TableListBind():
     listTable = None
     columns = None
-    table = None
+    tableClass = None
 
     def __init__(self, listTable=None, columns=None):
         try:
@@ -98,7 +101,9 @@ class TableListBind():
 
     def setListTable(self, listTable): self.listTable = listTable
     def setColumns(self, columns):     self.columns = columns
-    def setTable(self, table):         self.table = table
+    def setTableClass(self, tableClass):
+        self.tableClass = tableClass
+        Server.COM.setCodeByTable(tableClass)
     def getColumns(self):              return self.columns
     def getlistTable(self):            return self.listTable
 
@@ -117,8 +122,7 @@ class TableBind():
     def setColName(self, colName): self.colName = colName
     def getColName(self):          return self.colName
     def getTable(self):            return self.table
-    def setColumnValue(self,text):
-        setattr(self.table,self.colName,text)
+    def setColumnValue(self,text): setattr(self.table,self.colName,text)
 
 ############TableWidget##############
 class TableWidgetItem(QTableWidgetItem,TableBind):
@@ -129,8 +133,7 @@ class TableWidgetItem(QTableWidgetItem,TableBind):
         except Exception as e:
             print("class TableWidgetItem : " + str(e))
 
-    def setColumnValue(self):
-        super().setColumnValue(self.text())
+    def setColumnValue(self): super().setColumnValue(self.text())
 
 class TableWidget(QTableWidget,TableListBind):
     def __init__(self,table = None, listTable = None, columns = None):
@@ -161,7 +164,7 @@ class TableWidget(QTableWidget,TableListBind):
     def setTableWidgetRow(self,n,table=None):
         try:
             for m, col in enumerate(self.columns):
-                colClass = getattr(self.table, col)
+                colClass = getattr(self.tableClass, col)
                 if colClass.kcom_cd_domain:  # com_cd  도메인인경우
                     combobox = ComboBox(colClass.kcom_cd_grp)
                     try:
@@ -176,6 +179,7 @@ class TableWidget(QTableWidget,TableListBind):
                     newitem = TableWidgetItem(text, table, col)
                     self.setItem(n, m, newitem)
         except Exception as e:
+            logging.error(traceback.format_exc())
             print('comUI.setTableWidgetRow : ' + str(e))
 
     def insertTableWidgetRow(self,n):
@@ -211,6 +215,21 @@ class TableWidget(QTableWidget,TableListBind):
     def mergeList(self):
         self.setAllValues()
         mergeList(self.listTable)
+
+    def resize(self):
+        table = self
+        header = table.horizontalHeader()
+        twidth = header.width()
+        width = []
+
+        for column in range(header.count()):
+            header.setSectionResizeMode(column, QHeaderView.ResizeToContents)
+            width.append(header.sectionSize(column))
+            wfactor = twidth / sum(width)
+
+        for column in range(header.count()):
+            header.setSectionResizeMode(column, QHeaderView.Interactive)
+            header.resizeSection(column, width[column] * wfactor)
 
     @pyqtSlot(int, int)
     def onCellChanged(self, row, column): self.item(row,column).setColumnValue()

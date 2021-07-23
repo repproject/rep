@@ -6,10 +6,10 @@ import common.database.Relfect
 from UI._uiFiles.UIBasic import *
 import sys
 
-pgm_id = 'KCOMMAN004'
+pgm_id = 'KCOMDEV010'
 form_class = uic.loadUiType(pgm_id + ".ui")[0]
 
-class KCOMMAN004(QWidget,KWidget,form_class) :
+class KCOMDEV010(QWidget, KWidget, form_class) :
     meta = None
 
     def __init__(self):
@@ -44,7 +44,7 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
 
     #WindowClass의 인스턴스 생성
-    myWindow = KCOMMAN004()
+    myWindow = KCOMDEV010()
 
     #프로그램 화면을 보여주는 코드
     myWindow.show()

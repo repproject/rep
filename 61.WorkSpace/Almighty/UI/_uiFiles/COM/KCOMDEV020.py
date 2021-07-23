@@ -8,13 +8,12 @@ from Server.Basic import *
 from DAO.KADM import *
 import copy
 
-pgm_id = 'KCOMMAN005'
+pgm_id = 'KCOMDEV020'
 form_class = uic.loadUiType(pgm_id + ".ui")[0]
 
-class KCOMMAN005(QWidget,KWidget,form_class) :
+class KCOMDEV020(QWidget, KWidget, form_class) :
     tableComCdLst = None
     tableComCdDtl = None
-    a = None
 
     def __init__(self):
         super().__init__()
@@ -30,7 +29,7 @@ class KCOMMAN005(QWidget,KWidget,form_class) :
         try:
             Columns = ['com_cd_grp', 'com_cd_grp_nm', 'com_cd_grp_desc', 'up_com_cd_grp', 'del_yn', 'ref1', 'ref2', 'ref3', 'ref4', 'ref5']
             self.tableWidgetComCdGrp.setColumns(Columns) #tableWidget객체에 컬럼목록 세팅
-            self.tableWidgetComCdGrp.setTable(ComCdLst)  #tableWidget객체에 대상 테이블 클래스 세팅
+            self.tableWidgetComCdGrp.setTableClass(ComCdLst)  #tableWidget객체에 대상 테이블 클래스 세팅
 
             self.tableWidgetComCdGrp.setListTable(self.getCodeLst(self.edt_ComCdGrp.text(),self.edt_ComCdGrpNm.text()))
 
@@ -45,7 +44,7 @@ class KCOMMAN005(QWidget,KWidget,form_class) :
 
             Columns = ['com_cd_grp', 'com_cd', 'com_cd_nm', 'eff_sta_ymd', 'eff_end_ymd', 'ref1', 'ref2', 'ref3', 'ref4', 'ref5']
             self.tableWidgetComCdDtl.setColumns(Columns)
-            self.tableWidgetComCdDtl.setTable(ComCdDtl)
+            self.tableWidgetComCdDtl.setTableClass(ComCdDtl)
 
             self.tableWidgetComCdDtl.setListTable(self.getCodeDtl(strComCdgrp))
 
@@ -82,7 +81,7 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
 
     #WindowClass의 인스턴스 생성
-    myWindow = KCOMMAN005()
+    myWindow = KCOMDEV020()
 
     #프로그램 화면을 보여주는 코드
     myWindow.show()

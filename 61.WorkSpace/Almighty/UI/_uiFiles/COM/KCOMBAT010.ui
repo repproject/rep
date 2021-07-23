@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1073</width>
+    <height>595</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QTableWidget" name="tableWidgetJob">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>50</y>
+     <width>1000</width>
+     <height>501</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>1000</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <attribute name="horizontalHeaderDefaultSectionSize">
+    <number>79</number>
+   </attribute>
+   <column>
+    <property name="text">
+     <string>JobID</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Job명</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Job설명</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>작업구분</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>참조1</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>참조2</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>참조3</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>참조4</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>참조5</string>
+    </property>
+   </column>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

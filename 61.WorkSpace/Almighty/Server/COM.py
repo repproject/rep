@@ -14,7 +14,7 @@ def getMenuLv(lv):
 def getJob():
     result = s.query(Job).all()
     #Job에 선언된 공통코드를 세팅한다.
-    setCodebyTable(Job)
+    setCodeByTable(Job)
     return result
 
 def getCodeLst(strComCdGrp,strComCdGrpNm):
@@ -23,7 +23,7 @@ def getCodeLst(strComCdGrp,strComCdGrpNm):
 def getCodeDtl(strComCdGrp):
     return s.query(ComCdDtl).filter_by(com_cd_grp=strComCdGrp).all()
 
-def setCodebyTable(tbl):
+def setCodeByTable(tbl):
     for col in tbl.__table__.columns:
         if col.kcom_cd_domain : setCode(col.kcom_cd_grp)
     return True

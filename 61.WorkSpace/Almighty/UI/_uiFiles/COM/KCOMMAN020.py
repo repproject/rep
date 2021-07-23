@@ -8,11 +8,10 @@ from UI._uiFiles.UIBasic import *
 from DAO.KADM import *
 import datetime
 
-
-pgm_id = 'KCOMMAN002'
+pgm_id = 'KCOMMAN020'
 form_class = uic.loadUiType(pgm_id + ".ui")[0]
 
-class KCOMMAN002(QWidget,KWidget,form_class) :
+class KCOMMAN020(QWidget, KWidget, form_class) :
     selectedItem = None
     root = None
     tableMenu = None
@@ -160,7 +159,7 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
 
 # WindowClass의 인스턴스 생성
-    myWindow = KCOMMAN002()
+    myWindow = KCOMMAN020()
 
 #    프로그램 화면을 보여주는 코드
     myWindow.show()

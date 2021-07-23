@@ -1,0 +1,166 @@
+ERROR:root:'KCOMMAN020' object has no attribute 'edit_reg_user_id'
+ERROR:root:'KCOMMAN020' object has no attribute 'edit_reg_dtm'
+ERROR:root:'KCOMMAN020' object has no attribute 'edit_chg_user_id'
+ERROR:root:'KCOMMAN020' object has no attribute 'edit_chg_dtm'
+ERROR:root:'KCOMMAN020' object has no attribute 'edit_reg_user_id'
+ERROR:root:'KCOMMAN020' object has no attribute 'edit_reg_dtm'
+ERROR:root:'KCOMMAN020' object has no attribute 'edit_chg_user_id'
+ERROR:root:'KCOMMAN020' object has no attribute 'edit_chg_dtm'
+ERROR:root:Traceback (most recent call last):
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 166, in setTableWidgetRow
+    combobox = ComboBox(colClass.kcom_cd_grp)
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 233, in __init__
+    for cd in dicCodeList[com_cd_grp].keys():
+KeyError: 'JOB_CL'
+
+ERROR:root:Traceback (most recent call last):
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 166, in setTableWidgetRow
+    combobox = ComboBox(colClass.kcom_cd_grp)
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 233, in __init__
+    for cd in dicCodeList[com_cd_grp].keys():
+KeyError: 'JOB_CL'
+
+ERROR:root:Traceback (most recent call last):
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 166, in setTableWidgetRow
+    combobox = ComboBox(colClass.kcom_cd_grp)
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 233, in __init__
+    for cd in dicCodeList[com_cd_grp].keys():
+KeyError: 'JOB_CL'
+
+ERROR:root:Traceback (most recent call last):
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 166, in setTableWidgetRow
+    combobox = ComboBox(colClass.kcom_cd_grp)
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 233, in __init__
+    for cd in dicCodeList[com_cd_grp].keys():
+KeyError: 'JOB_CL'
+
+ERROR:root:Traceback (most recent call last):
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 166, in setTableWidgetRow
+    combobox = ComboBox(colClass.kcom_cd_grp)
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 233, in __init__
+    for cd in dicCodeList[com_cd_grp].keys():
+KeyError: 'JOB_CL'
+
+ERROR:root:Traceback (most recent call last):
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 166, in setTableWidgetRow
+    combobox = ComboBox(colClass.kcom_cd_grp)
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 233, in __init__
+    for cd in dicCodeList[com_cd_grp].keys():
+KeyError: 'JOB_CL'
+
+ERROR:root:Traceback (most recent call last):
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 166, in setTableWidgetRow
+    combobox = ComboBox(colClass.kcom_cd_grp)
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 233, in __init__
+    for cd in dicCodeList[com_cd_grp].keys():
+KeyError: 'JOB_CL'
+
+ERROR:root:Traceback (most recent call last):
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 166, in setTableWidgetRow
+    combobox = ComboBox(colClass.kcom_cd_grp)
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 233, in __init__
+    for cd in dicCodeList[com_cd_grp].keys():
+KeyError: 'JOB_CL'
+
+ERROR:root:Traceback (most recent call last):
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 166, in setTableWidgetRow
+    combobox = ComboBox(colClass.kcom_cd_grp)
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 233, in __init__
+    for cd in dicCodeList[com_cd_grp].keys():
+KeyError: 'JOB_CL'
+
+ERROR:root:Traceback (most recent call last):
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 166, in setTableWidgetRow
+    combobox = ComboBox(colClass.kcom_cd_grp)
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 233, in __init__
+    for cd in dicCodeList[com_cd_grp].keys():
+KeyError: 'JOB_CL'
+
+ERROR:root:Traceback (most recent call last):
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 166, in setTableWidgetRow
+    combobox = ComboBox(colClass.kcom_cd_grp)
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 233, in __init__
+    for cd in dicCodeList[com_cd_grp].keys():
+KeyError: 'JOB_CL'
+
+ERROR:root:Traceback (most recent call last):
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 166, in setTableWidgetRow
+    combobox = ComboBox(colClass.kcom_cd_grp)
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 233, in __init__
+    for cd in dicCodeList[com_cd_grp].keys():
+KeyError: 'JOB_CL'
+
+ERROR:root:Traceback (most recent call last):
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 166, in setTableWidgetRow
+    combobox = ComboBox(colClass.kcom_cd_grp)
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 233, in __init__
+    for cd in dicCodeList[com_cd_grp].keys():
+KeyError: 'JOB_CL'
+
+ERROR:root:Traceback (most recent call last):
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 166, in setTableWidgetRow
+    combobox = ComboBox(colClass.kcom_cd_grp)
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 233, in __init__
+    for cd in dicCodeList[com_cd_grp].keys():
+KeyError: 'JOB_CL'
+
+ERROR:root:Traceback (most recent call last):
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 166, in setTableWidgetRow
+    combobox = ComboBox(colClass.kcom_cd_grp)
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 233, in __init__
+    for cd in dicCodeList[com_cd_grp].keys():
+KeyError: 'JOB_CL'
+
+ERROR:root:Traceback (most recent call last):
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 166, in setTableWidgetRow
+    combobox = ComboBox(colClass.kcom_cd_grp)
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 233, in __init__
+    for cd in dicCodeList[com_cd_grp].keys():
+KeyError: 'JOB_CL'
+
+ERROR:root:Traceback (most recent call last):
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 166, in setTableWidgetRow
+    combobox = ComboBox(colClass.kcom_cd_grp)
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 233, in __init__
+    for cd in dicCodeList[com_cd_grp].keys():
+KeyError: 'JOB_CL'
+
+ERROR:root:Traceback (most recent call last):
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 166, in setTableWidgetRow
+    combobox = ComboBox(colClass.kcom_cd_grp)
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 233, in __init__
+    for cd in dicCodeList[com_cd_grp].keys():
+KeyError: 'JOB_CL'
+
+ERROR:root:Traceback (most recent call last):
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 166, in setTableWidgetRow
+    combobox = ComboBox(colClass.kcom_cd_grp)
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 233, in __init__
+    for cd in dicCodeList[com_cd_grp].keys():
+KeyError: 'JOB_CL'
+
+ERROR:root:Traceback (most recent call last):
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 166, in setTableWidgetRow
+    combobox = ComboBox(colClass.kcom_cd_grp)
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\common\ui\comUi.py", line 233, in __init__
+    for cd in dicCodeList[com_cd_grp].keys():
+KeyError: 'JOB_CL'
+
+ERROR:root:Traceback (most recent call last):
+  File "C:/Users/Ceasar.DESKTOP-AQTREV4/PycharmProjects/rep/61.WorkSpace/Almighty/UI/_uiFiles/COM/KCOMMAN010.py", line 38, in loadUI
+    uiClass = getattr(mod, menu[0].pgm_id)()
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\UI\_uiFiles\COM\KCOMBAT010.py", line 18, in __init__
+    self.initUI()
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\UI\_uiFiles\COM\KCOMBAT010.py", line 23, in initUI
+    self.tableWidgetJob.tableClass(Job)
+TypeError: 'NoneType' object is not callable
+
+ERROR:root:Traceback (most recent call last):
+  File "C:/Users/Ceasar.DESKTOP-AQTREV4/PycharmProjects/rep/61.WorkSpace/Almighty/UI/_uiFiles/COM/KCOMMAN010.py", line 38, in loadUI
+    uiClass = getattr(mod, menu[0].pgm_id)()
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\UI\_uiFiles\COM\KCOMBAT010.py", line 18, in __init__
+    self.initUI()
+  File "C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\UI\_uiFiles\COM\KCOMBAT010.py", line 23, in initUI
+    self.tableWidgetJob.tableClass(Job)
+TypeError: 'NoneType' object is not callable
+
