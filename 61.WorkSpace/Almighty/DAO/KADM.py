@@ -75,20 +75,19 @@ class ComCdLst(Base,KTable):
     ref3 = KColumn(String(100), nullable = True)
     ref4 = KColumn(String(100), nullable = True)
     ref5 = KColumn(String(100), nullable = True)
-    codeList = {}
 
     def __init__(self, *args, **kwargs):
         KTable.__init__(self)
-        self.com_cd_grp = kwargs.pop("com_cd_grp", False)
-        self.com_cd_grp_nm = kwargs.pop("com_cd_grp_nm", False)
-        self.com_cd_grp_desc = kwargs.pop("com_cd_grp_desc", False)
-        self.up_com_cd_grp = kwargs.pop("up_com_cd_grp", False)
+        self.com_cd_grp = kwargs.pop("com_cd_grp")
+        self.com_cd_grp_nm = kwargs.pop("com_cd_grp_nm")
+        self.com_cd_grp_desc = kwargs.pop("com_cd_grp_desc","")
+        self.up_com_cd_grp = kwargs.pop("up_com_cd_grp","")
         self.del_yn = kwargs.pop("del_yn", 'N')
-        self.ref1 = kwargs.pop("ref1", False)
-        self.ref2 = kwargs.pop("ref2", False)
-        self.ref3 = kwargs.pop("ref3", False)
-        self.ref4 = kwargs.pop("ref4", False)
-        self.ref5 = kwargs.pop("ref5", False)
+        self.ref1 = kwargs.pop("ref1","")
+        self.ref2 = kwargs.pop("ref2","")
+        self.ref3 = kwargs.pop("ref3","")
+        self.ref4 = kwargs.pop("ref4","")
+        self.ref5 = kwargs.pop("ref5","")
 
     def __repr__(self):
         return "<ComCdLst('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.com_cd_grp), str(self.com_cd_grp_nm), str(self.com_cd_grp_desc), str(self.up_com_cd_grp), str(self.del_yn), str(self.ref1), str(self.ref2), str(self.ref3), str(self.ref4), str(self.ref5) + KTable.__repr__(self))

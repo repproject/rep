@@ -19,16 +19,16 @@ class KCOMBAT010(QWidget, KWidget, form_class) :
 
     def initUI(self):
         Columns = ['job_id', 'job_nm', 'job_desc', 'job_cl_cd', 'ref1', 'ref2', 'ref3', 'ref4', 'ref5']
-        self.tableWidgetJob.setColumns(Columns)
-        self.tableWidgetJob.setTableClass(Job)
+        self.twJob.setColumns(Columns)
+        self.twJob.setTableClass(Job)
 
         #set TableWidget by listTable
-        self.tableWidgetJob.setListTable(self.getJob())
+        self.twJob.setListTable(self.getJob())
 
         #Table Widget Setting
-        self.tableWidgetJob.resizeRowsToContents()
-        self.tableWidgetJob.resize()
-        self.tableWidgetJob.setColumnWidth(3,263)
+        self.twJob.resizeRowsToContents()
+        self.twJob.resize()
+        self.twJob.setColumnWidth(3,263)
 
     def getJob(self):
         return Server.COM.getJob()

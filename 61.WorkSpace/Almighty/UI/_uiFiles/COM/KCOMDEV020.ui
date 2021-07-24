@@ -102,7 +102,7 @@
     <string>조회</string>
    </property>
   </widget>
-  <widget class="QTableWidget" name="tableWidgetComCdGrp">
+  <widget class="QTableWidget" name="twComCdGrp">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -170,7 +170,7 @@
     </property>
    </column>
   </widget>
-  <widget class="QTableWidget" name="tableWidgetComCdDtl">
+  <widget class="QTableWidget" name="twtComCdDtl">
    <property name="geometry">
     <rect>
      <x>10</x>

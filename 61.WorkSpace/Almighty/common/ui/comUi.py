@@ -122,7 +122,6 @@ class TableBind():
     def setColName(self, colName): self.colName = colName
     def getColName(self):          return self.colName
     def getTable(self):            return self.table
-    def setColumnValue(self,text): setattr(self.table,self.colName,text)
 
 ############TableWidget##############
 class TableWidgetItem(QTableWidgetItem,TableBind):
@@ -133,9 +132,8 @@ class TableWidgetItem(QTableWidgetItem,TableBind):
         except Exception as e:
             print("class TableWidgetItem : " + str(e))
 
-    def setColumnValue(self): super().setColumnValue(self.text())
-
 class TableWidget(QTableWidget,TableListBind):
+    basicRowDic = None
     def __init__(self,table = None, listTable = None, columns = None):
         try:
             super(TableWidget,self).__init__(listTable,columns)
@@ -155,13 +153,13 @@ class TableWidget(QTableWidget,TableListBind):
     def setByTableList(self):
         try:
             self.setRowCount(len(self.listTable))
-            for n, row in enumerate(self.listTable): self.setTableWidgetRow(n,self.listTable[n])
+            for n, row in enumerate(self.listTable): self.setTWRow(n, self.listTable[n])
             return True
         except Exception as e:
             print('TableWidget.setByTableList : ' + str(e))
             return False
 
-    def setTableWidgetRow(self,n,table=None):
+    def setTWRow(self, n, table=None):
         try:
             for m, col in enumerate(self.columns):
                 colClass = getattr(self.tableClass, col)
@@ -182,15 +180,11 @@ class TableWidget(QTableWidget,TableListBind):
             logging.error(traceback.format_exc())
             print('comUI.setTableWidgetRow : ' + str(e))
 
-    def insertTableWidgetRow(self,n):
-        self.insertRow(n)
-        #table = self.table()
-        #self.listTable.insert(n,table)
-        self.setTableWidgetRow(n)
+    def insertTWRow(self, n): self.insertRow(n)
 
-    def addTableWidgetRow(self):
+    def addTWRow(self):
         n = self.rowCount()
-        self.insertTableWidgetRow(n)
+        self.insertTWRow(n)
 
     def removeAll(self):
         model = self.model()
@@ -203,18 +197,41 @@ class TableWidget(QTableWidget,TableListBind):
         self.setRowValues(n)
         merge(self.item(n,0).table)
 
+    def mergeList(self):
+        self.setAllValues()
+        mergeList(self.listTable)
+
     def setRowValues(self,n=None):
         if n == None: n = self.currentRow()
-        for m in range(0, self.columnCount()):
-            self.item(n, m).setColumnValue()
+
+        if self.item(n, 0).table == None:
+            dicData = {}
+            for m in range(0, self.columnCount()):
+                dicData[self.item(n, m).colName] = self.item(n, m).text()
+                dicData = {**self.basicRowDic,**dicData} #key값이 겹치는 경우 뒤 dicData기준(TableWidget 기준 세팅)
+            table = self.tableClass(dicData)
+            self.listTable.append(table)
+
+            for m in  range(0, self.columnCount()):
+                self.item(n,m).table = table
+        else:
+            for m in  range(0, self.columnCount()):
+                setattr(self.item(n,m).table,self.item(n,m).colName,self.item(n,m).text())
 
     def setAllValues(self):
         for n in range(0,self.rowCount()):
             self.setRowValues(n)
 
-    def mergeList(self):
-        self.setAllValues()
-        mergeList(self.listTable)
+    def getTextByColName(self,n,colName):
+        for m in range(0,self.columnCount()):
+            if self.item(n,m).colName == colName:
+                return self.item(n,m).text()
+        return False
+
+    def getTextByColName(self,n,colName,text):
+        for m in range(0,self.columnCount()):
+            if self.item(n,m).colName == colName:
+                self.item(n,m).setText(text)
 
     def resize(self):
         table = self
@@ -231,8 +248,10 @@ class TableWidget(QTableWidget,TableListBind):
             header.setSectionResizeMode(column, QHeaderView.Interactive)
             header.resizeSection(column, width[column] * wfactor)
 
-    @pyqtSlot(int, int)
-    def onCellChanged(self, row, column): self.item(row,column).setColumnValue()
+    def getDicBasicData(self):
+        dicData = {}
+        return  dicData
+        pass
 
     @classmethod
     def convert_to_TableWidget(cls, obj):

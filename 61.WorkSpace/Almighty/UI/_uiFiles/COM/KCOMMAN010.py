@@ -26,7 +26,7 @@ class WindowClass(QMainWindow, form_class) :
             super().__init__()
             self.setupUi(self)
             self.initUI()
-        except:error()
+        except : error()
 
     def initUI(self):
         self.test()
@@ -40,7 +40,7 @@ class WindowClass(QMainWindow, form_class) :
             uiClass = getattr(mod, menu[0].pgm_id)()
             self.tabWidget.addTab(uiClass, menu[0].menu_nm)
             return True
-        except:error()
+        except : error()
 
     def makeMenu(self):
         menuLv1 = Server.COM.getMenuLv(1)
