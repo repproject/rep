@@ -170,7 +170,7 @@
     </property>
    </column>
   </widget>
-  <widget class="QTableWidget" name="twtComCdDtl">
+  <widget class="QTableWidget" name="twComCdDtl">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -195,11 +195,6 @@
    </attribute>
    <column>
     <property name="text">
-     <string>그룹ID</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
      <string>코드값</string>
     </property>
    </column>
@@ -210,12 +205,28 @@
    </column>
    <column>
     <property name="text">
+     <string>코드설명</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>출력순서</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
      <string>유효시작일자</string>
+    </property>
+    <property name="textAlignment">
+     <set>AlignCenter</set>
     </property>
    </column>
    <column>
     <property name="text">
      <string>유효종료일자</string>
+    </property>
+    <property name="textAlignment">
+     <set>AlignCenter</set>
     </property>
    </column>
    <column>

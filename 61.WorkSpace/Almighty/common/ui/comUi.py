@@ -91,6 +91,7 @@ class TableListBind():
     listTable = None
     columns = None
     tableClass = None
+    setDic = {}
 
     def __init__(self, listTable=None, columns=None):
         try:
@@ -100,7 +101,7 @@ class TableListBind():
             print("class TableBind Exception : " + str(e))
 
     def setListTable(self, listTable): self.listTable = listTable
-    def setColumns(self, columns):     self.columns = columns
+    def setColumns(self, columns):     self.columns   = columns
     def setTableClass(self, tableClass):
         self.tableClass = tableClass
         Server.COM.setCodeByTable(tableClass)
@@ -133,7 +134,8 @@ class TableWidgetItem(QTableWidgetItem,TableBind):
             print("class TableWidgetItem : " + str(e))
 
 class TableWidget(QTableWidget,TableListBind):
-    basicRowDic = None
+    widths = []
+
     def __init__(self,table = None, listTable = None, columns = None):
         try:
             super(TableWidget,self).__init__(listTable,columns)
@@ -150,6 +152,15 @@ class TableWidget(QTableWidget,TableListBind):
         super(TableWidget,self).setListTable(listTable)
         self.setByTableList()
 
+    def setBasicList(self,columns,widths,tableClass=None,):
+        self.setColumns(columns)
+        self.setWidths(widths)
+        self.setTableClass(tableClass)
+    def setWidths(self,widths):
+        self.widths    = widths
+        for i in range(0,len(widths)):
+            self.setColumnWidth(i,widths[i])
+
     def setByTableList(self):
         try:
             self.setRowCount(len(self.listTable))
@@ -159,12 +170,20 @@ class TableWidget(QTableWidget,TableListBind):
             print('TableWidget.setByTableList : ' + str(e))
             return False
 
+
     def setTWRow(self, n, table=None):
+        r"""
+            Row가 추가 된 경우 Setting
+        :param n: 몇번째 Row를 추가할 것인지
+        :param table: Setting할 table값(없으면 신규)
+        :return:
+        """
         try:
             for m, col in enumerate(self.columns):
                 colClass = getattr(self.tableClass, col)
                 if colClass.kcom_cd_domain:  # com_cd  도메인인경우
                     combobox = ComboBox(colClass.kcom_cd_grp)
+                    combobox.setFixedWidth(self.widths[m])
                     try:
                         if table != None : combobox.setCurrentText(dicCodeList[colClass.kcom_cd_grp][getattr(table, col)])
                     except KeyError as ke:
@@ -172,19 +191,25 @@ class TableWidget(QTableWidget,TableListBind):
                         else: print("공통코드 미등록 >> " + colClass.kcom_cd_grp + " : table is None ")
                     self.setCellWidget(n, m, combobox)
                 else:
-                    if table == None : text = None
-                    else : text = getattr(table, col)
-                    newitem = TableWidgetItem(text, table, col)
+                    if table == None : text = ""
+                    else :
+                        text = getattr(table, col)
+                        if text == None :
+                            text = ""
+                    newitem = TableWidgetItem(str(text), table, col)
                     self.setItem(n, m, newitem)
         except Exception as e:
             logging.error(traceback.format_exc())
             print('comUI.setTableWidgetRow : ' + str(e))
 
-    def insertTWRow(self, n): self.insertRow(n)
+    def insertTWRow(self, n):
+        self.insertRow(n)
+        self.setTWRow(n)
 
     def addTWRow(self):
         n = self.rowCount()
         self.insertTWRow(n)
+        return n
 
     def removeAll(self):
         model = self.model()
@@ -205,11 +230,11 @@ class TableWidget(QTableWidget,TableListBind):
         if n == None: n = self.currentRow()
 
         if self.item(n, 0).table == None:
-            dicData = {}
+            kwargs = {}
             for m in range(0, self.columnCount()):
-                dicData[self.item(n, m).colName] = self.item(n, m).text()
-                dicData = {**self.basicRowDic,**dicData} #key값이 겹치는 경우 뒤 dicData기준(TableWidget 기준 세팅)
-            table = self.tableClass(dicData)
+                kwargs[self.item(n, m).colName] = self.item(n, m).text()
+                kwargs = {**self.setDic,**kwargs} #key값이 겹치는 경우 뒤 dicData기준(TableWidget 기준 세팅)
+            table = self.tableClass(**kwargs)
             self.listTable.append(table)
 
             for m in  range(0, self.columnCount()):
@@ -228,9 +253,12 @@ class TableWidget(QTableWidget,TableListBind):
                 return self.item(n,m).text()
         return False
 
-    def getTextByColName(self,n,colName,text):
+    def setTextByColName(self,n,colName,text):
         for m in range(0,self.columnCount()):
             if self.item(n,m).colName == colName:
+                if text == None:
+                    text = ""
+                else: text = str(text)
                 self.item(n,m).setText(text)
 
     def resize(self):

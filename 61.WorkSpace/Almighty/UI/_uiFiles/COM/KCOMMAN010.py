@@ -16,7 +16,7 @@ logging.basicConfig(level=logging.INFO
 #단, UI파일은 Python 코드 파일과 같은 디렉토리에 위치해야한다.
 pgm_id = 'KCOMMAN010'
 form_class = uic.loadUiType(pgm_id + ".ui")[0]
-basic_ui_route = 'UI._uiFiles.COM'
+basic_ui_route = 'UI._uiFiles.COM.'
 user_id = 1000000001
 
 #화면을 띄우는데 사용되는 Class 선언

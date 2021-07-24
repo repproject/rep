@@ -16,18 +16,18 @@ def getClassTable(meta,className,tableName):
         classDeclare = "class " + className + "(Base,KTable):\n"
         classDeclare += "    __tablename__ = '" + tableName.upper() + "'\n\n"
 
-        colParameter = ""
         colInitDeclare = ""
         colReprBindStr = ""
         colReprParameter = ""
         for col in tbl._columns:
             if col.name != 'REG_USER_ID' and col.name != 'REG_DTM' and col.name != 'CHG_USER_ID' and col.name != 'CHG_DTM':
-                colParameter += ", " + col.name.lower()
                 colReprParameter += "str(self." + col.name.lower() + "), "
                 colDeclare = "    " + col.name.lower() + " = KColumn("
                 colTypeStr = str(col.type)
+                print(col.name + colTypeStr)
                 if colTypeStr[:7] == "DECIMAL":
                     colTypeStr = "Integer"
+                    coltypeDeclare = colTypeStr
                 else:
                     coltypeDeclare = colTypeStr.replace("VARCHAR", "String")
                 colDeclare += coltypeDeclare
@@ -37,12 +37,17 @@ def getClassTable(meta,className,tableName):
                     colDeclare += ", nullable = True"
                 else : colDeclare += ", nullable = False"
                 classDeclare += colDeclare + ")\n"
-                colInitDeclare += "        self." + col.name.lower() + " = " + col.name.lower() + "\n"
+                colInitDeclare += "        self." + col.name.lower() + " =  kwargs.pop('" + col.name.lower()
+
+                if col.nullable == True:
+                    colInitDeclare += "','"
+                colInitDeclare += "')\n"
+
                 colReprBindStr += "'%s', "
 
         #classDeclare += "    codeList = {}\n\n"
         classDeclare += "\n"
-        classDeclare += "    def __init__(self" + colParameter + "):\n"
+        classDeclare += "    def __init__(self, *args, **kwargs):\n"
         classDeclare += "        KTable.__init__(self)\n"
         classDeclare += colInitDeclare + "\n"
         classDeclare += "    def __repr__(self):\n"
