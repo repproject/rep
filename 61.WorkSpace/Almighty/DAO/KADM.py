@@ -11,7 +11,7 @@ class Site(Base,KTable):
     __tablename__ = 'KADM_SITE'
 
     site_cd = KColumn(String(20), primary_key = True, nullable = False)
-    slep_sec = KColumn(Integer, nullable = True)
+    slep_sec = KColumn(Float, nullable = True)
     bas_url = KColumn(String(1000), nullable = True)
     bas_prtc = KColumn(String(10), nullable = True)
     enc_cd = KColumn(String(20), nullable = True)

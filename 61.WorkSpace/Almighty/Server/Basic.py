@@ -5,12 +5,9 @@ from common.ui.comUi import *
 from Server.COM import *
 
 def merge(table):
-    try:
-        s.merge(table)
-        s.commit()
-    except Exception as e :
-        print("Basic Except : " + e)
-        return False
+    s.merge(table)
+    s.commit()
+    return True
 
 def mergeList(tableList):
     try:

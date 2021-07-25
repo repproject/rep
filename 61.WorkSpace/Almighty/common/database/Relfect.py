@@ -26,7 +26,11 @@ def getClassTable(meta,className,tableName):
                 colTypeStr = str(col.type)
                 print(col.name + colTypeStr)
                 if colTypeStr[:7] == "DECIMAL":
-                    colTypeStr = "Integer"
+                    colType2 = colTypeStr.split("(")[1]
+                    colType3 = colType2.split(",")[1]
+                    colType3 = colType3.replace(" ","").replace(")", "")
+                    if int(colType3) > 0 : colTypeStr = "Float"
+                    else : colTypeStr = "Integer"
                     coltypeDeclare = colTypeStr
                 else:
                     coltypeDeclare = colTypeStr.replace("VARCHAR", "String")

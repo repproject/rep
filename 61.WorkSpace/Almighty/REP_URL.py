@@ -13,32 +13,32 @@ NaverTimeStamp = 1.1
 NaverComplexListURL = "https://new.land.naver.com/api/regions/complexes?cortarNo="
 NaverComplexDtlURL = "https://new.land.naver.com/api/complexes/"
 
-dicSiteBasic = {
-    'BB' : {
-        'SLEP_TIME' : 0.1,
-        'BAS_URL' : "www.neonet.co.kr",
-        'BAS_PRTC' : "http",
-        'ENCD' : 'euckr'
-    },
-    'AP': {
-        'SLEP_TIME': 0.1,
-        'BAS_URL': "www.applyhome.co.kr",
-        'BAS_PRTC': "https",
-        'ENCD': 'euckr'
-    },
-    'NV':  {
-        'SLEP_TIME': 0.5,
-        'BAS_URL': "new.land.naver.com",
-        'BAS_PRTC': "https",
-        'ENCD': 'euckr'
-    },
-    'GO': {
-        'SLEP_TIME': 0.1,
-        'BAS_URL': "openapi.molit.go.kr",
-        'BAS_PRTC': "http",
-        'ENCD': 'euckr'
-    },
-}
+#dicSiteBasic = {
+#    'BB' : {
+#        'SLEP_TIME' : 0.1,
+#        'BAS_URL' : "www.neonet.co.kr",
+#        'BAS_PRTC' : "http",
+#        'ENCD' : 'euckr'
+#    },
+#    'AP': {
+#        'SLEP_TIME': 0.1,
+#        'BAS_URL': "www.applyhome.co.kr",
+#        'BAS_PRTC': "https",
+#        'ENCD': 'euckr'
+#    },
+#    'NV':  {
+#        'SLEP_TIME': 0.5,
+#        'BAS_URL': "new.land.naver.com",
+#        'BAS_PRTC': "https",
+#        'ENCD': 'euckr'
+#    },
+#    'GO': {
+#        'SLEP_TIME': 0.1,
+#        'BAS_URL': "openapi.molit.go.kr",
+#        'BAS_PRTC': "http",
+#        'ENCD': 'euckr'
+#    },
+#}
 
 dicSiteDetailMapp= {
     'BBRegn':'BB',
