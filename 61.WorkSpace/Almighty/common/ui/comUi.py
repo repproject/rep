@@ -173,8 +173,9 @@ class TableWidget(QTableWidget,TableListBind):
             self.setRowCount(len(self.listTable))
             for n, row in enumerate(self.listTable): self.setTWRow(n, self.listTable[n])
             return True
-        except Exception as e:
-            print('TableWidget.setByTableList : ' + str(e))
+        except :
+            if self.listTable == None : self.setRowCount(0)
+            error()
             return False
 
 

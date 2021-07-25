@@ -2,103 +2,45 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8c653bd5-f5b3-47e3-9a18-87a213a5b921" name="Default Changelist" comment="공통SQL함수에대한 None 값 예외 처리 변경&#10;스케쥴러 즉시수행여부 개발 완료&#10;추가개발필요 : JOB 변경시 변경사항을 스케쥴러에 반영하는 부분 개발 필요">
-      <change afterPath="$PROJECT_DIR$/../2021ATCL/.idea/2021ATCL.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../2021ATCL/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../2021ATCL/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../2021ATCL/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../2021ATCL/DB.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../2021ATCL/SQL.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../2021ATCL/mig.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../2021ATCL/min.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Almighty/.idea/Almighty.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Almighty/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Almighty/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Almighty/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Almighty/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Almighty/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Almighty/Batch/COM_BATCH.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Almighty/Batch/COM_LOG.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Almighty/Batch/MIG_CRWL.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Almighty/Batch/MSG_TLGR.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Almighty/DAO/KADM_MENU.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Almighty/DAO/KTable.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Almighty/SQL/MAN.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Almighty/SQL/test.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Almighty/Server/COM.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Almighty/UI/_uiFiles/COM/KCOMMAN001.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Almighty/UI/_uiFiles/COM/KCOMMAN002.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Almighty/UI/_uiFiles/convertUI2py.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Almighty/UI/comnoni/modules/icon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Almighty/UI/comnoni/modules/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Almighty/UI/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Almighty/UI/wikidocs/modules/wikidocs_main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Almighty/common/database/database.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Almighty/common/database/repSqlAlchemy.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Almighty/common/database/sqltest.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Almighty/common/database/testMybatis.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Almighty/common/database/testReflect.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Almighty/common/ui/comUi.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Almighty/sample/UI/QTreeWidgetRaven2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/B2B/B2B_MIG_Stock.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/COIN/COIN_UPBIT_MIG.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REP_MASK.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REP_MASK_CP.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REP_MASK_CP2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REP_MIG_APPLY.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/REP_MIG_REAL_TRADE.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../42.DA5/REP.damx" beforeDir="false" afterPath="$PROJECT_DIR$/../../42.DA5/REP.damx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../42.DA5/wordict5_참조모델표준화.db" beforeDir="false" afterPath="$PROJECT_DIR$/../../42.DA5/wordict5_참조모델표준화.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../44.SQL/4400.기본SQL/ALTER.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../44.SQL/4400.기본SQL/ALTER.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../51.Dev/Column2REP_TABLE.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../51.Dev/Column2REP_TABLE.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Almighty/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Almighty/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Almighty/Batch/COM_BATCH.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Almighty/common/Batch/Batch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Almighty/Batch/COM_LOG.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Almighty/common/common/Log.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Almighty/Batch/MIG_CRWL.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Almighty/common/Batch/Crawling.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Almighty/Batch/MSG_TLGR.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Almighty/common/common/Telegram.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Almighty/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Almighty/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/REP_COM.py" beforeDir="false" afterPath="$PROJECT_DIR$/REP_COM.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/REP_DAO.py" beforeDir="false" afterPath="$PROJECT_DIR$/REP_DAO.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/REP_JOB.py" beforeDir="false" afterPath="$PROJECT_DIR$/REP_JOB.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/REP_MIG.py" beforeDir="false" afterPath="$PROJECT_DIR$/REP_MIG.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/REP_MIG_BB.py" beforeDir="false" afterPath="$PROJECT_DIR$/REP_MIG_BB.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/REP_MIG_MAPP.py" beforeDir="false" afterPath="$PROJECT_DIR$/REP_MIG_MAPP.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/REP_MIG_NAVER.py" beforeDir="false" afterPath="$PROJECT_DIR$/REP_MIG_NAVER.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/REP_Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/REP_Main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/REP_SQL.py" beforeDir="false" afterPath="$PROJECT_DIR$/REP_SQL.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/REP_TABLE.py" beforeDir="false" afterPath="$PROJECT_DIR$/REP_TABLE.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/REP_TLGR_MSG.py" beforeDir="false" afterPath="$PROJECT_DIR$/REP_TLGR_MSG.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/REP_URL.py" beforeDir="false" afterPath="$PROJECT_DIR$/REP_URL.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/LOGNAME_20191127.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/LOGNAME_20191128.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/LOGNAME_20191129.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/LOGNAME_20191130.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/LOGNAME_20191202.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/LOGNAME_20191209.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/LOGNAME_20191211.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/LOGNAME_20191212.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/LOGNAME_20191228.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/LOGNAME_20191229.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/LOGNAME_20191230.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/LOGNAME_20191231.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/LOGNAME_20200102.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/LOGNAME_20200103.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/LOGNAME_20200104.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/LOGNAME_20200105.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/LOGNAME_20200107.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/LOGNAME_20200108.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/LOGNAME_20200109.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/LOGNAME_20200110.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/LOGNAME_20200111.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/LOGNAME_20200112.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/LOGNAME_20200113.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/LOGNAME_20200114.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/LOGNAME_20200115.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/LOGNAME_20200116.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/LOGNAME_[NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]_20200115.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/LOGNAME_[NVIN001][NV_IN_CMPX][INS_NV_CMPX][migNaverComplexList]_20200116.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/LOGNAME_[NVUP001][NV_UP_CMPX_INFO][UPD_NV_CMPX][updNaverComplexDtl]_20191129.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/LOGNAME_[NVUP001][NV_UP_CMPX_INFO][UPD_NV_CMPX][updNaverComplexDtl]_20191130.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/LOGNAME_[NVUP001][NV_UP_CMPX_INFO][UPD_NV_CMPX][updNaverComplexDtl]_20191202.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/LOGNAME_[NVUP001][NV_UP_CMPX_INFO][UPD_NV_CMPX][updNaverComplexDtl]_20191209.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/LOGNAME_[NVUP001][NV_UP_CMPX_INFO][UPD_NV_CMPX][updNaverComplexDtl]_20191212.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/LOGNAME_[NVUP001][NV_UP_CMPX_INFO][UPD_NV_CMPX][updNaverComplexDtl]_20191228.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/B2B/B2B_MIG_Stock.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/COIN/COIN_UPBIT_MIG.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Almighty/COIN/COIN_UPBIT_MIG.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/REP_COM.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Almighty/REP_COM.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/REP_DAO.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Almighty/REP_DAO.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/REP_JOB.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Almighty/REP_JOB.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/REP_MASK.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Almighty/REP_MASK.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/REP_MASK_CP.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Almighty/REP_MASK_CP.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/REP_MASK_CP2.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Almighty/REP_MASK_CP2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/REP_MIG.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Almighty/REP_MIG.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/REP_MIG_APPLY.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Almighty/REP_MIG_APPLY.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/REP_MIG_APT_RENT.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Almighty/REP_MIG_APT_RENT.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/REP_MIG_APT_TRADE.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Almighty/REP_MIG_APT_TRADE.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/REP_MIG_BB.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Almighty/Batch/Crawling/CrawlingBB.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/REP_MIG_MAPP.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Almighty/REP_MIG_MAPP.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/REP_MIG_NAVER.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Almighty/REP_MIG_NAVER.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/REP_MIG_REAL_TRADE.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Almighty/REP_MIG_REAL_TRADE.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/REP_Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Almighty/REP_Main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/REP_NAVER.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Almighty/REP_NAVER.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/REP_SQL.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Almighty/REP_SQL.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/REP_TABLE.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Almighty/REP_TABLE.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/REP_TLGR_MSG.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/REP_URL.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Almighty/REP_URL.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hyeogyu.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Almighty/hyeogyu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jiil_sample.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Almighty/jiil_sample.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/runREPSchedule.bat" beforeDir="false" afterPath="$PROJECT_DIR$/../Almighty/runREPSchedule.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ss" beforeDir="false" afterPath="$PROJECT_DIR$/../Almighty/ss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test23.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Almighty/test23.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test4" beforeDir="false" afterPath="$PROJECT_DIR$/../Almighty/test4" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -109,55 +51,13 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/REP_DAO.py">
+        <entry file="file://$PROJECT_DIR$/../Almighty/REP_URL.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="106" column="36" lean-forward="true" selection-start-line="106" selection-start-column="36" selection-end-line="106" selection-end-column="36" />
+            <state relative-caret-position="266">
+              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
               <folding>
-                <element signature="e#0#36#0" expanded="true" />
+                <element signature="e#0#24#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/REP_Main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="21" selection-start-line="21" selection-end-line="21" />
-              <folding>
-                <element signature="e#0#14#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/REP_MIG_BB.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3819">
-              <caret line="208" column="26" selection-start-line="208" selection-start-column="26" selection-end-line="208" selection-end-column="26" />
-              <folding>
-                <element signature="e#23#44#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/REP_SQL.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="15" column="67" selection-start-line="15" selection-start-column="67" selection-end-line="15" selection-end-column="67" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/REP_MIG.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="18" column="9" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -253,11 +153,10 @@
     <option name="FILTER_DEBUG" value="false" />
     <option name="CUSTOM_FILTER" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="4197" />
-    <option name="y" value="218" />
-    <option name="width" value="3220" />
-    <option name="height" value="1770" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="5437" />
+    <option name="width" value="1603" />
+    <option name="height" value="1749" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -265,6 +164,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -276,12 +176,11 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Almighty" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
@@ -546,9 +445,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="3833" y="-7" width="2574" height="1414" extended-state="6" />
+    <frame x="5118" y="0" width="1282" height="1399" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11465721" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23354734" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -559,7 +459,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3289183" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.8074045" weight="0.289166" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.38065523" />
+      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.3851618" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.22301024" side_tool="true" weight="0.39641744" />
       <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49940923" weight="0.31722525" />
       <window_info anchor="bottom" id="Messages" order="11" />
@@ -661,13 +561,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://C:/ProgramData/Anaconda3/envs/rep/Lib/site-packages/OpenSSL/_util.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="53" selection-start-line="53" selection-end-line="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/ProgramData/Anaconda3/envs/rep/Lib/site-packages/requests/cookies.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="9842">
@@ -773,7 +666,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/REP_NAVER.py">
+    <entry file="file://$PROJECT_DIR$/../Almighty/REP_NAVER.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="627">
           <caret line="41" column="65" selection-start-line="41" selection-start-column="65" selection-end-line="41" selection-end-column="65" />
@@ -783,7 +676,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/B2B/test.py">
+    <entry file="file://$PROJECT_DIR$/../Almighty/B2B/test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
           <caret line="14" column="9" lean-forward="true" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
@@ -794,7 +687,7 @@
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/.conda/envs/b2b/lib/site-packages/win32com/client/dynamic.py" />
-    <entry file="file://$PROJECT_DIR$/B2B/B2B_MIG_Stock.py">
+    <entry file="file://$PROJECT_DIR$/../Almighty/B2B/B2B_MIG_Stock.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
           <caret line="18" column="26" lean-forward="true" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
@@ -811,7 +704,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/B2B/B2B_COM_Data.py">
+    <entry file="file://$PROJECT_DIR$/../Almighty/B2B/B2B_COM_Data.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://C:/ProgramData/Anaconda3/envs/rep/Lib/site-packages/pymysql/protocol.py">
@@ -835,14 +728,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/REP_MIG_MAPP.py">
+    <entry file="file://$PROJECT_DIR$/../Almighty/REP_MIG_MAPP.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-229">
           <caret line="188" column="61" selection-start-line="188" selection-start-column="61" selection-end-line="188" selection-end-column="61" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/REP_MIG_REAL_TRADE.py">
+    <entry file="file://$PROJECT_DIR$/../Almighty/REP_MIG_REAL_TRADE.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="798">
           <caret line="49" column="15" selection-start-line="49" selection-start-column="15" selection-end-line="49" selection-end-column="15" />
@@ -852,7 +745,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/REP_MIG_APT_TRADE.py">
+    <entry file="file://$PROJECT_DIR$/../Almighty/REP_MIG_APT_TRADE.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1330">
           <caret line="76" column="30" selection-start-line="76" selection-start-column="20" selection-end-line="76" selection-end-column="30" />
@@ -862,27 +755,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/REP_TABLE.py">
+    <entry file="file://$PROJECT_DIR$/../Almighty/REP_TABLE.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1292">
           <caret line="325" column="48" selection-start-line="325" selection-start-column="48" selection-end-line="325" selection-end-column="48" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/REP_URL.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="80" column="17" selection-start-line="80" selection-start-column="5" selection-end-line="80" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/B2B/B2B_DAO.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/B2B/B2B_JOB.py">
+    <entry file="file://$PROJECT_DIR$/../Almighty/B2B/B2B_JOB.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <folding>
@@ -892,7 +772,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/UPBIT/UPBIT_GET_MKT.py" />
-    <entry file="file://$PROJECT_DIR$/REP_MIG_APT_RENT.py">
+    <entry file="file://$PROJECT_DIR$/../Almighty/REP_MIG_APT_RENT.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="623">
           <caret line="40" column="34" selection-start-line="40" selection-start-column="34" selection-end-line="40" selection-end-column="34" />
@@ -902,10 +782,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test4">
+    <entry file="file://$PROJECT_DIR$/../Almighty/test4">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/REP_MIG_NAVER.py">
+    <entry file="file://$PROJECT_DIR$/../Almighty/REP_MIG_NAVER.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1007">
           <caret line="65" column="44" selection-start-line="65" selection-start-column="44" selection-end-line="65" selection-end-column="44" />
@@ -915,14 +795,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/COIN/COIN_UPBIT_MIG.py">
+    <entry file="file://$PROJECT_DIR$/../Almighty/COIN/COIN_UPBIT_MIG.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
+    <entry file="file://$PROJECT_DIR$/../Almighty/test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="798">
           <caret line="47" selection-start-line="47" selection-end-line="52" selection-end-column="24" />
@@ -932,7 +812,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/REP_MASK_CP.py">
+    <entry file="file://$PROJECT_DIR$/../Almighty/REP_MASK_CP.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="855">
           <caret line="249" column="41" selection-start-line="249" selection-start-column="41" selection-end-line="249" selection-end-column="41" />
@@ -942,14 +822,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/REP_MASK_CP2.py">
+    <entry file="file://$PROJECT_DIR$/../Almighty/REP_MASK_CP2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
           <caret line="4" column="15" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/REP_MIG_APPLY.py">
+    <entry file="file://$PROJECT_DIR$/../Almighty/REP_MIG_APPLY.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
           <caret line="10" column="12" lean-forward="true" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
@@ -959,7 +839,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/REP_JOB.py">
+    <entry file="file://$PROJECT_DIR$/../Almighty/REP_JOB.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2033">
           <caret line="211" column="68" lean-forward="true" selection-start-line="211" selection-start-column="68" selection-end-line="211" selection-end-column="68" />
@@ -969,7 +849,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/REP_MASK.py">
+    <entry file="file://$PROJECT_DIR$/../Almighty/REP_MASK.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="124">
           <caret line="41" column="38" lean-forward="true" selection-start-line="41" selection-start-column="38" selection-end-line="41" selection-end-column="38" />
@@ -979,7 +859,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/REP_COM.py">
+    <entry file="file://$PROJECT_DIR$/../Almighty/REP_COM.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2693">
           <caret line="231" column="43" selection-start-line="231" selection-start-column="43" selection-end-line="231" selection-end-column="43" />
@@ -992,27 +872,7 @@
     <entry file="file://C:/ProgramData/Anaconda3/envs/rep/Lib/traceback.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/REP_TLGR_MSG.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="122" column="11" lean-forward="true" selection-start-line="122" selection-start-column="11" selection-end-line="122" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/REP_DAO.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="106" column="36" lean-forward="true" selection-start-line="106" selection-start-column="36" selection-end-line="106" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#36#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/REP_Main.py">
+    <entry file="file://$PROJECT_DIR$/../Almighty/REP_Main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
           <caret line="21" selection-start-line="21" selection-end-line="21" />
@@ -1022,27 +882,67 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/REP_MIG_BB.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3819">
-          <caret line="208" column="26" selection-start-line="208" selection-start-column="26" selection-end-line="208" selection-end-column="26" />
-          <folding>
-            <element signature="e#23#44#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/REP_SQL.py">
+    <entry file="file://$PROJECT_DIR$/../Almighty/REP_SQL.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="15" column="67" selection-start-line="15" selection-start-column="67" selection-end-line="15" selection-end-column="67" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/REP_MIG.py">
+    <entry file="file://$PROJECT_DIR$/../Almighty/REP_MIG.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
           <caret line="18" column="9" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Almighty/Batch/Crawling/CrawlingBB.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1049">
+          <caret line="146" column="44" selection-start-line="146" selection-start-column="44" selection-end-line="146" selection-end-column="44" />
+          <folding>
+            <element signature="e#23#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Almighty/Batch/doJob.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="25" column="10" lean-forward="true" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Almighty/REP_DAO.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="35" column="9" lean-forward="true" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Almighty/B2B/B2B_DAO.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/REP_TLGR_MSG.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2080">
+          <caret line="122" column="11" lean-forward="true" selection-start-line="122" selection-start-column="11" selection-end-line="122" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Almighty/REP_URL.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

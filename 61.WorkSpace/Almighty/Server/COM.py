@@ -1,6 +1,12 @@
 from common.database.repSqlAlchemy import *
-from DAO.KADM import *
 from common.ui.comUi import *
+from DAO.KADM import *
+#import DAO.KADM
+
+def getSite(strSiteCode=None):
+    if strSiteCode == None : result = s.query(Site).all()
+    else : result = s.query(Site).filter_by(site_cd=strSiteCode).all()
+    return result
 
 def getMenu():
     result = s.query(Menu).all()
@@ -29,5 +35,5 @@ def setCodeByTable(tbl):
     return True
 
 if __name__ == "__main__":
-    print(getCodeDtl('JOB_CL'))
+    #print(getSites())
     pass

@@ -1,5 +1,7 @@
 import logging.handlers
+from common.common.Telegram import *
 from datetime import date, timedelta, datetime
+import sys, traceback
 
 class Logger:
     streamHandler = logging.StreamHandler()
@@ -66,6 +68,10 @@ class childLogger(Logger):
 
     def info(msg,*args):
         super.info(msg,*args)
+
+def error():
+    Log.error(traceback.format_exc())
+    sendMessage(traceback.format_exc())
 
     def debug(msg,*args):
         super.debug(msg,*args)

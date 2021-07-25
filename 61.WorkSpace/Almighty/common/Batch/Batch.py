@@ -1,4 +1,3 @@
-from Batch.COM_LOG import *
 import traceback
 
 class Batch:

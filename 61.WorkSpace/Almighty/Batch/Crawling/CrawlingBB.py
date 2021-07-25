@@ -7,11 +7,12 @@ import REP_URL
 import REP_MIG
 from bs4 import BeautifulSoup
 import urllib
+import common.Batch.Batch
 
 userid = 1000000011
 
 #Lv3
-class CrawlingSingleBB(REP_MIG.CrawlingBasicSingle):
+class CrawlingSingleBB(common.Batch.Crawling.CrawlingBasicSingle):
     siteCode = 'BB'
     #[LV3 구현]각 Lv3 Class(웹사이트(url) 별로) URL을 만드는 부분을 정의
     def selfMakeURL(self,dicStrdData = None):
@@ -22,9 +23,11 @@ class CrawlingSingleBB(REP_MIG.CrawlingBasicSingle):
         pass
 
 #Lv3
-class CrawlingMultiBB(REP_MIG.CrawlingBasicMulti):
+class CrawlingMultiBB(common.Batch.Crawling.CrawlingBasicMulti):
     siteCode = 'BB'
-    sleepStamp = dicSiteBasic['BB']['SLEP_TIME']
+
+    def __init__(self):
+        super.__init__()
 
     #[LV3 구현]각 Lv3 Class(웹사이트(url) 별로) URL을 만드는 부분을 정의
     def selfMakeURL(self,dicStrdData = None):

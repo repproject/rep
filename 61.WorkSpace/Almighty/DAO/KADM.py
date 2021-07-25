@@ -7,6 +7,26 @@ import datetime
 
 Base = declarative_base()
 
+class Site(Base,KTable):
+    __tablename__ = 'KADM_SITE'
+
+    site_cd = KColumn(String(20), primary_key = True, nullable = False)
+    slep_sec = KColumn(Integer, nullable = True)
+    bas_url = KColumn(String(1000), nullable = True)
+    bas_prtc = KColumn(String(10), nullable = True)
+    enc_cd = KColumn(String(20), nullable = True)
+
+    def __init__(self, *args, **kwargs):
+        KTable.__init__(self)
+        self.site_cd =  kwargs.pop('site_cd')
+        self.slep_sec =  kwargs.pop('slep_sec','')
+        self.bas_url =  kwargs.pop('bas_url','')
+        self.bas_prtc =  kwargs.pop('bas_prtc','')
+        self.enc_cd =  kwargs.pop('enc_cd','')
+
+    def __repr__(self):
+        return "<Site('%s', '%s', '%s', '%s', '%s'" % (str(self.site_cd), str(self.slep_sec), str(self.bas_url), str(self.bas_prtc), str(self.enc_cd) + KTable.__repr__(self))
+
 class Job(Base,KTable):
     __tablename__ = 'KADM_JOB'
 
@@ -125,7 +145,6 @@ class ComCdDtl(Base,KTable):
 
     def __repr__(self):
         return "<ComCdDtl('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.com_cd_grp), str(self.com_cd), str(self.com_cd_nm), str(self.com_cd_desc), str(self.prnt_seq), str(self.eff_sta_ymd), str(self.eff_end_ymd), str(self.ref1), str(self.ref2), str(self.ref3), str(self.ref4), str(self.ref5) + KTable.__repr__(self))
-
 
 if __name__ == "__main__" :
     #menu = Menu('test',None,None,None,None,None)
