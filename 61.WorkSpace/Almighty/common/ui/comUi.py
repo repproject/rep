@@ -102,6 +102,7 @@ class TableListBind():
 
     def setListTable(self, listTable): self.listTable = listTable
     def setColumns(self, columns):     self.columns   = columns
+    def setSetDic(self,setdic):        self.setDic = setdic
     def setTableClass(self, tableClass):
         self.tableClass = tableClass
         Server.COM.setCodeByTable(tableClass)
@@ -135,6 +136,7 @@ class TableWidgetItem(QTableWidgetItem,TableBind):
 
 class TableWidget(QTableWidget,TableListBind):
     widths = []
+    algins = {}
 
     def __init__(self,table = None, listTable = None, columns = None):
         try:
@@ -152,14 +154,19 @@ class TableWidget(QTableWidget,TableListBind):
         super(TableWidget,self).setListTable(listTable)
         self.setByTableList()
 
-    def setBasicList(self,columns,widths,tableClass=None,):
-        self.setColumns(columns)
-        self.setWidths(widths)
-        self.setTableClass(tableClass)
+    def setBasic(self,*args,**kwargs):
+        self.setColumns(kwargs.pop("columns"))
+        self.setWidths(kwargs.pop("widths",{}))
+        self.setTableClass(kwargs.pop("tableClass",""))
+        self.setSetDic(kwargs.pop("setDic", {}))
+        self.setAligns(kwargs.pop("aligns", {}))
+
     def setWidths(self,widths):
         self.widths    = widths
-        for i in range(0,len(widths)):
-            self.setColumnWidth(i,widths[i])
+        for key in widths.keys():
+            self.setColumnWidth(self.columns.index(key),widths[key])
+
+    def setAligns(self,aligns): self.aligns    = aligns
 
     def setByTableList(self):
         try:
@@ -183,7 +190,7 @@ class TableWidget(QTableWidget,TableListBind):
                 colClass = getattr(self.tableClass, col)
                 if colClass.kcom_cd_domain:  # com_cd  도메인인경우
                     combobox = ComboBox(colClass.kcom_cd_grp)
-                    combobox.setFixedWidth(self.widths[m])
+                    combobox.setFixedWidth(self.widths[self.columns[m]])
                     try:
                         if table != None : combobox.setCurrentText(dicCodeList[colClass.kcom_cd_grp][getattr(table, col)])
                     except KeyError as ke:
@@ -197,6 +204,7 @@ class TableWidget(QTableWidget,TableListBind):
                         if text == None :
                             text = ""
                     newitem = TableWidgetItem(str(text), table, col)
+                    if col in self.aligns.keys() : newitem.setTextAlignment(self.aligns[col])
                     self.setItem(n, m, newitem)
         except Exception as e:
             logging.error(traceback.format_exc())

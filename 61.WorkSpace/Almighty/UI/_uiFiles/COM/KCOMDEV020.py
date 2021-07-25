@@ -28,8 +28,8 @@ class KCOMDEV020(QWidget, KWidget, form_class) :
     def search(self):
         try:
             Columns = ['com_cd_grp', 'com_cd_grp_nm', 'com_cd_grp_desc', 'up_com_cd_grp', 'del_yn', 'ref1', 'ref2', 'ref3', 'ref4', 'ref5']
-            Widths = [130, 150, 150, 70, 30, 50, 50, 50, 50, 50]
-            self.twComCdGrp.setBasicList(Columns, Widths, ComCdLst)
+            Widths = {'com_cd_grp':130, 'com_cd_grp_nm':150, 'com_cd_grp_desc':150, 'up_com_cd_grp':70, 'del_yn':30, 'ref1':50, 'ref2':50, 'ref3':50, 'ref4':50, 'ref5':50}
+            self.twComCdGrp.setBasic(columns = Columns, widths = Widths, tableClass = ComCdLst)
             self.twComCdGrp.setListTable(self.getCodeLst(self.edt_ComCdGrp.text(),self.edt_ComCdGrpNm.text()))
 
             #Table Widget Setting
@@ -41,22 +41,16 @@ class KCOMDEV020(QWidget, KWidget, form_class) :
             strComCdgrp = self.sender().getTextByColName(self.sender().currentRow(),"com_cd_grp")
 
             Columns = ['com_cd', 'com_cd_nm', 'com_cd_desc', 'prnt_seq', 'eff_sta_ymd', 'eff_end_ymd', 'ref1', 'ref2', 'ref3', 'ref4', 'ref5']
-            Widths = [130      , 50        , 150          , 30        , 120          , 120, 50, 50, 50, 50, 50]
-            self.twComCdDtl.setBasicList(Columns, Widths, ComCdDtl)
-            self.twComCdDtl.setDic = {'com_cd_grp':strComCdgrp}
+            Widths = {'com_cd':130, 'com_cd_nm':50, 'com_cd_desc':150, 'prnt_seq':30, 'eff_sta_ymd':120, 'eff_end_ymd':120, 'ref1':50, 'ref2':50, 'ref3':50, 'ref4':50, 'ref5':50}
+            Aligns = {'eff_sta_ymd':4,'eff_end_ymd':4}
+            SetDic = {'com_cd_grp':strComCdgrp}
+
+            self.twComCdDtl.setBasic(columns = Columns, widths = Widths, tableClass = ComCdDtl, setDic = SetDic, aligns = Aligns)
 
             self.twComCdDtl.setListTable(self.getCodeDtl(strComCdgrp))
 
             #Table Widget Setting
             self.twComCdDtl.resizeRowsToContents()
-            self.twComCdDtl.item(0, 4).setTextAlignment(0)
-            self.twComCdDtl.item(1, 4).setTextAlignment(1)
-            self.twComCdDtl.item(2, 4).setTextAlignment(2)
-            self.twComCdDtl.item(0, 5).setTextAlignment(3)
-            self.twComCdDtl.item(1, 5).setTextAlignment(4)
-            self.twComCdDtl.item(2, 5).setTextAlignment(5)
-
-
         except : error()
 
     def save(self):

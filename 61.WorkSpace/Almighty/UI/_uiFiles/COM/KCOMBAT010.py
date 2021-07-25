@@ -21,8 +21,8 @@ class KCOMBAT010(QWidget, KWidget, form_class) :
 
     def initUI(self):
         Columns = ['job_id', 'job_nm', 'job_desc', 'job_cl_cd', 'ref1', 'ref2', 'ref3', 'ref4', 'ref5']
-        Widths = [70,150,150,100,50,50,50,50,50]
-        self.twJob.setBasicList(Columns,Widths,Job)
+        Widths = {'job_id':70, 'job_nm':150, 'job_desc':150, 'job_cl_cd':100, 'ref1':50, 'ref2':50, 'ref3':50, 'ref4':50, 'ref5':50}
+        self.twJob.setBasic(columns = Columns,widths = Widths,tableClass = Job)
 
         #set TableWidget by listTable
         self.twJob.setListTable(self.getJob())
