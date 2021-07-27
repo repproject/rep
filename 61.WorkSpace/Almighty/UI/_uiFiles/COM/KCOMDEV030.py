@@ -38,7 +38,6 @@ class KCOMDEV030(QWidget, KWidget, form_class) :
         except : error()
 
     def searchSvc(self):
-        print('searchSvc')
         try:
             strSiteCd = self.sender().getTextByColName(self.sender().currentRow(),"site_cd")
 

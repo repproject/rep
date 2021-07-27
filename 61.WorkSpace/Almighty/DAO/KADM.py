@@ -152,7 +152,7 @@ class Svc(Base,KTable):
     site_cd = KColumn(String(20), primary_key = True, nullable = False, kcom_cd_domain = True,kcom_cd_grp='SITE')
     svc_id = KColumn(String(500), primary_key = True, nullable = False)
     bas_svc_url = KColumn(String(1000), nullable = True)
-    req_way_cd = KColumn(String(20), nullable = True,kcom_cd_domain = True,kcom_cd_grp='REQ_WAY')
+    req_way_cd = KColumn(String(20), nullable = True, kcom_cd_domain = True,kcom_cd_grp='REQ_WAY')
 
     def __init__(self, *args, **kwargs):
         KTable.__init__(self)

@@ -191,16 +191,22 @@ class TableWidget(QTableWidget,TableListBind):
         """
         try:
             for m, col in enumerate(self.columns):
-                colClass = getattr(self.tableClass, col.lower())
+                colClass = getattr(self.tableClass, col)
                 if colClass.kcom_cd_domain:  # com_cd  도메인인경우
                     combobox = ComboBox(colClass.kcom_cd_grp,self,table,col.lower())
                     combobox.setFixedWidth(self.widths[self.columns[m]])
                     try:
                         if table != None :
-                            combobox.setCurrentText(dicCodeList[colClass.kcom_cd_grp][getattr(table, col)])
+                            combobox.setCurrentText(combobox.dicCode[getattr(table, col)])
+                        else : combobox.setCurrentIndex(0)
                     except KeyError as ke:
-                        if table != None: print("공통코드 미등록 >> " + colClass.kcom_cd_grp + " : " + getattr(table, col))
-                        else: print("공통코드 미등록 >> " + colClass.kcom_cd_grp + " : table is None ")
+                        combobox.setCurrentIndex(0)
+                        if table != None :
+                            print("공통코드 미등록 >> " + colClass.kcom_cd_grp + " : " + str(getattr(table, col)))
+                            error()
+                        else:
+                            print("공통코드 미등록 >> " + colClass.kcom_cd_grp + " : table is None ")
+                            error()
                     self.setCellWidget(n, m, combobox)
                 if table == None : text = ""
                 else :
