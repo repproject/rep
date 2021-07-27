@@ -101,7 +101,10 @@ class TableListBind():
             print("class TableBind Exception : " + str(e))
 
     def setListTable(self, listTable): self.listTable = listTable
-    def setColumns(self, columns):     self.columns   = columns
+    def setColumns(self, columns):
+        self.columns = []
+        for col in columns:
+            self.columns.append(col.lower())
     def setSetDic(self,setdic):        self.setDic = setdic
     def setTableClass(self, tableClass):
         self.tableClass = tableClass
@@ -135,7 +138,7 @@ class TableWidgetItem(QTableWidgetItem,TableBind):
             print("class TableWidgetItem : " + str(e))
 
 class TableWidget(QTableWidget,TableListBind):
-    widths = []
+    widths = {}
     algins = {}
 
     def __init__(self,table = None, listTable = None, columns = None):
@@ -162,9 +165,9 @@ class TableWidget(QTableWidget,TableListBind):
         self.setAligns(kwargs.pop("aligns", {}))
 
     def setWidths(self,widths):
-        self.widths    = widths
         for key in widths.keys():
-            self.setColumnWidth(self.columns.index(key),widths[key])
+            self.widths[key.lower()] = widths[key]
+            self.setColumnWidth(self.columns.index(key.lower()),self.widths[key.lower()])
 
     def setAligns(self,aligns): self.aligns    = aligns
 
@@ -188,28 +191,26 @@ class TableWidget(QTableWidget,TableListBind):
         """
         try:
             for m, col in enumerate(self.columns):
-                colClass = getattr(self.tableClass, col)
+                colClass = getattr(self.tableClass, col.lower())
                 if colClass.kcom_cd_domain:  # com_cd  도메인인경우
-                    combobox = ComboBox(colClass.kcom_cd_grp)
+                    combobox = ComboBox(colClass.kcom_cd_grp,self,table,col.lower())
                     combobox.setFixedWidth(self.widths[self.columns[m]])
                     try:
-                        if table != None : combobox.setCurrentText(dicCodeList[colClass.kcom_cd_grp][getattr(table, col)])
+                        if table != None :
+                            combobox.setCurrentText(dicCodeList[colClass.kcom_cd_grp][getattr(table, col)])
                     except KeyError as ke:
                         if table != None: print("공통코드 미등록 >> " + colClass.kcom_cd_grp + " : " + getattr(table, col))
                         else: print("공통코드 미등록 >> " + colClass.kcom_cd_grp + " : table is None ")
                     self.setCellWidget(n, m, combobox)
-                else:
-                    if table == None : text = ""
-                    else :
-                        text = getattr(table, col)
-                        if text == None :
-                            text = ""
-                    newitem = TableWidgetItem(str(text), table, col)
-                    if col in self.aligns.keys() : newitem.setTextAlignment(self.aligns[col])
-                    self.setItem(n, m, newitem)
-        except Exception as e:
-            logging.error(traceback.format_exc())
-            print('comUI.setTableWidgetRow : ' + str(e))
+                if table == None : text = ""
+                else :
+                    text = getattr(table, col)
+                    if text == None :
+                        text = ""
+                newitem = TableWidgetItem(str(text), table, col.lower())
+                if col in self.aligns.keys() : newitem.setTextAlignment(self.aligns[col])
+                self.setItem(n, m, newitem)
+        except Exception as e: error()
 
     def insertTWRow(self, n):
         self.insertRow(n)
@@ -241,7 +242,11 @@ class TableWidget(QTableWidget,TableListBind):
         if self.item(n, 0).table == None:
             kwargs = {}
             for m in range(0, self.columnCount()):
-                kwargs[self.item(n, m).colName] = self.item(n, m).text()
+                cw = self.cellWidget(n,m)
+                if cw == None:
+                    kwargs[self.item(n, m).colName] = self.item(n, m).text()
+                else:
+                    kwargs[cw.getColName()] = cw.getCurrentCode()
                 kwargs = {**self.setDic,**kwargs} #key값이 겹치는 경우 뒤 dicData기준(TableWidget 기준 세팅)
             table = self.tableClass(**kwargs)
             self.listTable.append(table)
@@ -250,7 +255,11 @@ class TableWidget(QTableWidget,TableListBind):
                 self.item(n,m).table = table
         else:
             for m in  range(0, self.columnCount()):
-                setattr(self.item(n,m).table,self.item(n,m).colName,self.item(n,m).text())
+                cw = self.cellWidget(n, m)
+                if cw == None:
+                    setattr(self.item(n,m).table,self.item(n,m).colName,self.item(n,m).text())
+                else:
+                    setattr(cw.table, cw.colName, cw.getCurrentCode())
 
     def setAllValues(self):
         for n in range(0,self.rowCount()):
@@ -295,17 +304,39 @@ class TableWidget(QTableWidget,TableListBind):
         obj.__class__ = TableWidget
 
 ###############ComboBox####################
-class ComboBox(QComboBox):
+class ComboBox(QComboBox,TableBind):
+    tableWidget = None
+    com_cd_grp = None
+    dicCode = None
+    reverseDicCode = None
     #declare QComboBox to Customize ComboBox to use Common Code
-    def __init__(self,com_cd_grp=None):
+    def __init__(self,com_cd_grp=None,tableWidget=None,table=None,colName=None):
+
         r"""
             공통코드 값으로 QComboBox를 세팅한다.
         :param com_cd_grp: 공통코드그룹ID
+        :param tableWidget : 부모테이블위젯
         """
         super().__init__()
+        TableBind.__init__(self, table, colName)
+        self.tableWidget = tableWidget
+        self.com_cd_grp = com_cd_grp
         if com_cd_grp != None:
-            for cd in dicCodeList[com_cd_grp].keys():
+            self.dicCode = dicCodeList[com_cd_grp]
+            self.reverseDicCode = dict(map(reversed,self.dicCode.items()))
+            for cd in self.dicCode.keys():
                 self.addItem(dicCodeList[com_cd_grp][cd])
+
+        #self.currentTextChanged.connect(self.combobox_select)
+
+    def combobox_select(self):
+        if self.tableWidget != None:
+            self.tableWidget.item(self.tableWidget.currentRow(),self.tableWidget.currentColumn()).setText(self.reverseDicCode[self.currentText()])
+
+    def getCurrentCode(self):
+        return self.reverseDicCode[self.currentText()]
+
+
 
     if __name__ == "__main__":
         pass

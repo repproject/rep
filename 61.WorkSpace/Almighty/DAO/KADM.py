@@ -146,6 +146,25 @@ class ComCdDtl(Base,KTable):
     def __repr__(self):
         return "<ComCdDtl('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.com_cd_grp), str(self.com_cd), str(self.com_cd_nm), str(self.com_cd_desc), str(self.prnt_seq), str(self.eff_sta_ymd), str(self.eff_end_ymd), str(self.ref1), str(self.ref2), str(self.ref3), str(self.ref4), str(self.ref5) + KTable.__repr__(self))
 
+class Svc(Base,KTable):
+    __tablename__ = 'KADM_SVC'
+
+    site_cd = KColumn(String(20), primary_key = True, nullable = False, kcom_cd_domain = True,kcom_cd_grp='SITE')
+    svc_id = KColumn(String(500), primary_key = True, nullable = False)
+    bas_svc_url = KColumn(String(1000), nullable = True)
+    req_way_cd = KColumn(String(20), nullable = True,kcom_cd_domain = True,kcom_cd_grp='REQ_WAY')
+
+    def __init__(self, *args, **kwargs):
+        KTable.__init__(self)
+        self.site_cd =  kwargs.pop('site_cd')
+        self.svc_id =  kwargs.pop('svc_id')
+        self.bas_svc_url =  kwargs.pop('bas_svc_url','')
+        self.req_way_cd =  kwargs.pop('req_way_cd','')
+
+    def __repr__(self):
+        return "<Svc('%s', '%s', '%s', '%s'" % (str(self.site_cd), str(self.svc_id), str(self.bas_svc_url), str(self.req_way_cd) + KTable.__repr__(self))
+
+
 if __name__ == "__main__" :
     #menu = Menu('test',None,None,None,None,None)
     #list = ['a','b','c','d',1,'e','f','g','h','i','j','k']

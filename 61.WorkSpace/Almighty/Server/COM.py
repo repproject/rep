@@ -34,6 +34,10 @@ def setCodeByTable(tbl):
         if col.kcom_cd_domain : setCode(col.kcom_cd_grp)
     return True
 
+def getSvc(strSiteCd):
+    setCodeByTable(Svc)
+    return s.query(Svc).filter_by(site_cd=strSiteCd).all()
+
 if __name__ == "__main__":
     #print(getSites())
     pass

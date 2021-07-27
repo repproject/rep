@@ -10,14 +10,17 @@ def merge(table):
     return True
 
 def mergeList(tableList):
-    try:
-        for table in tableList:
-            s.merge(table)
-        s.commit()
-    except Exception as e :
-        print(e)
+    for table in tableList:
+        print(table)
+        s.merge(table)
+    s.commit()
 
 dic = {}
+
+def deleteBasic(table):
+    s.delete(table)
+    s.commit()
+    return True
 
 def getCode(grp):
     result = s.query(DAO.KADM.ComCdDtl).filter_by(com_cd_grp=grp).all()

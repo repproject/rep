@@ -21,7 +21,9 @@ class KCOMDEV030(QWidget, KWidget, form_class) :
         #self.twComCdGrp.clicked.connect(self.search2)
         self.btn_save.clicked.connect(self.save)
         self.btn_add.clicked.connect(self.addSite)
-        #self.btn_add2.clicked.connect(self.addDtl)
+        self.twSite.clicked.connect(self.searchSvc)
+        self.btn_add_svc.clicked.connect(self.addSvc)
+        self.btn_del_svc.clicked.connect(self.delSvc)
         self.search()
 
     def search(self):
@@ -35,18 +37,61 @@ class KCOMDEV030(QWidget, KWidget, form_class) :
             self.twSite.resizeRowsToContents()
         except : error()
 
+    def searchSvc(self):
+        print('searchSvc')
+        try:
+            strSiteCd = self.sender().getTextByColName(self.sender().currentRow(),"site_cd")
+
+            Columns = ['svc_id', 'BAS_SVC_URL', 'REQ_WAY_CD']
+            Widths = {'svc_id':300, 'BAS_SVC_URL':300, 'REQ_WAY_CD':70}
+            SetDic = {'site_cd': strSiteCd}
+            self.twSvc.setBasic(columns = Columns, widths = Widths, tableClass = Svc, setDic=SetDic)
+            self.twSvc.setListTable(self.getSvc(strSiteCd))
+        except: error()
+
+
     def addSite(self):
         try:
             self.twSite.addTWRow()
         except : error()
 
+    def addSvc(self):
+        try:
+            if self.preAddSvc():
+               n = self.twSvc.addTWRow()
+
+        except : error()
+
+    def preDelSvc(self):
+        if self.twSvc.currentRow() == -1:
+            alert("선택된 서비스가 없습니다.")
+            return False
+        return True
+
+    def delSvc(self,table):
+        try:
+            if self.preDelSvc():
+                table = self.twSvc.item(self.twSvc.currentRow(), 0).table
+                deleteBasic(table)
+        except : error()
+
+    def preAddSvc(self):
+        if self.twSite.currentItem() == None:
+            alert("사이트를 선택하셔야합니다.")
+            return False
+        return True
+
     def save(self):
         try:
             self.twSite.mergeRow()
+            self.twSvc.mergeList()
         except : error()
 
     def getSites(self):
         return Server.COM.getSite()
+
+    def getSvc(self,strSiteCd):
+        return Server.COM.getSvc(strSiteCd)
 
 if __name__ == "__main__":
     #QApplication : 프로그램을 실행시켜주는 클래스
