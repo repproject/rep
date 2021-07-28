@@ -5,7 +5,8 @@ from datetime import date, timedelta, datetime
 
 from idna import unicode
 
-import REP_TLGR_MSG
+#import REP_TLGR_MSG
+from common.common.Telegram import *
 import math
 import requests
 import time
@@ -212,7 +213,7 @@ class BatchRowCounter:
         if (self.MessageUnit == "N"):
             if ((self.MessagePrintCount + self.MessageInterval <= self.count)):  # 기출력 값보다
                 self.MessagePrintCount += self.MessageInterval
-                REP_TLGR_MSG.sendMessage(self.Name + "BatchRowCounter : [" + str(self.MessagePrintCount) + "/" + str(self.totalRowCount) + "]")
+                sendMessage(self.Name + "BatchRowCounter : [" + str(self.MessagePrintCount) + "/" + str(self.totalRowCount) + "]")
 
         if(self.unit == "P"):
             if(self.printCount + math.floor(self.totalRowCount*self.interval/100) <= self.count): #기출력 값보다
@@ -222,7 +223,7 @@ class BatchRowCounter:
         if(self.MessageUnit == "P"):
             if((self.MessagePrintCount + math.floor(self.totalRowCount*self.MessageInterval/100)) <= self.count): #기출력 값보다
                 self.MessagePrintCount += math.floor(self.totalRowCount*self.MessageInterval/100)
-                REP_TLGR_MSG.sendMessage(self.Name + "BatchRowCounter : [" + str(self.MessagePrintCount) + "/" + str(self.totalRowCount) + "]")
+                sendMessage(self.Name + "BatchRowCounter : [" + str(self.MessagePrintCount) + "/" + str(self.totalRowCount) + "]")
 
 
 

@@ -1,4 +1,6 @@
 import traceback
+from common.common.Log import *
+from common.common.Telegram import *
 
 class Batch:
     #global Log
@@ -21,12 +23,12 @@ class Batch:
             self.startLog() #START Log
         except Exception as e:
             Log.error("Crawling run Error : " + traceback.format_exc())
-            sendMessage("Crawling run Error : " +traceback.format_exc())
+            sendTelegramMessage("Crawling run Error : " +traceback.format_exc())
         try:
             self.report()   #report 및 마지막 정의
         except Exception as e:
             Log.error("Batch Report 출력 에러" + str(e))
-            sendMessage("Batch Report 출력 에러" + str(e))
+            sendTelegramMessage("Batch Report 출력 에러" + str(e))
         self.end()      #report 및 마지막 정의
 
     #하위 Batch구현
@@ -163,7 +165,7 @@ class BatchRowCounter:
         if (self.MessageUnit == "N"):
             if ((self.MessagePrintCount + self.MessageInterval <= self.count)):  # 기출력 값보다
                 self.MessagePrintCount += self.MessageInterval
-                REP_TLGR_MSG.sendMessage(self.Name + "BatchRowCounter : [" + str(self.MessagePrintCount) + "/" + str(self.totalRowCount) + "]")
+                REP_TLGR_MSG.sendTelegramMessage(self.Name + "BatchRowCounter : [" + str(self.MessagePrintCount) + "/" + str(self.totalRowCount) + "]")
 
         if(self.unit == "P"):
             if(self.printCount + math.floor(self.totalRowCount*self.interval/100) <= self.count): #기출력 값보다
@@ -173,5 +175,6 @@ class BatchRowCounter:
         if(self.MessageUnit == "P"):
             if((self.MessagePrintCount + math.floor(self.totalRowCount*self.MessageInterval/100)) <= self.count): #기출력 값보다
                 self.MessagePrintCount += math.floor(self.totalRowCount*self.MessageInterval/100)
-                REP_TLGR_MSG.sendMessage(self.Name + "BatchRowCounter : [" + str(self.MessagePrintCount) + "/" + str(self.totalRowCount) + "]")
+                REP_TLGR_MSG.sendTelegramMessage(self.Name + "BatchRowCounter : [" + str(self.MessagePrintCount) + "/" + str(self.totalRowCount) + "]")
 
+def error():logging.error(traceback.format_exc())

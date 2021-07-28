@@ -81,7 +81,7 @@ def checkMessage(bot):
 
 
 
-def sendMessage(str,token = my_token, id = None):
+def sendTelegramMessage(str,token = my_token, id = None):
     listStr = REP_COM.splitStringSize(str,1000)
     bot = telegram.Bot(token=token)  # bot을 선언합니다.
     if token == my_token:

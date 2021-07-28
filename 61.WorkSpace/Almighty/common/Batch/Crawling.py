@@ -1,5 +1,6 @@
 from common.common.Log import *
 from common.Batch.Batch import *
+from common.common.Telegram import *
 import Server.COM
 
 sleeptime = 1
@@ -28,20 +29,18 @@ class Crawling:
             self.startLog() #START Log
             self.ready()    #크롤링 전 사전 Data 준비 작업
             self.crawl()    #URL 호출 후 삽입
-        except Exception as e:
-            Log.error("Crawling run Error : " + traceback.format_exc())
-            sendMessage("Crawling run Error : " +traceback.format_exc())
+        except : error()
         try:
             self.report()   #report 및 마지막 정의
         except Exception as e:
             Log.error("Batch Report 출력 에러" + str(e))
-            sendMessage("Batch Report 출력 에러" + str(e))
+            sendTelegramMessage("Batch Report 출력 에러" + str(e))
         self.end()      #report 및 마지막 정의
 
     def startLog(self):
         #기본로그 출력
         Log.info(self.batchContext.getLogName()+"####################START[" + self.batchContext.getFuncName() + "]####################")
-        sendMessage("START[" + self.batchContext.getFuncName() + "]")
+        sendTelegramMessage("START[" + self.batchContext.getFuncName() + "]")
 
     #Lv2 구현
     def ready(self):
@@ -55,16 +54,16 @@ class Crawling:
         # Report
         dicNewRowList = REP_DAO.fetch(self.sqlReportFetchId, "")
         Log.info(self.batchContext.getLogName() + "####################Batch Report####################")
-        sendMessage("[Batch Report]")
+        sendTelegramMessage("[Batch Report]")
         Log.info(self.batchContext.getLogName() + "신규 건 수  : " + str(dicNewRowList.__len__()) + " 건")
-        sendMessage("신규 건수 : " + str(dicNewRowList.__len__()) + " 건")
+        sendTelegramMessage("신규 건수 : " + str(dicNewRowList.__len__()) + " 건")
         if dicNewRowList.__len__() > 0:
             Log.info(self.batchContext.getLogName() + str(dicNewRowList))
-            sendMessage(self.batchContext.getLogName() + str(dicNewRowList))
+            sendTelegramMessage(self.batchContext.getLogName() + str(dicNewRowList))
 
     def end(self):
         Log.info(self.batchContext.getLogName() + "####################END[" + self.batchContext.getFuncName() + "]####################")
-        sendMessage("END[" + self.batchContext.getFuncName() + "]")
+        sendTelegramMessage("END[" + self.batchContext.getFuncName() + "]")
 
     def makeURL(self,dicStrdData = None,reCnt = None):
         url = self.selfMakeURL(dicStrdData,reCnt)
@@ -148,7 +147,7 @@ class CrawlingBasicMulti(Crawling):
         #         gc.collect()
         #     except Exception as e:
         #         Log.error(self.batchContext.getLogName() + traceback.format_exc())
-        #         sendMessage(traceback.format_exc())
+        #         sendTelegramMessage(traceback.format_exc())
         pass
 
     def getListStrdDataList(self):

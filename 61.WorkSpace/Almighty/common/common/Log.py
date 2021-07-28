@@ -1,7 +1,12 @@
 import logging.handlers
+import logging
 from common.common.Telegram import *
 from datetime import date, timedelta, datetime
 import sys, traceback
+
+logging.basicConfig(level=logging.INFO
+#                    ,filename=os.path.dirname(__file__) + "/Almighty.log"
+                    )
 
 class Logger:
     streamHandler = logging.StreamHandler()
@@ -61,20 +66,24 @@ class Logger:
 
 class childLogger(Logger):
     def __init__(self, LogName="", Level="DEBUG"):
-        super.__init__()
+        super().__init__()
 
     def error(msg,*args):
-        super.error(msg,*args)
+        super().error(msg,*args)
 
     def info(msg,*args):
-        super.info(msg,*args)
+        super().info(msg,*args)
 
-def error():
-    Log.error(traceback.format_exc())
-    sendMessage(traceback.format_exc())
-
-    def debug(msg,*args):
-        super.debug(msg,*args)
+    def debug(msg, *args):
+        super().debug(msg, *args)
 
 LogObject = childLogger()
 Log = LogObject.logger
+
+def error():
+    Log.error(traceback.format_exc())
+    sendTelegramMessage(traceback.format_exc())
+
+
+
+

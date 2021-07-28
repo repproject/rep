@@ -1,15 +1,16 @@
 from typing import Any, Union, Tuple
 import pymysql
 import REP_Main
-import REP_TLGR_MSG
+#import REP_TLGR_MSG
 from REP_COM import *
 import REP_SQL
 from REP_DAO import *
 from REP_TABLE import *
 from REP_MIG_MAPP import *
-from REP_TLGR_MSG import *
+#from REP_TLGR_MSG import *
 import json
 import traceback
+from common.common.Telegram import *
 
 repDBHost = "127.0.0.1"
 repDBUser = "repwas"
@@ -29,10 +30,10 @@ def getTableDic(tableName):
         dicTBL = dicTable[tableName]
     except KeyError as e:
         Log.Error("REP_TABLE 미존재 : " + str(e))
-        sendMessage("REP_TABLE 미존재 : " +str(e))
+        sendTelegramMessage("REP_TABLE 미존재 : " +str(e))
     except Exception as e:
         Log.Error(str(e))
-        sendMessage(str(e))
+        sendTelegramMessage(str(e))
     else:
         initializeTableDic(dicTBL)
         return dicTBL
@@ -47,10 +48,10 @@ def setJson2TableDic(tableName,jSon,url=None,page=None,BatchContext=None):
         except Exception as e:
             try:
                 Log.error("Json Parse - NoneRegistered column : " + str(j) + "/ TABLE NAME : " + str(tableName) + " / VALUE : " + str(jSon[j]))
-                sendMessage("Json Parse - NoneRegistered column : " + str(j) + "/ TABLE NAME : " + str(tableName) + " / VALUE : " + str(jSon[j]))
+                sendTelegramMessage("Json Parse - NoneRegistered column : " + str(j) + "/ TABLE NAME : " + str(tableName) + " / VALUE : " + str(jSon[j]))
             except Exception as e2:
                 Log.error("Json Parse - NoneRegistered column : " + str(j) + "/ TABLE NAME : " + str(tableName))
-                sendMessage("Json Parse - NoneRegistered column : " + str(j) + "/ TABLE NAME : " + str(tableName))
+                sendTelegramMessage("Json Parse - NoneRegistered column : " + str(j) + "/ TABLE NAME : " + str(tableName))
             dicKADM_JOB_FUNC_EXEC_MSG = dicTable['KADM_JOB_FUNC_EXEC_MSG']
             dicKADM_JOB_FUNC_EXEC_MSG['JOB_ID'] = BatchContext.getJOB_ID()
             dicKADM_JOB_FUNC_EXEC_MSG['ACT_ID'] = BatchContext.getACT_ID()
@@ -117,9 +118,9 @@ def fetch(sqlId,dicBaiscCond):
         conn.close()
     except Exception as e:
         Log.error(str(e))
-        sendMessage(str(e))
+        sendTelegramMessage(str(e))
         Log.error(sqlId + ":" + sql)
-        sendMessage(sqlId + ":" + sql)
+        sendTelegramMessage(sqlId + ":" + sql)
         return dic
     return dic
 
@@ -228,9 +229,9 @@ def updateBaiscByTBLDic(tableName,dicTBL,dicBaiscCond):
 
         Log.error("####################ERROR[updateBaiscByTBLDic]####################")
         Log.error("SQL ERROR :" + sql)
-        sendMessage("SQL ERROR : " + sql)
+        sendTelegramMessage("SQL ERROR : " + sql)
         Log.error("Exception :" + str(e))
-        sendMessage("Exception :" + str(e))
+        sendTelegramMessage("Exception :" + str(e))
         return False
 
 #update 공통 Dictionary에 존재하는 KEY에 대해서만 UPDATE문장을 만들어 준다.

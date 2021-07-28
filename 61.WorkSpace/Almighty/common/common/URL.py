@@ -1,5 +1,6 @@
 from urllib import parse
 import urllib.parse
+import Server.COM
 
 KB부동산과거시세조회URL = "http://nland.kbstar.com/quics?page=B047172&cc=b028364:b057487"
 KB부동산과거시세조회Json = "http://nland.kbstar.com/quics?page=&QAction=763359&RType=json"
@@ -146,6 +147,7 @@ class URLMaker:
 
     def __init__(self,svcId):
         self.svcId = svcId
+        print(Server.COM.getSvcInfo(self.svcId))
 
         # self.siteCode = dicSiteDetailMapp[URLkey]
         # self.dicSite = dicSiteBasic[self.siteCode]
