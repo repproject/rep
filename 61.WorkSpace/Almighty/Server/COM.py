@@ -42,6 +42,10 @@ def getSvcParm(strSvcId):
     setCodeByTable(SvcParm)
     return s.query(SvcParm).filter_by(svc_id=strSvcId).all()
 
+def getSvcInfo(strSvcId):
+    return s.execute(select(Site).join(Svc.site).where(Svc.svc_id == strSvcId)).scalars().all()
+
 if __name__ == "__main__":
-    #print(getSites())
+    print('pppprint')
+    print(getSvcInfo('BBRegn'))
     pass

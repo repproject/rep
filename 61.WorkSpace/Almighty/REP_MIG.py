@@ -1,27 +1,18 @@
 from requests import get
 from bs4 import BeautifulSoup
-import urllib.request
 import REP_DAO                  #DB 전문 CLASS
-import hyeogyu
-import jiil_sample
-import REP_URL
-import requests
-from urllib import *
+from common.common import URL
 import json
 #from pandas.io.json import json_normalize
-import time
 from REP_COM import *
-import REP_TLGR_MSG
 import REP_Main
 import datetime
 from REP_TLGR_MSG import *
-import pymysql
-import gc
-import traceback
+
 
 def migRetBigAreaCode():    #박지일
     print("Function migRetBigAreaCode")
-    url = REP_URL.KB부동산과거시세조회URL
+    url = URL.KB부동산과거시세조회URL
     soup = getBeautifulShopFromKB(url)
 
     for child in soup.find("select", id="부동산대지역코드"):
@@ -35,7 +26,7 @@ def migRetMidAreaCode():
     print("Function migRetMidAreaCode")
     tupBigArea = REP_DAO.SELECT_RET_BIG_AREA_CD2tup();
     for BigArea in tupBigArea:
-        url = REP_URL.getJsonKBRealEstatePastPriceInquery('S','01',REP_COM.tuple2Str(BigArea),'','','','','','','','')
+        url = URL.getJsonKBRealEstatePastPriceInquery('S', '01', REP_COM.tuple2Str(BigArea), '', '', '', '', '', '', '', '')
         html = get_html(url)
         soup = BeautifulSoup(html, 'html.parser')
         l = str(soup)
@@ -51,7 +42,7 @@ def migRetSmallAreaCode():
     print("Function migRetSmallAreaCode")
     tupMidArea = REP_DAO.SELECT_RET_MID_AREA_CD2tup();
     for MidArea in tupMidArea:
-        url = REP_URL.getJsonKBRealEstatePastPriceInquery('S','01','',REP_COM.tuple2Str(MidArea),'','','','','','','')
+        url = URL.getJsonKBRealEstatePastPriceInquery('S', '01', '', REP_COM.tuple2Str(MidArea), '', '', '', '', '', '', '')
         html = get_html(url)
         soup = BeautifulSoup(html, 'html.parser')
         l = str(soup)
@@ -67,7 +58,7 @@ def migComplex():
     #지금 소스보니 문제가 있는듯
     tupSmallArea = REP_DAO.SELECT_RET_SMALL_AREA_CD2tup();
     for SmallArea in tupSmallArea:
-        url = REP_URL.getJsonKBRealEstatePastPriceInquery('S','01','','',REP_COM.tuple2Str(SmallArea),'','','','','','')
+        url = URL.getJsonKBRealEstatePastPriceInquery('S', '01', '', '', REP_COM.tuple2Str(SmallArea), '', '', '', '', '', '')
         print(url)
         html = get_html(url)
         soup = BeautifulSoup(html, 'html.parser')
@@ -83,7 +74,7 @@ def migComplexTyp():
     print("Function migComplexTyp")
     dicComplex = REP_DAO.SELECT_RET_CMPX_CD2dic();
     for Complex in dicComplex:
-        url = REP_URL.getJsonKBRealEstatePastPriceInquery('S','01','','',Complex['SMALL_KB_REGN_CD'],Complex['CMPX_IDF_ID'],'','','','','')
+        url = URL.getJsonKBRealEstatePastPriceInquery('S', '01', '', '', Complex['SMALL_KB_REGN_CD'], Complex['CMPX_IDF_ID'], '', '', '', '', '')
         print(url)
         html = get_html(url)
         soup = BeautifulSoup(html, 'html.parser')
@@ -100,7 +91,7 @@ def migMontlyPrice():
     dicComplexTyp = REP_DAO.SELECT_RET_CMPX_TYP_CD2dic();
     for ComplexTyp in dicComplexTyp:
         MonthPriceList = []
-        url = REP_URL.getURLKBRealEstatePastPriceInquery('S','01','','',ComplexTyp['SMALL_KB_REGN_CD'],ComplexTyp['CMPX_IDF_ID'],ComplexTyp['HOUSE_TYP_SEQ'],'190001','210012','','')
+        url = URL.getURLKBRealEstatePastPriceInquery('S', '01', '', '', ComplexTyp['SMALL_KB_REGN_CD'], ComplexTyp['CMPX_IDF_ID'], ComplexTyp['HOUSE_TYP_SEQ'], '190001', '210012', '', '')
         print(url)
         soup = getBeautifulShopFromKB(url)
         for child in soup.find("tbody").find_all("td", {"class", "t_r"}):
@@ -174,7 +165,7 @@ def updateNVComplex():
         dicNVComplex = {}
 
         dicGetParam = {'rletNo': REP_COM.tuple2Str(NVComplex)}
-        url = REP_URL.makeGetURL("NV","article","complexInfo",dicGetParam)  #url을 만든다.
+        url = URL.makeGetURL("NV", "article", "complexInfo", dicGetParam)  #url을 만든다.
         print(url)
         soup = getBeautifulShopFromKB(url)
         strSoup = str(soup)
@@ -272,7 +263,7 @@ def migNVComplexType():
         dicComplexTypeInfo = {}
         dicNVComplexType = {}
 
-        url = REP_URL.getURLNVComplexTypeInquery(NVComplexId['CMPX_CTGR'],NVComplexId['NV_CMPX_ID'])
+        url = URL.getURLNVComplexTypeInquery(NVComplexId['CMPX_CTGR'], NVComplexId['NV_CMPX_ID'])
         # print(NVComplexId)
         print(url)
         html = get_html(url)
@@ -333,7 +324,7 @@ def mig_UPDATE_KMIG_KB_CMPX_TYP_MON_PRC(FUNC_ID):
          dicComplexTyp = REP_DAO.SELECT_RET_CMPX_TYP_CD2dic()
          for ComplexTyp in dicComplexTyp:
              MonthPriceList = []
-             url = REP_URL.getURLKBRealEstatePastPriceInquery('S','01','','',ComplexTyp['SMALL_KB_REGN_CD'],ComplexTyp['CMPX_IDF_ID'],ComplexTyp['HOUSE_TYP_SEQ'],dicFinalChg[0]['FINL_CHG_YYMM'],'210012','','')
+             url = URL.getURLKBRealEstatePastPriceInquery('S', '01', '', '', ComplexTyp['SMALL_KB_REGN_CD'], ComplexTyp['CMPX_IDF_ID'], ComplexTyp['HOUSE_TYP_SEQ'], dicFinalChg[0]['FINL_CHG_YYMM'], '210012', '', '')
              print(url)
              print(ComplexTyp)
              while 1:
@@ -430,7 +421,7 @@ def migNVSale():
         dicNVComplexType = {}
 
         #url = REP_URL.getURLNVSaleInquery(NVComplexId['CMPX_CTGR'],NVComplexId['NV_CMPX_ID'])
-        url = REP_URL.getURLNVSaleInquery('A01', '8409')
+        url = URL.getURLNVSaleInquery('A01', '8409')
 
         html = get_html(url)
         soup = BeautifulSoup(html, 'html.parser')

@@ -1,17 +1,13 @@
 # -*- coding:utf-8 -*-
-import time
 from REP_DAO import *
-from REP_URL import *
+from common.common.URL import *
 from REP_COM import *
 from REP_TABLE import *
-from REP_MIG_MAPP import *
-import REP_URL
+from common.common import URL
 import REP_MIG
 from REP_TLGR_MSG import *
 import json
-import schedule
 import time
-from bs4 import BeautifulSoup
 
 userid = 1000000011
 
@@ -45,7 +41,7 @@ class CrawlingNVAtcl(CrawlingMultiNaver):
     # [LV3 구현]각 Lv3 Class(웹사이트(url) 별로) URL을 만드는 부분을 정의
     def selfMakeURL(self, dicStrdData=None, reCnt=None):
         seq = 0
-        url = REP_URL.URLMaker(self.SVC_ID)
+        url = URL.URLMaker(self.SVC_ID)
         Log.debug(str(dicStrdData))
         url.addString(dicStrdData['NV_CMPX_ID'])
         url.add("page",str(reCnt))

@@ -32,7 +32,7 @@ class KCOMDEV030(QWidget, KWidget, form_class) :
     def search(self):
         try:
             Columns = ['site_cd', 'slep_sec', 'bas_url', 'bas_prtc', 'enc_cd']
-            Widths = {'site_cd':50, 'slep_sec':50, 'bas_url':200, 'bas_prtc':30, 'enc_cd':50}
+            Widths = {'site_cd':120, 'slep_sec':50, 'bas_url':200, 'bas_prtc':30, 'enc_cd':50}
             self.twSite.setBasic(columns = Columns, widths = Widths, tableClass = Site)
             self.twSite.setListTable(self.getSites())
 

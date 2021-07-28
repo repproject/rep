@@ -231,9 +231,20 @@ class TableWidget(QTableWidget,TableListBind):
 
     def deleteRow(self,n=None):
         if n == None: n = self.currentRow()
-        table = self.item(n, 0).table
+        table = self.getRowTable(n)
+            #self.item(n, 0).table
         if table != None: deleteBasic(table)
         self.removeRow(n)
+
+    def getRowTable(self,n=None):
+        if n == None : n = self.currentRow()
+        w = self.getCellObject(n,0)
+        return w.table
+
+    def getCellObject(self,n,m):
+        cw = self.cellWidget(n, m)
+        if cw == None: return self.Item(n,m)
+        else: return cw
 
     def removeAll(self):
         model = self.model()
@@ -244,7 +255,7 @@ class TableWidget(QTableWidget,TableListBind):
     def mergeRow(self,n=None):
         if n == None: n = self.currentRow()
         self.setRowValues(n)
-        merge(self.item(n,0).table)
+        merge(self.getRowTable(n))
 
     def mergeList(self):
         self.setAllValues()
@@ -252,8 +263,7 @@ class TableWidget(QTableWidget,TableListBind):
 
     def setRowValues(self,n=None):
         if n == None: n = self.currentRow()
-
-        if self.item(n, 0).table == None:
+        if self.getRowTable(n) == None:
             kwargs = {}
             for m in range(0, self.columnCount()):
                 cw = self.cellWidget(n,m)

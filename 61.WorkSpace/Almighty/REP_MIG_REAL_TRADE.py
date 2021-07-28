@@ -1,9 +1,9 @@
 # -*- coding:utf-8 -*-
 from REP_DAO import *
-from REP_URL import *
+from common.common.URL import *
 from REP_COM import *
 from REP_TABLE import *
-import REP_URL
+from common.common import URL
 import REP_MIG
 from bs4 import BeautifulSoup
 import urllib
@@ -17,7 +17,7 @@ class CrawlingMultiGO(REP_MIG.CrawlingBasicMulti):
 
     #[LV3 구현]각 Lv3 Class(웹사이트(url) 별로) URL을 만드는 부분을 정의
     def selfMakeURL(self,dicStrdData = None):
-        url = REP_URL.URLMaker("APTTrade")
+        url = URL.URLMaker("APTTrade")
         url.add("target","lcode")
         return url.getURL()
 
@@ -48,7 +48,7 @@ class CrawlingBBRegnLv2(CrawlingMultiBB):
 
     # [LV3 구현]각 Lv3 Class(웹사이트(url) 별로) URL을 만드는 부분을 정의
     def selfMakeURL(self, dicStrdData=None,reCnt = None):
-        url = REP_URL.URLMaker(self.SVC_ID)
+        url = URL.URLMaker(self.SVC_ID)
         url.add("target","mcode")
         url.add("lcode",dicStrdData['BB_LV1_REGN_CD'])
         return url.getURL()
@@ -80,7 +80,7 @@ class CrawlingBBRegnLv3(CrawlingMultiBB):
 
     # [LV3 구현]각 Lv3 Class(웹사이트(url) 별로) URL을 만드는 부분을 정의
     def selfMakeURL(self, dicStrdData=None,reCnt = None):
-        url = REP_URL.URLMaker(self.SVC_ID)
+        url = URL.URLMaker(self.SVC_ID)
         url.add("target","sname")
         url.add("lcode",dicStrdData['BB_LV1_REGN_CD'])
         url.add("mcode",dicStrdData['BB_LV2_REGN_CD'])
@@ -116,7 +116,7 @@ class CrawlingBBCmpx(CrawlingMultiBB):
 
     # [LV3 구현]각 Lv3 Class(웹사이트(url) 별로) URL을 만드는 부분을 정의
     def selfMakeURL(self, dicStrdData=None,reCnt = None):
-        url = REP_URL.URLMaker(self.SVC_ID)
+        url = URL.URLMaker(self.SVC_ID)
         url.add("target","complex_cd")
         url.add("lcode",dicStrdData['BB_LV1_REGN_CD'])
         url.add("mcode",dicStrdData['BB_LV2_REGN_CD'])
@@ -168,7 +168,7 @@ class CrawlingBBCmpxTyp(CrawlingMultiBB):
 
     # [LV3 구현]각 Lv3 Class(웹사이트(url) 별로) URL을 만드는 부분을 정의
     def selfMakeURL(self, dicStrdData=None,reCnt = None):
-        url = REP_URL.URLMaker(self.SVC_ID)
+        url = URL.URLMaker(self.SVC_ID)
         url.add("complex_cd",dicStrdData['BB_CMPX_ID'])
         return url.getURL()
 
@@ -207,7 +207,7 @@ class CrawlingBBCmpxTypMarketPrice(CrawlingMultiBB):
 
     # [LV3 구현]각 Lv3 Class(웹사이트(url) 별로) URL을 만드는 부분을 정의
     def selfMakeURL(self, dicStrdData=None,reCnt = None):
-        url = REP_URL.URLMaker(self.SVC_ID)
+        url = URL.URLMaker(self.SVC_ID)
         url.add("complex_cd",dicStrdData['BB_CMPX_ID'])
         url.add("pyung_cd", dicStrdData['BB_CMPX_TYP_SEQ'])
         url.add("period_gbn", "month")

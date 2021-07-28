@@ -1,12 +1,6 @@
 # -*- coding:utf-8 -*-
-from REP_DAO import *
-from REP_URL import *
 from REP_COM import *
-from REP_TABLE import *
-import REP_URL
-import REP_MIG
 from bs4 import BeautifulSoup
-import urllib
 
 userid = 1000000011
 

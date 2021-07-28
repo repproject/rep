@@ -1,4 +1,4 @@
-from common.common.user import *
+from common.common.User import *
 from sqlalchemy import *
 from sqlalchemy.orm import declarative_base
 from common.database.testReflect import *

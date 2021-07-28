@@ -1,11 +1,7 @@
-from REP_DAO import *
-from REP_URL import *
 from REP_COM import *
-from REP_TABLE import *
-import REP_URL
+from common.common import URL
 import REP_MIG
-from bs4 import BeautifulSoup
-import urllib
+
 
 #Lv3
 class CrawlingSingleAP(REP_MIG.CrawlingBasicSingle):
@@ -25,7 +21,7 @@ class CrawlingMultiAP(REP_MIG.CrawlingBasicMulti):
 
     #[LV3 구현]각 Lv3 Class(웹사이트(url) 별로) URL을 만드는 부분을 정의
     def selfMakeURL(self,dicStrdData = None):
-        url = REP_URL.URLMaker("ApplyAPTList")
+        url = URL.URLMaker("ApplyAPTList")
         #url.add("target","lcode")
         return url.getURL()
 
@@ -45,7 +41,7 @@ class CrawlingAPAptList(CrawlingMultiAP):
 
     # [LV3 구현]각 Lv3 Class(웹사이트(url) 별로) URL을 만드는 부분을 정의
     def selfMakeURL(self, dicStrdData=None):
-        url = REP_URL.URLMaker(self.SVC_ID)
+        url = URL.URLMaker(self.SVC_ID)
         url.add("beginPd",dicStrdData['YYYY'] + "01")
         url.add("endPd", dicStrdData['YYYY'] + "12")
         url.add("pageIndex", "1")

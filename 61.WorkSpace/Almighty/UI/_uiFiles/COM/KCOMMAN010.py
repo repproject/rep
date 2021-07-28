@@ -38,7 +38,8 @@ class WindowClass(QMainWindow, form_class) :
             menu = dicMenuLv2Action[sender]
             mod = importlib.import_module(menu[0].pgm_id)
             uiClass = getattr(mod, menu[0].pgm_id)()
-            self.tabWidget.addTab(uiClass, menu[0].menu_nm)
+            r = self.tabWidget.addTab(uiClass, menu[0].menu_nm)
+            self.tabWidget.setCurrentIndex(r)
             return True
         except : error()
 

@@ -1,14 +1,9 @@
 # -*- coding:utf-8 -*-
 # import REP_DAO
-import time
 
 from REP_DAO import *
-from REP_URL import *
-import REP_COM
+from common.common.URL import *
 import REP_MIG
-import REP_URL
-import REP_DAO
-import json
 
 
 # def get_naver_realasset():

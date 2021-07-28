@@ -1,30 +1,10 @@
 from DAO.KTable import *
-from sqlalchemy import select
+from sqlalchemy import Integer, ForeignKey, String
 from common.database.testReflect import *
 from common.database.repSqlAlchemy import *
 import datetime
 
 Base = declarative_base()
-
-class Site(Base,KTable):
-    __tablename__ = 'KADM_SITE'
-
-    site_cd = KColumn(String(20), primary_key = True, nullable = False)
-    slep_sec = KColumn(Float, nullable = True)
-    bas_url = KColumn(String(1000), nullable = True)
-    bas_prtc = KColumn(String(10), nullable = True)
-    enc_cd = KColumn(String(20), nullable = True)
-
-    def __init__(self, *args, **kwargs):
-        KTable.__init__(self)
-        self.site_cd =  kwargs.pop('site_cd')
-        self.slep_sec =  kwargs.pop('slep_sec','')
-        self.bas_url =  kwargs.pop('bas_url','')
-        self.bas_prtc =  kwargs.pop('bas_prtc','')
-        self.enc_cd =  kwargs.pop('enc_cd','')
-
-    def __repr__(self):
-        return "<Site('%s', '%s', '%s', '%s', '%s'" % (str(self.site_cd), str(self.slep_sec), str(self.bas_url), str(self.bas_prtc), str(self.enc_cd) + KTable.__repr__(self))
 
 class Job(Base,KTable):
     __tablename__ = 'KADM_JOB'
@@ -145,14 +125,36 @@ class ComCdDtl(Base,KTable):
     def __repr__(self):
         return "<ComCdDtl('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.com_cd_grp), str(self.com_cd), str(self.com_cd_nm), str(self.com_cd_desc), str(self.prnt_seq), str(self.eff_sta_ymd), str(self.eff_end_ymd), str(self.ref1), str(self.ref2), str(self.ref3), str(self.ref4), str(self.ref5) + KTable.__repr__(self))
 
+class Site(Base,KTable):
+    __tablename__ = 'KADM_SITE'
+
+    site_cd = KColumn(String(20), primary_key = True, nullable = False, kcom_cd_domain=True, kcom_cd_grp='SITE')
+    slep_sec = KColumn(Float, nullable = True)
+    bas_url = KColumn(String(1000), nullable = True)
+    bas_prtc = KColumn(String(10), nullable = True)
+    enc_cd = KColumn(String(20), nullable = True)
+
+    def __init__(self, *args, **kwargs):
+        KTable.__init__(self)
+        self.site_cd =  kwargs.pop('site_cd')
+        self.slep_sec =  kwargs.pop('slep_sec','')
+        self.bas_url =  kwargs.pop('bas_url','')
+        self.bas_prtc =  kwargs.pop('bas_prtc','')
+        self.enc_cd =  kwargs.pop('enc_cd','')
+
+    def __repr__(self):
+        return "<Site('%s', '%s', '%s', '%s', '%s'" % (str(self.site_cd), str(self.slep_sec), str(self.bas_url), str(self.bas_prtc), str(self.enc_cd) + KTable.__repr__(self))
+
 class Svc(Base,KTable):
     __tablename__ = 'KADM_SVC'
 
     svc_id = KColumn(String(500), primary_key = True, nullable = False)
-    site_cd = KColumn(String(20), nullable=False, kcom_cd_domain=True, kcom_cd_grp='SITE')
+    site_cd = KColumn(String(20), nullable = False, kcom_cd_domain=True, kcom_cd_grp='SITE')
+    #site_cd = KColumn(String(20),ForeignKey("Site.site_cd"))
     bas_svc_url = KColumn(String(1000), nullable = True)
     req_way_cd = KColumn(String(20), nullable = True, kcom_cd_domain = True,kcom_cd_grp='REQ_WAY')
     exmp_url = KColumn(String(1000),nullable = True)
+    site = relationship("Site",primaryjoin= site_cd == Site.site_cd, foreign_keys=Site.site_cd)
 
     def __init__(self, *args, **kwargs):
         KTable.__init__(self)

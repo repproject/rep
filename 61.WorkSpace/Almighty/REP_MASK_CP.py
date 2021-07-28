@@ -1,12 +1,8 @@
 # -*- coding:utf-8 -*-
 import selenium
 
-from REP_DAO import *
-from REP_URL import *
+from common.common.URL import *
 from REP_COM import *
-from REP_TABLE import *
-import REP_URL
-import REP_MIG
 from bs4 import BeautifulSoup
 import urllib
 
