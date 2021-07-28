@@ -1,5 +1,4 @@
 from common.database.repSqlAlchemy import *
-#from DAO.KADM import *
 import DAO.KADM
 from common.ui.comUi import *
 from Server.COM import *

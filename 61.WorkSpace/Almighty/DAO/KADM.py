@@ -1,5 +1,4 @@
 from DAO.KTable import *
-from DAO.KTable import KTable
 from sqlalchemy import select
 from common.database.testReflect import *
 from common.database.repSqlAlchemy import *
@@ -149,26 +148,45 @@ class ComCdDtl(Base,KTable):
 class Svc(Base,KTable):
     __tablename__ = 'KADM_SVC'
 
-    site_cd = KColumn(String(20), primary_key = True, nullable = False, kcom_cd_domain = True,kcom_cd_grp='SITE')
     svc_id = KColumn(String(500), primary_key = True, nullable = False)
+    site_cd = KColumn(String(20), nullable=False, kcom_cd_domain=True, kcom_cd_grp='SITE')
     bas_svc_url = KColumn(String(1000), nullable = True)
     req_way_cd = KColumn(String(20), nullable = True, kcom_cd_domain = True,kcom_cd_grp='REQ_WAY')
+    exmp_url = KColumn(String(1000),nullable = True)
 
     def __init__(self, *args, **kwargs):
         KTable.__init__(self)
-        self.site_cd =  kwargs.pop('site_cd')
         self.svc_id =  kwargs.pop('svc_id')
+        self.site_cd = kwargs.pop('site_cd')
         self.bas_svc_url =  kwargs.pop('bas_svc_url','')
         self.req_way_cd =  kwargs.pop('req_way_cd','')
+        self.exmp_url = kwargs.pop('exmp_url', '')
 
     def __repr__(self):
-        return "<Svc('%s', '%s', '%s', '%s'" % (str(self.site_cd), str(self.svc_id), str(self.bas_svc_url), str(self.req_way_cd) + KTable.__repr__(self))
+        return "<Svc('%s', '%s', '%s', '%s', '%s'" % (str(self.svc_id), str(self.site_cd), str(self.bas_svc_url), str(self.req_way_cd), str(self.exmp_url) + KTable.__repr__(self))
 
+class SvcParm(Base,KTable):
+    __tablename__ = 'KADM_SVC_PARM'
+
+    svc_id = KColumn(String(500), primary_key = True, nullable = False)
+    svc_parm_id = KColumn(String(50), primary_key = True, nullable = False)
+    svc_parm_val = KColumn(String(200), nullable = True)
+    svc_parm_desc = KColumn(String(500), nullable = False)
+
+    def __init__(self, *args, **kwargs):
+        KTable.__init__(self)
+        self.svc_id =  kwargs.pop('svc_id')
+        self.svc_parm_id =  kwargs.pop('svc_parm_id')
+        self.svc_parm_val =  kwargs.pop('svc_parm_val','')
+        self.svc_parm_desc =  kwargs.pop('svc_parm_desc')
+
+    def __repr__(self):
+        return "<SvcParm('%s', '%s', '%s', '%s'" % (str(self.svc_id), str(self.svc_parm_id), str(self.svc_parm_val), str(self.svc_parm_desc) + KTable.__repr__(self))
 
 if __name__ == "__main__" :
     #menu = Menu('test',None,None,None,None,None)
     #list = ['a','b','c','d',1,'e','f','g','h','i','j','k']
-    list = {'com_cd_grp' : 'ABC','com_cd_grp_nm' : 'BBB','del_yn' : 'N'}
-    dtl = ComCdDtl(list)
+    list = {'svc_id' : 'a','svc_parm_id' : 'BBB','site_cd' : 'N'}
+    dtl = SvcParm(svc_id = 'a',svc_parm_id='B',site_cd='D')
     #print(dtl)
     pass

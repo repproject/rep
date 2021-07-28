@@ -38,6 +38,10 @@ def getSvc(strSiteCd):
     setCodeByTable(Svc)
     return s.query(Svc).filter_by(site_cd=strSiteCd).all()
 
+def getSvcParm(strSvcId):
+    setCodeByTable(SvcParm)
+    return s.query(SvcParm).filter_by(svc_id=strSvcId).all()
+
 if __name__ == "__main__":
     #print(getSites())
     pass

@@ -105,7 +105,9 @@ class TableListBind():
         self.columns = []
         for col in columns:
             self.columns.append(col.lower())
-    def setSetDic(self,setdic):        self.setDic = setdic
+    def setSetDic(self,setdic):
+        for key in setdic.keys():
+            self.setDic[key.lower()] = setdic[key]
     def setTableClass(self, tableClass):
         self.tableClass = tableClass
         Server.COM.setCodeByTable(tableClass)
@@ -226,6 +228,12 @@ class TableWidget(QTableWidget,TableListBind):
         n = self.rowCount()
         self.insertTWRow(n)
         return n
+
+    def deleteRow(self,n=None):
+        if n == None: n = self.currentRow()
+        table = self.item(n, 0).table
+        if table != None: deleteBasic(table)
+        self.removeRow(n)
 
     def removeAll(self):
         model = self.model()

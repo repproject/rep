@@ -131,8 +131,6 @@ dicService = {
         },
         'MTHD': "GET"
     },
-
-
 }
 
 class URLMaker:

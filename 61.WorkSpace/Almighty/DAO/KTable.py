@@ -1,8 +1,9 @@
+from common.common.user import *
 from sqlalchemy import *
 from sqlalchemy.orm import declarative_base
 from common.database.testReflect import *
 import datetime
-import UI._uiFiles.COM.KCOMMAN010
+#import UI._uiFiles.COM.KCOMMAN010
 
 Base = declarative_base()
 
@@ -49,9 +50,9 @@ class KTable():
         self.init()
 
     def init(self):
-        self.reg_user_id = UI._uiFiles.COM.KCOMMAN010.user_id
+        self.reg_user_id = user.getUserId()
         self.reg_dtm = datetime.datetime.now()
-        self.chg_user_id = UI._uiFiles.COM.KCOMMAN010.user_id
+        self.chg_user_id = user.getUserId()
         self.chg_dtm = datetime.datetime.now()
 
     def __repr__(self):
