@@ -13,7 +13,7 @@ def getMenu():
     return result
 
 def getMenuLv(lv):
-    stmt = select(Menu).filter_by(menu_lv=lv).order_by(Menu.menu_id)
+    stmt = select(Menu).filter_by(menu_lv=lv).order_by(Menu.prnt_seq)
     result = s.execute(stmt).all()
     return result
 
