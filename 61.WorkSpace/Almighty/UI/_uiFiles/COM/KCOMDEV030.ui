@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1263</width>
+    <height>910</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QTableWidget" name="twSite">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>40</y>
+     <width>451</width>
+     <height>391</height>
+    </rect>
+   </property>
+   <column>
+    <property name="text">
+     <string>사이트코드</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>슬립초</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>기본URL</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>기본프로토콜</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>인코딩코드</string>
+    </property>
+   </column>
+  </widget>
+  <widget class="QPushButton" name="btn_add">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>440</y>
+     <width>56</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>추가</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_save">
+   <property name="geometry">
+    <rect>
+     <x>840</x>
+     <y>880</y>
+     <width>56</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>저장</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="twSvc">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>470</y>
+     <width>451</width>
+     <height>401</height>
+    </rect>
+   </property>
+   <column>
+    <property name="text">
+     <string>서비스ID</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>기본서비스URL</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>호출방식코드</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>예제URL</string>
+    </property>
+   </column>
+  </widget>
+  <widget class="QPushButton" name="btn_add_svc">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>880</y>
+     <width>56</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>추가</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_del_svc">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>880</y>
+     <width>56</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>삭제</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="twSvcParm">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>40</y>
+     <width>411</width>
+     <height>831</height>
+    </rect>
+   </property>
+   <column>
+    <property name="text">
+     <string>서비스인자ID</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>서비스인자값</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>서비스인자설명</string>
+    </property>
+   </column>
+  </widget>
+  <widget class="QPushButton" name="btn_add_svc_parm">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>880</y>
+     <width>56</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>추가</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_del_svc_parm">
+   <property name="geometry">
+    <rect>
+     <x>550</x>
+     <y>880</y>
+     <width>56</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>삭제</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
