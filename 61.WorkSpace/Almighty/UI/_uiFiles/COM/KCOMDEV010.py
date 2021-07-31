@@ -10,7 +10,7 @@ pgm_id = 'KCOMDEV010'
 form_class = uic.loadUiType(pgm_id + ".ui")[0]
 
 class KCOMDEV010(QWidget, KWidget, form_class) :
-    meta = None
+    #meta = None
 
     def __init__(self):
         super().__init__()

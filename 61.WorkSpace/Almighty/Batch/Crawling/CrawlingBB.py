@@ -49,7 +49,7 @@ class CrawlingBBRegnLv1(CrawlingSingleBB):
     def selfMakeURL(self, dicStrdData=None,reCnt = None):
         url = URL.URLMaker(self.SVC_ID)
         url.add("target","lcode")
-        return url.getURL()
+        return url
 
     #[LV3 구현]Page > 변환 > Parse > DB 반영
     def selfSaveDB(self,page):

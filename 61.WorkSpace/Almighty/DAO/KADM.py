@@ -185,6 +185,36 @@ class SvcParm(Base,KTable):
     def __repr__(self):
         return "<SvcParm('%s', '%s', '%s', '%s'" % (str(self.svc_id), str(self.svc_parm_id), str(self.svc_parm_val), str(self.svc_parm_desc) + KTable.__repr__(self))
 
+class Tbl(Base,KTable):
+    __tablename__ = 'KADM_TBL'
+
+    tbl_nm = KColumn(String(50), primary_key = True, nullable = False)
+    tbl_desc = KColumn(String(500), nullable = True)
+
+    def __init__(self, *args, **kwargs):
+        KTable.__init__(self)
+        self.tbl_nm =  kwargs.pop('tbl_nm')
+        self.tbl_desc =  kwargs.pop('tbl_desc','')
+
+    def __repr__(self):
+        return "<Tbl('%s', '%s'" % (str(self.tbl_nm), str(self.tbl_desc) + KTable.__repr__(self))
+
+class TblCol(Base,KTable):
+    __tablename__ = 'KADM_TBL_COL'
+
+    tbl_nm = KColumn(String(50), primary_key = True, nullable = False)
+    col_nm = KColumn(String(50), primary_key = True, nullable = False)
+    col_desc = KColumn(String(500), nullable = True)
+
+    def __init__(self, *args, **kwargs):
+        KTable.__init__(self)
+        self.tbl_nm =  kwargs.pop('tbl_nm')
+        self.col_nm =  kwargs.pop('col_nm')
+        self.col_desc =  kwargs.pop('col_desc','')
+
+    def __repr__(self):
+        return "<TblCol('%s', '%s', '%s'" % (str(self.tbl_nm), str(self.col_nm), str(self.col_desc) + KTable.__repr__(self))
+
 if __name__ == "__main__" :
     #menu = Menu('test',None,None,None,None,None)
     #list = ['a','b','c','d',1,'e','f','g','h','i','j','k']

@@ -19,7 +19,6 @@ def getMenuLv(lv):
 
 def getJob():
     result = s.query(Job).all()
-    #Job에 선언된 공통코드를 세팅한다.
     setCodeByTable(Job)
     return result
 
@@ -43,7 +42,16 @@ def getSvcParm(strSvcId):
     return s.query(SvcParm).filter_by(svc_id=strSvcId).all()
 
 def getSvcInfo(strSvcId):
-    return s.execute(select(Site).join(Svc.site).where(Svc.svc_id == strSvcId)).scalars().all()
+    setCodeByTable(Svc)
+    setCodeByTable(Site)
+    return s.query(Site,Svc).join(Svc.site).where(Svc.svc_id == strSvcId).all()
+
+def getTblLst(strTblNm,strTblDesc,strColNm,strColDesc):
+    setCodeByTable(Tbl)
+    return s.query(Tbl).filter(Tbl.tbl_nm.like("%"+strTblNm+"%")).filter(Tbl.tbl_desc.like("%"+strTblDesc+"%")).all()
+
+def getColLst(strTblNm):
+    return s.query(TblCol).filter_by(tbl_nm=strTblNm).all()
 
 if __name__ == "__main__":
     print('pppprint')

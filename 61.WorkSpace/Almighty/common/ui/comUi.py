@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import pyqtSlot
+from qtpy import QtGui
 from Server.Basic import *
 import sys, traceback
 import copy
@@ -154,17 +155,17 @@ class TableWidget(QTableWidget,TableListBind):
         #self.cellChanged.connect(self.onCellChanged)
         pass
 
-    def setListTable(self,listTable):
-        self.removeAll()
-        super(TableWidget,self).setListTable(listTable)
-        self.setByTableList()
-
     def setBasic(self,*args,**kwargs):
         self.setColumns(kwargs.pop("columns"))
         self.setWidths(kwargs.pop("widths",{}))
         self.setTableClass(kwargs.pop("tableClass",""))
         self.setSetDic(kwargs.pop("setDic", {}))
         self.setAligns(kwargs.pop("aligns", {}))
+
+    def setListTable(self,listTable):
+        self.removeAll()
+        super(TableWidget,self).setListTable(listTable)
+        self.setByTableList()
 
     def setWidths(self,widths):
         for key in widths.keys():
@@ -182,7 +183,6 @@ class TableWidget(QTableWidget,TableListBind):
             if self.listTable == None : self.setRowCount(0)
             error()
             return False
-
 
     def setTWRow(self, n, table=None):
         r"""
@@ -216,6 +216,7 @@ class TableWidget(QTableWidget,TableListBind):
                     if text == None :
                         text = ""
                 newitem = TableWidgetItem(str(text), table, col.lower())
+                if table == None : newitem.setBackground(QtGui.QColor("yellow"))
                 if col in self.aligns.keys() : newitem.setTextAlignment(self.aligns[col])
                 self.setItem(n, m, newitem)
         except Exception as e: error()
@@ -230,11 +231,16 @@ class TableWidget(QTableWidget,TableListBind):
         return n
 
     def deleteRow(self,n=None):
+        r"""
+        :param n: 삭제할 행(없으면 현재 행)
+        :return:
+        """
         if n == None: n = self.currentRow()
         table = self.getRowTable(n)
             #self.item(n, 0).table
         if table != None: deleteBasic(table)
         self.removeRow(n)
+        return True
 
     def getRowTable(self,n=None):
         if n == None : n = self.currentRow()
@@ -243,7 +249,7 @@ class TableWidget(QTableWidget,TableListBind):
 
     def getCellObject(self,n,m):
         cw = self.cellWidget(n, m)
-        if cw == None: return self.Item(n,m)
+        if cw == None: return self.item(n,m)
         else: return cw
 
     def removeAll(self):
@@ -321,7 +327,6 @@ class TableWidget(QTableWidget,TableListBind):
     def getDicBasicData(self):
         dicData = {}
         return  dicData
-        pass
 
     @classmethod
     def convert_to_TableWidget(cls, obj):

@@ -70,7 +70,6 @@ class KCOMDEV020(QWidget, KWidget, form_class) :
             return False
 
         for n in range(0,self.twComCdDtl.rowCount()):
-            print(self.twComCdDtl.getTextByColName(n, "com_cd"))
             if self.twComCdDtl.getTextByColName(n, "com_cd") == None:
                 alert('공통코드값이 없습니다.')
                 return False

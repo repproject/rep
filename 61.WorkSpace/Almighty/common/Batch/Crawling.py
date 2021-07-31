@@ -1,6 +1,7 @@
 from common.common.Log import *
 from common.Batch.Batch import *
 from common.common.Telegram import *
+from common.common.URL import get_html
 import Server.COM
 
 sleeptime = 1
