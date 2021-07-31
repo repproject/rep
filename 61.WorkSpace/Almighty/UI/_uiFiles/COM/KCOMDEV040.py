@@ -8,7 +8,6 @@ from Server.Basic import *
 from DAO.KADM import *
 import copy
 
-
 pgm_id = 'KCOMDEV040'
 form_class = uic.loadUiType(pgm_id + ".ui")[0]
 
