@@ -14,7 +14,7 @@ form_class = uic.loadUiType(pgm_id + ".ui")[0]
 
 class KCOMDEV040(QWidget, KWidget, form_class) :
     meta = None
-    isSearch = False
+    isAllSearch = False #조회여부를 판단하기 위한 문구
 
     def __init__(self):
         try:
@@ -38,10 +38,12 @@ class KCOMDEV040(QWidget, KWidget, form_class) :
             Widths = {'tbl_nm':200, 'tbl_desc':300}
             self.twTbl.setBasic(columns = Columns, widths = Widths, tableClass = Tbl)
             self.twTbl.setListTable(self.getTblLst(self.edt_tbl_nm.text(),self.edt_tbl_desc.text(),self.edt_col_nm.text(),self.edt_col_desc.text()))
-            isSearch = True
         except : error()
 
-    def getTblLst(self,strTblNm,strTblDesc,strColNm,strColDesc): return Server.COM.getTblLst(strTblNm,strTblDesc,strColNm,strColDesc)
+    def getTblLst(self,strTblNm,strTblDesc,strColNm,strColDesc):
+        if len(strTblNm) == 0 and len(strTblDesc) == 0 and len(strColNm) == 0 and len(strColDesc) == 0:
+            self.isAllSearch = True
+        return Server.COM.getTblLst(strTblNm,strTblDesc,strColNm,strColDesc)
 
     def reflectTbl(self):
         try:
@@ -61,8 +63,8 @@ class KCOMDEV040(QWidget, KWidget, form_class) :
         except: error()
 
     def preReflectTbl(self):
-        if self.isSearch == False:
-            alert('조회 후 Reflect 가능합니다.')
+        if self.isAllSearch == False:
+            alert('전체 조회 후 Reflect 가능합니다.')
             return False
         return True
 
@@ -158,30 +160,6 @@ class KCOMDEV040(QWidget, KWidget, form_class) :
             alert("신규로 생성한 행만 삭제 가능합니다.")
             return False
         return True
-
-
-
-
-    # def addDtl(self):
-    #     try:
-    #         if self.preAddDtl():
-    #            n = self.twComCdDtl.addTWRow()
-    #            self.twComCdDtl.setTextByColName(n,"eff_sta_ymd",datetime.datetime.now().strftime('%Y%m%d'))
-    #            self.twComCdDtl.setTextByColName(n,"eff_end_ymd", '99991231')
-    #            prnt_seq = 1
-    #            if n > 0 :
-    #                prnt_seq = int(self.twComCdDtl.getTextByColName(n-1,'prnt_seq')) + 1
-    #            self.twComCdDtl.setTextByColName(n, "prnt_seq", prnt_seq)
-    #     except : error()
-    #
-    # def preAddDtl(self):
-    #     if self.twComCdGrp.currentItem() == None:
-    #         alert("공통코드그룹을 선택하셔야합니다.")
-    #         return False
-    #     return True
-    #
-    # def getCodeLst(self,strComCdGrp,strComCdGrpNm): return Server.COM.getCodeLst(strComCdGrp,strComCdGrpNm)
-    # def getCodeDtl(self,strComCdGrp):               return Server.COM.getCodeDtl(strComCdGrp)
 
 if __name__ == "__main__":
     #QApplication : 프로그램을 실행시켜주는 클래스
