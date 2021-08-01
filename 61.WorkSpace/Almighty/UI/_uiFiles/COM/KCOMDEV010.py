@@ -1,9 +1,12 @@
+from typing import Dict, List, Any, Union
+import DAO.KADM
 from PyQt5.QtWidgets import QTableView
 import Server.COM
 from UI._uiFiles.KWidget import *
 from common.ui.comUi import *
 import common.database.Relfect
 from UI._uiFiles.UIBasic import *
+from common.ui.comPopUp import *
 import sys
 
 pgm_id = 'KCOMDEV010'
@@ -11,7 +14,7 @@ pgm_nm = '테이블클래스생성'
 form_class = uic.loadUiType(pgm_id + ".ui")[0]
 
 class KCOMDEV010(QWidget, KWidget, form_class) :
-    #meta = None
+    meta = None
 
     def __init__(self):
         super().__init__()
@@ -21,6 +24,7 @@ class KCOMDEV010(QWidget, KWidget, form_class) :
     def initUI(self):
         self.meta = common.database.Relfect.makeMeta()
         self.btn_search.clicked.connect(self.search)
+        self.tbTable.clicked.connect(self.findTable)
         pass
 
     def search(self):
@@ -35,10 +39,21 @@ class KCOMDEV010(QWidget, KWidget, form_class) :
                 return False
             classDeclare = common.database.Relfect.getClassTable(self.meta,className,tableName)
             self.textEditClass.setText(classDeclare)
-        except Exception as e:
-            print(e)
+        except : error()
         return True
 
+    def findTable(self):
+        try:
+            dicParam = {}
+            dicParam['searchText'] = self.edt_table.text()
+            dicParam['Columns'] = ['tbl_nm','tbl_desc']
+            dicParam['Headers'] = ['테이블명', '테이블설명']
+            dicParam['tableClass'] = DAO.KADM.Tbl
+            dicParam['Function'] = 'Server.COM.getTableFinder'
+            result = finderPop(self,dicParam)
+            self.edt_table.setText(result['table'].tbl_nm)
+            self.edt_table_nm.setText(result['table'].tbl_desc)
+        except: error()
 
 if __name__ == "__main__":
     #QApplication : 프로그램을 실행시켜주는 클래스

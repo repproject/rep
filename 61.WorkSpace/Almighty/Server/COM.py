@@ -9,10 +9,12 @@ def getSite(strSiteCode=None):
     return result
 
 def getMenu():
+    setCodeByTable(Menu)
     result = s.query(Menu).order_by(Menu.prnt_seq).all()
     return result
 
 def getMenuLv(lv):
+    setCodeByTable(Menu)
     stmt = select(Menu).filter_by(menu_lv=lv).order_by(Menu.prnt_seq)
     result = s.execute(stmt).all()
     return result
@@ -51,7 +53,11 @@ def getTblLst(strTblNm,strTblDesc,strColNm,strColDesc):
     return s.query(Tbl).filter(Tbl.tbl_nm.like("%"+strTblNm+"%")).filter(Tbl.tbl_desc.like("%"+strTblDesc+"%")).all()
 
 def getColLst(strTblNm):
+    setCodeByTable(TblCol)
     return s.query(TblCol).filter_by(tbl_nm=strTblNm).all()
+
+def getTableFinder(dicParam):
+    return s.query(Tbl).filter(or_(Tbl.tbl_nm.like("%" + dicParam['searchText'] + "%"),(Tbl.tbl_desc.like("%" +  dicParam['searchText'] + "%")))).all()
 
 if __name__ == "__main__":
     print('pppprint')

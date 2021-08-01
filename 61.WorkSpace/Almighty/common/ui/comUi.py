@@ -7,6 +7,7 @@ import sys, traceback
 import copy
 import Server.COM
 
+
 basic_ui_route = 'UI._uiFiles.COM'
 basic_ui_dictionary = "C:/Users/Ceasar.DESKTOP-AQTREV4/PycharmProjects/rep/61.WorkSpace/Almighty/UI/_uiFiles/COM/"
 
@@ -53,9 +54,7 @@ def setEdit2Table(form,table):
         try:
             text = getattr(form,"edit_"+colname).text()
             setattr(table,colname,text)
-        except Exception as e:
-            print("set Edit to Table Text Failure... : [" + colname + "]")
-            print(e)
+        except : error()
     return True
 
 def error():logging.error(traceback.format_exc())
@@ -98,8 +97,8 @@ class TableListBind():
         try:
             self.setlistTable(listTable)
             self.setColumns(columns)
-        except Exception as e:
-            print("class TableBind Exception : " + str(e))
+        except : error()
+
 
     def setListTable(self, listTable): self.listTable = listTable
     def setColumns(self, columns):
@@ -110,8 +109,9 @@ class TableListBind():
         for key in setdic.keys():
             self.setDic[key.lower()] = setdic[key]
     def setTableClass(self, tableClass):
-        self.tableClass = tableClass
-        Server.COM.setCodeByTable(tableClass)
+        if tableClass != None:
+            self.tableClass = tableClass
+            Server.COM.setCodeByTable(tableClass)
     def getColumns(self):              return self.columns
     def getlistTable(self):            return self.listTable
 
@@ -123,8 +123,7 @@ class TableBind():
         try:
             self.setTable(table)
             self.setColName(colName)
-        except Exception as e:
-            print("class TableBind Exception : " + str(e))
+        except : error()
 
     def setTable(self, table):     self.table = table
     def setColName(self, colName): self.colName = colName
@@ -137,8 +136,7 @@ class TableWidgetItem(QTableWidgetItem,TableBind):
         try:
             QTableWidgetItem.__init__(self,text)
             TableBind.__init__(self,table,colName)
-        except Exception as e:
-            print("class TableWidgetItem : " + str(e))
+        except : error()
 
 class TableWidget(QTableWidget,TableListBind):
     widths = {}
@@ -148,8 +146,7 @@ class TableWidget(QTableWidget,TableListBind):
         try:
             super(TableWidget,self).__init__(listTable,columns)
             self.init()
-        except Exception as e:
-            print(e)
+        except : error()
 
     def init(self):
         #self.cellChanged.connect(self.onCellChanged)
@@ -158,9 +155,13 @@ class TableWidget(QTableWidget,TableListBind):
     def setBasic(self,*args,**kwargs):
         self.setColumns(kwargs.pop("columns"))
         self.setWidths(kwargs.pop("widths",{}))
-        self.setTableClass(kwargs.pop("tableClass",""))
+        self.setTableClass(kwargs.pop("tableClass",None))
         self.setSetDic(kwargs.pop("setDic", {}))
+        self.setHeaders(kwargs.pop("headers",[]))
         self.setAligns(kwargs.pop("aligns", {}))
+
+    def setHeaders(self,headers):
+        if len(headers) > 0 : self.setHorizontalHeaderLabels(headers)
 
     def setListTable(self,listTable):
         self.removeAll()
@@ -330,7 +331,9 @@ class TableWidget(QTableWidget,TableListBind):
 
     @classmethod
     def convert_to_TableWidget(cls, obj):
+        #print("변경 전 : " + str(obj.__class__))
         obj.__class__ = TableWidget
+        #print("변경 후 : " + str(obj.__class__))
 
 ###############ComboBox####################
 class ComboBox(QComboBox,TableBind):
@@ -365,8 +368,6 @@ class ComboBox(QComboBox,TableBind):
     def getCurrentCode(self):
         return self.reverseDicCode[self.currentText()]
 
-
-
-    if __name__ == "__main__":
-        pass
+if __name__ == "__main__":
+    pass
 

@@ -70,9 +70,9 @@
   <widget class="QLineEdit" name="edt_table">
    <property name="geometry">
     <rect>
-     <x>390</x>
+     <x>370</x>
      <y>10</y>
-     <width>181</width>
+     <width>161</width>
      <height>31</height>
     </rect>
    </property>
@@ -89,7 +89,7 @@
      <x>10</x>
      <y>50</y>
      <width>861</width>
-     <height>971</height>
+     <height>931</height>
     </rect>
    </property>
    <property name="font">
@@ -115,6 +115,38 @@
    </property>
    <property name="text">
     <string>조회</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="tbTable">
+   <property name="geometry">
+    <rect>
+     <x>509</x>
+     <y>27</y>
+     <width>22</width>
+     <height>15</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>...</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="edt_table_nm">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>540</x>
+     <y>10</y>
+     <width>181</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>한컴산뜻돋움</family>
+     <pointsize>12</pointsize>
+    </font>
    </property>
   </widget>
  </widget>

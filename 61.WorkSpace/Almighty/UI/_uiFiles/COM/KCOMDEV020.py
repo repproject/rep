@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import QTableView
 import Server.COM
 from UI._uiFiles.KWidget import *
 from common.ui.comUi import *
+from common.ui.comPopUp import *
 import common.database.Relfect
 from UI._uiFiles.UIBasic import *
 from Server.Basic import *
@@ -17,6 +18,7 @@ class KCOMDEV020(QWidget, KWidget, form_class) :
         try:
             super().__init__()
             self.initUI()
+            print(self.twComCdGrp.__class__)
         except : error()
 
     def initUI(self):
@@ -47,7 +49,6 @@ class KCOMDEV020(QWidget, KWidget, form_class) :
             SetDic = {'com_cd_grp':strComCdgrp}
 
             self.twComCdDtl.setBasic(columns = Columns, widths = Widths, tableClass = ComCdDtl, setDic = SetDic, aligns = Aligns)
-
             self.twComCdDtl.setListTable(self.getCodeDtl(strComCdgrp))
 
             #Table Widget Setting
