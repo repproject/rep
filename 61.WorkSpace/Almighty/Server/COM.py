@@ -9,7 +9,7 @@ def getSite(strSiteCode=None):
     return result
 
 def getMenu():
-    result = s.query(Menu).all()
+    result = s.query(Menu).order_by(Menu.prnt_seq).all()
     return result
 
 def getMenuLv(lv):

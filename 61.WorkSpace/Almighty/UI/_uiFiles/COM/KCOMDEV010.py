@@ -7,6 +7,7 @@ from UI._uiFiles.UIBasic import *
 import sys
 
 pgm_id = 'KCOMDEV010'
+pgm_nm = '테이블클래스생성'
 form_class = uic.loadUiType(pgm_id + ".ui")[0]
 
 class KCOMDEV010(QWidget, KWidget, form_class) :

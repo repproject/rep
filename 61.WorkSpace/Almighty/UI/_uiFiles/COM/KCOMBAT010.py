@@ -8,6 +8,7 @@ from DAO.KADM import *
 import sys
 
 pgm_id = 'KCOMBAT010'
+pgm_nm = '배치관리'
 form_class = uic.loadUiType(pgm_id + ".ui")[0]
 
 class KCOMBAT010(QWidget, KWidget, form_class) :

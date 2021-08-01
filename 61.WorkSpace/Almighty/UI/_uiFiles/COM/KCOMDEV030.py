@@ -7,6 +7,7 @@ from Server.Basic import *
 from DAO.KADM import *
 
 pgm_id = 'KCOMDEV030'
+pgm_nm = '사이트관리'
 form_class = uic.loadUiType(pgm_id + ".ui")[0]
 
 class KCOMDEV030(QWidget, KWidget, form_class) :

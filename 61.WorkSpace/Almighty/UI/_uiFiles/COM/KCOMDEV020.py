@@ -9,6 +9,7 @@ from DAO.KADM import *
 import copy
 
 pgm_id = 'KCOMDEV020'
+pgm_nm = '공통코드관리'
 form_class = uic.loadUiType(pgm_id + ".ui")[0]
 
 class KCOMDEV020(QWidget, KWidget, form_class) :

@@ -9,6 +9,7 @@ from DAO.KADM import *
 import datetime
 
 pgm_id = 'KCOMMAN020'
+pgm_nm = '메뉴관리'
 form_class = uic.loadUiType(pgm_id + ".ui")[0]
 
 class KCOMMAN020(QWidget, KWidget, form_class) :
