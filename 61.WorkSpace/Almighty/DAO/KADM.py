@@ -215,6 +215,43 @@ class TblCol(Base,KTable):
     def __repr__(self):
         return "<TblCol('%s', '%s', '%s'" % (str(self.tbl_nm), str(self.col_nm), str(self.col_desc) + KTable.__repr__(self))
 
+class SvcPasi(Base,KTable):
+    __tablename__ = 'KADM_SVC_PASI'
+
+    svc_id = KColumn(String(500), primary_key = True, nullable = False)
+    pasi_id = KColumn(String(50), primary_key = True, nullable = False)
+    pasi_way = KColumn(String(20), nullable = False)
+
+    def __init__(self, *args, **kwargs):
+        KTable.__init__(self)
+        self.svc_id =  kwargs.pop('svc_id')
+        self.pasi_id =  kwargs.pop('pasi_id')
+        self.pasi_way =  kwargs.pop('pasi_way')
+
+    def __repr__(self):
+        return "<SvcPasi('%s', '%s', '%s'" % (str(self.svc_id), str(self.pasi_id), str(self.pasi_way) + KTable.__repr__(self))
+
+class SvcPasiItem(Base,KTable):
+    __tablename__ = 'KADM_SVC_PASI_ITEM'
+
+    pasi_id = KColumn(String(50), primary_key = True, nullable = False)
+    svc_id = KColumn(String(500), primary_key = True, nullable = False)
+    tbl_nm = KColumn(String(50), nullable = True)
+    col_nm = KColumn(String(50), nullable = True)
+    item_nm = KColumn(String(200), primary_key = True, nullable = False)
+
+    def __init__(self, *args, **kwargs):
+        KTable.__init__(self)
+        self.pasi_id =  kwargs.pop('pasi_id')
+        self.svc_id =  kwargs.pop('svc_id')
+        self.tbl_nm =  kwargs.pop('tbl_nm','')
+        self.col_nm =  kwargs.pop('col_nm','')
+        self.item_nm =  kwargs.pop('item_nm')
+
+    def __repr__(self):
+        return "<SvcPasiItem('%s', '%s', '%s', '%s', '%s'" % (str(self.pasi_id), str(self.svc_id), str(self.tbl_nm), str(self.col_nm), str(self.item_nm) + KTable.__repr__(self))
+
+
 if __name__ == "__main__" :
     #menu = Menu('test',None,None,None,None,None)
     #list = ['a','b','c','d',1,'e','f','g','h','i','j','k']
