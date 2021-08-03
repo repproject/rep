@@ -1,12 +1,7 @@
-from PyQt5.QtWidgets import QTableView
-import Server.COM
-from UI._uiFiles.KWidget import *
-from common.ui.comUi import *
-import common.database.Relfect
 from UI._uiFiles.UIBasic import *
-from Server.Basic import *
+from PyQt5.QtWidgets import QTableView
+import common.database.Relfect
 from DAO.KADM import *
-import copy
 
 pgm_id = 'KCOMDEV040'
 pgm_nm = '테이블관리'
@@ -34,8 +29,8 @@ class KCOMDEV040(QWidget, KWidget, form_class) :
 
     def search(self):
         try:
-            Columns = ['tbl_nm', 'tbl_desc']
-            Widths = {'tbl_nm':200, 'tbl_desc':300}
+            Columns = ['tbl_nm', 'tbl_desc', 'cls_nm']
+            Widths = {'tbl_nm':200, 'tbl_desc':250, 'cls_nm':100}
             self.twTbl.setBasic(columns = Columns, widths = Widths, tableClass = Tbl)
             self.twTbl.setListTable(self.getTblLst(self.edt_tbl_nm.text(),self.edt_tbl_desc.text(),self.edt_col_nm.text(),self.edt_col_desc.text()))
         except : error()
@@ -58,6 +53,14 @@ class KCOMDEV040(QWidget, KWidget, form_class) :
                         n = self.twTbl.addTWRow()
                         self.twTbl.setTextByColName(n,"tbl_nm",tblNm)
                         self.twTbl.setTextByColName(n,"tbl_desc",self.meta.tables[tblNm].comment)
+                        clsNm = ''
+                        i = 0
+                        for t in str(tblNm).split('_'):
+                            if i > 0:
+                                clsNm = clsNm + t[0].upper()
+                                clsNm = clsNm + t[1:].lower()
+                            i=i+1
+                        self.twTbl.setTextByColName(n, "cls_nm", clsNm)
                         isExistNewReflect = True
             if isExistNewReflect == False: alert('반영할 테이블이 없습니다.')
         except: error()
@@ -72,8 +75,8 @@ class KCOMDEV040(QWidget, KWidget, form_class) :
         try:
             strTblNm = self.twTbl.getTextByColName(self.twTbl.currentRow(),"tbl_nm")
 
-            Columns = ['col_nm', 'col_desc']
-            Widths = {'col_nm':150, 'col_desc':300}
+            Columns = ['col_nm', 'COL_HAN_NM','COL_DOMA_CD','COL_DOMA_VAL','COL_DESC']
+            Widths = {'col_nm':150, 'COL_HAN_NM':200 , 'COL_DOMA_CD':70,'COL_DOMA_VAL':100,'COL_DESC':300}
             SetDic = {'tbl_nm':strTblNm}
 
             self.twCol.setBasic(columns = Columns, widths = Widths, tableClass = TblCol, setDic = SetDic)
@@ -99,7 +102,7 @@ class KCOMDEV040(QWidget, KWidget, form_class) :
                     if isExist == False:
                         n = self.twCol.addTWRow()
                         self.twCol.setTextByColName(n,"col_nm",colname)
-                        self.twCol.setTextByColName(n,"col_desc",col.comment)
+                        self.twCol.setTextByColName(n,"col_han_nm",col.comment)
                         isExistNewReflect = True
         except: error()
 

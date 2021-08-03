@@ -128,11 +128,12 @@ class ComCdDtl(Base,KTable):
 class Site(Base,KTable):
     __tablename__ = 'KADM_SITE'
 
-    site_cd = KColumn(String(20), primary_key = True, nullable = False, kcom_cd_domain=True, kcom_cd_grp='SITE')
+    site_cd = KColumn(String(20), primary_key = True, nullable = False)
     slep_sec = KColumn(Float, nullable = True)
     bas_url = KColumn(String(1000), nullable = True)
     bas_prtc = KColumn(String(10), nullable = True)
     enc_cd = KColumn(String(20), nullable = True)
+    site_desc = KColumn(String(500), nullable = True)
 
     def __init__(self, *args, **kwargs):
         KTable.__init__(self)
@@ -141,31 +142,34 @@ class Site(Base,KTable):
         self.bas_url =  kwargs.pop('bas_url','')
         self.bas_prtc =  kwargs.pop('bas_prtc','')
         self.enc_cd =  kwargs.pop('enc_cd','')
+        self.site_desc =  kwargs.pop('site_desc','')
 
     def __repr__(self):
-        return "<Site('%s', '%s', '%s', '%s', '%s'" % (str(self.site_cd), str(self.slep_sec), str(self.bas_url), str(self.bas_prtc), str(self.enc_cd) + KTable.__repr__(self))
+        return "<Site('%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.site_cd), str(self.slep_sec), str(self.bas_url), str(self.bas_prtc), str(self.enc_cd), str(self.site_desc) + KTable.__repr__(self))
 
 class Svc(Base,KTable):
     __tablename__ = 'KADM_SVC'
 
     svc_id = KColumn(String(500), primary_key = True, nullable = False)
-    site_cd = KColumn(String(20), nullable = False, kcom_cd_domain=True, kcom_cd_grp='SITE')
-    #site_cd = KColumn(String(20),ForeignKey("Site.site_cd"))
+    site_cd = KColumn(String(20), nullable = False)
     bas_svc_url = KColumn(String(1000), nullable = True)
-    req_way_cd = KColumn(String(20), nullable = True, kcom_cd_domain = True,kcom_cd_grp='REQ_WAY')
-    exmp_url = KColumn(String(1000),nullable = True)
-    site = relationship("Site",primaryjoin= site_cd == Site.site_cd, foreign_keys=Site.site_cd)
+    req_way_cd = KColumn(String(20), nullable = True, kcom_cd_domain=True, kcom_cd_grp='REQ_WAY')
+    exmp_url = KColumn(String(1000), nullable = True)
+    svc_desc = KColumn(String(500), nullable = True)
 
     def __init__(self, *args, **kwargs):
         KTable.__init__(self)
         self.svc_id =  kwargs.pop('svc_id')
-        self.site_cd = kwargs.pop('site_cd')
+        self.site_cd =  kwargs.pop('site_cd')
         self.bas_svc_url =  kwargs.pop('bas_svc_url','')
         self.req_way_cd =  kwargs.pop('req_way_cd','')
-        self.exmp_url = kwargs.pop('exmp_url', '')
+        self.exmp_url =  kwargs.pop('exmp_url','')
+        self.svc_desc =  kwargs.pop('svc_desc','')
 
     def __repr__(self):
-        return "<Svc('%s', '%s', '%s', '%s', '%s'" % (str(self.svc_id), str(self.site_cd), str(self.bas_svc_url), str(self.req_way_cd), str(self.exmp_url) + KTable.__repr__(self))
+        return "<Svc('%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.svc_id), str(self.site_cd), str(self.bas_svc_url), str(self.req_way_cd), str(self.exmp_url), str(self.svc_desc) + KTable.__repr__(self))
+
+
 
 class SvcParm(Base,KTable):
     __tablename__ = 'KADM_SVC_PARM'
@@ -190,66 +194,84 @@ class Tbl(Base,KTable):
 
     tbl_nm = KColumn(String(50), primary_key = True, nullable = False)
     tbl_desc = KColumn(String(500), nullable = True)
+    cls_nm = KColumn(String(200), nullable = True)
 
     def __init__(self, *args, **kwargs):
         KTable.__init__(self)
         self.tbl_nm =  kwargs.pop('tbl_nm')
         self.tbl_desc =  kwargs.pop('tbl_desc','')
+        self.cls_nm =  kwargs.pop('cls_nm','')
 
     def __repr__(self):
-        return "<Tbl('%s', '%s'" % (str(self.tbl_nm), str(self.tbl_desc) + KTable.__repr__(self))
+        return "<Tbl('%s', '%s', '%s'" % (str(self.tbl_nm), str(self.tbl_desc), str(self.cls_nm) + KTable.__repr__(self))
+
 
 class TblCol(Base,KTable):
     __tablename__ = 'KADM_TBL_COL'
 
     tbl_nm = KColumn(String(50), primary_key = True, nullable = False)
     col_nm = KColumn(String(50), primary_key = True, nullable = False)
+    col_doma_cd = KColumn(String(20), nullable = True)
+    col_doma_val = KColumn(String(200), nullable = True)
     col_desc = KColumn(String(500), nullable = True)
 
     def __init__(self, *args, **kwargs):
         KTable.__init__(self)
         self.tbl_nm =  kwargs.pop('tbl_nm')
         self.col_nm =  kwargs.pop('col_nm')
+        self.col_doma_cd =  kwargs.pop('col_doma_cd','')
+        self.col_doma_val =  kwargs.pop('col_doma_val','')
         self.col_desc =  kwargs.pop('col_desc','')
 
     def __repr__(self):
-        return "<TblCol('%s', '%s', '%s'" % (str(self.tbl_nm), str(self.col_nm), str(self.col_desc) + KTable.__repr__(self))
+        return "<TblCol('%s', '%s', '%s', '%s', '%s'" % (str(self.tbl_nm), str(self.col_nm), str(self.col_doma_cd), str(self.col_doma_val), str(self.col_desc) + KTable.__repr__(self))
 
 class SvcPasi(Base,KTable):
     __tablename__ = 'KADM_SVC_PASI'
 
     svc_id = KColumn(String(500), primary_key = True, nullable = False)
     pasi_id = KColumn(String(50), primary_key = True, nullable = False)
-    pasi_way = KColumn(String(20), nullable = False)
+    pasi_way_cd = KColumn(String(20), nullable = False)
+    parm_load_func_nm = KColumn(String(200), nullable = True)
+    svc_pasi_desc = KColumn(String(500), nullable = True)
 
     def __init__(self, *args, **kwargs):
         KTable.__init__(self)
         self.svc_id =  kwargs.pop('svc_id')
         self.pasi_id =  kwargs.pop('pasi_id')
-        self.pasi_way =  kwargs.pop('pasi_way')
+        self.pasi_way_cd =  kwargs.pop('pasi_way_cd')
+        self.parm_load_func_nm =  kwargs.pop('parm_load_func_nm','')
+        self.svc_pasi_desc =  kwargs.pop('svc_pasi_desc','')
 
     def __repr__(self):
-        return "<SvcPasi('%s', '%s', '%s'" % (str(self.svc_id), str(self.pasi_id), str(self.pasi_way) + KTable.__repr__(self))
+        return "<SvcPasi('%s', '%s', '%s', '%s', '%s'" % (str(self.svc_id), str(self.pasi_id), str(self.pasi_way_cd), str(self.parm_load_func_nm), str(self.svc_pasi_desc) + KTable.__repr__(self))
 
 class SvcPasiItem(Base,KTable):
     __tablename__ = 'KADM_SVC_PASI_ITEM'
 
-    pasi_id = KColumn(String(50), primary_key = True, nullable = False)
     svc_id = KColumn(String(500), primary_key = True, nullable = False)
+    pasi_id = KColumn(String(50), primary_key = True, nullable = False)
+    item_nm = KColumn(String(200), primary_key = True, nullable = False)
+    in_out_cl_cd = KColumn(String(20), nullable = True)
+    parm_val = KColumn(String(200), nullable = True)
     tbl_nm = KColumn(String(50), nullable = True)
     col_nm = KColumn(String(50), nullable = True)
-    item_nm = KColumn(String(200), primary_key = True, nullable = False)
+    desc = KColumn(String(500), nullable = True)
 
     def __init__(self, *args, **kwargs):
         KTable.__init__(self)
-        self.pasi_id =  kwargs.pop('pasi_id')
         self.svc_id =  kwargs.pop('svc_id')
+        self.pasi_id =  kwargs.pop('pasi_id')
+        self.item_nm =  kwargs.pop('item_nm')
+        self.in_out_cl_cd =  kwargs.pop('in_out_cl_cd','')
+        self.parm_val =  kwargs.pop('parm_val','')
         self.tbl_nm =  kwargs.pop('tbl_nm','')
         self.col_nm =  kwargs.pop('col_nm','')
-        self.item_nm =  kwargs.pop('item_nm')
+        self.desc =  kwargs.pop('desc','')
 
     def __repr__(self):
-        return "<SvcPasiItem('%s', '%s', '%s', '%s', '%s'" % (str(self.pasi_id), str(self.svc_id), str(self.tbl_nm), str(self.col_nm), str(self.item_nm) + KTable.__repr__(self))
+        return "<SvcPasiItem('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.svc_id), str(self.pasi_id), str(self.item_nm), str(self.in_out_cl_cd), str(self.parm_val), str(self.tbl_nm), str(self.col_nm), str(self.desc) + KTable.__repr__(self))
+
 
 
 if __name__ == "__main__" :

@@ -2,6 +2,7 @@ from PyQt5 import uic
 from PyQt5.QtWidgets import *
 import sys
 from common.ui.comUi import *
+from PyQt5 import QtCore
 
 pgm_id = None
 
@@ -22,6 +23,13 @@ class KWidget() :
             if self.__dict__[key].__class__ == QTableWidget:
                 TableWidget.convert_to_TableWidget(self.__dict__[key])
                 self.__dict__[key].init() #위함수로 init이 호출되지 않아 별도 호출
+
+    def keyPressEvent(self, qKeyEvent):
+        if qKeyEvent.key() == QtCore.Qt.Key_Return:
+            self.search()
+        else:
+            #super().keyPressEvent(qKeyEvent)
+            pass
 
 
 

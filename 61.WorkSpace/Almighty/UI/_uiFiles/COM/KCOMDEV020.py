@@ -87,7 +87,8 @@ class KCOMDEV020(QWidget, KWidget, form_class) :
 
     def addGrp(self):
         try:
-            self.twComCdGrp.addTWRow()
+            n = self.twComCdGrp.addTWRow()
+            self.twComCdGrp.setTextByColName(n, "del_yn", 'N')
         except : error()
 
     def addDtl(self):

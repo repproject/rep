@@ -46,13 +46,14 @@ class KCOMDEV010(QWidget, KWidget, form_class) :
         try:
             dicParam = {}
             dicParam['searchText'] = self.edt_table.text()
-            dicParam['Columns'] = ['tbl_nm','tbl_desc']
-            dicParam['Headers'] = ['테이블명', '테이블설명']
+            dicParam['Columns'] = ['tbl_nm','tbl_desc','CLS_NM']
+            dicParam['Headers'] = ['테이블명', '테이블설명','클래스명']
             dicParam['tableClass'] = DAO.KADM.Tbl
             dicParam['Function'] = 'Server.COM.getTableFinder'
             result = finderPop(self,dicParam)
             self.edt_table.setText(result['table'].tbl_nm)
             self.edt_table_nm.setText(result['table'].tbl_desc)
+            self.edt_class.setText(result['table'].cls_nm)
         except: error()
 
 if __name__ == "__main__":

@@ -26,7 +26,7 @@ class KCOMCOM010(QDialog, KWidget, form_class) :
     def initUI(self):
         self.edt_pop.setText(self.dicParam['searchText'])
         self.twFinder.setColumnCount(len(self.dicParam['Headers']))
-        self.twFinder.setHorizontalHeaderLabels(["테이블명","테이블설명"])
+        self.twFinder.setHorizontalHeaderLabels(self.dicParam['Headers'])
         self.twFinder.setBasic(columns = self.dicParam['Columns'], headers = self.dicParam['Headers'], tableClass = self.dicParam['tableClass'])
 
         #self.tw.clicked.connect(self.select)

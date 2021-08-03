@@ -45,8 +45,8 @@ class KCOMDEV030(QWidget, KWidget, form_class) :
         try:
             strSiteCd = self.sender().getTextByColName(self.sender().currentRow(),"site_cd")
 
-            Columns = ['svc_id', 'BAS_SVC_URL', 'REQ_WAY_CD','exmp_url']
-            Widths = {'svc_id':150, 'BAS_SVC_URL':300, 'REQ_WAY_CD':70,'exmp_url':300}
+            Columns = ['svc_id', 'BAS_SVC_URL', 'REQ_WAY_CD','exmp_url','PARM_LOAD_FUNC_NM']
+            Widths = {'svc_id':150, 'BAS_SVC_URL':300, 'REQ_WAY_CD':70,'exmp_url':300,'PARM_LOAD_FUNC_NM':300}
             SetDic = {'site_cd': strSiteCd}
             self.twSvc.setBasic(columns = Columns, widths = Widths, tableClass = Svc, setDic=SetDic)
             self.twSvc.setListTable(self.getSvc(strSiteCd))

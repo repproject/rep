@@ -13,6 +13,22 @@ class Crawling:
     funcName = None         #함수명(Lv4필수)
     batchContext = None     #BatchContect(필수)
 
+    # 인자로드함수명
+    fetchSqlId = None
+
+    #[LV3/선택]rowCounter 설정값
+    rowCounter = None       #Multi호출시 RowCounter Setting용
+    rowCountNumber = 1
+    rowCounterInterval = "N"
+    MessageInterval = 10
+    MessageUnit = "P"
+
+    #URL Making 기준정보
+    dicStrdDataList = None
+
+    #[LV3]
+    sleepStamp = 0.1
+
     #초기화
     def __init__(self,batchContext = None):
         #self.Log = Log
@@ -24,6 +40,7 @@ class Crawling:
             #BatchContect 세팅
             self.batchContext = batchContext
             self.batchContext.setFuncName(self.funcName)
+        self.sleepStamp = Server.COM.getSite(self.siteCode)[0].slep_sec
 
     def run(self):
         try:
@@ -45,11 +62,30 @@ class Crawling:
 
     #Lv2 구현
     def ready(self):
-        pass
+        self.dicStrdDataList = self.getListStrdDataList()
+        #rowCounter 세팅
+        self.setRowCounter(self.dicStrdDataList.__len__())
 
     # Lv2 구현
     def crawl(self):
-       pass
+        for dicStrdData in self.dicStrdDataList:
+            try:
+                reCnt = 0
+
+                while True:
+                    reCnt = reCnt + 1
+                    self.debugDicStrdData(dicStrdData)
+                    url = self.makeURL(dicStrdData,reCnt)
+                    page = self.request(url)
+                    self.selfSaveDB(page,dicStrdData,url)
+                    time.sleep(self.sleepStamp)
+                    if self.isReCrwal(url,page,dicStrdData,reCnt) == False:
+                        self.rowCounter.Cnt()
+                        break
+                gc.collect()
+            except Exception as e:
+                Log.error(self.batchContext.getLogName() + traceback.format_exc())
+                sendTelegramMessage(traceback.format_exc())
 
     def report(self):
         # Report
@@ -87,6 +123,22 @@ class Crawling:
     def getFuncName(self):
         return self.funcName
 
+    def setRowCounter(self,totalRowCount = None):
+        if totalRowCount == None:
+            Log.Info("totalRowCount 미정의 Error")
+            return None
+        else:
+            self.rowCounter = BatchRowCounter(self.batchContext.getLogName(), totalRowCount,self.rowCountNumber,self.rowCounterInterval,self.MessageInterval,self.MessageUnit)
+
+    def getListStrdDataList(self):
+        return REP_DAO.fetch(self.fetchSqlId, "")
+
+    def isReCrwal(self,url,page,dicStrdData,reCnt):
+        return False
+
+    def debugDicStrdData(self,dicStrdData = None):
+        Log.debug(self.batchContext.getLogName() + "DicStrdData : " + str(dicStrdData))
+
 class DataStrd:
     #Crawling의 기준 data list
     listStrdData = None
@@ -101,78 +153,3 @@ class DataStrd:
     #현재 자료를 가져온다.
     def getCurrentData(self):
         return self.listStrdData[self.index]
-
-#LV2 Craling Class 기본 멀티
-class CrawlingBasicMulti(Crawling):
-    # [LV4/필수]URL Multi호출시 값 기준정보 세팅 SQLID
-    fetchSqlId = None
-
-    #[LV3/선택]rowCounter 설정값
-    rowCounter = None       #Multi호출시 RowCounter Setting용
-    rowCountNumber = 1
-    rowCounterInterval = "N"
-    MessageInterval = 10
-    MessageUnit = "P"
-
-    #URL Making 기준정보
-    dicStrdDataList = None
-
-    #[LV3]
-    sleepStamp = 0.1
-
-    def __init__(self):
-        self.sleepStamp = Server.COM.getSite(self.siteCode)[0].slep_sec
-
-    def ready(self):
-        # super().ready()
-        # self.dicStrdDataList = self.getListStrdDataList()
-        # #rowCounter 세팅
-        # self.setRowCounter(self.dicStrdDataList.__len__())
-        pass
-
-    def crawl(self):
-        # for dicStrdData in self.dicStrdDataList:
-        #     try:
-        #         reCnt = 0
-        #
-        #         while True:
-        #             reCnt = reCnt + 1
-        #             self.debugDicStrdData(dicStrdData)
-        #             url = self.makeURL(dicStrdData,reCnt)
-        #             page = self.request(url)
-        #             self.selfSaveDB(page,dicStrdData,url)
-        #             time.sleep(self.sleepStamp)
-        #             if self.isReCrwal(url,page,dicStrdData,reCnt) == False:
-        #                 self.rowCounter.Cnt()
-        #                 break
-        #         gc.collect()
-        #     except Exception as e:
-        #         Log.error(self.batchContext.getLogName() + traceback.format_exc())
-        #         sendTelegramMessage(traceback.format_exc())
-        pass
-
-    def getListStrdDataList(self):
-        return REP_DAO.fetch(self.fetchSqlId, "")
-
-    def isReCrwal(self,url,page,dicStrdData,reCnt):
-        return False
-
-    def debugDicStrdData(self,dicStrdData = None):
-        Log.debug(self.batchContext.getLogName() + "DicStrdData : " + str(dicStrdData))
-
-    def setRowCounter(self,totalRowCount = None):
-        if totalRowCount == None:
-            Log.Info("totalRowCount 미정의 Error")
-            return None
-        else:
-            self.rowCounter = BatchRowCounter(self.batchContext.getLogName(), totalRowCount,self.rowCountNumber,self.rowCounterInterval,self.MessageInterval,self.MessageUnit)
-
-class CrawlingBasicSingle(Crawling):
-     def crawl(self):
-         url = self.makeURL()
-         page = self.request(url)
-         self.selfSaveDB(page)
-
-    #BatchContect 세팅
-    #self.batchContext = batchContext
-    #self.batchContext.setFuncName(self.funcName)
