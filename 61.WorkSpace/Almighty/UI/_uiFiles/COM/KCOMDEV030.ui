@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1263</width>
+    <width>903</width>
     <height>910</height>
    </rect>
   </property>
@@ -103,6 +103,11 @@
      <string>예제URL</string>
     </property>
    </column>
+   <column>
+    <property name="text">
+     <string>서비스설명</string>
+    </property>
+   </column>
   </widget>
   <widget class="QPushButton" name="btn_add_svc">
    <property name="geometry">
@@ -130,10 +135,10 @@
     <string>삭제</string>
    </property>
   </widget>
-  <widget class="QTableWidget" name="twSvcParm">
+  <widget class="QTableWidget" name="twSvcPasi">
    <property name="geometry">
     <rect>
-     <x>490</x>
+     <x>480</x>
      <y>40</y>
      <width>411</width>
      <height>831</height>
@@ -141,24 +146,29 @@
    </property>
    <column>
     <property name="text">
-     <string>서비스인자ID</string>
+     <string>파싱ID</string>
     </property>
    </column>
    <column>
     <property name="text">
-     <string>서비스인자값</string>
+     <string>파싱방식</string>
     </property>
    </column>
    <column>
     <property name="text">
-     <string>서비스인자설명</string>
+     <string>인자로드함수명</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>서비스파싱설명</string>
     </property>
    </column>
   </widget>
-  <widget class="QPushButton" name="btn_add_svc_parm">
+  <widget class="QPushButton" name="btn_add_svc_pasi">
    <property name="geometry">
     <rect>
-     <x>490</x>
+     <x>480</x>
      <y>880</y>
      <width>56</width>
      <height>21</height>
@@ -168,11 +178,11 @@
     <string>추가</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="btn_del_svc_parm">
+  <widget class="QPushButton" name="btn_del_svc_pasi">
    <property name="geometry">
     <rect>
-     <x>550</x>
-     <y>880</y>
+     <x>540</x>
+     <y>879</y>
      <width>56</width>
      <height>21</height>
     </rect>

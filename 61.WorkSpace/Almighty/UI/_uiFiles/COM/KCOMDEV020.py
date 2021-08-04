@@ -60,6 +60,7 @@ class KCOMDEV020(QWidget, KWidget, form_class) :
             if self.preSave():
                 self.twComCdGrp.mergeRow()
                 self.twComCdDtl.mergeList()
+                self.twComCdDtl.setTWColor()
         except : error()
 
     def preSave(self):

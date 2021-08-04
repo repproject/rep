@@ -38,9 +38,9 @@ def getSvc(strSiteCd):
     setCodeByTable(Svc)
     return s.query(Svc).filter_by(site_cd=strSiteCd).all()
 
-def getSvcParm(strSvcId):
-    setCodeByTable(SvcParm)
-    return s.query(SvcParm).filter_by(svc_id=strSvcId).all()
+def getSvcPasi(strSvcId):
+    setCodeByTable(SvcPasi)
+    return s.query(SvcPasi).filter_by(svc_id=strSvcId).all()
 
 def getSvcInfo(strSvcId):
     setCodeByTable(Svc)
@@ -58,10 +58,15 @@ def getColLst(strTblNm):
 def getComCdLst(strComGrpCd):
     return s.query(ComCdLst).filter_by(com_cd_grp=strComGrpCd).first()
 
+def getTbl(strTblNm):
+    return s.query(Tbl).filter_by(tbl_nm=strTblNm).first()
+
+def getTblCol(strTblNm):
+    return s.query(TblCol).filter_by(tbl_nm=strTblNm).first()
+
 def getTableFinder(dicParam):
     return s.query(Tbl).filter(or_(Tbl.tbl_nm.like("%" + dicParam['searchText'] + "%"),(Tbl.tbl_desc.like("%" +  dicParam['searchText'] + "%")))).all()
 
 if __name__ == "__main__":
-    print('pppprint')
-    print(getSvcInfo('BBRegn'))
+    print(getComCdLst("PASI_WAY"))
     pass

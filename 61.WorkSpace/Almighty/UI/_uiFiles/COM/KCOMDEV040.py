@@ -114,7 +114,7 @@ class KCOMDEV040(QWidget, KWidget, form_class) :
                         isExistNewReflect = True
         except: error()
 
-    def getComCdLst(self,strCd): Server.COM.getComCdLst(strCd)
+    def getComCdLst(self,strCd): return Server.COM.getComCdLst(strCd)
 
     def preReflectCol(self):
         if self.twTbl.currentRow() == -1:

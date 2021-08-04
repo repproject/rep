@@ -224,6 +224,16 @@ class TableWidget(QTableWidget,TableListBind):
                 self.setItem(n, m, newitem)
         except Exception as e: error()
 
+    def setTWColor(self,colorName="white"):
+        for i in range(self.rowCount()):
+            self.setTWRowColor(i,"white")
+
+    def setTWRowColor(self,n,colorName="white"):
+        for i in range(self.columnCount()):
+            try:
+                self.item(n,i).setBackground(QtGui.QColor(colorName))
+            except:error()
+
     def insertTWRow(self, n):
         self.insertRow(n)
         self.setTWRow(n)
@@ -269,6 +279,7 @@ class TableWidget(QTableWidget,TableListBind):
     def mergeList(self):
         self.setAllValues()
         mergeList(self.listTable)
+        return True
 
     def setRowValues(self,n=None):
         if n == None: n = self.currentRow()

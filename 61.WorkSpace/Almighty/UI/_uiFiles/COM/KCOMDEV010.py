@@ -37,10 +37,20 @@ class KCOMDEV010(QWidget, KWidget, form_class) :
             if len(tableName) == 0:
                 alert("테이블명이 입력되지 않았습니다.")
                 return False
+            if self.getTbl(tableName) == None:
+                alert("테이블이 등록되지 않았습니다.")
+                return False
+            if self.getTblCol(tableName) == None:
+                alert("테이블의 컬럼이 등록되지 않았습니다.")
+                return False
+
             classDeclare = common.database.Relfect.getClassTable(self.meta,className,tableName)
             self.textEditClass.setText(classDeclare)
         except : error()
         return True
+
+    def getTbl(self,strTbl): return Server.COM.getTbl(strTbl)
+    def getTblCol(self,strTbl): return Server.COM.getTblCol(strTbl)
 
     def findTable(self):
         try:
