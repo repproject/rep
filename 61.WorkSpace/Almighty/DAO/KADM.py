@@ -205,26 +205,29 @@ class Tbl(Base,KTable):
     def __repr__(self):
         return "<Tbl('%s', '%s', '%s'" % (str(self.tbl_nm), str(self.tbl_desc), str(self.cls_nm) + KTable.__repr__(self))
 
-
 class TblCol(Base,KTable):
     __tablename__ = 'KADM_TBL_COL'
 
     tbl_nm = KColumn(String(50), primary_key = True, nullable = False)
     col_nm = KColumn(String(50), primary_key = True, nullable = False)
-    col_doma_cd = KColumn(String(20), nullable = True)
+    col_han_nm = KColumn(String(200), nullable = True)
+    col_doma_cd = KColumn(String(20), nullable = True, kcom_cd_domain = True, kcom_cd_grp = 'COL_DOMA')
     col_doma_val = KColumn(String(200), nullable = True)
     col_desc = KColumn(String(500), nullable = True)
+    col_seq = KColumn(Integer, nullable = True)
 
     def __init__(self, *args, **kwargs):
         KTable.__init__(self)
         self.tbl_nm =  kwargs.pop('tbl_nm')
         self.col_nm =  kwargs.pop('col_nm')
+        self.col_han_nm =  kwargs.pop('col_han_nm','')
         self.col_doma_cd =  kwargs.pop('col_doma_cd','')
         self.col_doma_val =  kwargs.pop('col_doma_val','')
         self.col_desc =  kwargs.pop('col_desc','')
+        self.col_seq =  kwargs.pop('col_seq','')
 
     def __repr__(self):
-        return "<TblCol('%s', '%s', '%s', '%s', '%s'" % (str(self.tbl_nm), str(self.col_nm), str(self.col_doma_cd), str(self.col_doma_val), str(self.col_desc) + KTable.__repr__(self))
+        return "<TblCol('%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.tbl_nm), str(self.col_nm), str(self.col_han_nm), str(self.col_doma_cd), str(self.col_doma_val), str(self.col_desc), str(self.col_seq) + KTable.__repr__(self))
 
 class SvcPasi(Base,KTable):
     __tablename__ = 'KADM_SVC_PASI'

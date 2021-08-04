@@ -1,7 +1,6 @@
 from common.database.repSqlAlchemy import *
-from common.ui.comUi import *
+import common.ui.comUi
 from DAO.KADM import *
-#import DAO.KADM
 
 def getSite(strSiteCode=None):
     if strSiteCode == None : result = s.query(Site).all()
@@ -32,7 +31,7 @@ def getCodeDtl(strComCdGrp):
 
 def setCodeByTable(tbl):
     for col in tbl.__table__.columns:
-        if col.kcom_cd_domain : setCode(col.kcom_cd_grp)
+        if col.kcom_cd_domain : common.ui.comUi.setCode(col.kcom_cd_grp)
     return True
 
 def getSvc(strSiteCd):
@@ -54,7 +53,10 @@ def getTblLst(strTblNm,strTblDesc,strColNm,strColDesc):
 
 def getColLst(strTblNm):
     setCodeByTable(TblCol)
-    return s.query(TblCol).filter_by(tbl_nm=strTblNm).all()
+    return s.query(TblCol).filter_by(tbl_nm=strTblNm).order_by(TblCol.col_seq).all()
+
+def getComCdLst(strComGrpCd):
+    return s.query(ComCdLst).filter_by(com_cd_grp=strComGrpCd).first()
 
 def getTableFinder(dicParam):
     return s.query(Tbl).filter(or_(Tbl.tbl_nm.like("%" + dicParam['searchText'] + "%"),(Tbl.tbl_desc.like("%" +  dicParam['searchText'] + "%")))).all()

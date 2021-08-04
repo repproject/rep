@@ -54,6 +54,7 @@ class KCOMDEV010(QWidget, KWidget, form_class) :
             self.edt_table.setText(result['table'].tbl_nm)
             self.edt_table_nm.setText(result['table'].tbl_desc)
             self.edt_class.setText(result['table'].cls_nm)
+            self.search()
         except: error()
 
 if __name__ == "__main__":

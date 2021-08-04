@@ -1,4 +1,5 @@
 from common.database.repSqlAlchemy import *
+from Server.module import getCol
 
 def makeMeta():
     meta = MetaData()
@@ -24,7 +25,8 @@ def getClassTable(meta,className,tableName):
                 colReprParameter += "str(self." + col.name.lower() + "), "
                 colDeclare = "    " + col.name.lower() + " = KColumn("
                 colTypeStr = str(col.type)
-                print(col.name + colTypeStr)
+                TblCol = getCol(tableName,col.name.lower())
+
                 if colTypeStr[:7] == "DECIMAL":
                     colType2 = colTypeStr.split("(")[1]
                     colType3 = colType2.split(",")[1]
@@ -40,6 +42,11 @@ def getClassTable(meta,className,tableName):
                 if col.nullable:
                     colDeclare += ", nullable = True"
                 else : colDeclare += ", nullable = False"
+                if TblCol != None :
+                    if TblCol.col_doma_cd == 'CD':
+                        colDeclare += ", kcom_cd_domain = True, kcom_cd_grp = '"
+                        colDeclare += TblCol.col_doma_val
+                        colDeclare += "'"
                 classDeclare += colDeclare + ")\n"
                 colInitDeclare += "        self." + col.name.lower() + " =  kwargs.pop('" + col.name.lower()
 

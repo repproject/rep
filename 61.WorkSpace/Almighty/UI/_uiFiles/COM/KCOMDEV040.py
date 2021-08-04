@@ -75,8 +75,8 @@ class KCOMDEV040(QWidget, KWidget, form_class) :
         try:
             strTblNm = self.twTbl.getTextByColName(self.twTbl.currentRow(),"tbl_nm")
 
-            Columns = ['col_nm', 'COL_HAN_NM','COL_DOMA_CD','COL_DOMA_VAL','COL_DESC']
-            Widths = {'col_nm':150, 'COL_HAN_NM':200 , 'COL_DOMA_CD':70,'COL_DOMA_VAL':100,'COL_DESC':300}
+            Columns = ['col_nm', 'COL_HAN_NM','COL_DOMA_CD','COL_DOMA_VAL','COL_SEQ','COL_DESC']
+            Widths = {'col_nm':150, 'COL_HAN_NM':200 , 'COL_DOMA_CD':70,'COL_DOMA_VAL':100,'COL_SEQ':50,'COL_DESC':300}
             SetDic = {'tbl_nm':strTblNm}
 
             self.twCol.setBasic(columns = Columns, widths = Widths, tableClass = TblCol, setDic = SetDic)
@@ -98,13 +98,23 @@ class KCOMDEV040(QWidget, KWidget, form_class) :
                     colname = str(col).split('.')[1]
                     isExist = False
                     for i in range(0,self.twCol.rowCount()):
-                        if self.twCol.item(i,0).text() == colname: isExist = True
+                        if self.twCol.getCellObject(i,0).text() == colname: isExist = True
                     if isExist == False:
                         n = self.twCol.addTWRow()
+                        self.twCol.setTextByColName(n,"col_seq", str(self.twCol.rowCount()))
+                        if colname.split('_')[-1] == "CD":
+                            self.twCol.setTextByColName(n, "col_doma_cd", "코드")
+                            strCd = "_".join(colname.split('_')[:-1])
+                            if self.getComCdLst(strCd) != None:
+                                self.twCol.setTextByColName(n, "col_doma_val", strCd)
+                        else:
+                            self.twCol.setTextByColName(n,"col_doma_cd", "없음")
                         self.twCol.setTextByColName(n,"col_nm",colname)
                         self.twCol.setTextByColName(n,"col_han_nm",col.comment)
                         isExistNewReflect = True
         except: error()
+
+    def getComCdLst(self,strCd): Server.COM.getComCdLst(strCd)
 
     def preReflectCol(self):
         if self.twTbl.currentRow() == -1:
@@ -138,8 +148,12 @@ class KCOMDEV040(QWidget, KWidget, form_class) :
             return False
 
         for n in range(0,self.twCol.rowCount()):
-            if self.twTbl.getTextByColName(n, "col_nm") == None:
+            colNm = self.twCol.getTextByColName(n, "col_nm")
+            if colNm == None:
                 alert('컬럼명이 없습니다.')
+                return False
+            if self.twCol.getTextByColName(n, "col_doma_cd") == "코드" and self.twCol.getTextByColName(n, "col_doma_val" == None):
+                alert('코드는 도메인 값이 필수입니다.')
                 return False
         return True
 

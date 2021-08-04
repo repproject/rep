@@ -44,7 +44,7 @@ class KCOMDEV020(QWidget, KWidget, form_class) :
             strComCdgrp = self.sender().getTextByColName(self.sender().currentRow(),"com_cd_grp")
 
             Columns = ['com_cd', 'com_cd_nm', 'com_cd_desc', 'prnt_seq', 'eff_sta_ymd', 'eff_end_ymd', 'ref1', 'ref2', 'ref3', 'ref4', 'ref5']
-            Widths = {'com_cd':130, 'com_cd_nm':50, 'com_cd_desc':150, 'prnt_seq':30, 'eff_sta_ymd':120, 'eff_end_ymd':120, 'ref1':50, 'ref2':50, 'ref3':50, 'ref4':50, 'ref5':50}
+            Widths = {'com_cd':100, 'com_cd_nm':100, 'com_cd_desc':150, 'prnt_seq':30, 'eff_sta_ymd':120, 'eff_end_ymd':120, 'ref1':50, 'ref2':50, 'ref3':50, 'ref4':50, 'ref5':50}
             Aligns = {'eff_sta_ymd':4,'eff_end_ymd':4}
             SetDic = {'com_cd_grp':strComCdgrp}
 

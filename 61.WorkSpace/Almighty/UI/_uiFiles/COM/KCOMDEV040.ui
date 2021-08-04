@@ -286,6 +286,11 @@
    </column>
    <column>
     <property name="text">
+     <string>컬럼순서</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
      <string>컬럼설명</string>
     </property>
    </column>

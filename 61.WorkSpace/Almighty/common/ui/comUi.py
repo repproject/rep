@@ -6,6 +6,7 @@ from Server.Basic import *
 import sys, traceback
 import copy
 import Server.COM
+import Server.module
 
 
 basic_ui_route = 'UI._uiFiles.COM'
@@ -73,7 +74,8 @@ def setCode(grp):   #코드세팅
             code[cd.com_cd] = cd.com_cd_nm
         dicCodeList[grp] = code
         return True
-    else : return False
+    else:
+        return False
 
 def getCode(grp):
     r"""
@@ -304,11 +306,18 @@ class TableWidget(QTableWidget,TableListBind):
 
     def setTextByColName(self,n,colName,text):
         for m in range(0,self.columnCount()):
-            if self.item(n,m).colName == colName:
+            if self.getCellObject(n,m).colName == colName:
                 if text == None:
                     text = ""
                 else: text = str(text)
-                self.item(n,m).setText(text)
+                self.setCellText(n,m,text)
+
+    def setCellText(self,n,m,text):
+        cw = self.cellWidget(n, m)
+        if cw == None:
+            self.item(n,m).setText(text)
+        else:
+            cw.setCurrentText(text)
 
     def resize(self):
         table = self
