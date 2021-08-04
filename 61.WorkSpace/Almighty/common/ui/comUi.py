@@ -275,10 +275,13 @@ class TableWidget(QTableWidget,TableListBind):
         if n == None: n = self.currentRow()
         self.setRowValues(n)
         merge(self.getRowTable(n))
+        self.setTWRowColor()
+        return True
 
     def mergeList(self):
         self.setAllValues()
         mergeList(self.listTable)
+        self.setTWColor()
         return True
 
     def setRowValues(self,n=None):

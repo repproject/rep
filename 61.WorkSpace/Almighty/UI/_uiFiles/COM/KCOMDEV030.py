@@ -129,11 +129,8 @@ class KCOMDEV030(QWidget, KWidget, form_class) :
     def save(self):
         try:
             self.twSite.mergeRow()
-            self.twSite.setTWColor()
             self.twSvc.mergeList()
-            self.twSvc.setTWColor()
             self.twSvcPasi.mergeList()
-            self.twSvcPasi.setTWColor()
         except : error()
 
     def getSites(self):
