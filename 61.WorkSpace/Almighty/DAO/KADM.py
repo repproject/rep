@@ -258,6 +258,7 @@ class SvcPasi(Base,KTable):
 
     svc_id = KColumn(String(500), primary_key = True, nullable = False)
     pasi_id = KColumn(String(50), primary_key = True, nullable = False)
+    pasi_nm = KColumn(String(200), nullable = True)
     pasi_way_cd = KColumn(String(20), nullable = False, kcom_cd_domain = True, kcom_cd_grp = 'PASI_WAY')
     parm_load_func_nm = KColumn(String(200), nullable = True)
     svc_pasi_desc = KColumn(String(500), nullable = True)
@@ -266,12 +267,13 @@ class SvcPasi(Base,KTable):
         KTable.__init__(self)
         self.svc_id =  kwargs.pop('svc_id')
         self.pasi_id =  kwargs.pop('pasi_id')
+        self.pasi_nm =  kwargs.pop('pasi_nm','')
         self.pasi_way_cd =  kwargs.pop('pasi_way_cd')
         self.parm_load_func_nm =  kwargs.pop('parm_load_func_nm','')
         self.svc_pasi_desc =  kwargs.pop('svc_pasi_desc','')
 
     def __repr__(self):
-        return "<SvcPasi('%s', '%s', '%s', '%s', '%s'" % (str(self.svc_id), str(self.pasi_id), str(self.pasi_way_cd), str(self.parm_load_func_nm), str(self.svc_pasi_desc) + KTable.__repr__(self))
+        return "<SvcPasi('%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.svc_id), str(self.pasi_id), str(self.pasi_nm), str(self.pasi_way_cd), str(self.parm_load_func_nm), str(self.svc_pasi_desc) + KTable.__repr__(self))
 
 if __name__ == "__main__" :
     #menu = Menu('test',None,None,None,None,None)

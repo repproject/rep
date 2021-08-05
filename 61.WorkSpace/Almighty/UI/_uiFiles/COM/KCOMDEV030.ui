@@ -151,6 +151,11 @@
    </column>
    <column>
     <property name="text">
+     <string>파싱명</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
      <string>파싱방식</string>
     </property>
    </column>

@@ -57,8 +57,8 @@ class KCOMDEV030(QWidget, KWidget, form_class) :
         try:
             strSvcId = self.twSvc.getTextByColName(self.twSvc.currentRow(),"svc_id")
 
-            Columns = ['PASI_ID', 'PASI_WAY_CD','PARM_LOAD_FUNC_NM','SVC_PASI_DESC']
-            Widths = {'PASI_ID':100, 'PASI_WAY_CD':70,'PARM_LOAD_FUNC_NM':150,'SVC_PASI_DESC':150}
+            Columns = ['PASI_ID', 'PASI_NM', 'PASI_WAY_CD','PARM_LOAD_FUNC_NM','SVC_PASI_DESC']
+            Widths = {'PASI_ID':100, 'PASI_NM':100,'PASI_WAY_CD':70,'PARM_LOAD_FUNC_NM':150,'SVC_PASI_DESC':150}
             SetDic = {'svc_id': strSvcId}
             self.twSvcPasi.setBasic(columns = Columns, widths = Widths, tableClass = SvcPasi, setDic=SetDic)
             self.twSvcPasi.setListTable(self.getSvcPasi(strSvcId))
