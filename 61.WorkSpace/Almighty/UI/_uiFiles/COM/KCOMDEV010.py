@@ -42,7 +42,6 @@ class KCOMDEV010(QWidget, KWidget, form_class) :
                 return False
             if self.getTblCol(tableName) == None:
                 alert("테이블의 컬럼이 등록되지 않았습니다.")
-                return False
 
             classDeclare = common.database.Relfect.getClassTable(self.meta,className,tableName)
             self.textEditClass.setText(classDeclare)
