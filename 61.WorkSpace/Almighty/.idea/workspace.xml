@@ -2,20 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7458c797-b1cd-42ea-936d-154a1429df95" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMDEV050.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../42.DA5/REP.damx" beforeDir="false" afterPath="$PROJECT_DIR$/../../42.DA5/REP.damx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../42.DA5/wordict5_참조모델표준화.db" beforeDir="false" afterPath="$PROJECT_DIR$/../../42.DA5/wordict5_참조모델표준화.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../44.SQL/4400.기본SQL/ALTER.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../44.SQL/4400.기본SQL/ALTER.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/KTable.py" beforeDir="false" afterPath="$PROJECT_DIR$/DAO/KTable.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/COM.py" beforeDir="false" afterPath="$PROJECT_DIR$/Server/COM.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/module.py" beforeDir="false" afterPath="$PROJECT_DIR$/Server/module.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMCOM010.py" beforeDir="false" afterPath="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMCOM010.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMDEV040.py" beforeDir="false" afterPath="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMDEV040.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMDEV040.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMDEV040.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/_uiFiles/UIBasic.py" beforeDir="false" afterPath="$PROJECT_DIR$/UI/_uiFiles/UIBasic.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/database/Relfect.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/database/Relfect.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/database/testReflect.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/database/testReflect.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMDEV010.py" beforeDir="false" afterPath="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMDEV010.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/ui/comUi.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/ui/comUi.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,61 +16,32 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5085293">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/UI/_uiFiles/COM/KCOMDEV050.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="538">
-                  <caret line="34" column="26" lean-forward="true" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
-                  <folding>
-                    <element signature="e#0#33#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/common/ui/comPopUp.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="133">
-                  <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/UI/_uiFiles/COM/KCOMCOM010.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="475">
-                  <caret line="50" lean-forward="true" selection-start-line="50" selection-end-line="50" />
-                  <folding>
-                    <element signature="e#0#38#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/common/ui/comUi.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="415">
-                  <caret line="144" selection-start-line="144" selection-end-line="144" />
-                  <folding>
-                    <element signature="e#0#29#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/UI/_uiFiles/COM/KCOMDEV010.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="442">
+              <caret line="64" column="45" lean-forward="true" selection-start-line="64" selection-start-column="45" selection-end-line="64" selection-end-column="45" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common/ui/comUi.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="467">
+              <caret line="150" selection-start-line="150" selection-end-line="150" />
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -90,8 +52,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>eval</find>
-      <find>__dir__</find>
       <find>DefaultClause</find>
       <find>twCol</find>
       <find>TblCol</find>
@@ -104,7 +64,6 @@
       <find>_and</find>
       <find>join</find>
       <find>kadm_svc</find>
-      <find>finder</find>
       <find>getSvcInfo</find>
       <find>.c</find>
       <find>class</find>
@@ -120,6 +79,9 @@
       <find>CellWidget</find>
       <find>CellObject</find>
       <find>combobox</find>
+      <find>print</find>
+      <find>finder</find>
+      <find>dicColAttr</find>
     </findStrings>
     <replaceStrings>
       <replace>Column</replace>
@@ -192,11 +154,11 @@
         <option value="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMDEV040.py" />
         <option value="$PROJECT_DIR$/common/database/Relfect.py" />
         <option value="$PROJECT_DIR$/DAO/KADM.py" />
-        <option value="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMDEV010.py" />
         <option value="$PROJECT_DIR$/DAO/KTable.py" />
         <option value="$PROJECT_DIR$/Server/COM.py" />
         <option value="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMCOM010.py" />
         <option value="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMDEV050.py" />
+        <option value="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMDEV010.py" />
         <option value="$PROJECT_DIR$/common/ui/comUi.py" />
       </list>
     </option>
@@ -221,29 +183,6 @@
             <path>
               <item name="Almighty" type="b2602c69:ProjectViewProjectNode" />
               <item name="Almighty" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Almighty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Almighty" type="462c0819:PsiDirectoryNode" />
-              <item name="DAO" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Almighty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Almighty" type="462c0819:PsiDirectoryNode" />
-              <item name="UI" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Almighty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Almighty" type="462c0819:PsiDirectoryNode" />
-              <item name="UI" type="462c0819:PsiDirectoryNode" />
-              <item name="_uiFiles" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Almighty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Almighty" type="462c0819:PsiDirectoryNode" />
-              <item name="UI" type="462c0819:PsiDirectoryNode" />
-              <item name="_uiFiles" type="462c0819:PsiDirectoryNode" />
-              <item name="COM" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -284,7 +223,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.KCOMDEV050">
+  <component name="RunManager" selected="Python.KCOMDEV010">
     <configuration name="COM" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Almighty" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -421,11 +360,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.KCOMDEV010" />
         <item itemvalue="Python.KCOMDEV050" />
         <item itemvalue="Python.KCOMDEV030" />
         <item itemvalue="Python.COM" />
         <item itemvalue="Python.KCOMMAN010" />
-        <item itemvalue="Python.KCOMDEV010" />
       </list>
     </recent_temporary>
   </component>
@@ -650,7 +589,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628437945379</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="relation 정의 추가  &#10;TableWidget에 여러개의 Table이 설계 고려되지 않아 추가 작업 완료&#10;KTail super 선언 오류 추가 () 추가">
+      <created>1628518040325</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1628518040325</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TodoView">
@@ -696,7 +642,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="메인 화면 및 메뉴 관리 화면 완성" />
     <MESSAGE value="테이블클래스생성 프로그램 Commit" />
     <MESSAGE value="공통코드관리(KCOMMAN005) 조회 기능 개발 완료" />
     <MESSAGE value="공통코드관리(KCOMMAN005) UPDATE 개발 완료&#10;INSERT 기능 개발중" />
@@ -721,7 +666,8 @@
     <MESSAGE value="파싱명 추가" />
     <MESSAGE value="조회 전 검증 오류 return False 추가" />
     <MESSAGE value="Svc 관련테이블 재정의" />
-    <option name="LAST_COMMIT_MESSAGE" value="Svc 관련테이블 재정의" />
+    <MESSAGE value="relation 정의 추가  &#10;TableWidget에 여러개의 Table이 설계 고려되지 않아 추가 작업 완료&#10;KTail super 선언 오류 추가 () 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="relation 정의 추가  &#10;TableWidget에 여러개의 Table이 설계 고려되지 않아 추가 작업 완료&#10;KTail super 선언 오류 추가 () 추가" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1045,16 +991,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/UI/_uiFiles/COM/KCOMDEV010.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="688">
-          <caret line="59" column="49" lean-forward="true" selection-start-line="59" selection-start-column="49" selection-end-line="59" selection-end-column="49" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/common/common/URL.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
@@ -1119,16 +1055,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/UI/_uiFiles/COM/KCOMDEV050.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="538">
-          <caret line="34" column="26" lean-forward="true" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/UI/_uiFiles/COM/KCOMCOM010.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="475">
@@ -1139,12 +1065,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/UI/_uiFiles/COM/KCOMDEV050.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="34" column="26" lean-forward="true" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/common/ui/comUi.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="144" selection-start-line="144" selection-end-line="144" />
+        <state relative-caret-position="467">
+          <caret line="150" selection-start-line="150" selection-end-line="150" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UI/_uiFiles/COM/KCOMDEV010.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="64" column="45" lean-forward="true" selection-start-line="64" selection-start-column="45" selection-end-line="64" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>

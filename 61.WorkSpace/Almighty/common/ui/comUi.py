@@ -142,6 +142,12 @@ class TableListBind():
                         self.dicColAttr[colName]['tablename'] = tb.__class__.__name__
                         self.dicColAttr[colName]['tableClass'] = tb.__class__
                         self.dicColAttr[colName]['tableseq'] = i #사용
+        else:
+            for colname in self.columns:
+                self.dicColAttr[colname] = {}
+                self.dicColAttr[colname]['tablename'] = self.tableClass.__name__
+                self.dicColAttr[colname]['tableClass'] = self.tableClass
+                self.dicColAttr[colname]['tableseq'] = -1  # 사용
 
     def getTableSeqByColName(self,colname):
         r"""

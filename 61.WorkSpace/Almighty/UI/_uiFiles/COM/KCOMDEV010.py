@@ -57,12 +57,13 @@ class KCOMDEV010(QWidget, KWidget, form_class) :
             dicParam['searchText'] = self.edt_table.text()
             dicParam['Columns'] = ['tbl_nm','tbl_desc','CLS_NM']
             dicParam['Headers'] = ['테이블명', '테이블설명','클래스명']
+            dicParam['Widths'] = {'tbl_nm':150, 'tbl_desc':200, 'CLS_NM':150}
             dicParam['tableClass'] = DAO.KADM.Tbl
             dicParam['Function'] = 'Server.COM.getTableFinder'
             result = finderPop(self,dicParam)
-            self.edt_table.setText(result['table'].tbl_nm)
-            self.edt_table_nm.setText(result['table'].tbl_desc)
-            self.edt_class.setText(result['table'].cls_nm)
+            self.edt_table.setText(result['tbl_nm'])
+            self.edt_table_nm.setText(result['tbl_desc'])
+            self.edt_class.setText(result['cls_nm'])
             self.search()
         except: error()
 
