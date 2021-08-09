@@ -177,12 +177,12 @@
     <rect>
      <x>10</x>
      <y>50</y>
-     <width>611</width>
+     <width>491</width>
      <height>731</height>
     </rect>
    </property>
    <attribute name="horizontalHeaderDefaultSectionSize">
-    <number>200</number>
+    <number>150</number>
    </attribute>
    <column>
     <property name="text">
@@ -216,7 +216,7 @@
   <widget class="QPushButton" name="btn_save_tbl">
    <property name="geometry">
     <rect>
-     <x>565</x>
+     <x>448</x>
      <y>790</y>
      <width>56</width>
      <height>21</height>
@@ -242,7 +242,7 @@
   <widget class="QPushButton" name="btn_reflect_tbl">
    <property name="geometry">
     <rect>
-     <x>507</x>
+     <x>390</x>
      <y>790</y>
      <width>56</width>
      <height>21</height>
@@ -255,9 +255,9 @@
   <widget class="QTableWidget" name="twCol">
    <property name="geometry">
     <rect>
-     <x>630</x>
+     <x>510</x>
      <y>50</y>
-     <width>581</width>
+     <width>701</width>
      <height>731</height>
     </rect>
    </property>
@@ -287,6 +287,26 @@
    <column>
     <property name="text">
      <string>컬럼순서</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>부모테이블명</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>부모컬럼명</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>PK여부</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>기본값</string>
     </property>
    </column>
    <column>

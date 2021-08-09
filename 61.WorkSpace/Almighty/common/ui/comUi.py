@@ -93,29 +93,91 @@ class TableListBind():
     listTable = None
     columns = None
     tableClass = None
+    dicColAttr = {}
     setDic = {}
+    isRowType = False
 
     def __init__(self, listTable=None, columns=None):
         try:
-            self.setlistTable(listTable)
             self.setColumns(columns)
+            self.setlistTable(listTable)
         except : error()
 
+    def setListTable(self, listTable):
+        self.listTable = listTable
+        self.setIsRowType()
+        self.setDicColAttr()
 
-    def setListTable(self, listTable): self.listTable = listTable
+    def setIsRowType(self):
+        r"""
+            Query에 대한 result가 Row Class(주로 MultiTable인경우 해당)을 구분하기 위해
+            isRowType 변수를 세팅하는 함수. 바인딩된 listTable이 초기화 되는 경우 실행 필요
+        :return:
+        """
+        if self.listTable != None:
+            if len(self.listTable) > 0 :
+                if str(type(self.listTable[0])) == "<class 'sqlalchemy.engine.row.Row'>":
+                    self.isRowType = True
+                else : self.isRowType = False
+            else: self.isRowType = False
+        else : self.isRowType = False
+
     def setColumns(self, columns):
         self.columns = []
         for col in columns:
             self.columns.append(col.lower())
+
+    def setDicColAttr(self):
+        r"""
+            컬럼으로부터 필요한 정보를 가져오기 위한 세팅 정보
+            1. 테이블이 여러개인 경우 어떤 순서의 테이블이 필요한지 정의
+        :return:
+        """
+        if self.isRowType:
+            for i,tb in enumerate(self.listTable[0]):
+                for col in tb.__table__.c:
+                    colName = str(col).split('.')[1]
+                    if colName not in self.dicColAttr.keys():
+                        self.dicColAttr[colName] = {}
+                        self.dicColAttr[colName]['tablename'] = tb.__class__.__name__
+                        self.dicColAttr[colName]['tableClass'] = tb.__class__
+                        self.dicColAttr[colName]['tableseq'] = i #사용
+
+    def getTableSeqByColName(self,colname):
+        r"""
+            sql로 받은 result의 table이 몇번째인지
+        :param colname: 컬럼명
+        :return:
+        """
+        if self.isRowType:
+            return self.dicColAttr[colname]['tableseq']
+        else : return -1
+
+    def getTableClass(self,colname):
+        r"""
+            해당 컬럼이 어떤 tableClass인지 확인
+        :param colname: 컬럼명
+        :return:
+        """
+        if self.isRowType:
+            return self.dicColAttr[colname]['tableClass']
+        else : return None
+
     def setSetDic(self,setdic):
         for key in setdic.keys():
             self.setDic[key.lower()] = setdic[key]
+
     def setTableClass(self, tableClass):
         if tableClass != None:
             self.tableClass = tableClass
             Server.COM.setCodeByTable(tableClass)
+
     def getColumns(self):              return self.columns
     def getlistTable(self):            return self.listTable
+    def getTableByColSeq(self,colname,table):
+        if self.isRowType:
+            return table[self.getTableSeqByColName(colname)]
+        else : return table
 
 class TableBind():
     table = None
@@ -196,18 +258,20 @@ class TableWidget(QTableWidget,TableListBind):
         """
         try:
             for m, col in enumerate(self.columns):
-                colClass = getattr(self.tableClass, col)
+                colClass = getattr(self.dicColAttr[col]['tableClass'], col)
                 if colClass.kcom_cd_domain:  # com_cd  도메인인경우
-                    combobox = ComboBox(colClass.kcom_cd_grp,self,table,col.lower())
-                    combobox.setFixedWidth(self.widths[self.columns[m]])
+                    combobox = ComboBox(colClass.kcom_cd_grp,self,self.getTableByColSeq(col,table),col.lower())
+                    try:
+                        combobox.setFixedWidth(self.widths[self.columns[m]])
+                    except KeyError as ke : pass
                     try:
                         if table != None :
-                            combobox.setCurrentText(combobox.dicCode[getattr(table, col)])
+                            combobox.setCurrentText(combobox.dicCode[getattr(self.getTableByColSeq(col,table), col)])
                         else : combobox.setCurrentIndex(0)
                     except KeyError as ke:
                         combobox.setCurrentIndex(0)
                         if table != None :
-                            print("공통코드 미등록 >> " + colClass.kcom_cd_grp + " : " + str(getattr(table, col)))
+                            print("공통코드 미등록 >> " + colClass.kcom_cd_grp + " : " + str(getattr(self.getTableByColSeq(col,table), col)))
                             error()
                         else:
                             print("공통코드 미등록 >> " + colClass.kcom_cd_grp + " : table is None ")
@@ -215,10 +279,10 @@ class TableWidget(QTableWidget,TableListBind):
                     self.setCellWidget(n, m, combobox)
                 if table == None : text = ""
                 else :
-                    text = getattr(table, col)
+                    text = getattr(self.getTableByColSeq(col,table), col)
                     if text == None :
                         text = ""
-                newitem = TableWidgetItem(str(text), table, col.lower())
+                newitem = TableWidgetItem(str(text), self.getTableByColSeq(col,table), col.lower())
                 if table == None : newitem.setBackground(QtGui.QColor("yellow"))
                 if col in self.aligns.keys() : newitem.setTextAlignment(self.aligns[col])
                 self.setItem(n, m, newitem)
@@ -259,6 +323,14 @@ class TableWidget(QTableWidget,TableListBind):
         if n == None : n = self.currentRow()
         w = self.getCellObject(n,0)
         return w.table
+
+    def getRowDic(self,n=None):
+        dic = {}
+        if n == None : n = self.currentRow()
+        for m, colName in enumerate(self.columns):
+            print(colName)
+            dic[colName] = self.getCellObject(n,m).text()
+        return dic
 
     def getCellObject(self,n,m):
         cw = self.cellWidget(n, m)
@@ -390,6 +462,13 @@ class ComboBox(QComboBox,TableBind):
 
     def getCurrentCode(self):
         return self.reverseDicCode[self.currentText()]
+
+    def text(self):
+        r"""
+            getCellobejct를 사용하여 ComboBox와 TableWidghetItem의 Text를 동시에 가져올 수 있기 위해 만든 함수
+        :return:
+        """
+        return self.currentText()
 
 if __name__ == "__main__":
     pass

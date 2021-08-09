@@ -26,11 +26,12 @@ class KCOMDEV040(QWidget, KWidget, form_class) :
         self.twTbl.clicked.connect(self.search2)
         self.btn_reflect_col.clicked.connect(self.reflectCol)
         self.btn_save_col.clicked.connect(self.saveCol)
+        #self.twCol.clicked.connect(self.search2)
 
     def search(self):
         try:
             Columns = ['tbl_nm', 'tbl_desc', 'cls_nm']
-            Widths = {'tbl_nm':200, 'tbl_desc':250, 'cls_nm':100}
+            Widths = {'tbl_nm':120, 'tbl_desc':250, 'cls_nm':60}
             self.twTbl.setBasic(columns = Columns, widths = Widths, tableClass = Tbl)
             self.twTbl.setListTable(self.getTblLst(self.edt_tbl_nm.text(),self.edt_tbl_desc.text(),self.edt_col_nm.text(),self.edt_col_desc.text()))
         except : error()
@@ -62,7 +63,7 @@ class KCOMDEV040(QWidget, KWidget, form_class) :
                             i=i+1
                         self.twTbl.setTextByColName(n, "cls_nm", clsNm)
                         isExistNewReflect = True
-            if isExistNewReflect == False: alert('반영할 테이블이 없습니다.')
+                if isExistNewReflect == False: alert('반영할 테이블이 없습니다.')
         except: error()
 
     def preReflectTbl(self):
@@ -75,8 +76,8 @@ class KCOMDEV040(QWidget, KWidget, form_class) :
         try:
             strTblNm = self.twTbl.getTextByColName(self.twTbl.currentRow(),"tbl_nm")
 
-            Columns = ['col_nm', 'COL_HAN_NM','COL_DOMA_CD','COL_DOMA_VAL','COL_SEQ','COL_DESC']
-            Widths = {'col_nm':150, 'COL_HAN_NM':200 , 'COL_DOMA_CD':70,'COL_DOMA_VAL':100,'COL_SEQ':50,'COL_DESC':300}
+            Columns = ['col_nm', 'COL_HAN_NM','COL_DOMA_CD','COL_DOMA_VAL','COL_SEQ','PANT_TBL_NM','PANT_COL_NM','PK_YN','BAS_VAL','COL_DESC']
+            Widths = {'col_nm':140, 'COL_HAN_NM':100 , 'COL_DOMA_CD':60,'COL_DOMA_VAL':90,'COL_SEQ':30,'PANT_TBL_NM':80,'PANT_COL_NM':80,'PK_YN':30,'BAS_VAL':70,'COL_DESC':100}
             SetDic = {'tbl_nm':strTblNm}
 
             self.twCol.setBasic(columns = Columns, widths = Widths, tableClass = TblCol, setDic = SetDic)
@@ -94,27 +95,45 @@ class KCOMDEV040(QWidget, KWidget, form_class) :
                 isExistNewReflect = False
                 strTblNm = self.twTbl.getTextByColName(self.twTbl.currentRow(), "tbl_nm")
                 self.meta = common.database.Relfect.makeMeta()
+                dicRtn = self.getParentTblCol(strTblNm)
                 for col in self.meta.tables[strTblNm].c:
-                    colname = str(col).split('.')[1]
+                    colname = str(col).split('.')[1].lower()
                     isExist = False
                     for i in range(0,self.twCol.rowCount()):
                         if self.twCol.getCellObject(i,0).text() == colname: isExist = True
                     if isExist == False:
                         n = self.twCol.addTWRow()
                         self.twCol.setTextByColName(n,"col_seq", str(self.twCol.rowCount()))
-                        if colname.split('_')[-1] == "CD":
+                        if colname.split('_')[-1] == "cd":
                             self.twCol.setTextByColName(n, "col_doma_cd", "코드")
-                            strCd = "_".join(colname.split('_')[:-1])
+                            strCd = "_".join(colname.split('_')[:-1]).upper()
                             if self.getComCdLst(strCd) != None:
                                 self.twCol.setTextByColName(n, "col_doma_val", strCd)
                         else:
                             self.twCol.setTextByColName(n,"col_doma_cd", "없음")
                         self.twCol.setTextByColName(n,"col_nm",colname)
                         self.twCol.setTextByColName(n,"col_han_nm",col.comment)
+                        if col.primary_key : self.twCol.setTextByColName(n,"pk_yn",'Y')
+                        else : self.twCol.setTextByColName(n,"pk_yn",'N')
+                        if col.server_default != None : self.twCol.setTextByColName(n,"bas_val",col.server_default.arg.text.replace("'",""))
+                        if colname in dicRtn.keys():
+                            self.twCol.setTextByColName(n, "pant_tbl_nm", dicRtn[colname])
+                            self.twCol.setTextByColName(n, "pant_col_nm", colname)
+
                         isExistNewReflect = True
         except: error()
 
     def getComCdLst(self,strCd): return Server.COM.getComCdLst(strCd)
+
+    def getParentTblCol(self,strTblNm):
+        pantTblNm = "_".join(strTblNm.split('_')[:-1])
+        if len(pantTblNm) == 0: return {}
+        TblCol = Server.COM.getTblColParentPK(pantTblNm)
+        if len(TblCol) == 0 : return {}
+        dicRtn = {}
+        for tc in TblCol:
+            dicRtn[tc.col_nm] = tc.tbl_nm
+        return dicRtn
 
     def preReflectCol(self):
         if self.twTbl.currentRow() == -1:

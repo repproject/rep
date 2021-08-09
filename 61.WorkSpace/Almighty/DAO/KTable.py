@@ -18,7 +18,7 @@ class KColumn(Column):
         pass
 
     def __repr__(self):
-        return super.__repr__()+"\n" + "kcom_cd_domain : " + str(self.kcom_cd_domain) + "\n kcom_cd_grp : " + str(self.kcom_cd_grp)
+        return super().__repr__()+"\n" + "kcom_cd_domain : " + str(self.kcom_cd_domain) + "\n kcom_cd_grp : " + str(self.kcom_cd_grp)
 
 class last1PriorityColumn(KColumn):
     def __init__(self,*args,**kwargs):

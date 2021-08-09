@@ -30,16 +30,28 @@ def getTable(tableName):
 
 
 if __name__ == "__main__":
+    print("_".join([]))
+
     meta = makeMeta()
-    tableName = 'kadm_com_cd_lst'
+    tableName = 'kadm_tbl_col'
     className = 'ComCdDtl'
     tbl = meta.tables.get(tableName)
 
     #속성값 출력
     for col in tbl._columns:
         print("#################" + col.name + "#######################")
-        for attr in col.__dir__():
-            print(attr + " : " + str(getattr(col,attr)))
+        print(col.server_default)
+        if col.server_default != None :
+            print(col.server_default.arg.text)
+
+        # df = col.server_default
+        # for attr in df.__dir__():
+        #     try:
+        #         print(attr + " : " + str(getattr(col,attr)))
+        #     except: pass
+
+        # for attr in col.__dir__():
+        #     print(attr + " : " + str(getattr(col,attr)))
             #print(col.attr)
         #print(col.name.lower() + " = KColumn(")
         #print(col.type)

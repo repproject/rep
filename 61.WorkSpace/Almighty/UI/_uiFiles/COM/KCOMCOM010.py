@@ -27,7 +27,8 @@ class KCOMCOM010(QDialog, KWidget, form_class) :
         self.edt_pop.setText(self.dicParam['searchText'])
         self.twFinder.setColumnCount(len(self.dicParam['Headers']))
         self.twFinder.setHorizontalHeaderLabels(self.dicParam['Headers'])
-        self.twFinder.setBasic(columns = self.dicParam['Columns'], headers = self.dicParam['Headers'], tableClass = self.dicParam['tableClass'])
+        self.twFinder.setBasic(columns = self.dicParam['Columns'], headers = self.dicParam['Headers']
+                               , tableClass = self.dicParam['tableClass'], widths = self.dicParam['Widths'])
 
         #self.tw.clicked.connect(self.select)
         self.btn_search.clicked.connect(self.search)
@@ -42,7 +43,7 @@ class KCOMCOM010(QDialog, KWidget, form_class) :
         self.twFinder.resizeRowsToContents()
 
     def selected(self):
-        self.dicResult['table'] = self.twFinder.getRowTable(self.twFinder.currentRow())
+        self.dicResult = self.twFinder.getRowDic(self.twFinder.currentRow())
         self.close()
 
     def getResult(self):

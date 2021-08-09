@@ -64,9 +64,37 @@ def getTbl(strTblNm):
 def getTblCol(strTblNm):
     return s.query(TblCol).filter_by(tbl_nm=strTblNm).first()
 
+def getTblColParentPK(strTblNm):
+    return s.query(TblCol).filter_by(tbl_nm=strTblNm).filter_by(pk_yn='Y').all()
+
 def getTableFinder(dicParam):
     return s.query(Tbl).filter(or_(Tbl.tbl_nm.like("%" + dicParam['searchText'] + "%"),(Tbl.tbl_desc.like("%" +  dicParam['searchText'] + "%")))).all()
 
+def getPasiFinder(dicParam):
+    setCodeByTable(SvcPasi)
+    setCodeByTable(Svc)
+    setCodeByTable(Site)
+    setCodeByTable(ComCdDtl)
+    return s.query(SvcPasi,Svc,Site,ComCdDtl)\
+        .join(SvcPasi.svc)\
+        .join(Svc.site)\
+        .join(ComCdDtl,and_(Site.site_cd == ComCdDtl.com_cd,ComCdDtl.com_cd_grp == 'SITE'))\
+        .where(or_(ComCdDtl.com_cd_nm.like("%" + dicParam['searchText'] + "%")
+                    ,Site.site_cd.like("%" + dicParam['searchText'] + "%")\
+                    ,Site.bas_url.like("%" + dicParam['searchText'] + "%")\
+                    ,Svc.svc_id.like("%" + dicParam['searchText'] + "%") \
+                    ,Svc.svc_nm.like("%" + dicParam['searchText'] + "%") \
+                    ,Svc.bas_svc_url.like("%" + dicParam['searchText'] + "%") \
+                    ,Svc.exmp_url.like("%" + dicParam['searchText'] + "%") \
+                    ,SvcPasi.pasi_id.like("%" + dicParam['searchText'] + "%") \
+                    ,SvcPasi.pasi_nm.like("%" + dicParam['searchText'] + "%") \
+                    ,SvcPasi.parm_load_func_nm.like("%" + dicParam['searchText'] + "%")
+                    )).all()
+
+
+
 if __name__ == "__main__":
-    print(getComCdLst("PASI_WAY"))
+    #rslt = getPasiFinder({'searchText':""})
+    rslt = getMenuLv(1)
+    print(rslt)
     pass
