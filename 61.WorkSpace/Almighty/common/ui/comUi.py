@@ -7,6 +7,7 @@ import sys, traceback
 import copy
 import Server.COM
 import Server.module
+from common.ui.comUiFunc import *
 
 
 basic_ui_route = 'UI._uiFiles.COM'
@@ -39,6 +40,23 @@ def setTable2Edit(form,table):
             "'KCOMMAN020' object has no attribute 'edit_chg_user_id'",
             "'KCOMMAN020' object has no attribute 'edit_chg_dtm'")
             if str(ae) not in setTable2EditErrorList: error()
+        except : error()
+    return True
+
+def setDic2Edit(form,dic):
+    r"""
+        Dictionary의 key값과 일치하는 form에 존재하는 LineEdit의 text값을 setting한다.
+        주로 DB에서 조회한 값을 세팅할 때 사용한다.
+        전제조건 : LineEdit의 ObjectName이 edit_ + 컬럼명으로 시작해야한다.
+    :param form: object of form
+    :param dic : dictionary
+    :return: True/False
+    """
+    for key in dic.keys():
+        try:
+            text = dic[key]
+            getattr(form,'edit_'+key).setText(text)
+        except AttributeError as ae: pass
         except : error()
     return True
 
@@ -170,6 +188,12 @@ class TableListBind():
         else : return None
 
     def setSetDic(self,setdic):
+        r"""
+            테이블을 저장하기 위해 기본적으로 세팅해야 하는 컬럼값을 정의
+            주로 PK가 해당
+        :param setdic:
+        :return:
+        """
         for key in setdic.keys():
             self.setDic[key.lower()] = setdic[key]
 
@@ -334,7 +358,6 @@ class TableWidget(QTableWidget,TableListBind):
         dic = {}
         if n == None : n = self.currentRow()
         for m, colName in enumerate(self.columns):
-            print(colName)
             dic[colName] = self.getCellObject(n,m).text()
         return dic
 

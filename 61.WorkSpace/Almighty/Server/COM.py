@@ -91,7 +91,8 @@ def getPasiFinder(dicParam):
                     ,SvcPasi.parm_load_func_nm.like("%" + dicParam['searchText'] + "%")
                     )).all()
 
-
+def getSvcPasiItem(strSvcId,strPasiId,InOutClCd):
+    return s.query(SvcPasiItem).filter_by(svc_id=strSvcId).filter(SvcPasiItem.pasi_id.in_([strPasiId,'default'])).filter_by(in_out_cl_cd=InOutClCd).all()
 
 if __name__ == "__main__":
     #rslt = getPasiFinder({'searchText':""})

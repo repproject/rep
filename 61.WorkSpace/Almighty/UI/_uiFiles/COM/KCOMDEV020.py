@@ -18,7 +18,6 @@ class KCOMDEV020(QWidget, KWidget, form_class) :
         try:
             super().__init__()
             self.initUI()
-            print(self.twComCdGrp.__class__)
         except : error()
 
     def initUI(self):
