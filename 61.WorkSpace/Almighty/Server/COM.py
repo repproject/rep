@@ -30,9 +30,15 @@ def getCodeDtl(strComCdGrp):
     return s.query(ComCdDtl).filter_by(com_cd_grp=strComCdGrp).all()
 
 def setCodeByTable(tbl):
-    for col in tbl.__table__.columns:
-        if col.kcom_cd_domain : common.ui.comUi.setCode(col.kcom_cd_grp)
-    return True
+    if tbl.__class__ == [].__class__ :
+        for t in tbl:
+            for col in t.__table__.columns:
+                if col.kcom_cd_domain : common.ui.comUi.setCode(col.kcom_cd_grp)
+        return True
+    else:
+        for col in tbl.__table__.columns:
+            if col.kcom_cd_domain: common.ui.comUi.setCode(col.kcom_cd_grp)
+        return True
 
 def getSvc(strSiteCd):
     setCodeByTable(Svc)
@@ -43,8 +49,7 @@ def getSvcPasi(strSvcId):
     return s.query(SvcPasi).filter_by(svc_id=strSvcId).all()
 
 def getSvcInfo(strSvcId):
-    setCodeByTable(Svc)
-    setCodeByTable(Site)
+    setCodeByTable([Svc,Site])
     return s.query(Site,Svc).join(Svc.site).where(Svc.svc_id == strSvcId).all()
 
 def getTblLst(strTblNm,strTblDesc,strColNm,strColDesc):
@@ -71,10 +76,7 @@ def getTableFinder(dicParam):
     return s.query(Tbl).filter(or_(Tbl.tbl_nm.like("%" + dicParam['searchText'] + "%"),(Tbl.tbl_desc.like("%" +  dicParam['searchText'] + "%")))).all()
 
 def getPasiFinder(dicParam):
-    setCodeByTable(SvcPasi)
-    setCodeByTable(Svc)
-    setCodeByTable(Site)
-    setCodeByTable(ComCdDtl)
+    setCodeByTable([SvcPasi,Svc,Site,ComCdDtl])
     return s.query(SvcPasi,Svc,Site,ComCdDtl)\
         .join(SvcPasi.svc)\
         .join(Svc.site)\
@@ -92,7 +94,16 @@ def getPasiFinder(dicParam):
                     )).all()
 
 def getSvcPasiItem(strSvcId,strPasiId,InOutClCd):
+    setCodeByTable(SvcPasiItem)
     return s.query(SvcPasiItem).filter_by(svc_id=strSvcId).filter(SvcPasiItem.pasi_id.in_([strPasiId,'default'])).filter_by(in_out_cl_cd=InOutClCd).all()
+
+def getiItemParm(strSvcId,strPasiId,InOutClCd):
+    setCodeByTable([SvcPasiItem,TblCol,Tbl])
+    return s.query(SvcPasiItem,TblCol,Tbl).filter_by(svc_id=strSvcId).filter(SvcPasiItem.pasi_id.in_([strPasiId,'default'])).filter_by(in_out_cl_cd=InOutClCd).all()
+
+def getPasi(strPasiId,strSvcId):
+    setCodeByTable([SvcPasi,Svc,Site])
+    return s.query(SvcPasi,Svc,Site).join(SvcPasi.svc).join(Svc.site).where(and_(SvcPasi.svc_id == strSvcId,SvcPasi.pasi_id == strPasiId)).first()
 
 if __name__ == "__main__":
     #rslt = getPasiFinder({'searchText':""})

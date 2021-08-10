@@ -243,6 +243,18 @@ def getURLNVSaleInquery(CMPX_CTGR, NV_CMPX_ID):
     return 네이버부동산동별아파트리스트 + makeGetRealParam(Dic)
 
 
+#JSON을 TABLE DIC으로 변환한다.
+def setSoup2TableDic(tableName,soup):
+    global Log
+    dicTBL = getTableDic(tableName)
+    for col in dicMigMapp[tableName].keys():
+        try:
+            dicTBL[dicMigMapp[tableName][col]] = soup.find(col).text
+        except Exception as e:
+            pass
+            Log.debug("migNaverComplexList soup Parsing Error" + str(e) + col)
+    return dicTBL
+
 if __name__ == '__main__':
     #http://www.neonet.co.kr/novo-rebank/view/market_price/RegionData.neo?offerings_gbn=AT&update=140228&target=complex_cd&lcode=11&mcode=712&sname=%BE%D0%B7%AE%B8%E9
 

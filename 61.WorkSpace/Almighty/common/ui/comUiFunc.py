@@ -1,13 +1,13 @@
-def isValid(obj):
-    if obj == None:
+def isNotNull(instance):
+    if instance == None:
         return False
-    elif len(obj) == 0:
+    elif len(instance) == 0:
         return False
     return True
 
-def isNull(obj):
-    if obj == None:
+def isNull(instance):
+    if instance == None:
         return True
-    elif len(obj) == 0:
+    elif len(instance) == 0:
         return True
     return False

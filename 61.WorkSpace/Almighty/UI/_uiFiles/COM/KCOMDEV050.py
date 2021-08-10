@@ -4,7 +4,7 @@ import common.database.Relfect
 from DAO.KADM import *
 
 pgm_id = 'KCOMDEV050'
-pgm_nm = '테이블관리'
+pgm_nm = '파싱관리'
 form_class = uic.loadUiType(pgm_id + ".ui")[0]
 
 class KCOMDEV050(QWidget, KWidget, form_class) :
@@ -35,15 +35,16 @@ class KCOMDEV050(QWidget, KWidget, form_class) :
             dicParam['searchText'] = self.edit_pasi_id.text()
             dicParam['Columns'] = ['pasi_id','pasi_nm','svc_id','svc_nm','site_cd','bas_url','bas_svc_url','exmp_url','parm_load_func_nm']
             dicParam['Headers'] = ['파싱ID', '파싱명','서비스ID', '서비스명', '사이트코드', '기본URL','기존서비스URL','예제URL','인자로드함수명']
-            dicParam['Widths'] = {'pasi_id' : 100, 'pasi_nm' : 70, 'svc_id' : 70, 'svc_nm' : 100, 'site_cd' : 120, 'bas_url' : 100,
+            dicParam['Widths'] = {'pasi_id' : 100, 'pasi_nm' : 100, 'svc_id' : 70, 'svc_nm' : 100, 'site_cd' : 120, 'bas_url' : 100,
                                    'bas_svc_url' : 100, 'exmp_url' : 1000, 'parm_load_func_nm':100}
             dicParam['tableClass'] = DAO.KADM.SvcPasi
             dicParam['Function'] = 'Server.COM.getPasiFinder'
             result = finderPop(self,dicParam)
-            self.result = result
-            self.svc_id = result['svc_id']
-            setDic2Edit(self,result)
-            self.search()
+            if isNotNull(result):
+                self.result = result
+                self.svc_id = result['svc_id']
+                setDic2Edit(self,result)
+                self.search()
         except: error()
 
     def search(self):
@@ -55,8 +56,11 @@ class KCOMDEV050(QWidget, KWidget, form_class) :
                 self.pasi_id = self.edit_pasi_id.text()
                 self.twIn.setBasic(columns = Columns, widths = Widths, tableClass = SvcPasiItem, setDic = SetDic)
                 self.twIn.setListTable(self.getSvcPasiItem(self.svc_id,self.pasi_id,'I'))
+
+                Columns2 = ['PASI_ID','ITEM_NM', 'ITEM_VAL', 'ITEM_SRC_CL_CD', 'TBL_NM', 'COL_NM', 'ITEM_DESC']
+                Widths2 = {'PASI_ID':100,'ITEM_NM':120, 'ITEM_VAL':100, 'ITEM_SRC_CL_CD':70, 'TBL_NM':150, 'COL_NM':150, 'ITEM_DESC':200}
                 SetDic2 = {'svc_id': self.svc_id, 'in_out_cl_cd': 'O'}
-                self.twOut.setBasic(columns = Columns, widths = Widths, tableClass = SvcPasiItem, setDic = SetDic2)
+                self.twOut.setBasic(columns = Columns2, widths = Widths2, tableClass = SvcPasiItem, setDic = SetDic2)
                 self.twOut.setListTable(self.getSvcPasiItem(self.svc_id,self.pasi_id,'O'))
         except : error()
 
@@ -75,6 +79,9 @@ class KCOMDEV050(QWidget, KWidget, form_class) :
     def save(self):
         try:
             if self.preSave():
+                #소문자 세팅
+                for n in range(self.twIn.rowCount): self.twIn.setTextByColName(n,"col_nm",str(self.twIn.getTextByColName(n,"col_nm")).lower())
+                for n in range(self.twOut.rowCount):self.twOut.setTextByColName(n,"col_nm",str(self.twOut.getTextByColName(n,"col_nm")).lower())
                 self.twIn.mergeList()
                 self.twOut.mergeList()
         except : error()
@@ -125,7 +132,7 @@ class KCOMDEV050(QWidget, KWidget, form_class) :
 
     def delOut(self):
         try:
-            if self.preDelTbl():
+            if self.preDelOut():
                 self.twOut.deleteRow()
         except: error()
 

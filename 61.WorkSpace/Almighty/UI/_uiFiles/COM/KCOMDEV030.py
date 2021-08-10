@@ -39,6 +39,9 @@ class KCOMDEV030(QWidget, KWidget, form_class) :
 
             #Table Widget Setting
             self.twSite.resizeRowsToContents()
+
+            self.twSvc.removeAll()
+            self.twSvcPasi.removeAll()
         except : error()
 
     def searchSvc(self):
@@ -50,7 +53,7 @@ class KCOMDEV030(QWidget, KWidget, form_class) :
             SetDic = {'site_cd': strSiteCd}
             self.twSvc.setBasic(columns = Columns, widths = Widths, tableClass = Svc, setDic=SetDic)
             self.twSvc.setListTable(self.getSvc(strSiteCd))
-    #        self.twSvcPasi.removeAll()
+            self.twSvcPasi.removeAll()
         except: error()
 
     def searchSvcPasi(self):

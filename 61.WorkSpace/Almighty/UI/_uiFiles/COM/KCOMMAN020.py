@@ -117,6 +117,7 @@ class KCOMMAN020(QWidget, KWidget, form_class) :
                 max_menu_id = menu.menu_id
                 if menu_lv > 1:
                     alert("마지막 메뉴 레벨입니다. 상위메뉴를 선택 후 추가해 주세요")
+                    return False
             else:
                 max_menu_id = 'M000000000'
 

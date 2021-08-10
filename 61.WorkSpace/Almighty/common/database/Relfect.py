@@ -101,7 +101,7 @@ def getClassTable(meta,className,tableName):
                     if i > 0: relTableDeclare += " , "
                     relTableDeclare += dicRelDeclare[keydRD]['ParentClassNm'] + "." +dicRelDeclare[keydRD][keydRDcol]
                     i += 1
-            relTableDeclare += "])\n"
+            relTableDeclare += "], passive_deletes = True)\n"
             relDeclare += relTableDeclare
 
 #        relDeclare += "    " + ParentClassNm.lower() + " = relationship('" + ParentClassNm + "',primaryjoin = " \

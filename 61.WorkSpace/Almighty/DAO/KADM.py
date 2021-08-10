@@ -37,7 +37,7 @@ class TblCol(Base,KTable):
     bas_val = KColumn(String(200), nullable = True)
     col_desc = KColumn(String(500), nullable = True)
 
-    tbl = relationship('Tbl',primaryjoin = tbl_nm == Tbl.tbl_nm, foreign_keys=Tbl.tbl_nm)
+    tbl = relationship('Tbl',primaryjoin = tbl_nm == Tbl.tbl_nm, foreign_keys=Tbl.tbl_nm,passive_deletes=True)
 
     def __init__(self, *args, **kwargs):
         KTable.__init__(self)
@@ -90,7 +90,7 @@ class Svc(Base,KTable):
     exmp_url = KColumn(String(1000), nullable = True)
     svc_desc = KColumn(String(500), nullable = True)
 
-    site = relationship('Site',primaryjoin = site_cd == Site.site_cd, foreign_keys=Site.site_cd)
+    site = relationship('Site',primaryjoin = site_cd == Site.site_cd, foreign_keys=Site.site_cd,passive_deletes=True)
 
     def __init__(self, *args, **kwargs):
         KTable.__init__(self)
@@ -114,7 +114,7 @@ class SvcPasi(Base,KTable):
     parm_load_func_nm = KColumn(String(200), nullable = True)
     svc_pasi_desc = KColumn(String(500), nullable = True)
 
-    svc = relationship('Svc',primaryjoin = svc_id == Svc.svc_id, foreign_keys=Svc.svc_id)
+    svc = relationship('Svc',primaryjoin = svc_id == Svc.svc_id, foreign_keys=Svc.svc_id,passive_deletes=True)
 
     def __init__(self, *args, **kwargs):
         KTable.__init__(self)
@@ -136,12 +136,13 @@ class SvcPasiItem(Base,KTable):
     in_out_cl_cd = KColumn(String(20), primary_key = True, nullable = False, kcom_cd_domain = True, kcom_cd_grp = 'IN_OUT_CL')
     item_nm = KColumn(String(200), primary_key = True, nullable = False)
     item_val = KColumn(String(200), nullable = True)
+    item_src_cl_cd = KColumn(String(20), nullable = False, kcom_cd_domain = True, kcom_cd_grp = 'ITEM_SRC_CL')
     tbl_nm = KColumn(String(50), nullable = True)
     col_nm = KColumn(String(50), nullable = True)
     item_desc = KColumn(String(500), nullable = True)
 
-    svcpasi = relationship('SvcPasi',primaryjoin = and_(svc_id==SvcPasi.svc_id , pasi_id==SvcPasi.pasi_id), foreign_keys = [SvcPasi.svc_id , SvcPasi.pasi_id])
-    tblcol = relationship('TblCol',primaryjoin = and_(tbl_nm==TblCol.tbl_nm , col_nm==TblCol.col_nm), foreign_keys = [TblCol.tbl_nm , TblCol.col_nm])
+    svcpasi = relationship('SvcPasi',primaryjoin = and_(svc_id==SvcPasi.svc_id , pasi_id==SvcPasi.pasi_id), foreign_keys = [SvcPasi.svc_id , SvcPasi.pasi_id], passive_deletes = True)
+    tblcol = relationship('TblCol',primaryjoin = and_(tbl_nm==TblCol.tbl_nm , col_nm==TblCol.col_nm), foreign_keys = [TblCol.tbl_nm , TblCol.col_nm], passive_deletes = True)
 
     def __init__(self, *args, **kwargs):
         KTable.__init__(self)
@@ -150,12 +151,13 @@ class SvcPasiItem(Base,KTable):
         self.in_out_cl_cd =  kwargs.pop('in_out_cl_cd')
         self.item_nm =  kwargs.pop('item_nm')
         self.item_val =  kwargs.pop('item_val','')
+        self.item_src_cl_cd =  kwargs.pop('item_src_cl_cd','NA')
         self.tbl_nm =  kwargs.pop('tbl_nm','')
         self.col_nm =  kwargs.pop('col_nm','')
         self.item_desc =  kwargs.pop('item_desc','')
 
     def __repr__(self):
-        return "<SvcPasiItem('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.svc_id), str(self.pasi_id), str(self.in_out_cl_cd), str(self.item_nm), str(self.item_val), str(self.tbl_nm), str(self.col_nm), str(self.item_desc) + KTable.__repr__(self))
+        return "<SvcPasiItem('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.svc_id), str(self.pasi_id), str(self.in_out_cl_cd), str(self.item_nm), str(self.item_val), str(self.item_src_cl_cd), str(self.tbl_nm), str(self.col_nm), str(self.item_desc) + KTable.__repr__(self))
 
 #########################################################################################################################################################
 

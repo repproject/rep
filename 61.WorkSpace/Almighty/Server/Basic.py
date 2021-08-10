@@ -4,13 +4,13 @@ from common.ui.comUi import *
 from Server.COM import *
 
 def merge(table):
+    print(table)
     s.merge(table)
     s.commit()
     return True
 
 def mergeList(tableList):
     for table in tableList:
-        print(table)
         s.merge(table)
     s.commit()
 
@@ -25,3 +25,6 @@ def getCode(grp):
     result = s.query(DAO.KADM.ComCdDtl).filter_by(com_cd_grp=grp).all()
     setCodeByTable(result[0])
     return result
+
+def commit():
+    s.commit()

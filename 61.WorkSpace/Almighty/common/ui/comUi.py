@@ -73,6 +73,7 @@ def setEdit2Table(form,table):
         try:
             text = getattr(form,"edit_"+colname).text()
             setattr(table,colname,text)
+        except AttributeError as ae : pass
         except : error()
     return True
 
@@ -117,8 +118,10 @@ class TableListBind():
 
     def __init__(self, listTable=None, columns=None):
         try:
+            super().__init__()
             self.setColumns(columns)
             self.setlistTable(listTable)
+            self.setDic = copy.deepcopy(dict())
         except : error()
 
     def setListTable(self, listTable):
@@ -194,8 +197,10 @@ class TableListBind():
         :param setdic:
         :return:
         """
+        sd = {}
         for key in setdic.keys():
-            self.setDic[key.lower()] = setdic[key]
+             sd[key.lower()] = setdic[key]
+        self.setDic = copy.deepcopy(sd)
 
     def setTableClass(self, tableClass):
         if tableClass != None:
@@ -309,6 +314,7 @@ class TableWidget(QTableWidget,TableListBind):
                     self.setCellWidget(n, m, combobox)
                 if table == None : text = ""
                 else :
+                    print(self.dicColAttr)
                     text = getattr(self.getTableByColSeq(col,table), col)
                     if text == None :
                         text = ""
@@ -347,6 +353,7 @@ class TableWidget(QTableWidget,TableListBind):
             #self.item(n, 0).table
         if table != None: deleteBasic(table)
         self.removeRow(n)
+        commit()
         return True
 
     def getRowTable(self,n=None):
@@ -400,7 +407,7 @@ class TableWidget(QTableWidget,TableListBind):
             self.listTable.append(table)
 
             for m in  range(0, self.columnCount()):
-                self.item(n,m).table = table
+                self.getCellObject(n,m).table = table
         else:
             for m in  range(0, self.columnCount()):
                 cw = self.cellWidget(n, m)
