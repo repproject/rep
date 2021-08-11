@@ -105,6 +105,14 @@ def getPasi(strPasiId,strSvcId):
     setCodeByTable([SvcPasi,Svc,Site])
     return s.query(SvcPasi,Svc,Site).join(SvcPasi.svc).join(Svc.site).where(and_(SvcPasi.svc_id == strSvcId,SvcPasi.pasi_id == strPasiId)).first()
 
+def getCdExec(strCdExec):
+    setCodeByTable(CdExec)
+    return s.query(CdExec).filter(or_(CdExec.cd_exec_id.like("%" + strCdExec + "%"),(CdExec.cd_exec_nm.like("%" + strCdExec + "%")))).all()
+
+def getPasiCdExec(strSvcId,strPasiId):
+    setCodeByTable(PasiCdExec)
+    return s.query(PasiCdExec).filter_by(svc_id=strSvcId).filter_by(pasi_id=strPasiId).all()
+
 if __name__ == "__main__":
     #rslt = getPasiFinder({'searchText':""})
     rslt = getMenuLv(1)

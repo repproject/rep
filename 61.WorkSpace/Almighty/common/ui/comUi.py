@@ -109,7 +109,7 @@ def getCode(grp):
 
 ############Table############
 class TableListBind():
-    listTable = None
+    listTable = []
     columns = None
     tableClass = None
     dicColAttr = {}
@@ -147,6 +147,7 @@ class TableListBind():
         self.columns = []
         for col in columns:
             self.columns.append(col.lower())
+        self.setDicColAttr()
 
     def setDicColAttr(self):
         r"""
@@ -252,9 +253,9 @@ class TableWidget(QTableWidget,TableListBind):
         pass
 
     def setBasic(self,*args,**kwargs):
+        self.setTableClass(kwargs.pop("tableClass",None))
         self.setColumns(kwargs.pop("columns"))
         self.setWidths(kwargs.pop("widths",{}))
-        self.setTableClass(kwargs.pop("tableClass",None))
         self.setSetDic(kwargs.pop("setDic", {}))
         self.setHeaders(kwargs.pop("headers",[]))
         self.setAligns(kwargs.pop("aligns", {}))
@@ -359,6 +360,7 @@ class TableWidget(QTableWidget,TableListBind):
     def getRowTable(self,n=None):
         if n == None : n = self.currentRow()
         w = self.getCellObject(n,0)
+        if w == None : return None
         return w.table
 
     def getRowDic(self,n=None):
@@ -392,6 +394,19 @@ class TableWidget(QTableWidget,TableListBind):
         self.setTWColor()
         return True
 
+    def insertRowDB(self,n=None):
+        if n == None: n = self.currentRow()
+        self.setRowValues(n)
+        insert(self.getRowTable(n))
+        self.setTWRowColor(n)
+        return True
+
+    def insertListDB(self):
+        self.setAllValues()
+        insertList(self.listTable)
+        self.setTWColor()
+        return True
+    
     def setRowValues(self,n=None):
         if n == None: n = self.currentRow()
         if self.getRowTable(n) == None:

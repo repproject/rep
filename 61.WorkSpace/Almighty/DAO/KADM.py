@@ -183,11 +183,12 @@ class PasiCdExec(Base,KTable):
 
     svc_id = KColumn(String(500), primary_key = True, nullable = False)
     pasi_id = KColumn(String(50), primary_key = True, nullable = False)
+    seq = KColumn(Integer, primary_key = True, nullable = False)
     cd_exec_id = KColumn(String(50), nullable = False)
     cd_exec_seq = KColumn(Integer, nullable = True)
     up_seq = KColumn(Integer, nullable = True)
     exec_parm_val = KColumn(String(200), nullable = True)
-    seq = KColumn(Integer, primary_key = True, nullable = False)
+
 
     svcpasi = relationship('SvcPasi',primaryjoin = and_(svc_id==SvcPasi.svc_id , pasi_id==SvcPasi.pasi_id), foreign_keys = [SvcPasi.svc_id , SvcPasi.pasi_id], passive_deletes = True)
     cdexec = relationship('CdExec',primaryjoin = cd_exec_id==CdExec.cd_exec_id, foreign_keys = [CdExec.cd_exec_id], passive_deletes = True)

@@ -4,8 +4,12 @@ from common.ui.comUi import *
 from Server.COM import *
 
 def merge(table):
-    print(table)
     s.merge(table)
+    s.commit()
+    return True
+
+def insert(table):
+    s.add(table)
     s.commit()
     return True
 
@@ -13,6 +17,12 @@ def mergeList(tableList):
     for table in tableList:
         s.merge(table)
     s.commit()
+
+def insertList(tableList):
+    for table in tableList:
+        s.add(table)
+    s.commit()
+    return True
 
 dic = {}
 
