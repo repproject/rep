@@ -26,6 +26,7 @@ class KCOMMAN020(QWidget, KWidget, form_class) :
     def initUI(self):
         #메뉴목록 가져오기
         self.tableMenu = self.getMenuList()
+        self.tw.clear()
 
         #tabWidget Setting
         self.tw.setColumnCount(1)
@@ -95,6 +96,7 @@ class KCOMMAN020(QWidget, KWidget, form_class) :
             menu = self.selectedItem.__getattribute__('menu')
             comUi.setEdit2Table(self,menu)
             Server.Basic.merge(menu)
+            self.initUI()
             return True
         except Exception as e :
             print(e)

@@ -15,6 +15,16 @@ NaverTimeStamp = 1.1
 NaverComplexListURL = "https://new.land.naver.com/api/regions/complexes?cortarNo="
 NaverComplexDtlURL = "https://new.land.naver.com/api/complexes/"
 
+def setSoup2TableDic(strSvcId,strPasiId,soup):
+    dicTBL = getTableDic(tableName)
+    for col in dicMigMapp[tableName].keys():
+        try:
+            dicTBL[dicMigMapp[tableName][col]] = soup.find(col).text
+        except Exception as e:
+            pass
+            Log.debug("migNaverComplexList soup Parsing Error" + str(e) + col)
+    return dicTBL
+
 class URLMaker:
     svcId = None
     tableSite = None

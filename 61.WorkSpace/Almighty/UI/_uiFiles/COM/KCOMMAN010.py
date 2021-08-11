@@ -68,7 +68,7 @@ class WindowClass(QMainWindow, form_class) :
         #종료 버튼 추가
         exitAction = QAction('Exit',self)
         exitAction.triggered.connect(qApp.quit)
-        menuLv1dict['M100000000'].addAction(exitAction)
+        menuLv1dict['M10000000'].addAction(exitAction)
 
         self.tabWidget.removeTab(1)
         self.tabWidget.removeTab(0)

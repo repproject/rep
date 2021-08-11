@@ -190,7 +190,7 @@ class PasiCdExec(Base,KTable):
     exec_parm_val = KColumn(String(200), nullable = True)
 
 
-    svcpasi = relationship('SvcPasi',primaryjoin = and_(svc_id==SvcPasi.svc_id , pasi_id==SvcPasi.pasi_id), foreign_keys = [SvcPasi.svc_id , SvcPasi.pasi_id], passive_deletes = True)
+    svcpasi = relationship('SvcPasi',primaryjoin = and_(svc_id==SvcPasi.svc_id , pasi_id==SvcPasi.pasi_id), foreign_keys = [SvcPasi.svc_id , SvcPasi.pasi_id], passive_deletes = True, overlaps="svcpasi")
     cdexec = relationship('CdExec',primaryjoin = cd_exec_id==CdExec.cd_exec_id, foreign_keys = [CdExec.cd_exec_id], passive_deletes = True)
 
     def __init__(self, *args, **kwargs):

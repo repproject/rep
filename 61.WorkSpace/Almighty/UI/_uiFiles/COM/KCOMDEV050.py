@@ -80,8 +80,11 @@ class KCOMDEV050(QWidget, KWidget, form_class) :
         try:
             if self.preSave():
                 #소문자 세팅
-                for n in range(self.twIn.rowCount): self.twIn.setTextByColName(n,"col_nm",str(self.twIn.getTextByColName(n,"col_nm")).lower())
-                for n in range(self.twOut.rowCount):self.twOut.setTextByColName(n,"col_nm",str(self.twOut.getTextByColName(n,"col_nm")).lower())
+                self.twIn.setColumnLower("col_nm")
+                self.twIn.setColumnLower("tbl_nm")
+                self.twOut.setColumnLower("col_nm")
+                self.twOut.setColumnLower("tbl_nm")
+
                 self.twIn.mergeList()
                 self.twOut.mergeList()
         except : error()

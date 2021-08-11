@@ -19,6 +19,7 @@ class KCOMDEV060(QWidget, KWidget, form_class) :
         except : error()
 
     def initUI(self):
+        self.tbPasi.clicked.connect(self.findPasi)
         self.btn_search.clicked.connect(self.search)
         self.btn_save_2.clicked.connect(self.saveCdExec)
         self.btn_save.clicked.connect(self.save)
@@ -28,6 +29,7 @@ class KCOMDEV060(QWidget, KWidget, form_class) :
 
         self.clbPasiCdExec.clicked.connect(self.addPasiCd)
         self.btn_del_pasi.clicked.connect(self.delPasiCd)
+
 
         Columns = ['cd_exec_id', 'cd_exec_nm', 'cd_exec_cl_cd', 'exec_cd_cnts']
         Widths = {'cd_exec_id': 100, 'cd_exec_nm': 150, 'cd_exec_cl_cd': 100, 'exec_cd_cnts': 200}
@@ -114,6 +116,7 @@ class KCOMDEV060(QWidget, KWidget, form_class) :
         try:
             n = self.twPasiCdExec.addTWRow()
             self.twPasiCdExec.setTextByColName(n,"cd_exec_id",self.twCdExec.getTextByColName(self.twCdExec.currentRow(),"cd_exec_id"))
+            self.twPasiCdExec.setTextByColName(n, "up_seq",0)
         except : error()
 
     def save(self):

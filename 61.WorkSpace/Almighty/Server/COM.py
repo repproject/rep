@@ -101,6 +101,10 @@ def getiItemParm(strSvcId,strPasiId,InOutClCd):
     setCodeByTable([SvcPasiItem,TblCol,Tbl])
     return s.query(SvcPasiItem,TblCol,Tbl).filter_by(svc_id=strSvcId).filter(SvcPasiItem.pasi_id.in_([strPasiId,'default'])).filter_by(in_out_cl_cd=InOutClCd).all()
 
+def getiItemParm2(strSvcId,strPasiId,InOutClCd):
+    setCodeByTable([SvcPasiItem,TblCol,Tbl])
+    return s.query(SvcPasiItem,TblCol,Tbl).join(SvcPasiItem.tblcol).join(TblCol.tbl).where(and_(SvcPasiItem.pasi_id.in_([strPasiId,'default']),SvcPasiItem.svc_id == strSvcId,SvcPasiItem.in_out_cl_cd == InOutClCd)).all()
+
 def getPasi(strPasiId,strSvcId):
     setCodeByTable([SvcPasi,Svc,Site])
     return s.query(SvcPasi,Svc,Site).join(SvcPasi.svc).join(Svc.site).where(and_(SvcPasi.svc_id == strSvcId,SvcPasi.pasi_id == strPasiId)).first()
@@ -112,6 +116,11 @@ def getCdExec(strCdExec):
 def getPasiCdExec(strSvcId,strPasiId):
     setCodeByTable(PasiCdExec)
     return s.query(PasiCdExec).filter_by(svc_id=strSvcId).filter_by(pasi_id=strPasiId).all()
+
+def getCrawlCdExec(strSvcId,strPasiId,upSec):
+    setCodeByTable(PasiCdExec)
+    setCodeByTable(CdExec)
+    return s.query(PasiCdExec,CdExec).join(PasiCdExec.cdexec).where(and_(PasiCdExec.svc_id == strSvcId,PasiCdExec.pasi_id == strPasiId, PasiCdExec.up_seq == upSec)).all()
 
 if __name__ == "__main__":
     #rslt = getPasiFinder({'searchText':""})

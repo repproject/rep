@@ -1,4 +1,6 @@
 import gc
+from bs4 import BeautifulSoup
+from sqlalchemy.engine.row import Row
 
 from common.common.Log import *
 from common.Batch.Batch import *
@@ -8,6 +10,7 @@ from common.ui.comUiFunc import *
 from common.common.Table import *
 import Server.COM
 import Server.MIG
+from Server.Basic import *
 
 from urllib import parse
 import urllib.parse
@@ -108,8 +111,6 @@ class Crawling:
     # Lv2 구현
     def crawl(self):
         for sd in self.dicStrd:
-            print("########sd##########")
-            print(sd)
             #item에 컬럼값이 등록되면 기준Data 세팅
             for tb in self.tableSvcPasiItemIn:
                 if isNotNull(tb[0].tbl_nm) and isNotNull(tb[0].col_nm):
@@ -122,12 +123,13 @@ class Crawling:
                     url = self.makeURL(sd,reCnt)
                     print(url)
                     page = self.request(url)
-                    print(page)
-                    self.selfSaveDB(page,self.dicStrd,url)
+                    cPage = self.convertPage(page)
+                    self.selfSaveDB(cPage,sd,url)
                     time.sleep(self.sleepStamp)
-                    #if self.isReCrwal(url,page,self.dicStrd,reCnt) == False:
+                    if self.isReCrwal(url,page,self.dicStrd,reCnt) == False:
                         #self.rowCounter.Cnt()
-                        #break
+                        break
+
                 gc.collect()
             except Exception as e:
                 error()
@@ -172,8 +174,46 @@ class Crawling:
     #    return "http://test.com"
 
     #[LV4 구현]Page > 변환 > Parse > DB 반영
-    def selfSaveDB(self,page,dicStrdData = None,url = None):
+    def selfSaveDB(self,cPage,dicStrdData = None,url = None):
+        ex = Server.COM.getCrawlCdExec(self.tableSvcPasi.svc_id,self.tableSvcPasi.pasi_id,0)
+        if len(ex) > 0:
+            self.reCurParse(cPage,ex[0],dicStrdData)
         pass
+
+    def reCurParse(self,page,cdex,strd):
+        if cdex[1].cd_exec_cl_cd == "F": #Function
+            strExec = cdex[1].exec_cd_cnts + "(" + str(cdex[0].exec_parm_val) + ")"
+            pasiPage = eval(strExec)
+
+        for p in pasiPage:
+            if self.tableSvcPasi.pasi_way_cd == 'SOUP':
+                row = self.getTableListByOutMapping(self.svcId, self.pasiId, p,strd)
+                mergeList(row)
+        return True
+
+    def convertPage(self,page):
+        if self.tableSvcPasi.pasi_way_cd == 'SOUP':
+            return BeautifulSoup(page, 'html.parser')
+        else:
+            print('convertPage error')
+            raise Exception
+
+    def getTableListByOutMapping(self,strSvcId,strPasiId,p,strd):
+        dicTableList = {}
+        outParam = Server.COM.getiItemParm2(strSvcId,strPasiId,'O')
+        for tb in outParam:
+            if  tb[2].cls_nm not in dicTableList:
+                dicTableList[tb[2].cls_nm] = {}
+            if tb[0].item_src_cl_cd == 'ST': #기준정보
+                dicTableList[tb[2].cls_nm][tb[0].col_nm] = strd[tb[0].item_nm]
+            else:
+                dicTableList[tb[2].cls_nm][tb[0].col_nm] = self.getParsetext(tb[0].item_nm,p)
+        return getListTableFromDic(dicTableList)
+
+    def getParsetext(self,item_nm,p):
+        if self.tableSvcPasi.pasi_way_cd == 'SOUP':
+            return p.find(item_nm).text
+        else : raise Exception
 
     def request(self,url):
         page = get_html(url,self.tableSvc.req_way_cd,self.dicParam)
@@ -217,5 +257,6 @@ class DataStrd:
 
 if __name__ == '__main__':
     batchContext = simpleBatchContext("CrawlingBBCmpxTyp")
-    CrawlObject = Crawling('BBRegnLv2','BBRegn',batchContext)
+    #CrawlObject = Crawling('BBRegnLv2','BBRegn',batchContext)
+    CrawlObject = Crawling('BBRegnLv3', 'BBRegn', batchContext)
     CrawlObject.run()

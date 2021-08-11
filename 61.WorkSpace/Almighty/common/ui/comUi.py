@@ -159,17 +159,20 @@ class TableListBind():
             for i,tb in enumerate(self.listTable[0]):
                 for col in tb.__table__.c:
                     colName = str(col).split('.')[1]
-                    if colName not in self.dicColAttr.keys():
-                        self.dicColAttr[colName] = {}
-                        self.dicColAttr[colName]['tablename'] = tb.__class__.__name__
-                        self.dicColAttr[colName]['tableClass'] = tb.__class__
-                        self.dicColAttr[colName]['tableseq'] = i #사용
+                    if self.dicColAttr.get(colName):
+                        if self.dicColAttr[colName].get('isCompleteSet',False) == False:
+                            self.dicColAttr[colName] = {}
+                            self.dicColAttr[colName]['tablename'] = tb.__class__.__name__
+                            self.dicColAttr[colName]['tableClass'] = tb.__class__
+                            self.dicColAttr[colName]['tableseq'] = i #사용
+                            self.dicColAttr[colName]['isCompleteSet'] = True #사용
         else:
             for colname in self.columns:
                 self.dicColAttr[colname] = {}
                 self.dicColAttr[colname]['tablename'] = self.tableClass.__name__
                 self.dicColAttr[colname]['tableClass'] = self.tableClass
                 self.dicColAttr[colname]['tableseq'] = -1  # 사용
+                self.dicColAttr[colname]['isCompleteSet'] = False
 
     def getTableSeqByColName(self,colname):
         r"""
@@ -406,7 +409,7 @@ class TableWidget(QTableWidget,TableListBind):
         insertList(self.listTable)
         self.setTWColor()
         return True
-    
+
     def setRowValues(self,n=None):
         if n == None: n = self.currentRow()
         if self.getRowTable(n) == None:
@@ -474,6 +477,17 @@ class TableWidget(QTableWidget,TableListBind):
     def getDicBasicData(self):
         dicData = {}
         return  dicData
+
+    def setColumnLower(self,colName):
+        r"""
+            특정 컬럼을 소문자로 세팅한다
+        :param colName: 컬럼명
+        :return:
+        """
+        for n in range(self.rowCount()):
+            if isNotNull(self.getTextByColName(n, colName)):
+                self.setTextByColName(n, colName, self.getTextByColName(n, colName).lower())
+
 
     @classmethod
     def convert_to_TableWidget(cls, obj):
