@@ -28,7 +28,6 @@ class KWidget() :
         if qKeyEvent.key() == QtCore.Qt.Key_Return:
             self.search()
         else:
-            #super().keyPressEvent(qKeyEvent)
             pass
 
 

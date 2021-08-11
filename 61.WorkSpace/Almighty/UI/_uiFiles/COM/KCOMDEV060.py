@@ -3,11 +3,11 @@ from PyQt5.QtWidgets import QTableView
 import common.database.Relfect
 from DAO.KADM import *
 
-pgm_id = 'KCOMDEV050'
-pgm_nm = '파싱관리'
+pgm_id = 'KCOMDEV060'
+pgm_nm = '코드실행관리'
 form_class = uic.loadUiType(pgm_id + ".ui")[0]
 
-class KCOMDEV050(QWidget, KWidget, form_class) :
+class KCOMDEV060(QWidget, KWidget, form_class) :
     result = None
     svc_id = None
     pasi_id = None
@@ -20,14 +20,14 @@ class KCOMDEV050(QWidget, KWidget, form_class) :
 
     def initUI(self):
         self.tbPasi.clicked.connect(self.findPasi)
-        self.btn_search.clicked.connect(self.search)
-        self.btn_save.clicked.connect(self.save)
-        self.btn_add_in.clicked.connect(self.addIn)
-        self.btn_add_in_2.clicked.connect(self.addInDefault)
-        self.btn_del_in.clicked.connect(self.delIn)
-        self.btn_add_out.clicked.connect(self.addOut)
-        self.btn_add_out_2.clicked.connect(self.addOutDefault)
-        self.btn_del_out.clicked.connect(self.delOut)
+        # self.btn_search.clicked.connect(self.search)
+        # self.btn_save.clicked.connect(self.save)
+        # self.btn_add_in.clicked.connect(self.addIn)
+        # self.btn_add_in_2.clicked.connect(self.addInDefault)
+        # self.btn_del_in.clicked.connect(self.delIn)
+        # self.btn_add_out.clicked.connect(self.addOut)
+        # self.btn_add_out_2.clicked.connect(self.addOutDefault)
+        # self.btn_del_out.clicked.connect(self.delOut)
 
     def findPasi(self):
         try:
@@ -153,7 +153,7 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
 
     #WindowClass의 인스턴스 생성
-    myWindow = KCOMDEV050()
+    myWindow = KCOMDEV060()
 
     #프로그램 화면을 보여주는 코드
     myWindow.show()

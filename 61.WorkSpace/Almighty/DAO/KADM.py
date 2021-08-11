@@ -159,6 +159,52 @@ class SvcPasiItem(Base,KTable):
     def __repr__(self):
         return "<SvcPasiItem('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.svc_id), str(self.pasi_id), str(self.in_out_cl_cd), str(self.item_nm), str(self.item_val), str(self.item_src_cl_cd), str(self.tbl_nm), str(self.col_nm), str(self.item_desc) + KTable.__repr__(self))
 
+class CdExec(Base,KTable):
+    __tablename__ = 'kadm_cd_exec'
+
+    cd_exec_id = KColumn(String(50), primary_key = True, nullable = False)
+    cd_exec_nm = KColumn(String(200), nullable = True)
+    cd_exec_cl_cd = KColumn(String(20), nullable = False, kcom_cd_domain = True, kcom_cd_grp = 'CD_EXEC_CL')
+    exec_cd_cnts = KColumn(String(4000), nullable = True)
+
+
+    def __init__(self, *args, **kwargs):
+        KTable.__init__(self)
+        self.cd_exec_id =  kwargs.pop('cd_exec_id')
+        self.cd_exec_nm =  kwargs.pop('cd_exec_nm','')
+        self.cd_exec_cl_cd =  kwargs.pop('cd_exec_cl_cd')
+        self.exec_cd_cnts =  kwargs.pop('exec_cd_cnts','')
+
+    def __repr__(self):
+        return "<CdExec('%s', '%s', '%s', '%s'" % (str(self.cd_exec_id), str(self.cd_exec_nm), str(self.cd_exec_cl_cd), str(self.exec_cd_cnts) + KTable.__repr__(self))
+
+class PasiCdExec(Base,KTable):
+    __tablename__ = 'kadm_pasi_cd_exec'
+
+    svc_id = KColumn(String(500), primary_key = True, nullable = False)
+    pasi_id = KColumn(String(50), primary_key = True, nullable = False)
+    cd_exec_id = KColumn(String(50), nullable = False)
+    cd_exec_seq = KColumn(Integer, nullable = True)
+    up_seq = KColumn(Integer, nullable = True)
+    exec_parm_val = KColumn(String(200), nullable = True)
+    seq = KColumn(Integer, primary_key = True, nullable = False)
+
+    svcpasi = relationship('SvcPasi',primaryjoin = and_(svc_id==SvcPasi.svc_id , pasi_id==SvcPasi.pasi_id), foreign_keys = [SvcPasi.svc_id , SvcPasi.pasi_id], passive_deletes = True)
+    cdexec = relationship('CdExec',primaryjoin = cd_exec_id==CdExec.cd_exec_id, foreign_keys = [CdExec.cd_exec_id], passive_deletes = True)
+
+    def __init__(self, *args, **kwargs):
+        KTable.__init__(self)
+        self.svc_id =  kwargs.pop('svc_id')
+        self.pasi_id =  kwargs.pop('pasi_id')
+        self.cd_exec_id =  kwargs.pop('cd_exec_id')
+        self.cd_exec_seq =  kwargs.pop('cd_exec_seq','')
+        self.up_seq =  kwargs.pop('up_seq','')
+        self.exec_parm_val =  kwargs.pop('exec_parm_val','')
+        self.seq =  kwargs.pop('seq')
+
+    def __repr__(self):
+        return "<PasiCdExec('%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.svc_id), str(self.pasi_id), str(self.cd_exec_id), str(self.cd_exec_seq), str(self.up_seq), str(self.exec_parm_val), str(self.seq) + KTable.__repr__(self))
+
 #########################################################################################################################################################
 
 

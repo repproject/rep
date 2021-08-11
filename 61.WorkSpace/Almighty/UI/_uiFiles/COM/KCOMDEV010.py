@@ -67,6 +67,12 @@ class KCOMDEV010(QWidget, KWidget, form_class) :
             self.search()
         except: error()
 
+    def keyPressEvent(self, qKeyEvent):
+        if qKeyEvent.key() == QtCore.Qt.Key_Return:
+            self.search()
+        else:
+            pass
+
 if __name__ == "__main__":
     #QApplication : 프로그램을 실행시켜주는 클래스
     app = QApplication(sys.argv)

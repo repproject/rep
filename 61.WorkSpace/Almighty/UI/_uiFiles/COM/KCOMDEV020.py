@@ -112,6 +112,12 @@ class KCOMDEV020(QWidget, KWidget, form_class) :
     def getCodeLst(self,strComCdGrp,strComCdGrpNm): return Server.COM.getCodeLst(strComCdGrp,strComCdGrpNm)
     def getCodeDtl(self,strComCdGrp):               return Server.COM.getCodeDtl(strComCdGrp)
 
+    def keyPressEvent(self, qKeyEvent):
+        if qKeyEvent.key() == QtCore.Qt.Key_Return:
+            self.search()
+        else:
+            pass
+
 if __name__ == "__main__":
     #QApplication : 프로그램을 실행시켜주는 클래스
     app = QApplication(sys.argv)
