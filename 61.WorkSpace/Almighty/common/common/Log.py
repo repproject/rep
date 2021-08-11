@@ -80,9 +80,9 @@ class childLogger(Logger):
 LogObject = childLogger()
 Log = LogObject.logger
 
-def error():
-    Log.error(traceback.format_exc())
-    sendTelegramMessage(traceback.format_exc())
+# def error():
+#     Log.error(traceback.format_exc())
+#     sendTelegramMessage(traceback.format_exc())
 
 
 

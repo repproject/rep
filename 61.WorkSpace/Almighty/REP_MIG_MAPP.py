@@ -135,18 +135,6 @@ dicMigMapp = {
             'name' : 'BB_LV1_REGN_NM'
         }
     ,
-    'KMIG_BB_LV2_REGN':
-        {
-            'code': 'BB_LV2_REGN_CD',
-            'name': 'BB_LV2_REGN_NM'
-        }
-    ,
-    'KMIG_BB_LV3_REGN':
-        {
-            'code': 'BB_LV3_REGN_CD',
-            'name': 'BB_LV3_REGN_NM'
-        }
-    ,
     'KMIG_BB_CMPX':
         {
             'code': 'BB_CMPX_ID',

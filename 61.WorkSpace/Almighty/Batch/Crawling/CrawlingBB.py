@@ -65,42 +65,6 @@ class CrawlingBBRegnLv1(CrawlingSingleBB):
             except pymysql.IntegrityError as err:  # 기존 중복 가능
                 Log.debug(batchContext.getLogName() + "부동산뱅크 LV1 지역 중복" + dicKMIG_BB_LV1_REGN['BB_LV1_REGN_CD'] + "/" + dicKMIG_BB_LV1_REGN['BB_LV1_REGN_NM'])
 
-# #Lv4 부동산뱅크 지역코드 LV3
-# class CrawlingBBRegnLv3(CrawlingMultiBB):
-#     funcName = "CrawlingBBRegnLv3"
-#     fetchSqlId =  "selectBBRegnCdLv2"
-#     sqlReportFetchId = "selectNewBBRegnCdLv3"
-#     SVC_ID = "BBRegn"
-#
-#     # [LV3 구현]각 Lv3 Class(웹사이트(url) 별로) URL을 만드는 부분을 정의
-#     def selfMakeURL(self, dicStrdData=None,reCnt = None):
-#         url = URL.URLMaker(self.SVC_ID)
-#         url.add("target","sname")
-#         url.add("lcode",dicStrdData['BB_LV1_REGN_CD'])
-#         url.add("mcode",dicStrdData['BB_LV2_REGN_CD'])
-#         return url.getURL()
-#
-#     #[LV3 구현]Page > 변환 > Parse > DB 반영
-#     def selfSaveDB(self,page,dicStrdData):
-#         soup = BeautifulSoup(page, 'html.parser')
-#         te = soup.findAll("n")
-#         tableName = "KMIG_BB_LV3_REGN"
-#         for t in te:
-#             dicKMIG_BB_LV3_REGN = setSoup2TableDic(tableName,t)
-#             dicKMIG_BB_LV3_REGN['BB_LV1_REGN_CD'] = dicStrdData['BB_LV1_REGN_CD']
-#             dicKMIG_BB_LV3_REGN['BB_LV1_REGN_NM'] = dicStrdData['BB_LV1_REGN_NM']
-#             dicKMIG_BB_LV3_REGN['BB_LV2_REGN_CD'] = dicStrdData['BB_LV2_REGN_CD']
-#             dicKMIG_BB_LV3_REGN['BB_LV2_REGN_NM'] = dicStrdData['BB_LV2_REGN_NM']
-#             dicKMIG_BB_LV3_REGN['REG_USER_ID'] = userid
-#             dicKMIG_BB_LV3_REGN['CHG_USER_ID'] = userid
-#
-#             try:
-#                 insertBasicByTBLDic(tableName, dicKMIG_BB_LV3_REGN)
-#             except pymysql.IntegrityError as err:  # 기존 중복 가능
-#                 Log.debug(batchContext.getLogName() + "부동산뱅크 LV3 지역 중복" + dicKMIG_BB_LV3_REGN['BB_LV3_REGN_CD'] + "/" + dicKMIG_BB_LV3_REGN['BB_LV2_REGN_NM']
-#                           + "/" + dicKMIG_BB_LV3_REGN['BB_LV2_REGN_CD'] + "/" + dicKMIG_BB_LV3_REGN['BB_LV2_REGN_NM']
-#                           + "/" +dicKMIG_BB_LV3_REGN['BB_LV1_REGN_CD'] + "/" + dicKMIG_BB_LV3_REGN['BB_LV1_REGN_NM'])
-#
 # #Lv4 부동산뱅크단지
 # class CrawlingBBCmpx(CrawlingMultiBB):
 #     funcName = "CrawlingBBCmpx"

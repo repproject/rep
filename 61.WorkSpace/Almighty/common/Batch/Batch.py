@@ -177,4 +177,4 @@ class BatchRowCounter:
                 self.MessagePrintCount += math.floor(self.totalRowCount*self.MessageInterval/100)
                 REP_TLGR_MSG.sendTelegramMessage(self.Name + "BatchRowCounter : [" + str(self.MessagePrintCount) + "/" + str(self.totalRowCount) + "]")
 
-def error():logging.error(traceback.format_exc())
+#def error():logging.error(traceback.format_exc())

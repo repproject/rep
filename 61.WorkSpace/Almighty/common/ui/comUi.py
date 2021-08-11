@@ -1,23 +1,19 @@
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import QIcon
-from PyQt5.QtCore import pyqtSlot
-from qtpy import QtGui
 from Server.Basic import *
-import sys, traceback
+import traceback
 import copy
 import Server.COM
 import Server.module
-from common.ui.comUiFunc import *
-
+from common.common.Func import *
+from PyQt5.QtWidgets import *
+from PyQt5 import QtCore
+from UI._uiFiles.KWidget import *
 
 basic_ui_route = 'UI._uiFiles.COM'
 basic_ui_dictionary = "C:/Users/Ceasar.DESKTOP-AQTREV4/PycharmProjects/rep/61.WorkSpace/Almighty/UI/_uiFiles/COM/"
 
-
 ###############공통코드################
 dicCodeList ={} #코드목록
 dicCode = {}
-
 ###############Edit#########################
 def setTable2Edit(form,table):
     r"""

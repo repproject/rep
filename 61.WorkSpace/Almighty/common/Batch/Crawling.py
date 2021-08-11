@@ -2,15 +2,14 @@ import gc
 from bs4 import BeautifulSoup
 from sqlalchemy.engine.row import Row
 
-from common.common.Log import *
 from common.Batch.Batch import *
 from common.common.Telegram import *
 from common.common.URL import get_html
-from common.ui.comUiFunc import *
 from common.common.Table import *
 import Server.COM
 import Server.MIG
 from Server.Basic import *
+from common.Batch.Basic import *
 
 from urllib import parse
 import urllib.parse
@@ -84,7 +83,8 @@ class Crawling:
 #            self.startLog() #START Log
             self.ready()    #크롤링 전 사전 Data 준비 작업
             self.crawl()    #URL 호출 후 삽입
-        except : error()
+        except : #error()
+            logging.error(traceback.format_exc())
         try:
             #self.report()   #report 및 마지막 정의
             pass
