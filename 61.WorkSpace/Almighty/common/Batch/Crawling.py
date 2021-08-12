@@ -52,6 +52,9 @@ class Crawling:
     svcId = None
     url = None
     dicParam = {}
+    outParam = None
+    crawlCdExec = None
+
 
     #초기화
     def __init__(self,strPasiId,strSvcId,batchContext = None):
@@ -107,6 +110,8 @@ class Crawling:
             #self.dicStrdDataList = self.getListStrdDataList()
         #rowCounter 세팅
         #self.setRowCounter(self.Strd.__len__())
+        self.outParam = Server.COM.getiItemParm2(self.svcId, self.pasiId, 'O')
+        self.crawlCdExec = Server.COM.getCrawlCdExec(self.tableSvcPasi.svc_id, self.tableSvcPasi.pasi_id, 0)
 
     # Lv2 구현
     def crawl(self):
@@ -175,9 +180,8 @@ class Crawling:
 
     #[LV4 구현]Page > 변환 > Parse > DB 반영
     def selfSaveDB(self,cPage,dicStrdData = None,url = None):
-        ex = Server.COM.getCrawlCdExec(self.tableSvcPasi.svc_id,self.tableSvcPasi.pasi_id,0)
-        if len(ex) > 0:
-            self.reCurParse(cPage,ex[0],dicStrdData)
+        if len(self.crawlCdExec) > 0:
+            self.reCurParse(cPage,self.crawlCdExec[0],dicStrdData)
         pass
 
     def reCurParse(self,page,cdex,strd):
@@ -200,8 +204,8 @@ class Crawling:
 
     def getTableListByOutMapping(self,strSvcId,strPasiId,p,strd):
         dicTableList = {}
-        outParam = Server.COM.getiItemParm2(strSvcId,strPasiId,'O')
-        for tb in outParam:
+
+        for tb in self.outParam:
             if  tb[2].cls_nm not in dicTableList:
                 dicTableList[tb[2].cls_nm] = {}
             if tb[0].item_src_cl_cd == 'ST': #기준정보

@@ -1,7 +1,6 @@
 from PyQt5.QtWidgets import QTableView
 import Server.COM
 from Server.Basic import *
-from UI._uiFiles.KWidget import *
 from UI._uiFiles.UIBasic import *
 from common.ui.comUi import *
 from DAO.KADM import *

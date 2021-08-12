@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QTableView
 import common.database.Relfect
 from DAO.KADM import *
 
+
 pgm_id = 'KCOMDEV040'
 pgm_nm = '테이블관리'
 form_class = uic.loadUiType(pgm_id + ".ui")[0]

@@ -6,7 +6,7 @@ import Server.module
 from common.common.Func import *
 from PyQt5.QtWidgets import *
 from PyQt5 import QtCore
-from UI._uiFiles.KWidget import *
+from PyQt5 import uic
 
 basic_ui_route = 'UI._uiFiles.COM'
 basic_ui_dictionary = "C:/Users/Ceasar.DESKTOP-AQTREV4/PycharmProjects/rep/61.WorkSpace/Almighty/UI/_uiFiles/COM/"
@@ -14,6 +14,33 @@ basic_ui_dictionary = "C:/Users/Ceasar.DESKTOP-AQTREV4/PycharmProjects/rep/61.Wo
 ###############공통코드################
 dicCodeList ={} #코드목록
 dicCode = {}
+
+#############공통##################
+class KWidget() :
+    pgm_id = None
+
+    def __init__(self):
+        if hasattr(self,"setupUi"):
+            self.setupUi(self)
+        self.setQObjectToCustomizedClass()
+
+    def setQObjectToCustomizedClass(self):
+        print(self.__dict__.keys())
+        for key in self.__dict__.keys():
+            if self.__dict__[key].__class__ == QTableWidget:
+                print("TableWidgetTrue")
+                TableWidget.convert_to_TableWidget(self.__dict__[key])
+                self.__dict__[key].init() #위함수로 init이 호출되지 않아 별도 호출
+
+    def search(self):
+        pass
+
+    def keyPressEvent(self, qKeyEvent):
+        if qKeyEvent.key() == QtCore.Qt.Key_Return:
+            self.search()
+        else:
+            pass
+
 ###############Edit#########################
 def setTable2Edit(form,table):
     r"""
@@ -248,8 +275,19 @@ class TableWidget(QTableWidget,TableListBind):
         except : error()
 
     def init(self):
-        #self.cellChanged.connect(self.onCellChanged)
-        pass
+        self.setQObjectToCustomizedClass()
+
+    def setQObjectToCustomizedClass(self):
+        # print(self.__dict__.keys())
+        for key in self.__dict__.keys():
+            # QTableWidget to customized TableWidget
+            # print(key)
+            # print(self.__dict__[key].__class__)
+            if self.__dict__[key].__class__ == QTableWidget:
+                TableWidget.convert_to_TableWidget(self.__dict__[key])
+                self.__dict__[key].init()  # 위함수로 init이 호출되지 않아 별도 호출
+
+    pass
 
     def setBasic(self,*args,**kwargs):
         self.setTableClass(kwargs.pop("tableClass",None))

@@ -1,6 +1,5 @@
 from PyQt5.QtWidgets import QTableView
 import Server.COM
-from UI._uiFiles.KWidget import *
 from common.ui.comUi import *
 from UI._uiFiles.UIBasic import *
 from Server.Basic import *

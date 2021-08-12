@@ -1,6 +1,5 @@
 from PyQt5.QtWidgets import QTableView
 import Server.COM
-from UI._uiFiles.KWidget import *
 from common.ui.comUi import *
 from common.ui.comPopUp import *
 import common.database.Relfect
@@ -8,6 +7,7 @@ from UI._uiFiles.UIBasic import *
 from Server.Basic import *
 from DAO.KADM import *
 import copy
+
 
 pgm_id = 'KCOMCOM010'
 pgm_nm = '공통팝업'
@@ -19,11 +19,15 @@ class KCOMCOM010(QDialog, KWidget, form_class) :
 
     def __init__(self,parent,dicParm):
         super().__init__(parent)
+        super().__init__()
         self.dicParam = dicParm
         self.initUI()
         self.search()
 
     def initUI(self):
+        # TableWidget.convert_to_TableWidget(self.twFinder)
+        # self.twFinder.init()
+
         self.edt_pop.setText(self.dicParam['searchText'])
         self.twFinder.setColumnCount(len(self.dicParam['Headers']))
         self.twFinder.setHorizontalHeaderLabels(self.dicParam['Headers'])

@@ -2,7 +2,6 @@ from typing import Dict, List, Any, Union
 import DAO.KADM
 from PyQt5.QtWidgets import QTableView
 import Server.COM
-from UI._uiFiles.KWidget import *
 from common.ui.comUi import *
 import common.database.Relfect
 from UI._uiFiles.UIBasic import *
@@ -18,7 +17,6 @@ class KCOMDEV010(QWidget, KWidget, form_class) :
 
     def __init__(self):
         super().__init__()
-        self.setupUi(self)
         self.initUI()
 
     def initUI(self):

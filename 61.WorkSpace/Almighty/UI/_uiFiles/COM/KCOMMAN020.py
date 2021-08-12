@@ -3,7 +3,6 @@ import Server.COM
 import Server.Basic
 from PyQt5 import QtCore
 from common.ui import comUi
-from UI._uiFiles.KWidget import *
 from UI._uiFiles.UIBasic import *
 from DAO.KADM import *
 import datetime
@@ -20,7 +19,6 @@ class KCOMMAN020(QWidget, KWidget, form_class) :
 
     def __init__(self):
         super().__init__()
-        self.setupUi(self)
         self.initUI()
 
     def initUI(self):

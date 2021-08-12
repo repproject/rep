@@ -1,10 +1,10 @@
-from common.ui.comUi import *
 from PyQt5.QtWidgets import *
 from PyQt5 import QtCore
 import Server.COM
-from UI._uiFiles.KWidget import *
 from common.ui.comPopUp import *
+from common.ui.comUi import *
 from Server.Basic import *
+
 
 def MessageBox():
     message = QMessageBox()
