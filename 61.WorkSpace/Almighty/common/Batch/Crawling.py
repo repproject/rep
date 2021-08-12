@@ -195,6 +195,7 @@ class Crawling:
         pass
 
     def reCurParse(self,page,cdex,strd):
+        #코드실행에 등록된 명령대로 파싱
         if cdex[1].cd_exec_cl_cd == "F": #Function
             strExec = cdex[1].exec_cd_cnts + "(" + str(cdex[0].exec_parm_val) + ")"
             pasiPage = eval(strExec)
