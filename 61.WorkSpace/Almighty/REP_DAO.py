@@ -11,6 +11,7 @@ from REP_MIG_MAPP import *
 import json
 import traceback
 from common.common.Telegram import *
+from common.Batch.Basic import *
 
 repDBHost = "127.0.0.1"
 repDBUser = "repwas"
@@ -113,7 +114,7 @@ def fetch(sqlId,dicBaiscCond):
                 sql += dicCondKey + " = " + "'" + str(dicBaiscCond[dicCondKey]) + "'"
 
         curs.execute(sql)
-        Log.info("fetch : " + sql)
+        logging.info("fetch : " + sql)
         dic: Union[Tuple, Any] = curs.fetchall()
         conn.close()
     except Exception as e:

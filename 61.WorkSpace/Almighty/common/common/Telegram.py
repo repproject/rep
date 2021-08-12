@@ -82,7 +82,7 @@ def checkMessage(bot):
 
 
 def sendTelegramMessage(str,token = my_token, id = None):
-    listStr = REP_COM.splitStringSize(str,1000)
+    listStr = splitStringSize(str,1000)
     bot = telegram.Bot(token=token)  # bot을 선언합니다.
     if token == my_token:
         dicTlgrUserIdList = REP_DAO.fetch("selectKADM_TLGR_RCV_USER_Boozle", "")  # 사용자 조회
@@ -101,6 +101,18 @@ def sendTelegramMessage(str,token = my_token, id = None):
     else:
         for str in listStr:
             bot.sendMessage(chat_id=int(id), text=str)
+
+def splitStringSize(str,size):
+    startIndex = 0
+    list = []
+    while True:
+        if len(str) < startIndex + size:
+            list.append(str[startIndex:])
+            break
+        else:
+            list.append(str[startIndex:startIndex+size])
+            startIndex = startIndex + size
+    return list
 
 
 def sendMessage2(str,id=None):

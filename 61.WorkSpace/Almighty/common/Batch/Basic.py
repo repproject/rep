@@ -14,81 +14,81 @@ import time
 
 userid = 1000000001
 
-class Logger:
-    streamHandler = logging.StreamHandler()
-
-    def __init__(self, LogName="", Level="DEBUG"):
-        # 1. 시간 설정 (오늘 날짜)
-        dt = datetime.now()
-        access_day = dt.strftime('%Y%m%d')
-        # 2. logger 생성.
-        # print(__name__)
-        logger = logging.getLogger(__name__)
-        self.logger = logger
-
-        #Handler 삭제
-        self.removeHandler()
-
-        # 3. log의 포맷 설정
-        formatter = logging.Formatter('[%(asctime)s][%(levelname)s|%(filename)s:%(lineno)s] >> %(message)s')
-
-        # 4. handler 생성
-        streamHandler = logging.StreamHandler()
-
-        #FullLogName = './logs/LOGNAME_'
-        FullLogName = 'D:/Log/LOGNAME_'
-
-        # 전달받은 LogName이 존재하면 붙여준다.
-        if (len(LogName) > 0):
-            FullLogName += LogName + '_'
-
-        FullLogName += access_day + '.log'
-
-        fileHandler = logging.FileHandler(FullLogName)
-
-        streamHandler.setFormatter(formatter)
-        fileHandler.setFormatter(formatter)
-
-        # 5. logger instance에 formatter 생성
-        logger.addHandler(streamHandler)
-        logger.addHandler(fileHandler)
-        if Level == "INFO":
-            logger.setLevel(level=logging.INFO)
-        elif Level == "DEBUG":
-            logger.setLevel(level=logging.DEBUG)
-        elif Level == "ERROR":
-            logger.setLevel(level=logging.ERROR)
-        else:
-            logger.setLevel(level=logging.INFO)
-        self.logger = logger
-
-        # 전역 로그 세팅
-        #global Log
-        #Log = logger
-
-    def removeHandler(self):
-        for handler in self.logger.handlers[:]:
-            self.logger.removeHandler(handler)
-
-LogObject = Logger()
-Log = LogObject.logger
-
-def error(text): Log.error(text)
-def info(text):  Log.info(text)
-def debug(text):  Log.debug(text)
-
-def log(Message, Level):  # ERROR INFO Debug
-    global Log
-    try:
-        if Level == "E":
-            Message = "[E]" + Message
-            # REP_TLGR_MSG.sendMessage(str(Message))
-        elif Level == "D":
-            Message = "[D]" + Message
-        elif Level == "I":
-            Message = "[I]" + Message
-    except Exception as e:
-        Log.Error("텔레그램 Exception 발생" + str(e))
+# class Logger:
+#     streamHandler = logging.StreamHandler()
+#
+#     def __init__(self, LogName="", Level="DEBUG"):
+#         # 1. 시간 설정 (오늘 날짜)
+#         dt = datetime.now()
+#         access_day = dt.strftime('%Y%m%d')
+#         # 2. logger 생성.
+#         # print(__name__)
+#         logger = logging.getLogger(__name__)
+#         self.logger = logger
+#
+#         #Handler 삭제
+#         self.removeHandler()
+#
+#         # 3. log의 포맷 설정
+#         formatter = logging.Formatter('[%(asctime)s][%(levelname)s|%(filename)s:%(lineno)s] >> %(message)s')
+#
+#         # 4. handler 생성
+#         streamHandler = logging.StreamHandler()
+#
+#         #FullLogName = './logs/LOGNAME_'
+#         FullLogName = 'D:/Log/LOGNAME_'
+#
+#         # 전달받은 LogName이 존재하면 붙여준다.
+#         if (len(LogName) > 0):
+#             FullLogName += LogName + '_'
+#
+#         FullLogName += access_day + '.log'
+#
+#         fileHandler = logging.FileHandler(FullLogName)
+#
+#         streamHandler.setFormatter(formatter)
+#         fileHandler.setFormatter(formatter)
+#
+#         # 5. logger instance에 formatter 생성
+#         logger.addHandler(streamHandler)
+#         logger.addHandler(fileHandler)
+#         if Level == "INFO":
+#             logger.setLevel(level=logging.INFO)
+#         elif Level == "DEBUG":
+#             logger.setLevel(level=logging.DEBUG)
+#         elif Level == "ERROR":
+#             logger.setLevel(level=logging.ERROR)
+#         else:
+#             logger.setLevel(level=logging.INFO)
+#         self.logger = logger
+#
+#         # 전역 로그 세팅
+#         #global Log
+#         #Log = logger
+#
+#     def removeHandler(self):
+#         for handler in self.logger.handlers[:]:
+#             self.logger.removeHandler(handler)
+#
+# LogObject = Logger()
+# Log = LogObject.logger
+#
+# def error(text): Log.error(text)
+# def info(text):  Log.info(text)
+# def debug(text):  Log.debug(text)
+#
+# def log(Message, Level):  # ERROR INFO Debug
+#     global Log
+#     try:
+#         if Level == "E":
+#             Message = "[E]" + Message
+#             # REP_TLGR_MSG.sendMessage(str(Message))
+#         elif Level == "D":
+#             Message = "[D]" + Message
+#         elif Level == "I":
+#             Message = "[I]" + Message
+#     except Exception as e:
+#         Log.Error("텔레그램 Exception 발생" + str(e))
 
 class BatchContext:
     userId = 0000000000
@@ -229,66 +229,22 @@ class BatchRowCounter:
 
 
 
-def LogFunction_TEST(self, index_no, package_name, name):
-    log_message_list = index_no, package_name, name
-    try:
-        log_message = ", ".join(log_message_list)
-        self.logger.debug(log_message)
-    except:
-        try:
-            log_message = ", ".join(str(v) for v in log_message_list)
-            self.logger.debug(log_message)
-        except:
-            log_message = ','.join([None])
-            self.logger.debug(log_message)
+# def LogFunction_TEST(self, index_no, package_name, name):
+#     log_message_list = index_no, package_name, name
+#     try:
+#         log_message = ", ".join(log_message_list)
+#         self.logger.debug(log_message)
+#     except:
+#         try:
+#             log_message = ", ".join(str(v) for v in log_message_list)
+#             self.logger.debug(log_message)
+#         except:
+#             log_message = ','.join([None])
+#             self.logger.debug(log_message)
 
-def get_html(url,method = "GET",data = None):
-    _html = ""
-    resp = ''
-    while resp == '':
-        try:
-            # resp = get(url)
-            headers = {
-                'User-Agent': 'Mozilla/5.0 (Macintosh; U; Mac OS X 10_6_1; en-US) AppleWebKit/530.5 (KHTML, like Gecko) Chrome/ Safari/530.5'}
-            if method == "GET":
-                preReq = urllib.request.Request(url, headers=headers)
-                req = urllib.request.urlopen(preReq)
-                resp = req.read()
 
-                #resp = requests.get(url, headers=headers, verify=False)
-                #resp = requests.get(url, headers=headers)
-            elif method == "POST":
-                #resp = requests.get(url, data = data)
-                preReq = urllib.request.Request(url, headers=headers)
-                req = urllib.request.urlopen(preReq)
-                resp = req.read()
 
-#            if resp.status_code == 200:
-#                _html = resp
-            return resp
-        except Exception as e:
-            print(e)
-            print("Connection refused by the server..")
-            print("Let me sleep for 10 seconds")
-            print("ZZzzzz...")
-            time.sleep(10)
-            print("Was a nice sleep, now let me continue...")
-            continue
 
-def splitStringSize(str,size):
-    startIndex = 0
-    list = []
-    while True:
-        if len(str) < startIndex + size:
-            list.append(str[startIndex:])
-            break
-        else:
-            list.append(str[startIndex:startIndex+size])
-            startIndex = startIndex + size
-    return list
-
-def tuple2Str(tuple):
-    return "%s" % tuple
 
 
 if __name__ == '__main__':

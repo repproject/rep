@@ -2,11 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7458c797-b1cd-42ea-936d-154a1429df95" name="Default Changelist" comment="부뱅단지MIG완성">
+      <change afterPath="$PROJECT_DIR$/common/common/Basic.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../42.DA5/REP.damx" beforeDir="false" afterPath="$PROJECT_DIR$/../../42.DA5/REP.damx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../42.DA5/wordict5_참조모델표준화.db" beforeDir="false" afterPath="$PROJECT_DIR$/../../42.DA5/wordict5_참조모델표준화.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../44.SQL/4400.기본SQL/ALTER.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../44.SQL/4400.기본SQL/ALTER.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/REP_DAO.py" beforeDir="false" afterPath="$PROJECT_DIR$/REP_DAO.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMMAN010.py" beforeDir="false" afterPath="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMMAN010.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/Batch/Basic.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/Batch/Basic.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/Batch/Crawling.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/Batch/Crawling.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/common/Log.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/common/Log.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/common/Telegram.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/common/Telegram.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/common/URL.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/common/URL.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/database/repSqlAlchemy.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/database/repSqlAlchemy.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,32 +26,106 @@
     <favorites_list name="Almighty" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Batch/Crawling/CrawlingBB.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="56" column="30" lean-forward="true" selection-start-line="56" selection-start-column="30" selection-end-line="56" selection-end-column="30" />
-              <folding>
-                <element signature="e#46#77#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/common/Batch/Crawling.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="455">
-              <caret line="206" column="19" lean-forward="true" selection-start-line="206" selection-start-column="19" selection-end-line="206" selection-end-column="19" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.41275465">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/common/Batch/Crawling.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="228">
+                  <caret line="12" selection-start-line="12" selection-end-line="12" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/common/common/Log.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="152">
+                  <caret line="8" column="23" lean-forward="true" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+                  <folding>
+                    <element signature="e#0#23#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/REP_DAO.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1995">
+                  <caret line="118" column="20" selection-start-line="118" selection-start-column="20" selection-end-line="118" selection-end-column="20" />
+                  <folding>
+                    <element signature="e#0#36#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/common/Batch/Basic.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="983">
+                  <caret line="243" lean-forward="true" selection-start-line="243" selection-end-line="243" />
+                  <folding>
+                    <element signature="e#22#45#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/common/common/Basic.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="247">
+                  <caret line="13" column="23" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/common/common/URL.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="375">
+                  <caret line="107" column="40" lean-forward="true" selection-start-line="107" selection-start-column="40" selection-end-line="107" selection-end-column="40" />
+                  <folding>
+                    <element signature="e#0#24#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/common/database/repSqlAlchemy.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="209">
+                  <caret line="11" selection-start-line="11" selection-end-line="11" />
+                  <folding>
+                    <element signature="e#0#36#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/UI/_uiFiles/COM/KCOMMAN010.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="361">
+                  <caret line="27" column="67" selection-start-line="27" selection-start-column="67" selection-end-line="27" selection-end-column="67" />
+                  <folding>
+                    <element signature="e#0#21#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -54,14 +136,9 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>KMIG_BB_LV3_REGN</find>
-      <find>isReCrwal</find>
-      <find>PasiCdExec</find>
-      <find>마지막</find>
       <find>CrawlingBB</find>
       <find>outparam</find>
       <find>sendMessage</find>
-      <find>Log</find>
       <find>error(</find>
       <find>comUI</find>
       <find>QTableWidgetItem</find>
@@ -84,6 +161,11 @@
       <find>getiItemParm2</find>
       <find>SvcPasiItemCol</find>
       <find>BB_CMPX</find>
+      <find>Log</find>
+      <find>formatter</find>
+      <find>streamHandler</find>
+      <find>logging</find>
+      <find>#########GO</find>
     </findStrings>
     <replaceStrings>
       <replace>Column</replace>
@@ -120,15 +202,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/DAO/KADM_JOB.py" />
-        <option value="$PROJECT_DIR$/DAO/KADM_MENU.py" />
         <option value="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMMAN004.py" />
         <option value="$PROJECT_DIR$/../../44.SQL/4400.기본SQL/ALTER.sql" />
         <option value="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMMAN002.py" />
         <option value="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMMAN003.py" />
         <option value="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMMAN005.py" />
         <option value="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMMAN001.py" />
-        <option value="$PROJECT_DIR$/common/database/repSqlAlchemy.py" />
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/UI/_uiFiles/COM/test.py" />
         <option value="$PROJECT_DIR$/REP_MIG.py" />
@@ -140,13 +219,10 @@
         <option value="$PROJECT_DIR$/Server/module.py" />
         <option value="$PROJECT_DIR$/DAO/KTable.py" />
         <option value="$PROJECT_DIR$/DAO/KALL.py" />
-        <option value="$PROJECT_DIR$/common/common/URL.py" />
         <option value="$PROJECT_DIR$/common/common/Table.py" />
         <option value="$PROJECT_DIR$/REP_COM.py" />
         <option value="$PROJECT_DIR$/common/Batch/Batch.py" />
-        <option value="$PROJECT_DIR$/common/common/Log.py" />
         <option value="$PROJECT_DIR$/common/ui/comUiFunc.py" />
-        <option value="$PROJECT_DIR$/common/Batch/Basic.py" />
         <option value="$PROJECT_DIR$/UI/_uiFiles/KWidget.py" />
         <option value="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMCOM010.py" />
         <option value="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMDEV040.py" />
@@ -155,7 +231,6 @@
         <option value="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMDEV020.py" />
         <option value="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMDEV060.py" />
         <option value="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMMAN020.py" />
-        <option value="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMMAN010.py" />
         <option value="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMDEV030.py" />
         <option value="$PROJECT_DIR$/UI/_uiFiles/UIBasic.py" />
         <option value="$PROJECT_DIR$/common/ui/comPopUp.py" />
@@ -171,6 +246,13 @@
         <option value="$PROJECT_DIR$/REP_MIG_MAPP.py" />
         <option value="$PROJECT_DIR$/Batch/Crawling/CrawlingBB.py" />
         <option value="$PROJECT_DIR$/common/Batch/Crawling.py" />
+        <option value="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMMAN010.py" />
+        <option value="$PROJECT_DIR$/common/database/repSqlAlchemy.py" />
+        <option value="$PROJECT_DIR$/common/common/Log.py" />
+        <option value="$PROJECT_DIR$/common/common/URL.py" />
+        <option value="$PROJECT_DIR$/common/common/Baisc.py" />
+        <option value="$PROJECT_DIR$/common/Batch/Basic.py" />
+        <option value="$PROJECT_DIR$/common/common/Basic.py" />
       </list>
     </option>
   </component>
@@ -188,6 +270,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -206,11 +289,21 @@
               <item name="common" type="462c0819:PsiDirectoryNode" />
               <item name="Batch" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Almighty" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Almighty" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Almighty" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Almighty" type="462c0819:PsiDirectoryNode" />
+              <item name="DAO" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -310,27 +403,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="KCOMDEV050" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Almighty" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/UI/_uiFiles/COM" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMDEV050.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="KCOMMAN010" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Almighty" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -373,21 +445,42 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="repSqlAlchemy" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Almighty" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/common/database" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/common/database/repSqlAlchemy.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.KCOMBAT010" />
       <item itemvalue="Python.KCOMMAN010" />
       <item itemvalue="Python.Crawling" />
-      <item itemvalue="Python.KCOMDEV050" />
       <item itemvalue="Python.MIG" />
       <item itemvalue="Python.COM" />
+      <item itemvalue="Python.repSqlAlchemy" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.Crawling" />
-        <item itemvalue="Python.COM" />
         <item itemvalue="Python.KCOMMAN010" />
+        <item itemvalue="Python.repSqlAlchemy" />
+        <item itemvalue="Python.COM" />
         <item itemvalue="Python.MIG" />
-        <item itemvalue="Python.KCOMDEV050" />
       </list>
     </recent_temporary>
   </component>
@@ -698,12 +791,12 @@
     <frame x="3833" y="-7" width="2575" height="1415" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4987715" visible="true" weight="0.110673495" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4987715" visible="true" weight="0.110673495" />
       <window_info id="Structure" order="1" sideWeight="0.5012285" side_tool="true" weight="0.10161481" />
       <window_info id="Favorites" order="2" sideWeight="0.50114155" side_tool="true" weight="0.10161481" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3289166" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.38425565" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.35775527" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.29462197" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -808,30 +901,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://C:/ProgramData/Anaconda3/envs/rep/Lib/urllib/parse.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-716">
-          <caret line="874" column="19" selection-start-line="874" selection-start-column="14" selection-end-line="874" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/ProgramData/Anaconda3/envs/rep/Lib/site-packages/sqlalchemy/orm/session.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="551" column="51" selection-start-line="551" selection-start-column="51" selection-end-line="551" selection-end-column="51" />
-          <folding>
-            <element signature="e#292#308#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/ProgramData/Anaconda3/envs/rep/Lib/site-packages/sqlalchemy/orm/base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="319" column="39" lean-forward="true" selection-start-line="319" selection-start-column="39" selection-end-line="319" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/REP_MIG_APT_TRADE.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -846,16 +915,6 @@
         <state>
           <folding>
             <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/REP_DAO.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1406">
-          <caret line="86" column="34" selection-start-line="86" selection-start-column="25" selection-end-line="86" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#36#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -932,16 +991,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/common/common/URL.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="665">
-          <caret line="258" column="35" lean-forward="true" selection-start-line="258" selection-start-column="35" selection-end-line="258" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/common/common/Table.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="627">
@@ -969,20 +1018,6 @@
           <folding>
             <element signature="e#0#16#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/common/Log.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="81" selection-start-line="81" selection-end-line="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/Batch/Basic.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="32" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -1070,16 +1105,6 @@
           <caret line="21" selection-start-line="21" selection-end-line="21" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/UI/_uiFiles/COM/KCOMMAN010.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="582">
-          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1238,11 +1263,78 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/common/Batch/Crawling.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="455">
-          <caret line="206" column="19" lean-forward="true" selection-start-line="206" selection-start-column="19" selection-end-line="206" selection-end-column="19" />
+        <state relative-caret-position="228">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/REP_DAO.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1995">
+          <caret line="118" column="20" selection-start-line="118" selection-start-column="20" selection-end-line="118" selection-end-column="20" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#0#36#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UI/_uiFiles/COM/KCOMMAN010.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="27" column="67" selection-start-line="27" selection-start-column="67" selection-end-line="27" selection-end-column="67" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/common/Log.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="23" lean-forward="true" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/database/repSqlAlchemy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/common/URL.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="107" column="40" lean-forward="true" selection-start-line="107" selection-start-column="40" selection-end-line="107" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/common/Baisc.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/Batch/Basic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="983">
+          <caret line="243" lean-forward="true" selection-start-line="243" selection-end-line="243" />
+          <folding>
+            <element signature="e#22#45#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/common/Basic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="23" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
         </state>
       </provider>
     </entry>

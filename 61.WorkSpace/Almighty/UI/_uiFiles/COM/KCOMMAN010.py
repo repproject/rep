@@ -8,9 +8,9 @@ from common.ui.comUi import *
 from UI._uiFiles.COM import *
 import os
 
-logging.basicConfig(level=logging.INFO
+#logging.basicConfig(level=logging.INFO
 #                    ,filename=os.path.dirname(__file__) + "/Almighty.log"
-                    )
+#                    )
 
 #UI파일 연결
 #단, UI파일은 Python 코드 파일과 같은 디렉토리에 위치해야한다.
@@ -25,6 +25,7 @@ class WindowClass(QMainWindow, form_class) :
     def __init__(self) :
         try:
             super().__init__()
+            logging.error("#########GOGOGOGOGOGOGOGOGOGO#########")
             self.setupUi(self)
             self.initUI()
         except : error()

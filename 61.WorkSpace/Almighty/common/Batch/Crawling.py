@@ -66,8 +66,8 @@ class Crawling:
         self.pasiId = strPasiId
         self.svcId = strSvcId
 
-        # if self.funcName == None:
-        #     logging.error("funcName 미정의 Error")
+        if self.funcName == None:
+            logging.error("funcName 미정의 Error")
         #     return None
         # else:
         #     #BatchContect 세팅

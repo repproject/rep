@@ -3,13 +3,13 @@ from sqlalchemy import text
 from sqlalchemy import *
 from sqlalchemy.orm import *
 import logging
+from datetime import date, timedelta, datetime
 
 engine = create_engine("mysql+pymysql://repwas:0(repwas)@rep.iptime.org/rep", echo=True, future=True)  # 엔진생성
 s = Session(engine)
+
 sqla_logger = logging.getLogger('sqlalchemy')
 sqla_logger.propagate = False
-
-
 
 def getEngine():  # 엔진생성
     return engine

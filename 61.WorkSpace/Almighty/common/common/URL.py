@@ -119,6 +119,7 @@ def get_html(url,method = "GET",data = None):
 
 
 
+
 def makeGetURL(JOB_CL,SITE_CL,TR_ID,dicGetParam):
     #작업분류 (JOB_CL - NV-Naver부동산 KB-KB부동산)
     #사이트구분 1-매물
