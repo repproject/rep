@@ -7,6 +7,7 @@ from common.common.Func import *
 from PyQt5.QtWidgets import *
 from PyQt5 import QtCore
 from PyQt5 import uic
+from PyQt5 import QtGui
 
 basic_ui_route = 'UI._uiFiles.COM'
 basic_ui_dictionary = "C:/Users/Ceasar.DESKTOP-AQTREV4/PycharmProjects/rep/61.WorkSpace/Almighty/UI/_uiFiles/COM/"
@@ -25,10 +26,8 @@ class KWidget() :
         self.setQObjectToCustomizedClass()
 
     def setQObjectToCustomizedClass(self):
-        print(self.__dict__.keys())
         for key in self.__dict__.keys():
             if self.__dict__[key].__class__ == QTableWidget:
-                print("TableWidgetTrue")
                 TableWidget.convert_to_TableWidget(self.__dict__[key])
                 self.__dict__[key].init() #위함수로 init이 호출되지 않아 별도 호출
 
@@ -352,7 +351,6 @@ class TableWidget(QTableWidget,TableListBind):
                     self.setCellWidget(n, m, combobox)
                 if table == None : text = ""
                 else :
-                    print(self.dicColAttr)
                     text = getattr(self.getTableByColSeq(col,table), col)
                     if text == None :
                         text = ""
@@ -399,6 +397,12 @@ class TableWidget(QTableWidget,TableListBind):
         w = self.getCellObject(n,0)
         if w == None : return None
         return w.table
+
+    def isNewRow(self,n=None):
+        if n == None: n = self.currentRow()
+        if self.getRowTable(n) == None:
+            return True
+        return False
 
     def getRowDic(self,n=None):
         dic = {}

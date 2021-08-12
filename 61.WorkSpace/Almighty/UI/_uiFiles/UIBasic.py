@@ -4,6 +4,7 @@ import Server.COM
 from common.ui.comPopUp import *
 from common.ui.comUi import *
 from Server.Basic import *
+import sys
 
 
 def MessageBox():

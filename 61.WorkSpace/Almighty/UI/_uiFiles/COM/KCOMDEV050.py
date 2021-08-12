@@ -28,6 +28,7 @@ class KCOMDEV050(QWidget, KWidget, form_class) :
         self.btn_add_out.clicked.connect(self.addOut)
         self.btn_add_out_2.clicked.connect(self.addOutDefault)
         self.btn_del_out.clicked.connect(self.delOut)
+        self.btn_multiCol.clicked.connect(self.popMultiCol)
 
     def findPasi(self):
         try:
@@ -46,6 +47,27 @@ class KCOMDEV050(QWidget, KWidget, form_class) :
                 setDic2Edit(self,result)
                 self.search()
         except: error()
+
+    def popMultiCol(self):
+        try:
+            if self.prepopMultiCol():
+                dicParam = {}
+                dicParam['svc_id'] = self.svc_id
+                dicParam['pasi_id'] = self.pasi_id
+                dicParam['in_out_cl_cd'] = 'O'
+                dicParam['item_nm'] = self.twOut.getTextByColName(self.twOut.currentRow(),"item_nm")
+                result = PopUp(self,"KCOMDEV051",dicParam)
+
+                if result:
+                    self.twOut.setTextByColName(self.twOut.currentRow(),"tbl_nm","M")
+                    self.twOut.setTextByColName(self.twOut.currentRow(),"col_nm",'M')
+        except: error()
+
+    def prepopMultiCol(self):
+        if self.twOut.isNewRow():
+            alert("저장 후 호출 하세요")
+            return False
+        return True
 
     def search(self):
         try:
