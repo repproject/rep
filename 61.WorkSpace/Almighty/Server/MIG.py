@@ -8,3 +8,12 @@ def getBBLv1Regn():
 
 def getBBLv2Regn():
     return s.query(BbLv2Regn).all()
+
+def getBBLv3Regn():
+    return s.query(BbLv3Regn).all()
+
+if __name__ == "__main__":
+    #rslt = getPasiFinder({'searchText':""})
+    rslt = getBBLv2Regn()
+    print(rslt)
+    pass

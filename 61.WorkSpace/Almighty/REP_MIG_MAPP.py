@@ -135,12 +135,6 @@ dicMigMapp = {
             'name' : 'BB_LV1_REGN_NM'
         }
     ,
-    'KMIG_BB_CMPX':
-        {
-            'code': 'BB_CMPX_ID',
-            'name': 'BB_CMPX_NM'
-        }
-    ,
     'KMIG_BB_CMPX_TYP_MON_PRC':
         {
             'sdate_ym': 'STD_YYMM',

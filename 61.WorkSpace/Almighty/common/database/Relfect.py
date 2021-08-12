@@ -76,7 +76,7 @@ def getClassTable(meta,className,tableName):
                         colInitDeclare += ",'" + TblCol.bas_val + "'"
                     else:
                         if col.nullable == True:
-                            colInitDeclare += ",''"
+                            colInitDeclare += ",None"
                 colInitDeclare += ")\n"
 
                 colReprBindStr += "'%s', "

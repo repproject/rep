@@ -170,6 +170,7 @@ class SvcPasiItemCol(Base,KTable):
     col_nm = KColumn(String(50), primary_key = True, nullable = False)
 
     svcpasiitem = relationship('SvcPasiItem',primaryjoin = and_(svc_id==SvcPasiItem.svc_id , pasi_id==SvcPasiItem.pasi_id , in_out_cl_cd==SvcPasiItem.in_out_cl_cd , item_nm==SvcPasiItem.item_nm), foreign_keys = [SvcPasiItem.svc_id , SvcPasiItem.pasi_id , SvcPasiItem.in_out_cl_cd , SvcPasiItem.item_nm], passive_deletes = True)
+    tblcol = relationship('TblCol',primaryjoin = and_(tbl_nm==TblCol.tbl_nm , col_nm==TblCol.col_nm), foreign_keys = [TblCol.tbl_nm , TblCol.col_nm], passive_deletes = True, overlaps="tblcol")
 
     def __init__(self, *args, **kwargs):
         KTable.__init__(self)

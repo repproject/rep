@@ -15,6 +15,7 @@ from urllib import parse
 import urllib.parse
 import Server.COM
 import time
+import copy
 
 #LV1 크롤링 클래스
 class Crawling:
@@ -52,7 +53,9 @@ class Crawling:
     svcId = None
     url = None
     dicParam = {}
-    outParam = None
+    outParam = []
+    outMultiParam = []
+    outAllTblParam = []
     crawlCdExec = None
 
 
@@ -111,6 +114,13 @@ class Crawling:
         #rowCounter 세팅
         #self.setRowCounter(self.Strd.__len__())
         self.outParam = Server.COM.getiItemParm2(self.svcId, self.pasiId, 'O')
+        self.outMultiParam = Server.COM.getiItemParmMulti(self.svcId, self.pasiId, 'O')
+        a = copy.deepcopy(self.outParam)
+        b = copy.deepcopy(self.outMultiParam)
+        self.outAllTblParam = a + b
+        for param in self.outAllTblParam:
+            if param[0].tbl_nm == 'm' and param[1] == None: #Multi용 테이블 리스트를 제거
+                self.outAllTblParam.remove(param)
         self.crawlCdExec = Server.COM.getCrawlCdExec(self.tableSvcPasi.svc_id, self.tableSvcPasi.pasi_id, 0)
 
     # Lv2 구현
@@ -136,8 +146,8 @@ class Crawling:
                         break
 
                 gc.collect()
-            except Exception as e:
-                error()
+            except Exception as e: logging.error(traceback.format_exc())
+                #error()
 #                logging.error(self.batchContext.getLogName() + traceback.format_exc())
 #                sendTelegramMessage(traceback.format_exc())
 
@@ -203,19 +213,42 @@ class Crawling:
             raise Exception
 
     def getTableListByOutMapping(self,strSvcId,strPasiId,p,strd):
+        r"""
+
+        :param strSvcId:
+        :param strPasiId:
+        :param p:
+        :param strd:
+        :return: TableList Type
+        """
         dicTableList = {}
 
-        for tb in self.outParam:
+        #Out Param기준정보를 가져온다
+        for tb in self.outAllTblParam:
+            #테이블 클래스명을 세팅한다.
             if  tb[2].cls_nm not in dicTableList:
                 dicTableList[tb[2].cls_nm] = {}
+
             if tb[0].item_src_cl_cd == 'ST': #기준정보
-                dicTableList[tb[2].cls_nm][tb[0].col_nm] = strd[tb[0].item_nm]
+                # 기준정보의경우 기준정보에서 값을 가져옴.
+                dicTableList[tb[2].cls_nm][tb[1].col_nm] = strd[tb[0].item_nm]
             else:
-                dicTableList[tb[2].cls_nm][tb[0].col_nm] = self.getParsetext(tb[0].item_nm,p)
+                #기준정보가 아닌 경우 page에서 값을 가져온다.
+                #print(self.getParsetext(tb[0].item_nm,p))
+                dicTableList[tb[2].cls_nm][tb[1].col_nm] = self.getParsetext(tb[0].item_nm,p)
+            #print("##########dicTableList#############")
+            #print(dicTableList)
         return getListTableFromDic(dicTableList)
 
     def getParsetext(self,item_nm,p):
+        r"""
+            Parsing한 단위Page에서 값을 가져온다.
+        :param item_nm: 아이템명
+        :param p: 파싱한 Page
+        :return:
+        """
         if self.tableSvcPasi.pasi_way_cd == 'SOUP':
+            #BeautifulShop의 경우 아래의 함수로 값을 가져온다.
             return p.find(item_nm).text
         else : raise Exception
 
@@ -262,5 +295,5 @@ class DataStrd:
 if __name__ == '__main__':
     batchContext = simpleBatchContext("CrawlingBBCmpxTyp")
     #CrawlObject = Crawling('BBRegnLv2','BBRegn',batchContext)
-    CrawlObject = Crawling('BBRegnLv3', 'BBRegn', batchContext)
+    CrawlObject = Crawling('BBCmpx', 'BBRegn', batchContext)
     CrawlObject.run()

@@ -103,7 +103,12 @@ def getiItemParm(strSvcId,strPasiId,InOutClCd):
 
 def getiItemParm2(strSvcId,strPasiId,InOutClCd):
     setCodeByTable([SvcPasiItem,TblCol,Tbl])
-    return s.query(SvcPasiItem,TblCol,Tbl).join(SvcPasiItem.tblcol).join(TblCol.tbl).where(and_(SvcPasiItem.pasi_id.in_([strPasiId,'default']),SvcPasiItem.svc_id == strSvcId,SvcPasiItem.in_out_cl_cd == InOutClCd)).all()
+    return s.query(SvcPasiItem,TblCol,Tbl).outerjoin(SvcPasiItem.tblcol).outerjoin(TblCol.tbl).where(and_(SvcPasiItem.pasi_id.in_([strPasiId,'default']),SvcPasiItem.svc_id == strSvcId,SvcPasiItem.in_out_cl_cd == InOutClCd)).all()
+
+def getiItemParmMulti(strSvcId,strPasiId,InOutClCd):
+    setCodeByTable([SvcPasiItem,TblCol,Tbl,SvcPasiItemCol])
+    return s.query(SvcPasiItem,TblCol,Tbl,SvcPasiItemCol).join(SvcPasiItemCol.svcpasiitem).join(SvcPasiItemCol.tblcol).join(TblCol.tbl)\
+        .where(and_(SvcPasiItem.pasi_id.in_([strPasiId,'default']),SvcPasiItem.svc_id == strSvcId,SvcPasiItem.in_out_cl_cd == InOutClCd,SvcPasiItem.tbl_nm == 'm')).all()
 
 def getPasi(strPasiId,strSvcId):
     setCodeByTable([SvcPasi,Svc,Site])
@@ -127,6 +132,7 @@ def getTablePasiItem(strSvcId,strPasiId,strItemNm,strInOutClCd):
 
 if __name__ == "__main__":
     #rslt = getPasiFinder({'searchText':""})
-    rslt = getMenuLv(1)
+    #rslt = getMenuLv(1)
+    rslt = getiItemParmMulti('BBRegn','BBCmpx','O')
     print(rslt)
     pass

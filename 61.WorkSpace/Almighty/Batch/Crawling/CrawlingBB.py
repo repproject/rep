@@ -65,58 +65,6 @@ class CrawlingBBRegnLv1(CrawlingSingleBB):
             except pymysql.IntegrityError as err:  # 기존 중복 가능
                 Log.debug(batchContext.getLogName() + "부동산뱅크 LV1 지역 중복" + dicKMIG_BB_LV1_REGN['BB_LV1_REGN_CD'] + "/" + dicKMIG_BB_LV1_REGN['BB_LV1_REGN_NM'])
 
-# #Lv4 부동산뱅크단지
-# class CrawlingBBCmpx(CrawlingMultiBB):
-#     funcName = "CrawlingBBCmpx"
-#     fetchSqlId =  "selectBBRegnCdLv3"
-#     sqlReportFetchId = "selectNewBBCmpx"
-#     SVC_ID = "BBRegn"
-#
-#     # [LV3 구현]각 Lv3 Class(웹사이트(url) 별로) URL을 만드는 부분을 정의
-#     def selfMakeURL(self, dicStrdData=None,reCnt = None):
-#         url = URL.URLMaker(self.SVC_ID)
-#         url.add("target","complex_cd")
-#         url.add("lcode",dicStrdData['BB_LV1_REGN_CD'])
-#         url.add("mcode",dicStrdData['BB_LV2_REGN_CD'])
-#         url.add("sname",dicStrdData['BB_LV3_REGN_CD'])
-#         return url.getURL()
-#
-#     #[LV3 구현]Page > 변환 > Parse > DB 반영
-#     def selfSaveDB(self,page,dicStrdData):
-#         soup = BeautifulSoup(page, 'html.parser')
-#         te = soup.findAll("n")
-#         tableName = "KMIG_BB_CMPX"
-#         tableName2 = "KMIG_BB_REGN_CMPX_REL"
-#
-#         for t in te:
-#             dicKMIG_BB_CMPX = setSoup2TableDic(tableName,t)
-#             dicKMIG_BB_CMPX['REG_USER_ID'] = userid
-#             dicKMIG_BB_CMPX['CHG_USER_ID'] = userid
-#
-#             try:
-#                 insertBasicByTBLDic(tableName, dicKMIG_BB_CMPX)
-#             except pymysql.IntegrityError as err:  # 기존 중복 가능
-#                 Log.debug(batchContext.getLogName() + "부동산뱅크 물건 중복" + dicKMIG_BB_CMPX['BB_CMPX_ID'] + "/" + dicKMIG_BB_CMPX['BB_CMPX_NM']
-#                           + "/" + dicStrdData['BB_LV3_REGN_CD'] + "/" + dicStrdData['BB_LV2_REGN_NM']
-#                           + "/" + dicStrdData['BB_LV2_REGN_CD'] + "/" + dicStrdData['BB_LV2_REGN_NM']
-#                           + "/" + dicStrdData['BB_LV1_REGN_CD'] + "/" + dicStrdData['BB_LV1_REGN_NM'])
-#
-#             dicKMIG_BB_REGN_CMPX_REL = dicTable[tableName2]
-#             dicKMIG_BB_REGN_CMPX_REL['BB_LV1_REGN_CD'] = dicStrdData['BB_LV1_REGN_CD']
-#             dicKMIG_BB_REGN_CMPX_REL['BB_LV2_REGN_CD'] = dicStrdData['BB_LV2_REGN_CD']
-#             dicKMIG_BB_REGN_CMPX_REL['BB_LV3_REGN_CD'] = dicStrdData['BB_LV3_REGN_CD']
-#             dicKMIG_BB_REGN_CMPX_REL['BB_CMPX_ID'] = dicKMIG_BB_CMPX['BB_CMPX_ID']
-#             dicKMIG_BB_REGN_CMPX_REL['REG_USER_ID'] = userid
-#             dicKMIG_BB_REGN_CMPX_REL['CHG_USER_ID'] = userid
-#
-#             try:
-#                 insertBasicByTBLDic(tableName2, dicKMIG_BB_REGN_CMPX_REL)
-#             except pymysql.IntegrityError as err:  # 기존 중복 가능
-#                 Log.debug(batchContext.getLogName() + "부동산뱅크 지역 물건 관계 중복" + dicKMIG_BB_CMPX['BB_CMPX_ID'] + "/" + dicKMIG_BB_CMPX['BB_CMPX_NM']
-#                           + dicStrdData['BB_LV3_REGN_CD'] + "/" + dicStrdData['BB_LV2_REGN_NM']
-#                           + "/" + dicStrdData['BB_LV2_REGN_CD'] + "/" + dicStrdData['BB_LV2_REGN_NM']
-#                           + "/" +dicStrdData['BB_LV1_REGN_CD'] + "/" + dicStrdData['BB_LV1_REGN_NM'])
-#
 # #Lv4 부동산뱅크 지역코드 LV3
 # class CrawlingBBCmpxTyp(CrawlingMultiBB):
 #     funcName = "CrawlingBBCmpxTyp"

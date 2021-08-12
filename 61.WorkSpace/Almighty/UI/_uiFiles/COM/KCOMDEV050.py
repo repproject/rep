@@ -59,8 +59,8 @@ class KCOMDEV050(QWidget, KWidget, form_class) :
                 result = PopUp(self,"KCOMDEV051",dicParam)
 
                 if result:
-                    self.twOut.setTextByColName(self.twOut.currentRow(),"tbl_nm","M")
-                    self.twOut.setTextByColName(self.twOut.currentRow(),"col_nm",'M')
+                    self.twOut.setTextByColName(self.twOut.currentRow(),"tbl_nm","m")
+                    self.twOut.setTextByColName(self.twOut.currentRow(),"col_nm",'m')
         except: error()
 
     def prepopMultiCol(self):

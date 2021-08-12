@@ -14,6 +14,7 @@ def insert(table):
     return True
 
 def mergeList(tableList):
+    print(tableList)
     for table in tableList:
         s.merge(table)
     s.commit()

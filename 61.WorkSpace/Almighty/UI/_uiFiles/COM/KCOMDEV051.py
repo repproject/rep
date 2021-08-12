@@ -27,7 +27,6 @@ class KCOMDEV051(QDialog, KWidget, form_class) :
         self.btn_add.clicked.connect(self.add)
         self.btn_del.clicked.connect(self.delCol)
         self.btn_save.clicked.connect(self.save)
-        self.twSvcPasiItemCol.doubleClicked.connect(self.selected)
 
         Columns = ['TBL_NM', 'COL_NM']
         Widths = {'TBL_NM': 200, 'COL_NM': 200}
@@ -72,10 +71,6 @@ class KCOMDEV051(QDialog, KWidget, form_class) :
                 alert('컬럼명이 없습니다.')
                 return False
         return True
-
-    def selected(self):
-        self.dicResult = self.twSvcPasiItemCol.getRowDic(self.twSvcPasiItemCol.currentRow())
-        self.close()
 
     def getResult(self):
         for n in range(self.twSvcPasiItemCol.rowCount()):
