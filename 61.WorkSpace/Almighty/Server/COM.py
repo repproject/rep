@@ -1,6 +1,7 @@
 from common.database.repSqlAlchemy import *
 import common.ui.comUi
 from DAO.KADM import *
+from Server.Basic import *
 
 def getSite(strSiteCode=None):
     if strSiteCode == None : result = s.query(Site).all()
@@ -132,7 +133,9 @@ def getTablePasiItem(strSvcId,strPasiId,strItemNm,strInOutClCd):
 
 if __name__ == "__main__":
     #rslt = getPasiFinder({'searchText':""})
-    #rslt = getMenuLv(1)
-    rslt = getiItemParmMulti('BBRegn','BBCmpx','O')
-    print(rslt)
+    rslt = getMenuLv(1)
+    print(rslt[0][0])
+    merge(rslt[0][0])
+    #rslt = getiItemParmMulti('BBRegn','BBCmpx','O')
+    #print(rslt)
     pass

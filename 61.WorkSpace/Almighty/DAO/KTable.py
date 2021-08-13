@@ -41,10 +41,10 @@ class last4PriorityColumn(KColumn):
         self._creation_order = 9999993
 
 class KTable():
-    reg_user_id = last1PriorityColumn(Integer)
-    reg_dtm = last2PriorityColumn(DATETIME)
-    chg_user_id = last3PriorityColumn(Integer)
-    chg_dtm = last4PriorityColumn(DATETIME)
+    reg_user_id = last1PriorityColumn(Integer,default=user.getUserId())
+    reg_dtm = last2PriorityColumn(DATETIME,server_default=text('NOW()'))
+    chg_user_id = last3PriorityColumn(Integer,default=user.getUserId())
+    chg_dtm = last4PriorityColumn(DATETIME,server_default=text('NOW()'))
 
     def __init__(self):
         self.init()
@@ -52,6 +52,10 @@ class KTable():
     def init(self):
         self.reg_user_id = user.getUserId()
         self.reg_dtm = datetime.datetime.now()
+        self.chg_user_id = user.getUserId()
+        self.chg_dtm = datetime.datetime.now()
+
+    def updateChg(self):
         self.chg_user_id = user.getUserId()
         self.chg_dtm = datetime.datetime.now()
 

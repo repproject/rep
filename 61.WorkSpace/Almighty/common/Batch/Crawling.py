@@ -19,7 +19,6 @@ import copy
 
 #LV1 크롤링 클래스
 class Crawling:
-    #global Log
     funcName = None         #함수명(Lv4필수)
     batchContext = None     #BatchContect(필수)
     dicPasi = None
@@ -58,21 +57,12 @@ class Crawling:
     outAllTblParam = []
     crawlCdExec = None
 
-
     #초기화
     def __init__(self,strPasiId,strSvcId,batchContext = None):
-        #self.Log = logging(batchContext.getLogName())
         #funcName Validation Check
+        self.batchContext = batchContext
         self.pasiId = strPasiId
         self.svcId = strSvcId
-
-        if self.funcName == None:
-            logging.error("funcName 미정의 Error")
-        #     return None
-        # else:
-        #     #BatchContect 세팅
-        #     self.batchContext = batchContext
-        #     self.batchContext.setFuncName(self.funcName)
 
         rslt = Server.COM.getPasi(self.pasiId, self.svcId)
         self.tableSvcPasi = rslt[0]
@@ -86,23 +76,25 @@ class Crawling:
 
     def run(self):
         try:
-#            self.startLog() #START Log
+            self.startLog() #START Log
             self.ready()    #크롤링 전 사전 Data 준비 작업
             self.crawl()    #URL 호출 후 삽입
-        except : #error()
-            logging.error(traceback.format_exc())
+        except :
+            blog.error(traceback.format_exc())
         try:
             #self.report()   #report 및 마지막 정의
             pass
         except Exception as e:
-            logging.error("Batch Report 출력 에러" + str(e))
+            blog.error("Batch Report 출력 에러" + str(e))
             sendTelegramMessage("Batch Report 출력 에러" + str(e))
         #self.end()      #report 및 마지막 정의
 
-#    def startLog(self):
+    def startLog(self):
         #기본로그 출력
-#        logging.info(self.batchContext.getLogName()+"####################START[" + self.batchContext.getFuncName() + "]####################")
-#        sendTelegramMessage("START[" + self.batchContext.getFuncName() + "]")
+        global blog
+        blog = Logger(LogName=self.batchContext.getLogName(), Level="DEBUG", name = "Batch").logger
+        blog.info(self.batchContext.getLogName()+"####################START[" + self.batchContext.getFuncName() + "]####################")
+        sendTelegramMessage("START[" + self.batchContext.getFuncName() + "]")
 
     #Lv2 구현
     def ready(self):
@@ -136,7 +128,6 @@ class Crawling:
                     reCnt = reCnt + 1
                     self.debugDicStrdData(self.dicStrd)
                     url = self.makeURL(sd,reCnt)
-                    print(url)
                     page = self.request(url)
                     cPage = self.convertPage(page)
                     self.selfSaveDB(cPage,sd,url)
@@ -146,9 +137,9 @@ class Crawling:
                         break
 
                 gc.collect()
-            except Exception as e: logging.error(traceback.format_exc())
+            except Exception as e: blog.error(traceback.format_exc())
                 #error()
-#                logging.error(self.batchContext.getLogName() + traceback.format_exc())
+#                blog.error(self.batchContext.getLogName() + traceback.format_exc())
 #                sendTelegramMessage(traceback.format_exc())
 
     def makeURL(self, dicStrdData=None, reCnt=None):
@@ -166,22 +157,22 @@ class Crawling:
 
         # print('makeURL')
         # url = self.selfMakeURL(dicStrdData,reCnt)
-        # logging.info(self.batchContext.getLogName() + " ReCnt : " + str(reCnt) + url.printURL())
+        # blog.info(self.batchContext.getLogName() + " ReCnt : " + str(reCnt) + url.printURL())
         # return url
 
     def report(self):
         # Report
         dicNewRowList = REP_DAO.fetch(self.sqlReportFetchId, "")
-        logging.info(self.batchContext.getLogName() + "####################Batch Report####################")
+        blog.info(self.batchContext.getLogName() + "####################Batch Report####################")
         sendTelegramMessage("[Batch Report]")
-        logging.info(self.batchContext.getLogName() + "신규 건 수  : " + str(dicNewRowList.__len__()) + " 건")
+        blog.info(self.batchContext.getLogName() + "신규 건 수  : " + str(dicNewRowList.__len__()) + " 건")
         sendTelegramMessage("신규 건수 : " + str(dicNewRowList.__len__()) + " 건")
         if dicNewRowList.__len__() > 0:
-            logging.info(self.batchContext.getLogName() + str(dicNewRowList))
+            blog.info(self.batchContext.getLogName() + str(dicNewRowList))
             sendTelegramMessage(self.batchContext.getLogName() + str(dicNewRowList))
 
 #    def end(self):
-#       logging.info(self.batchContext.getLogName() + "####################END[" + self.batchContext.getFuncName() + "]####################")
+#       blog.info(self.batchContext.getLogName() + "####################END[" + self.batchContext.getFuncName() + "]####################")
 #        sendTelegramMessage("END[" + self.batchContext.getFuncName() + "]")
 
     #[LV4 구현]각 Lv4 Class(웹사이트(url) 별로) URL을 만드는 부분을 정의
@@ -202,8 +193,23 @@ class Crawling:
 
         for p in pasiPage:
             if self.tableSvcPasi.pasi_way_cd == 'SOUP':
-                row = self.getTableListByOutMapping(self.svcId, self.pasiId, p,strd)
-                mergeList(row)
+                listTable = self.getTableListByOutMapping(self.svcId, self.pasiId, p,strd)
+                blog.error(listTable)
+                mergeList(listTable)
+                # for tb in self.getTableListByOutMapping(self.svcId, self.pasiId, p,strd):
+                #     try:
+                #         try:
+                #             insert(tb)
+                #         except IntegrityError as ie:
+                #             #rollback()
+                #             #blog.error(traceback.format_exc())
+                #             # delattr(tb,'reg_user_id')
+                #             # delattr(tb,'reg_dtm')
+                #             merge(tb)
+                #             pass
+                #     except PendingRollbackError as pre:
+                #         pass
+                #     print("ok")
         return True
 
     def convertPage(self,page):
@@ -235,10 +241,7 @@ class Crawling:
                 dicTableList[tb[2].cls_nm][tb[1].col_nm] = strd[tb[0].item_nm]
             else:
                 #기준정보가 아닌 경우 page에서 값을 가져온다.
-                #print(self.getParsetext(tb[0].item_nm,p))
                 dicTableList[tb[2].cls_nm][tb[1].col_nm] = self.getParsetext(tb[0].item_nm,p)
-            #print("##########dicTableList#############")
-            #print(dicTableList)
         return getListTableFromDic(dicTableList)
 
     def getParsetext(self,item_nm,p):
@@ -255,7 +258,7 @@ class Crawling:
 
     def request(self,url):
         page = get_html(url,self.tableSvc.req_way_cd,self.dicParam)
-#        logging.debug(self.batchContext.getLogName() + str(page))
+        blog.debug(self.batchContext.getLogName() + str(page))
         return page
 
     def getFuncName(self):
@@ -263,7 +266,7 @@ class Crawling:
 
     def setRowCounter(self,totalRowCount = None):
         if totalRowCount == None:
-            Log.Info("totalRowCount 미정의 Error")
+            blog.Info("totalRowCount 미정의 Error")
             return None
         else:
             self.rowCounter = BatchRowCounter(self.batchContext.getLogName(), totalRowCount,self.rowCountNumber,self.rowCounterInterval,self.MessageInterval,self.MessageUnit)
@@ -275,7 +278,7 @@ class Crawling:
         return False
 
     def debugDicStrdData(self,dicStrdData = None):
-#        logging.debug(self.batchContext.getLogName() + "DicStrdData : " + str(dicStrdData))
+#        blog.debug(self.batchContext.getLogName() + "DicStrdData : " + str(dicStrdData))
         pass
 
 class DataStrd:

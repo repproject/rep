@@ -11,8 +11,10 @@ from common.common.Telegram import *
 import math
 import requests
 import time
+from common.common.Log import *
 
 userid = 1000000001
+#blog = None
 
 # class Logger:
 #     streamHandler = logging.StreamHandler()
