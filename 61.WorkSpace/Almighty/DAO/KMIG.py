@@ -114,5 +114,25 @@ class BbRegnCmpxRel(Base, KTable):
         str(self.bb_lv1_regn_cd), str(self.bb_lv2_regn_cd), str(self.bb_lv3_regn_cd),
         str(self.bb_cmpx_id) + KTable.__repr__(self))
 
+class BbCmpxTyp(Base,KTable):
+    __tablename__ = 'kmig_bb_cmpx_typ'
+
+    bb_cmpx_id = KColumn(String(8), primary_key = True, nullable = False)
+    bb_cmpx_typ_seq = KColumn(Integer, primary_key = True, nullable = False)
+    cmpx_typ_nm = KColumn(String(200), nullable = True)
+    sply_area = KColumn(String(50), nullable = True)
+
+    bbcmpx = relationship('BbCmpx',primaryjoin = bb_cmpx_id==BbCmpx.bb_cmpx_id, foreign_keys = [BbCmpx.bb_cmpx_id], passive_deletes = True, overlaps="bbcmpx")
+
+    def __init__(self, *args, **kwargs):
+        KTable.__init__(self)
+        self.bb_cmpx_id =  kwargs.pop('bb_cmpx_id')
+        self.bb_cmpx_typ_seq =  kwargs.pop('bb_cmpx_typ_seq')
+        self.cmpx_typ_nm =  kwargs.pop('cmpx_typ_nm',None)
+        self.sply_area =  kwargs.pop('sply_area',None)
+
+    def __repr__(self):
+        return "<BbCmpxTyp('%s', '%s', '%s', '%s'" % (str(self.bb_cmpx_id), str(self.bb_cmpx_typ_seq), str(self.cmpx_typ_nm), str(self.sply_area) + KTable.__repr__(self))
+
 
 

@@ -16,6 +16,7 @@ import urllib.parse
 import Server.COM
 import time
 import copy
+import os
 
 #LV1 크롤링 클래스
 class Crawling:
@@ -65,6 +66,7 @@ class Crawling:
         self.svcId = strSvcId
 
         rslt = Server.COM.getPasi(self.pasiId, self.svcId)
+        blog.error(rslt)
         self.tableSvcPasi = rslt[0]
         self.tableSvc = rslt[1]
         self.tableSite = rslt[2]
@@ -91,6 +93,7 @@ class Crawling:
 
     def startLog(self):
         #기본로그 출력
+        os.chdir(sys.path[0])
         global blog
         blog = Logger(LogName=self.batchContext.getLogName(), Level="DEBUG", name = "Batch").logger
         blog.info(self.batchContext.getLogName()+"####################START[" + self.batchContext.getFuncName() + "]####################")
@@ -133,7 +136,7 @@ class Crawling:
                     self.selfSaveDB(cPage,sd,url)
                     time.sleep(self.sleepStamp)
                     if self.isReCrwal(url,page,self.dicStrd,reCnt) == False:
-                        #self.rowCounter.Cnt()
+                        self.rowCounter.Cnt()
                         break
 
                 gc.collect()
@@ -195,6 +198,10 @@ class Crawling:
             if self.tableSvcPasi.pasi_way_cd == 'SOUP':
                 listTable = self.getTableListByOutMapping(self.svcId, self.pasiId, p,strd)
                 blog.error(listTable)
+                for tb in listTable:
+                    delattr(tb,'reg_user_id')
+                    delattr(tb,'reg_dtm')
+
                 mergeList(listTable)
                 # for tb in self.getTableListByOutMapping(self.svcId, self.pasiId, p,strd):
                 #     try:

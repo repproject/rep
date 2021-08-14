@@ -133,9 +133,9 @@ def getTablePasiItem(strSvcId,strPasiId,strItemNm,strInOutClCd):
 
 if __name__ == "__main__":
     #rslt = getPasiFinder({'searchText':""})
-    rslt = getMenuLv(1)
-    print(rslt[0][0])
-    merge(rslt[0][0])
+    #rslt = getMenuLv(1)
+    #print(rslt[0][0])
+    #merge(rslt[0][0])
     #rslt = getiItemParmMulti('BBRegn','BBCmpx','O')
     #print(rslt)
     pass

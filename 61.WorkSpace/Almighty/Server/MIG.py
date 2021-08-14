@@ -12,6 +12,11 @@ def getBBLv2Regn():
 def getBBLv3Regn():
     return s.query(BbLv3Regn).all()
 
+def getBBCmpx():
+    return s.query(BbCmpx).all()
+
+def getBBCmpxTyp(): return s.query(BbCmpxTyp).all()
+
 if __name__ == "__main__":
     #rslt = getPasiFinder({'searchText':""})
     rslt = getBBLv2Regn()

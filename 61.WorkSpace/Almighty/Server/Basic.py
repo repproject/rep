@@ -8,8 +8,6 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.exc import PendingRollbackError
 
 def merge(table):
-    delattr(table, 'reg_user_id')
-    delattr(table, 'reg_dtm')
     table.updateChg()
     s.merge(table)
     s.commit()
@@ -20,14 +18,8 @@ def insert(table):
     s.commit()
     return True
 
-def updateSomeDic(tbl,dicTable):
-    s.query(tbl).update(dicTable)
-    s.commit()
-
 def mergeList(tableList):
     for table in tableList:
-        delattr(table, 'reg_user_id')
-        delattr(table, 'reg_dtm')
         table.updateChg()
         s.merge(table)
     s.commit()
@@ -74,4 +66,4 @@ if __name__ == "__main__":
     del dic[0]['reg_user_id']
     del dic[0]['reg_dtm']
     dic[0]['job_nm'] = '주식가격 삽입 테스트'
-    updateSomeDic(rslt[0].__table__,dic[0])
+
