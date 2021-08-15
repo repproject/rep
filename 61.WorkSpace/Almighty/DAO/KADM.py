@@ -233,75 +233,332 @@ class PasiCdExec(Base,KTable):
     def __repr__(self):
         return "<PasiCdExec('%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.svc_id), str(self.pasi_id), str(self.cd_exec_id), str(self.cd_exec_seq), str(self.up_seq), str(self.exec_parm_val), str(self.seq) + KTable.__repr__(self))
 
-#########################################################################################################################################################
-
-
-
-
-
-
-
-
-
-
-
 class Job(Base,KTable):
-    __tablename__ = 'KADM_JOB'
+    __tablename__ = 'kadm_job'
 
-    job_id = KColumn(String(20), primary_key=True)
-    job_nm = KColumn(String(100))
-    job_desc = KColumn(String(1000))
-    job_cl_cd = KColumn(String(20),kcom_cd_domain = True,kcom_cd_grp='JOB_CL')
-    use_yn = KColumn(String(1))
-    ref1 = KColumn(String(100))
-    ref2 = KColumn(String(100))
-    ref3 = KColumn(String(100))
-    ref4 = KColumn(String(100))
-    ref5 = KColumn(String(100))
+    job_id = KColumn(String(20), primary_key = True, nullable = False)
+    job_nm = KColumn(String(100), nullable = False)
+    job_desc = KColumn(String(1000), nullable = True)
+    job_cl_cd = KColumn(String(20), nullable = False, kcom_cd_domain = True, kcom_cd_grp = 'JOB_CL')
+    use_yn = KColumn(String(1), nullable = False)
+    ref1 = KColumn(String(100), nullable = True)
+    ref2 = KColumn(String(100), nullable = True)
+    ref3 = KColumn(String(100), nullable = True)
+    ref4 = KColumn(String(100), nullable = True)
+    ref5 = KColumn(String(100), nullable = True)
 
-    def __init__(self, job_id, job_nm, job_desc, job_cl_cd, use_yn, ref1, ref2, ref3, ref4, ref5):
+    def __init__(self, *args, **kwargs):
         KTable.__init__(self)
-        self.job_id = job_id
-        self.job_nm = job_nm
-        self.job_desc = job_desc
-        self.job_cl_cd = job_cl_cd
-        self.use_yn = use_yn
-        self.ref1 = ref1
-        self.ref2 = ref2
-        self.ref3 = ref3
-        self.ref4 = ref4
-        self.ref5 = ref5
+        self.job_id =  kwargs.pop('job_id')
+        self.job_nm =  kwargs.pop('job_nm')
+        self.job_desc =  kwargs.pop('job_desc',None)
+        self.job_cl_cd =  kwargs.pop('job_cl_cd')
+        self.use_yn =  kwargs.pop('use_yn')
+        self.ref1 =  kwargs.pop('ref1',None)
+        self.ref2 =  kwargs.pop('ref2',None)
+        self.ref3 =  kwargs.pop('ref3',None)
+        self.ref4 =  kwargs.pop('ref4',None)
+        self.ref5 =  kwargs.pop('ref5',None)
 
     def __repr__(self):
-         return "<Job('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (self.job_id, self.job_nm, self.job_desc, self.job_cl_cd, self.use_yn, self.ref1, self.ref2, self.ref3, self.ref4, self.ref5) + KTable.__repr__(self)
+        return "<Job('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.job_id), str(self.job_nm), str(self.job_desc), str(self.job_cl_cd), str(self.use_yn), str(self.ref1), str(self.ref2), str(self.ref3), str(self.ref4), str(self.ref5) + KTable.__repr__(self))
+
+class JobSchd(Base,KTable):
+    __tablename__ = 'kadm_job_schd'
+
+    job_id = KColumn(String(20), primary_key = True, nullable = False)
+    job_seq = KColumn(Integer, primary_key = True, nullable = False)
+    exec_perd_cd = KColumn(String(20), nullable = True, kcom_cd_domain = True, kcom_cd_grp = 'EXEC_PERD')
+    exec_mm = KColumn(String(2), nullable = True)
+    exec_dd = KColumn(String(8), nullable = True)
+    exec_hh = KColumn(String(2), nullable = True)
+    exec_mi = KColumn(String(2), nullable = True)
+    exec_day_cd = KColumn(String(20), nullable = True, kcom_cd_domain = True, kcom_cd_grp = 'EXEC_DAY')
+    cycl_mi = KColumn(String(2), nullable = True)
+    imdi_exec_yn = KColumn(String(1), nullable = True)
+    use_yn = KColumn(String(1), nullable = True)
+    del_yn = KColumn(String(1), nullable = True)
+
+    job = relationship('Job',primaryjoin = job_id==Job.job_id, foreign_keys = [Job.job_id], passive_deletes = True)
+
+    def __init__(self, *args, **kwargs):
+        KTable.__init__(self)
+        self.job_id =  kwargs.pop('job_id')
+        self.job_seq =  kwargs.pop('job_seq')
+        self.exec_perd_cd =  kwargs.pop('exec_perd_cd',None)
+        self.exec_mm =  kwargs.pop('exec_mm',None)
+        self.exec_dd =  kwargs.pop('exec_dd',None)
+        self.exec_hh =  kwargs.pop('exec_hh',None)
+        self.exec_mi =  kwargs.pop('exec_mi',None)
+        self.exec_day_cd =  kwargs.pop('exec_day_cd',None)
+        self.cycl_mi =  kwargs.pop('cycl_mi',None)
+        self.imdi_exec_yn =  kwargs.pop('imdi_exec_yn',None)
+        self.use_yn =  kwargs.pop('use_yn',None)
+        self.del_yn =  kwargs.pop('del_yn',None)
+
+    def __repr__(self):
+        return "<JobSchd('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.job_id), str(self.job_seq), str(self.exec_perd_cd), str(self.exec_mm), str(self.exec_dd), str(self.exec_hh), str(self.exec_mi), str(self.exec_day_cd), str(self.cycl_mi), str(self.imdi_exec_yn), str(self.use_yn), str(self.del_yn) + KTable.__repr__(self))
+
+class JobExec(Base,KTable):
+    __tablename__ = 'kadm_job_exec'
+
+    job_id = KColumn(String(20), primary_key = True, nullable = False)
+    exec_dtm = KColumn(String(14), primary_key = True, nullable = False)
+    exec_stat_cd = KColumn(String(20), nullable = True, kcom_cd_domain = True, kcom_cd_grp = 'EXEC_STAT')
+    sta_dtm = KColumn(String(14), nullable = True)
+    end_dtm = KColumn(String(14), nullable = True)
+    exec_parm1 = KColumn(String(200), nullable = True)
+    exec_parm2 = KColumn(String(200), nullable = True)
+    exec_parm3 = KColumn(String(200), nullable = True)
+    exec_parm4 = KColumn(String(200), nullable = True)
+    exec_parm5 = KColumn(String(200), nullable = True)
+    exec_parm6 = KColumn(String(200), nullable = True)
+    exec_parm7 = KColumn(String(200), nullable = True)
+    exec_parm8 = KColumn(String(200), nullable = True)
+    exec_parm9 = KColumn(String(200), nullable = True)
+    exec_parm10 = KColumn(String(200), nullable = True)
+
+    job = relationship('Job',primaryjoin = job_id==Job.job_id, foreign_keys = [Job.job_id], passive_deletes = True)
+
+    def __init__(self, *args, **kwargs):
+        KTable.__init__(self)
+        self.job_id =  kwargs.pop('job_id')
+        self.exec_dtm =  kwargs.pop('exec_dtm')
+        self.exec_stat_cd =  kwargs.pop('exec_stat_cd',None)
+        self.sta_dtm =  kwargs.pop('sta_dtm',None)
+        self.end_dtm =  kwargs.pop('end_dtm',None)
+        self.exec_parm1 =  kwargs.pop('exec_parm1',None)
+        self.exec_parm2 =  kwargs.pop('exec_parm2',None)
+        self.exec_parm3 =  kwargs.pop('exec_parm3',None)
+        self.exec_parm4 =  kwargs.pop('exec_parm4',None)
+        self.exec_parm5 =  kwargs.pop('exec_parm5',None)
+        self.exec_parm6 =  kwargs.pop('exec_parm6',None)
+        self.exec_parm7 =  kwargs.pop('exec_parm7',None)
+        self.exec_parm8 =  kwargs.pop('exec_parm8',None)
+        self.exec_parm9 =  kwargs.pop('exec_parm9',None)
+        self.exec_parm10 =  kwargs.pop('exec_parm10',None)
+
+    def __repr__(self):
+        return "<JobExec('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.job_id), str(self.exec_dtm), str(self.exec_stat_cd), str(self.sta_dtm), str(self.end_dtm), str(self.exec_parm1), str(self.exec_parm2), str(self.exec_parm3), str(self.exec_parm4), str(self.exec_parm5), str(self.exec_parm6), str(self.exec_parm7), str(self.exec_parm8), str(self.exec_parm9), str(self.exec_parm10) + KTable.__repr__(self))
+
+class Act(Base,KTable):
+    __tablename__ = 'kadm_act'
+
+    act_id = KColumn(String(20), primary_key = True, nullable = False)
+    act_nm = KColumn(String(100), nullable = False)
+    act_desc = KColumn(String(1000), nullable = True)
+    use_yn = KColumn(String(1), nullable = False)
+    ref1 = KColumn(String(100), nullable = True)
+    ref2 = KColumn(String(100), nullable = True)
+    ref3 = KColumn(String(100), nullable = True)
+    ref4 = KColumn(String(100), nullable = True)
+    ref5 = KColumn(String(100), nullable = True)
+
+
+    def __init__(self, *args, **kwargs):
+        KTable.__init__(self)
+        self.act_id =  kwargs.pop('act_id')
+        self.act_nm =  kwargs.pop('act_nm')
+        self.act_desc =  kwargs.pop('act_desc',None)
+        self.use_yn =  kwargs.pop('use_yn')
+        self.ref1 =  kwargs.pop('ref1',None)
+        self.ref2 =  kwargs.pop('ref2',None)
+        self.ref3 =  kwargs.pop('ref3',None)
+        self.ref4 =  kwargs.pop('ref4',None)
+        self.ref5 =  kwargs.pop('ref5',None)
+
+    def __repr__(self):
+        return "<Act('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.act_id), str(self.act_nm), str(self.act_desc), str(self.use_yn), str(self.ref1), str(self.ref2), str(self.ref3), str(self.ref4), str(self.ref5) + KTable.__repr__(self))
+
+class JobAct(Base,KTable):
+    __tablename__ = 'kadm_job_act'
+
+    job_id = KColumn(String(20), primary_key = True, nullable = False)
+    act_id = KColumn(String(20), primary_key = True, nullable = False)
+    job_act_rel_desc = KColumn(String(1000), nullable = True)
+    exec_seq = KColumn(Integer, nullable = False)
+    use_yn = KColumn(String(1), nullable = False)
+
+    jobact = relationship('JobAct',primaryjoin = and_(job_id==JobAct.job_id , act_id==JobAct.act_id), foreign_keys = [JobAct.job_id , JobAct.act_id], passive_deletes = True)
+
+    def __init__(self, *args, **kwargs):
+        KTable.__init__(self)
+        self.job_id =  kwargs.pop('job_id')
+        self.act_id =  kwargs.pop('act_id')
+        self.job_act_rel_desc =  kwargs.pop('job_act_rel_desc',None)
+        self.exec_seq =  kwargs.pop('exec_seq')
+        self.use_yn =  kwargs.pop('use_yn')
+
+    def __repr__(self):
+        return "<JobAct('%s', '%s', '%s', '%s', '%s'" % (str(self.job_id), str(self.act_id), str(self.job_act_rel_desc), str(self.exec_seq), str(self.use_yn) + KTable.__repr__(self))
+
+class JobActExec(Base,KTable):
+    __tablename__ = 'kadm_job_act_exec'
+
+    job_id = KColumn(String(20), primary_key = True, nullable = False)
+    exec_dtm = KColumn(DATE, primary_key = True, nullable = False)
+    act_id = KColumn(String(20), primary_key = True, nullable = False)
+    exec_stat_cd = KColumn(String(20), nullable = True, kcom_cd_domain = True, kcom_cd_grp = 'EXEC_STAT')
+    sta_dtm = KColumn(DATE, nullable = True)
+    end_dtm = KColumn(DATE, nullable = True)
+    exec_parm1 = KColumn(String(200), nullable = True)
+    exec_parm2 = KColumn(String(200), nullable = True)
+    exec_parm3 = KColumn(String(200), nullable = True)
+    exec_parm4 = KColumn(String(200), nullable = True)
+    exec_parm5 = KColumn(String(200), nullable = True)
+    exec_parm6 = KColumn(String(200), nullable = True)
+    exec_parm7 = KColumn(String(200), nullable = True)
+    exec_parm8 = KColumn(String(200), nullable = True)
+    exec_parm9 = KColumn(String(200), nullable = True)
+    exec_parm10 = KColumn(String(200), nullable = True)
+
+    jobact = relationship('JobAct',primaryjoin = and_(job_id==JobAct.job_id , act_id==JobAct.act_id), foreign_keys = [JobAct.job_id , JobAct.act_id], passive_deletes = True)
+
+    def __init__(self, *args, **kwargs):
+        KTable.__init__(self)
+        self.job_id =  kwargs.pop('job_id')
+        self.exec_dtm =  kwargs.pop('exec_dtm')
+        self.act_id =  kwargs.pop('act_id')
+        self.exec_stat_cd =  kwargs.pop('exec_stat_cd',None)
+        self.sta_dtm =  kwargs.pop('sta_dtm',None)
+        self.end_dtm =  kwargs.pop('end_dtm',None)
+        self.exec_parm1 =  kwargs.pop('exec_parm1',None)
+        self.exec_parm2 =  kwargs.pop('exec_parm2',None)
+        self.exec_parm3 =  kwargs.pop('exec_parm3',None)
+        self.exec_parm4 =  kwargs.pop('exec_parm4',None)
+        self.exec_parm5 =  kwargs.pop('exec_parm5',None)
+        self.exec_parm6 =  kwargs.pop('exec_parm6',None)
+        self.exec_parm7 =  kwargs.pop('exec_parm7',None)
+        self.exec_parm8 =  kwargs.pop('exec_parm8',None)
+        self.exec_parm9 =  kwargs.pop('exec_parm9',None)
+        self.exec_parm10 =  kwargs.pop('exec_parm10',None)
+
+    def __repr__(self):
+        return "<JobActExec('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.job_id), str(self.exec_dtm), str(self.act_id), str(self.exec_stat_cd), str(self.sta_dtm), str(self.end_dtm), str(self.exec_parm1), str(self.exec_parm2), str(self.exec_parm3), str(self.exec_parm4), str(self.exec_parm5), str(self.exec_parm6), str(self.exec_parm7), str(self.exec_parm8), str(self.exec_parm9), str(self.exec_parm10) + KTable.__repr__(self))
+
+class ActFunc(Base,KTable):
+    __tablename__ = 'kadm_act_func'
+
+    act_id = KColumn(String(20), primary_key = True, nullable = False)
+    func_id = KColumn(String(20), primary_key = True, nullable = False)
+    act_func_rel_desc = KColumn(String(1000), nullable = True)
+    exec_seq = KColumn(Integer, nullable = False)
+    use_yn = KColumn(String(1), nullable = False)
+
+    act = relationship('Act',primaryjoin = act_id==Act.act_id, foreign_keys = [Act.act_id], passive_deletes = True)
+    func = relationship('Func',primaryjoin = func_id==Func.func_id, foreign_keys = [Func.func_id], passive_deletes = True)
+
+    def __init__(self, *args, **kwargs):
+        KTable.__init__(self)
+        self.act_id =  kwargs.pop('act_id')
+        self.func_id =  kwargs.pop('func_id')
+        self.act_func_rel_desc =  kwargs.pop('act_func_rel_desc',None)
+        self.exec_seq =  kwargs.pop('exec_seq')
+        self.use_yn =  kwargs.pop('use_yn')
+
+    def __repr__(self):
+        return "<ActFunc('%s', '%s', '%s', '%s', '%s'" % (str(self.act_id), str(self.func_id), str(self.act_func_rel_desc), str(self.exec_seq), str(self.use_yn) + KTable.__repr__(self))
+
+class JobAct(Base,KTable):
+    __tablename__ = 'kadm_job_act'
+
+    job_id = KColumn(String(20), primary_key = True, nullable = False)
+    act_id = KColumn(String(20), primary_key = True, nullable = False)
+    job_act_rel_desc = KColumn(String(1000), nullable = True)
+    exec_seq = KColumn(Integer, nullable = False)
+    use_yn = KColumn(String(1), nullable = False)
+
+    jobact = relationship('JobAct',primaryjoin = and_(job_id==JobAct.job_id , act_id==JobAct.act_id), foreign_keys = [JobAct.job_id , JobAct.act_id], passive_deletes = True)
+
+    def __init__(self, *args, **kwargs):
+        KTable.__init__(self)
+        self.job_id =  kwargs.pop('job_id')
+        self.act_id =  kwargs.pop('act_id')
+        self.job_act_rel_desc =  kwargs.pop('job_act_rel_desc',None)
+        self.exec_seq =  kwargs.pop('exec_seq')
+        self.use_yn =  kwargs.pop('use_yn')
+
+    def __repr__(self):
+        return "<JobAct('%s', '%s', '%s', '%s', '%s'" % (str(self.job_id), str(self.act_id), str(self.job_act_rel_desc), str(self.exec_seq), str(self.use_yn) + KTable.__repr__(self))
+
+class JobFuncExecMsg(Base,KTable):
+    __tablename__ = 'kadm_job_func_exec_msg'
+
+    job_id = KColumn(String(20), nullable = False)
+    act_id = KColumn(String(20), nullable = False)
+    func_id = KColumn(String(20), nullable = False)
+    exec_dtm = KColumn(DATE, nullable = False)
+    seq = KColumn(Integer, nullable = True)
+    req_url = KColumn(String(1000), nullable = True)
+    page_cnts = KColumn(String(4000), nullable = True)
+    ecpt_cnts = KColumn(String(4000), nullable = True)
+    rmk_cnts = KColumn(String(4000), nullable = True)
+
+    jobfuncexec = relationship('JobFuncExec',primaryjoin = and_(job_id==JobFuncExec.job_id , act_id==JobFuncExec.act_id , func_id==JobFuncExec.func_id , exec_dtm==JobFuncExec.exec_dtm), foreign_keys = [JobFuncExec.job_id , JobFuncExec.act_id , JobFuncExec.func_id , JobFuncExec.exec_dtm], passive_deletes = True)
+
+    def __init__(self, *args, **kwargs):
+        KTable.__init__(self)
+        self.job_id =  kwargs.pop('job_id')
+        self.act_id =  kwargs.pop('act_id')
+        self.func_id =  kwargs.pop('func_id')
+        self.exec_dtm =  kwargs.pop('exec_dtm')
+        self.seq =  kwargs.pop('seq',None)
+        self.req_url =  kwargs.pop('req_url',None)
+        self.page_cnts =  kwargs.pop('page_cnts',None)
+        self.ecpt_cnts =  kwargs.pop('ecpt_cnts',None)
+        self.rmk_cnts =  kwargs.pop('rmk_cnts',None)
+
+    def __repr__(self):
+        return "<JobFuncExecMsg('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.job_id), str(self.act_id), str(self.func_id), str(self.exec_dtm), str(self.seq), str(self.req_url), str(self.page_cnts), str(self.ecpt_cnts), str(self.rmk_cnts) + KTable.__repr__(self))
+
+class FuncTgtTbl(Base,KTable):
+    __tablename__ = 'kadm_func_tgt_tbl'
+
+    func_id = KColumn(String(20), primary_key = True, nullable = False)
+    tbl_nm = KColumn(String(50), primary_key = True, nullable = False)
+    finl_chg_yymm = KColumn(String(6), nullable = True)
+    finl_chg_ymd = KColumn(String(8), nullable = True)
+
+    func = relationship('Func',primaryjoin = func_id==Func.func_id, foreign_keys = [Func.func_id], passive_deletes = True)
+    tbl = relationship('Tbl',primaryjoin = tbl_nm==Tbl.tbl_nm, foreign_keys = [Tbl.tbl_nm], passive_deletes = True)
+
+    def __init__(self, *args, **kwargs):
+        KTable.__init__(self)
+        self.func_id =  kwargs.pop('func_id')
+        self.tbl_nm =  kwargs.pop('tbl_nm')
+        self.finl_chg_yymm =  kwargs.pop('finl_chg_yymm',None)
+        self.finl_chg_ymd =  kwargs.pop('finl_chg_ymd',None)
+
+    def __repr__(self):
+        return "<FuncTgtTbl('%s', '%s', '%s', '%s'" % (str(self.func_id), str(self.tbl_nm), str(self.finl_chg_yymm), str(self.finl_chg_ymd) + KTable.__repr__(self))
 
 class Menu(Base,KTable):
-    __tablename__ = 'KADM_MENU'
+    __tablename__ = 'kadm_menu'
 
-    menu_id = KColumn(String(10), primary_key=True)
-    menu_lv = KColumn(Integer)
-    prnt_seq = KColumn(Integer)
-    menu_nm = KColumn(String(200))
-    up_menu_id = KColumn(String(10))
-    fst_reg_ymd = KColumn(String(8))
-    pgm_id = KColumn(String(10))
+    menu_id = KColumn(String(10), primary_key = True, nullable = False)
+    menu_lv = KColumn(Integer, nullable = True)
+    prnt_seq = KColumn(Integer, nullable = True)
+    menu_nm = KColumn(String(200), nullable = True)
+    up_menu_id = KColumn(String(10), nullable = True)
+    fst_reg_ymd = KColumn(String(8), nullable = True)
+    pgm_id = KColumn(String(10), nullable = True)
 
-    def __init__(self, menu_id, menu_lv, prnt_seq, menu_nm, up_menu_id, pgm_id):
+
+    def __init__(self, *args, **kwargs):
         KTable.__init__(self)
-        self.menu_id = menu_id
-        self.menu_lv = menu_lv
-        self.prnt_seq = prnt_seq
-        self.menu_nm = menu_nm
-        self.up_menu_id = up_menu_id
-        current_datetime = datetime.datetime.now()
-        self.fst_reg_ymd = datetime.datetime.strftime(current_datetime,"%Y%m%d")
-        self.pgm_id = pgm_id
+        self.menu_id =  kwargs.pop('menu_id')
+        self.menu_lv =  kwargs.pop('menu_lv',None)
+        self.prnt_seq =  kwargs.pop('prnt_seq',None)
+        self.menu_nm =  kwargs.pop('menu_nm',None)
+        self.up_menu_id =  kwargs.pop('up_menu_id',None)
+        self.fst_reg_ymd =  kwargs.pop('fst_reg_ymd',None)
+        self.pgm_id =  kwargs.pop('pgm_id',None)
 
     def __repr__(self):
-         return "<Menu('%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (self.menu_id, self.menu_lv, self.prnt_seq, self.menu_nm, self.up_menu_id, self.fst_reg_ymd, self.pgm_id) + KTable.__repr__(self)
+        return "<Menu('%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.menu_id), str(self.menu_lv), str(self.prnt_seq), str(self.menu_nm), str(self.up_menu_id), str(self.fst_reg_ymd), str(self.pgm_id) + KTable.__repr__(self))
 
 class ComCdLst(Base,KTable):
-    __tablename__ = 'KADM_COM_CD_LST'
+    __tablename__ = 'kadm_com_cd_lst'
 
     com_cd_grp = KColumn(String(20), primary_key = True, nullable = False)
     com_cd_grp_nm = KColumn(String(100), nullable = False)
@@ -314,24 +571,25 @@ class ComCdLst(Base,KTable):
     ref4 = KColumn(String(100), nullable = True)
     ref5 = KColumn(String(100), nullable = True)
 
+
     def __init__(self, *args, **kwargs):
         KTable.__init__(self)
-        self.com_cd_grp = kwargs.pop("com_cd_grp")
-        self.com_cd_grp_nm = kwargs.pop("com_cd_grp_nm")
-        self.com_cd_grp_desc = kwargs.pop("com_cd_grp_desc","")
-        self.up_com_cd_grp = kwargs.pop("up_com_cd_grp","")
-        self.del_yn = kwargs.pop("del_yn", 'N')
-        self.ref1 = kwargs.pop("ref1","")
-        self.ref2 = kwargs.pop("ref2","")
-        self.ref3 = kwargs.pop("ref3","")
-        self.ref4 = kwargs.pop("ref4","")
-        self.ref5 = kwargs.pop("ref5","")
+        self.com_cd_grp =  kwargs.pop('com_cd_grp')
+        self.com_cd_grp_nm =  kwargs.pop('com_cd_grp_nm')
+        self.com_cd_grp_desc =  kwargs.pop('com_cd_grp_desc',None)
+        self.up_com_cd_grp =  kwargs.pop('up_com_cd_grp',None)
+        self.del_yn =  kwargs.pop('del_yn','N')
+        self.ref1 =  kwargs.pop('ref1',None)
+        self.ref2 =  kwargs.pop('ref2',None)
+        self.ref3 =  kwargs.pop('ref3',None)
+        self.ref4 =  kwargs.pop('ref4',None)
+        self.ref5 =  kwargs.pop('ref5',None)
 
     def __repr__(self):
         return "<ComCdLst('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.com_cd_grp), str(self.com_cd_grp_nm), str(self.com_cd_grp_desc), str(self.up_com_cd_grp), str(self.del_yn), str(self.ref1), str(self.ref2), str(self.ref3), str(self.ref4), str(self.ref5) + KTable.__repr__(self))
 
 class ComCdDtl(Base,KTable):
-    __tablename__ = 'KADM_COM_CD_DTL'
+    __tablename__ = 'kadm_com_cd_dtl'
 
     com_cd_grp = KColumn(String(20), primary_key = True, nullable = False)
     com_cd = KColumn(String(20), primary_key = True, nullable = False)
@@ -346,46 +604,21 @@ class ComCdDtl(Base,KTable):
     ref4 = KColumn(String(100), nullable = True)
     ref5 = KColumn(String(100), nullable = True)
 
+
     def __init__(self, *args, **kwargs):
         KTable.__init__(self)
         self.com_cd_grp =  kwargs.pop('com_cd_grp')
         self.com_cd =  kwargs.pop('com_cd')
         self.com_cd_nm =  kwargs.pop('com_cd_nm')
-        self.com_cd_desc =  kwargs.pop('com_cd_desc','')
+        self.com_cd_desc =  kwargs.pop('com_cd_desc',None)
         self.prnt_seq =  kwargs.pop('prnt_seq')
-        self.eff_sta_ymd =  kwargs.pop('eff_sta_ymd',datetime.datetime.now().strftime('%Y%m%d'))
-        self.eff_end_ymd =  kwargs.pop('eff_end_ymd','99991231')
-        self.ref1 =  kwargs.pop('ref1','')
-        self.ref2 =  kwargs.pop('ref2','')
-        self.ref3 =  kwargs.pop('ref3','')
-        self.ref4 =  kwargs.pop('ref4','')
-        self.ref5 =  kwargs.pop('ref5','')
+        self.eff_sta_ymd =  kwargs.pop('eff_sta_ymd')
+        self.eff_end_ymd =  kwargs.pop('eff_end_ymd')
+        self.ref1 =  kwargs.pop('ref1',None)
+        self.ref2 =  kwargs.pop('ref2',None)
+        self.ref3 =  kwargs.pop('ref3',None)
+        self.ref4 =  kwargs.pop('ref4',None)
+        self.ref5 =  kwargs.pop('ref5',None)
 
     def __repr__(self):
         return "<ComCdDtl('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.com_cd_grp), str(self.com_cd), str(self.com_cd_nm), str(self.com_cd_desc), str(self.prnt_seq), str(self.eff_sta_ymd), str(self.eff_end_ymd), str(self.ref1), str(self.ref2), str(self.ref3), str(self.ref4), str(self.ref5) + KTable.__repr__(self))
-
-class SvcParm(Base,KTable):
-    __tablename__ = 'KADM_SVC_PARM'
-
-    svc_id = KColumn(String(500), primary_key = True, nullable = False)
-    svc_parm_id = KColumn(String(50), primary_key = True, nullable = False)
-    svc_parm_val = KColumn(String(200), nullable = True)
-    svc_parm_desc = KColumn(String(500), nullable = False)
-
-    def __init__(self, *args, **kwargs):
-        KTable.__init__(self)
-        self.svc_id =  kwargs.pop('svc_id')
-        self.svc_parm_id =  kwargs.pop('svc_parm_id')
-        self.svc_parm_val =  kwargs.pop('svc_parm_val','')
-        self.svc_parm_desc =  kwargs.pop('svc_parm_desc')
-
-    def __repr__(self):
-        return "<SvcParm('%s', '%s', '%s', '%s'" % (str(self.svc_id), str(self.svc_parm_id), str(self.svc_parm_val), str(self.svc_parm_desc) + KTable.__repr__(self))
-
-if __name__ == "__main__" :
-    #menu = Menu('test',None,None,None,None,None)
-    #list = ['a','b','c','d',1,'e','f','g','h','i','j','k']
-    list = {'svc_id' : 'a','svc_parm_id' : 'BBB','site_cd' : 'N'}
-    dtl = SvcParm(svc_id = 'a',svc_parm_id='B',site_cd='D')
-    #print(dtl)
-    pass
