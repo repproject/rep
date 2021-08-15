@@ -6,7 +6,8 @@ import time
 import traceback
 import urllib
 import xml.etree.ElementTree as ET
-#import PyQt5.QtWidgets.QTreeWidget
+from PyQt5.QtWidgets import *
+from common.common.Func import *
 
 KB부동산과거시세조회URL = "http://nland.kbstar.com/quics?page=B047172&cc=b028364:b057487"
 KB부동산과거시세조회Json = "http://nland.kbstar.com/quics?page=&QAction=763359&RType=json"
@@ -25,6 +26,8 @@ def setTreeWidgetByXML(tw, page):
     pageRoot = ET.fromstring(page)
     twRoot = tw.invisibleRootItem()
 
+    setTreeWidgetItemByElement(twRoot, pageRoot, level = 0)
+
     # for child in root:
     #     #print(type(child))
     #     #print(child.items())
@@ -39,8 +42,26 @@ def setTreeWidgetByXML(tw, page):
     #             pass
     # pass
 
-def setTreeWidgetItemByElement(twItem,element):
+def setTreeWidgetItemByElement(twItem,element,level):
+    #print(element.tag, element.attrib, element.text)
+
+    #setting Tag
     item = QTreeWidgetItem()
+    item.setText(0,"<" + element.tag + ">")
+    #item.__setattr__('type','tag')
+    item.setText(1, element.text)
+    twItem.addChild(item)
+    item.setExpanded(True)
+
+    #setting Value
+    # if isNotNull(element.text.replace(' ','').replace('\n','').replace('\t','')):
+    #     valueItem = QTreeWidgetItem()
+    #     valueItem.setText(0,element.text)
+    #     item.addChild(valueItem)
+    #     valueItem.__setattr__('type', 'tag')
+
+    for e in element:
+        setTreeWidgetItemByElement(item,e,0)
 
 def setSoup2TableDic(strSvcId,strPasiId,soup):
     dicTBL = getTableDic(tableName)

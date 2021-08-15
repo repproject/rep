@@ -11,3 +11,6 @@ def isNull(instance):
     elif len(instance) == 0:
         return True
     return False
+
+def StrReplace(str,delimiter,chgdelimiter=''):
+    return str.replace(delimiter,chgdelimiter)

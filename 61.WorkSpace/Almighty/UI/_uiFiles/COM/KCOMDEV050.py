@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QTableView
 import common.database.Relfect
 from DAO.KADM import *
 from common.common.URL import *
+import PyQt5.QtGui
 
 pgm_id = 'KCOMDEV050'
 pgm_nm = '파싱관리'
@@ -31,6 +32,7 @@ class KCOMDEV050(QWidget, KWidget, form_class) :
         self.btn_del_out.clicked.connect(self.delOut)
         self.btn_multiCol.clicked.connect(self.popMultiCol)
         self.btn_search_url.clicked.connect(self.searchRequest)
+        self.addItem.clicked.connect(self.addItemfromRslt)
 
     def findPasi(self):
         try:
@@ -81,8 +83,9 @@ class KCOMDEV050(QWidget, KWidget, form_class) :
                 self.twIn.setBasic(columns = Columns, widths = Widths, tableClass = SvcPasiItem, setDic = SetDic)
                 self.twIn.setListTable(self.getSvcPasiItem(self.svc_id,self.pasi_id,'I'))
 
-                Columns2 = ['PASI_ID','ITEM_NM', 'ITEM_VAL', 'ITEM_SRC_CL_CD', 'TBL_NM', 'COL_NM', 'ITEM_DESC']
-                Widths2 = {'PASI_ID':100,'ITEM_NM':120, 'ITEM_VAL':100, 'ITEM_SRC_CL_CD':70, 'TBL_NM':150, 'COL_NM':150, 'ITEM_DESC':200}
+
+                Columns2 = ['PASI_ID','ITEM_NM', 'ITEM_VAL', 'ITEM_SRC_CL_CD', 'TBL_NM', 'COL_NM', 'EXCP_STR' , 'ITEM_DESC']
+                Widths2 = {'PASI_ID':100,'ITEM_NM':120, 'ITEM_VAL':100, 'ITEM_SRC_CL_CD':70, 'TBL_NM':150, 'COL_NM':150, 'EXCP_STR':70, 'ITEM_DESC':200}
                 SetDic2 = {'svc_id': self.svc_id, 'in_out_cl_cd': 'O'}
                 self.twOut.setBasic(columns = Columns2, widths = Widths2, tableClass = SvcPasiItem, setDic = SetDic2)
                 self.twOut.setListTable(self.getSvcPasiItem(self.svc_id,self.pasi_id,'O'))
@@ -149,6 +152,7 @@ class KCOMDEV050(QWidget, KWidget, form_class) :
         try:
             n = self.twOut.addTWRow()
             self.twOut.setTextByColName(n,"pasi_id",self.edit_pasi_id.text())
+            return n
         except : error()
 
     def addOutDefault(self):
@@ -172,11 +176,11 @@ class KCOMDEV050(QWidget, KWidget, form_class) :
     def searchRequest(self):
         try:
             #print(self.edit_url.text())
-            #url = self.edit_url.text()
-            url = 'http://www.neonet.co.kr/novo-rebank/view/market_price/MarketPriceData.neo?action=COMPLEX_PERIOD_DATA&trend_graph=N&lcode=01&mcode=134&sname=%BE%CF%BB%E7%B5%BF&complex_cd=A0030748&pyung_cd=1&period_gbn=month&start_sdate=200809&end_sdate=202108'
+            url = self.edit_url.text()
             page = get_html(url, 'GET')
             dPage = page.decode('euc-kr')
             setTreeWidgetByXML(self.twRslt,dPage)
+            self.twRslt.setSelectionMode(PyQt5.QtGui.QAbstractView.MultiSelection)
 
             #x = etree.parse(rslt)
             #etree.tostring(x, pretty_print=True)
@@ -191,7 +195,32 @@ class KCOMDEV050(QWidget, KWidget, form_class) :
         else:
             pass
 
+    def addItemfromRslt(self):
+        if self.preAddItemfromRslt():
+            items = self.twRslt.selectedItems()
+            for item in items:
+                n = self.addOut()
+                self.twOut.setTextByColName(n, "item_nm", item.text(0)[1:-1])
 
+    def preAddItemfromRslt(self):
+        items = self.twRslt.selectedItems()
+        if isNotNull(items):
+            return True
+        else:
+            alert('tag를 선택해야합니다.')
+            return False
+
+        if isNull(self.svc_id):
+            alert("서비스ID 값이 없습니다.")
+            return False
+
+        if isNull(self.edit_pasi_id.text()):
+            alert("파싱ID가 없습니다.")
+            return False
+
+        if self.twOut.isSet == False:
+            alert("조회 후 추가 가능합니다.")
+            return False
 
 if __name__ == "__main__":
     url = 'http://www.neonet.co.kr/novo-rebank/view/market_price/MarketPriceData.neo?action=COMPLEX_PERIOD_DATA&trend_graph=N&lcode=01&mcode=134&sname=%BE%CF%BB%E7%B5%BF&complex_cd=A0030748&pyung_cd=1&period_gbn=month&start_sdate=200809&end_sdate=202108'
@@ -211,13 +240,13 @@ if __name__ == "__main__":
     #print(root)
 
     #QApplication : 프로그램을 실행시켜주는 클래스
-    # app = QApplication(sys.argv)
-    #
-    # #WindowClass의 인스턴스 생성
-    # myWindow = KCOMDEV050()
-    #
-    # #프로그램 화면을 보여주는 코드
-    # myWindow.show()
-    #
-    # #프로그램을 이벤트루프로 진입시키는(프로그램을 작동시키는) 코드
-    # app.exec_()
+    app = QApplication(sys.argv)
+
+    #WindowClass의 인스턴스 생성
+    myWindow = KCOMDEV050()
+
+    #프로그램 화면을 보여주는 코드
+    myWindow.show()
+
+    #프로그램을 이벤트루프로 진입시키는(프로그램을 작동시키는) 코드
+    app.exec_()

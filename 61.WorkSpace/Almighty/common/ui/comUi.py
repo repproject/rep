@@ -137,6 +137,7 @@ class TableListBind():
     dicColAttr = {}
     setDic = {}
     isRowType = False
+    isSet = False
 
     def __init__(self, listTable=None, columns=None):
         try:
@@ -150,6 +151,7 @@ class TableListBind():
         self.listTable = listTable
         self.setIsRowType()
         self.setDicColAttr()
+        self.isSet = True
 
     def setIsRowType(self):
         r"""

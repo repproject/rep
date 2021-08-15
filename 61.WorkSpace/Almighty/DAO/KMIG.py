@@ -134,5 +134,37 @@ class BbCmpxTyp(Base,KTable):
     def __repr__(self):
         return "<BbCmpxTyp('%s', '%s', '%s', '%s'" % (str(self.bb_cmpx_id), str(self.bb_cmpx_typ_seq), str(self.cmpx_typ_nm), str(self.sply_area) + KTable.__repr__(self))
 
+class BbCmpxTypMonPrc(Base,KTable):
+    __tablename__ = 'kmig_bb_cmpx_typ_mon_prc'
+
+    bb_cmpx_id = KColumn(String(8), primary_key = True, nullable = False)
+    bb_cmpx_typ_seq = KColumn(Integer, primary_key = True, nullable = False)
+    std_yymm = KColumn(String(6), primary_key = True, nullable = False)
+    std_ymd = KColumn(String(8), nullable = True)
+    down_prc = KColumn(Integer, nullable = True)
+    up_prc = KColumn(Integer, nullable = True)
+    chg_prc = KColumn(Integer, nullable = True)
+    down_js_prc = KColumn(Integer, nullable = True)
+    up_js_prc = KColumn(Integer, nullable = True)
+    chg_js_prc = KColumn(Integer, nullable = True)
+
+
+    def __init__(self, *args, **kwargs):
+        KTable.__init__(self)
+        self.bb_cmpx_id =  kwargs.pop('bb_cmpx_id')
+        self.bb_cmpx_typ_seq =  kwargs.pop('bb_cmpx_typ_seq')
+        self.std_yymm =  kwargs.pop('std_yymm')
+        self.std_ymd =  kwargs.pop('std_ymd',None)
+        self.down_prc =  kwargs.pop('down_prc',None)
+        self.up_prc =  kwargs.pop('up_prc',None)
+        self.chg_prc =  kwargs.pop('chg_prc',None)
+        self.down_js_prc =  kwargs.pop('down_js_prc',None)
+        self.up_js_prc =  kwargs.pop('up_js_prc',None)
+        self.chg_js_prc =  kwargs.pop('chg_js_prc',None)
+
+    def __repr__(self):
+        return "<BbCmpxTypMonPrc('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.bb_cmpx_id), str(self.bb_cmpx_typ_seq), str(self.std_yymm), str(self.std_ymd), str(self.down_prc), str(self.up_prc), str(self.chg_prc), str(self.down_js_prc), str(self.up_js_prc), str(self.chg_js_prc) + KTable.__repr__(self))
+
+
 
 

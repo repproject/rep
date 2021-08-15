@@ -10,6 +10,7 @@ s = Session(engine)
 
 sqla_logger = logging.getLogger('sqlalchemy')
 sqla_logger.propagate = False
+sqla_logger.setLevel(level=logging.ERROR)
 
 def getEngine():  # 엔진생성
     return engine

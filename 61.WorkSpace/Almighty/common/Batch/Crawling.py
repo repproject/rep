@@ -33,7 +33,7 @@ class Crawling:
     rowCounterInterval = "N"
     MessageInterval = 10
     MessageUnit = "P"
-    commitCount = 1
+    commitCount = 1000
 
     #URL Making 기준정보
     dicStrdDataList = None
@@ -102,7 +102,7 @@ class Crawling:
     def startLog(self):
         #기본로그 출력
         global blog
-        blog = Logger(LogName=self.batchContext.getLogName(), Level="DEBUG", name = "Batch").logger
+        blog = Logger(LogName=self.batchContext.getLogName(), Level="INFO", name = "Batch").logger
         blog.info(self.batchContext.getLogName()+"####################START[" + self.batchContext.getFuncName() + "]####################")
         sendTelegramMessage("START[" + self.batchContext.getFuncName() + "]")
 
@@ -137,7 +137,7 @@ class Crawling:
                 reCnt = reCnt + 1
                 self.debugDicStrdData(self.dicStrd)
                 url = self.makeURL(sd,reCnt)
-                print(url)
+                blog.info("CALL URL : " + url)
                 page = self.request(url)
                 cPage = self.convertPage(page)
                 self.selfSaveDB(cPage,sd,url)
@@ -179,6 +179,7 @@ class Crawling:
 
     #[LV4 구현]Page > 변환 > Parse > DB 반영
     def selfSaveDB(self,cPage,dicStrdData = None,url = None):
+        blog.info(" Page : " + str(cPage))
         if len(self.crawlCdExec) > 0:
             self.reCurParse(cPage,self.crawlCdExec[0],dicStrdData)
         pass
@@ -186,18 +187,18 @@ class Crawling:
     def reCurParse(self,page,cdex,strd):
         #코드실행에 등록된 명령대로 파싱
         if cdex[1].cd_exec_cl_cd == "F": #Function
-            strExec = cdex[1].exec_cd_cnts + "(" + str(cdex[0].exec_parm_val) + ")"
+            strExec = cdex[1].exec_cd_cnts + "(" + '"' + str(cdex[0].exec_parm_val) + '"' + ")"
             pasiPage = eval(strExec)
 
         for p in pasiPage:
             if self.tableSvcPasi.pasi_way_cd == 'SOUP':
                 listTable = self.getTableListByOutMapping(self.svcId, self.pasiId, p,strd)
-                blog.error(listTable)
                 for tb in listTable:
                     delattr(tb,'reg_user_id')
                     delattr(tb,'reg_dtm')
 
-                mergeList(listTable)
+                blog.info(listTable)
+                mergeListNC(listTable)
                 # for tb in self.getTableListByOutMapping(self.svcId, self.pasiId, p,strd):
                 #     try:
                 #         try:
@@ -234,8 +235,9 @@ class Crawling:
 
         #Out Param기준정보를 가져온다
         for tb in self.outAllTblParam:
+            #SvcPasiItem,TblCol,Tbl
             #테이블 클래스명을 세팅한다.
-            if  tb[2].cls_nm not in dicTableList:
+            if tb[2].cls_nm not in dicTableList:
                 dicTableList[tb[2].cls_nm] = {}
 
             if tb[0].item_src_cl_cd == 'ST': #기준정보
@@ -243,10 +245,10 @@ class Crawling:
                 dicTableList[tb[2].cls_nm][tb[1].col_nm] = strd[tb[0].item_nm]
             else:
                 #기준정보가 아닌 경우 page에서 값을 가져온다.
-                dicTableList[tb[2].cls_nm][tb[1].col_nm] = self.getParsetext(tb[0].item_nm,p)
+                dicTableList[tb[2].cls_nm][tb[1].col_nm] = self.getParsetext(tb[0],p)
         return getListTableFromDic(dicTableList)
 
-    def getParsetext(self,item_nm,p):
+    def getParsetext(self,t,p):
         r"""
             Parsing한 단위Page에서 값을 가져온다.
         :param item_nm: 아이템명
@@ -254,8 +256,12 @@ class Crawling:
         :return:
         """
         if self.tableSvcPasi.pasi_way_cd == 'SOUP':
+            str = p.find(t.item_nm).text
             #BeautifulShop의 경우 아래의 함수로 값을 가져온다.
-            return p.find(item_nm).text
+            excpList = t.excp_str.split("||")
+            for excp in excpList:
+                str = StrReplace(str,excp)
+            return str
         else : raise Exception
 
     def request(self,url):
@@ -315,5 +321,5 @@ class DataStrd:
 if __name__ == '__main__':
     batchContext = simpleBatchContext("CrawlingBBCmpxTypPrice")
     #CrawlObject = Crawling('BBRegnLv2','BBRegn',batchContext)
-    CrawlObject = Crawling('BBCmpxTypPrice', 'BBPastMarketPrice', batchContext)
+    CrawlObject = Crawling('BBMarketPrice', 'BBMarketPrice', batchContext)
     CrawlObject.run()

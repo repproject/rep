@@ -4,8 +4,8 @@ from telegram.ext import Updater, MessageHandler, Filters
 import REP_DAO
 import REP_COM
 import time
-my_token = '495069941:AAHXf-j_f97clXuEI5P0lpnbyPKcUfmVtYs' #JBoozleBot
-my_token2 = '1074073870:AAFnhfEFR9vYBMOUU666jE0Iy5RqdQON4Ew' #JMaskBot
+my_token = '1983139538:AAELJcik78Ipp_-C3iFs7LXq_lgk-NK4Hfg' #JBoozleBot
+#my_token2 = '1074073870:AAFnhfEFR9vYBMOUU666jE0Iy5RqdQON4Ew' #JMaskBot
 #chat_id = 436714227
 
 def checkMessage(bot):
@@ -79,15 +79,15 @@ def checkMessage(bot):
              Log.error("[텔레그램 ERROR 발생]" + str(err))
              sendMessage2("[텔레그램 ERROR 발생]" + str(err),436714227)
 
-
-
 def sendTelegramMessage(str,token = my_token, id = None):
+    #LogObejct = REP_COM.Logger("TELEGRAM")
+    #Log = LogObejct.logger
     listStr = splitStringSize(str,1000)
     bot = telegram.Bot(token=token)  # bot을 선언합니다.
     if token == my_token:
         dicTlgrUserIdList = REP_DAO.fetch("selectKADM_TLGR_RCV_USER_Boozle", "")  # 사용자 조회
-    elif token == my_token2:
-        dicTlgrUserIdList = REP_DAO.fetch("selectKADM_TLGR_RCV_USER","") #사용자 조회
+    # elif token == my_token2:
+    #     dicTlgrUserIdList = REP_DAO.fetch("selectKADM_TLGR_RCV_USER","") #사용자 조회
 
     if id == None:
         for dicTlgrUserId in dicTlgrUserIdList:
@@ -97,7 +97,8 @@ def sendTelegramMessage(str,token = my_token, id = None):
                     bot.sendMessage(chat_id=int(str_chatid), text=str)
             except Exception as e:
                 #Str 너무 긴 경우 수정 필요
-                REP_COM.Log.error("Telegram sendMessage Exception 발생 " + str(e))
+                #logging.error("Telegram sendMessage Exception 발생 " + str(e))
+                pass
     else:
         for str in listStr:
             bot.sendMessage(chat_id=int(id), text=str)
@@ -142,9 +143,15 @@ def Test():
     updater.start_polling(timeout=3, clean=True)
     #updater.idle()
 
+
+#436714227
 if __name__ == '__main__':
+    bot = telegram.Bot(token=my_token)
+    #bot.sendMessage(436714227,'테스트')
+    #bot.send_message(436714227,'테스트')
+    #sendTelegramMessage('테스트')
     #Test()
-    runBot()
+    #runBot()
 
 
 #https://blog.psangwoo.com/coding/2016/12/08/python-telegram-bot-1.html
