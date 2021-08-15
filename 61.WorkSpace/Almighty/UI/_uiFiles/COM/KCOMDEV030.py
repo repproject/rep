@@ -27,13 +27,15 @@ class KCOMDEV030(QWidget, KWidget, form_class) :
         self.btn_del_svc.clicked.connect(self.delSvc)
         self.btn_add_svc_pasi.clicked.connect(self.addSvcPasi)
         self.btn_del_svc_pasi.clicked.connect(self.delSvcPasi)
+
+        Columns = ['site_cd', 'slep_sec', 'bas_url', 'bas_prtc', 'enc_cd']
+        Widths = {'site_cd': 120, 'slep_sec': 50, 'bas_url': 200, 'bas_prtc': 30, 'enc_cd': 50}
+        self.twSite.setBasic(columns=Columns, widths=Widths, tableClass=Site)
+
         self.search()
 
     def search(self):
         try:
-            Columns = ['site_cd', 'slep_sec', 'bas_url', 'bas_prtc', 'enc_cd']
-            Widths = {'site_cd':120, 'slep_sec':50, 'bas_url':200, 'bas_prtc':30, 'enc_cd':50}
-            self.twSite.setBasic(columns = Columns, widths = Widths, tableClass = Site)
             self.twSite.setListTable(self.getSites())
 
             #Table Widget Setting
@@ -47,10 +49,11 @@ class KCOMDEV030(QWidget, KWidget, form_class) :
         try:
             strSiteCd = self.sender().getTextByColName(self.sender().currentRow(),"site_cd")
 
-            Columns = ['svc_id', 'BAS_SVC_URL', 'REQ_WAY_CD','exmp_url','SVC_DESC']
-            Widths = {'svc_id':150, 'BAS_SVC_URL':300, 'REQ_WAY_CD':70,'exmp_url':300,'SVC_DESC':300}
+            Columns = ['svc_id', 'BAS_SVC_URL', 'REQ_WAY_CD', 'exmp_url', 'SVC_DESC']
+            Widths = {'svc_id': 150, 'BAS_SVC_URL': 300, 'REQ_WAY_CD': 70, 'exmp_url': 300, 'SVC_DESC': 300}
             SetDic = {'site_cd': strSiteCd}
-            self.twSvc.setBasic(columns = Columns, widths = Widths, tableClass = Svc, setDic=SetDic)
+            self.twSvc.setBasic(columns=Columns, widths=Widths, tableClass=Svc, setDic=SetDic)
+
             self.twSvc.setListTable(self.getSvc(strSiteCd))
             self.twSvcPasi.removeAll()
         except: error()
@@ -62,6 +65,7 @@ class KCOMDEV030(QWidget, KWidget, form_class) :
             Columns = ['PASI_ID', 'PASI_NM', 'PASI_WAY_CD','PARM_LOAD_FUNC_NM','SVC_PASI_DESC']
             Widths = {'PASI_ID':120, 'PASI_NM':100,'PASI_WAY_CD':80,'PARM_LOAD_FUNC_NM':200,'SVC_PASI_DESC':150}
             SetDic = {'svc_id': strSvcId}
+
             self.twSvcPasi.setBasic(columns = Columns, widths = Widths, tableClass = SvcPasi, setDic=SetDic)
             self.twSvcPasi.setListTable(self.getSvcPasi(strSvcId))
         except: error()

@@ -25,7 +25,6 @@ class WindowClass(QMainWindow, form_class) :
     def __init__(self) :
         try:
             super().__init__()
-            logging.error("#########GOGOGOGOGOGOGOGOGOGO#########")
             self.setupUi(self)
             self.initUI()
         except : error()

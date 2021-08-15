@@ -131,6 +131,12 @@ def getTablePasiItem(strSvcId,strPasiId,strItemNm,strInOutClCd):
     setCodeByTable(SvcPasiItemCol)
     return s.query(SvcPasiItemCol).filter_by(svc_id=strSvcId).filter_by(pasi_id=strPasiId).filter_by(item_nm=strItemNm).filter_by(in_out_cl_cd=strInOutClCd).all()
 
+def getJobSchd(strJobId):
+    return s.query(JobSchd).filter_by(job_id=strJobId).all()
+
+def getJobSchdExec(strJobId,strJobSeq):
+    return s.query(Job)
+
 if __name__ == "__main__":
     #rslt = getPasiFinder({'searchText':""})
     #rslt = getMenuLv(1)

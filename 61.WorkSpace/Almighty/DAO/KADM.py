@@ -253,7 +253,7 @@ class Job(Base,KTable):
         self.job_nm =  kwargs.pop('job_nm')
         self.job_desc =  kwargs.pop('job_desc',None)
         self.job_cl_cd =  kwargs.pop('job_cl_cd')
-        self.use_yn =  kwargs.pop('use_yn')
+        self.use_yn =  kwargs.pop('use_yn','Y')
         self.ref1 =  kwargs.pop('ref1',None)
         self.ref2 =  kwargs.pop('ref2',None)
         self.ref3 =  kwargs.pop('ref3',None)
@@ -340,6 +340,47 @@ class JobExec(Base,KTable):
 
     def __repr__(self):
         return "<JobExec('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.job_id), str(self.exec_dtm), str(self.exec_stat_cd), str(self.sta_dtm), str(self.end_dtm), str(self.exec_parm1), str(self.exec_parm2), str(self.exec_parm3), str(self.exec_parm4), str(self.exec_parm5), str(self.exec_parm6), str(self.exec_parm7), str(self.exec_parm8), str(self.exec_parm9), str(self.exec_parm10) + KTable.__repr__(self))
+
+class JobSchdExec(Base, KTable):
+    __tablename__ = 'kadm_job_schd_exec'
+
+    job_id = KColumn(String(20), primary_key=True, nullable=False)
+    job_seq = KColumn(Integer, primary_key=True, nullable=False)
+    exec_parm1 = KColumn(String(200), nullable=True)
+    exec_parm2 = KColumn(String(200), nullable=True)
+    exec_parm3 = KColumn(String(200), nullable=True)
+    exec_parm4 = KColumn(String(200), nullable=True)
+    exec_parm5 = KColumn(String(200), nullable=True)
+    exec_parm6 = KColumn(String(200), nullable=True)
+    exec_parm7 = KColumn(String(200), nullable=True)
+    exec_parm8 = KColumn(String(200), nullable=True)
+    exec_parm9 = KColumn(String(200), nullable=True)
+    exec_parm10 = KColumn(String(200), nullable=True)
+
+    jobschd = relationship('JobSchd', primaryjoin=and_(job_id == JobSchd.job_id, job_seq == JobSchd.job_seq),
+                           foreign_keys=[JobSchd.job_id, JobSchd.job_seq], passive_deletes=True)
+
+    def __init__(self, *args, **kwargs):
+        KTable.__init__(self)
+        self.job_id = kwargs.pop('job_id')
+        self.job_seq = kwargs.pop('job_seq')
+        self.exec_parm1 = kwargs.pop('exec_parm1', None)
+        self.exec_parm2 = kwargs.pop('exec_parm2', None)
+        self.exec_parm3 = kwargs.pop('exec_parm3', None)
+        self.exec_parm4 = kwargs.pop('exec_parm4', None)
+        self.exec_parm5 = kwargs.pop('exec_parm5', None)
+        self.exec_parm6 = kwargs.pop('exec_parm6', None)
+        self.exec_parm7 = kwargs.pop('exec_parm7', None)
+        self.exec_parm8 = kwargs.pop('exec_parm8', None)
+        self.exec_parm9 = kwargs.pop('exec_parm9', None)
+        self.exec_parm10 = kwargs.pop('exec_parm10', None)
+
+    def __repr__(self):
+        return "<JobSchdExec('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (
+        str(self.job_id), str(self.job_seq), str(self.exec_parm1), str(self.exec_parm2), str(self.exec_parm3),
+        str(self.exec_parm4), str(self.exec_parm5), str(self.exec_parm6), str(self.exec_parm7),
+        str(self.exec_parm8), str(self.exec_parm9), str(self.exec_parm10) + KTable.__repr__(self))
+
 
 class Act(Base,KTable):
     __tablename__ = 'kadm_act'

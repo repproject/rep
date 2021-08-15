@@ -11,7 +11,8 @@ pgm_nm = '배치관리'
 form_class = uic.loadUiType(pgm_id + ".ui")[0]
 
 class KCOMBAT010(QWidget, KWidget, form_class) :
-    tableJob = None
+    job_id = None
+    JobSchdExec = None
 
     def __init__(self):
         try:
@@ -20,8 +21,15 @@ class KCOMBAT010(QWidget, KWidget, form_class) :
         except: error()
 
     def initUI(self):
+        self.twJob.clicked.connect(self.searchJobSchd)
+        self.twJobSchd.clicked.connect(self.searchJobSchdExec)
+        self.btn_add_job.clicked.connect(self.addJob)
+        self.btn_add_jobSchd.clicked.connect(self.addJobSchd)
+        self.btn_save.clicked.connect(self.save)
+
+
         Columns = ['job_id', 'job_nm', 'job_desc', 'job_cl_cd', 'ref1', 'ref2', 'ref3', 'ref4', 'ref5']
-        Widths = {'job_id':70, 'job_nm':150, 'job_desc':150, 'job_cl_cd':100, 'ref1':50, 'ref2':50, 'ref3':50, 'ref4':50, 'ref5':50}
+        Widths = {'job_id':70, 'job_nm':150, 'job_desc':150, 'job_cl_cd':150, 'ref1':50, 'ref2':50, 'ref3':50, 'ref4':50, 'ref5':50}
         self.twJob.setBasic(columns = Columns,widths = Widths,tableClass = Job)
 
         #set TableWidget by listTable
@@ -33,6 +41,76 @@ class KCOMBAT010(QWidget, KWidget, form_class) :
 
     def getJob(self):
         return Server.COM.getJob()
+
+    def searchJobSchd(self):
+        self.job_id = self.twJob.getTextByColName(self.twJob.currentRow(), "job_id")
+
+        Columns = ['JOB_SEQ','EXEC_PERD_CD','EXEC_MM','EXEC_DD','EXEC_HH','EXEC_MI','EXEC_DAY_CD','CYCL_MI','IMDI_EXEC_YN','USE_YN','DEL_YN']
+        Widths = {'JOB_SEQ':30,'EXEC_PERD_CD':50,'EXEC_MM':50,'EXEC_DD':50,'EXEC_HH':50,'EXEC_MI':50,'EXEC_DAY_CD':70,'CYCL_MI':50,'IMDI_EXEC_YN':50,'USE_YN':50,'DEL_YN':50}
+        SetDic = {'job_id': self.job_id}
+        self.twJobSchd.setBasic(columns = Columns,widths = Widths,tableClass = JobSchd,setDic=SetDic)
+        self.twJobSchd.setListTable(self.getJobSchd(self.job_id))
+
+        # Table Widget Setting
+        self.twJobSchd.resizeRowsToContents()
+
+    def getJobSchd(self,strJobId):
+        return Server.COM.getJobSchd(strJobId)
+
+    def searchJobSchdExec(self):
+        strJobSeq = self.twJobSchd.getTextByColName(self.twJobSchd.currentRow(), "job_seq")
+        self.JobSchdExec = self.getJobSchdExec(self.job_id,strJobSeq)
+        if self.JobSchdExec != None:
+            setTable2Edit(self, self.JobSchdExec)
+
+    def getJobSchdExec(self,strJobId,strJobSeq):
+        JobSchdExec = Server.COM.getJobSchdExec(strJobId,strJobSeq)
+
+    def addJob(self):
+        try:
+            n = self.twJob.addTWRow()
+        except : error()
+
+    def addJobSchd(self):
+        try:
+            if self.preAddJobSchd():
+                n = self.twJobSchd.addTWRow()
+                if n > 0:
+                    self.twJobSchd.setTextByColName(n, "job_seq",int(self.twJobSchd.getTextByColName(n - 1, 'job_seq')) + 1)
+                else: self.twJobSchd.setTextByColName(n, "job_seq",1)
+                self.twJobSchd.setTextByColName(n, "use_yn", 'Y')
+                self.twJobSchd.setTextByColName(n, "del_yn", 'N')
+                self.twJobSchd.setTextByColName(n, "imdi_exec_yn", 'N')
+
+        except : error()
+
+    def preAddJobSchd(self):
+        if self.twJob.currentRow() == -1:
+            alert("Job을 선택해야합니다.")
+            return False
+        return True
+
+    def save(self):
+        try:
+            if self.preSave():
+                self.twJob.mergeRow()
+                if self.twJobSchd.currentRow() > -1:
+                    self.twJobSchd.mergeRow()
+                    if self.JobSchdExec == None:
+                        dicParam = {}
+                        dicParam['job_id'] = self.job_id
+                        dicParam['job_seq'] = self.twJobSchd.getTextByColName(self.twJobSchd.currentRow(), "job_seq")
+                        kwargs = {**dicParam}
+                        self.JobSchdExec = JobSchdExec(**kwargs)
+
+                    setEdit2Table(self,self.JobSchdExec)
+        except : error()
+
+    def preSave(self):
+        if self.twJob.currentRow() == -1:
+            alert("Job을선택해야합니다.")
+            return False
+        return True
 
 if __name__ == "__main__":
     #QApplication : 프로그램을 실행시켜주는 클래스

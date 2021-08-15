@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1073</width>
-    <height>595</height>
+    <width>1420</width>
+    <height>883</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,10 +16,10 @@
   <widget class="QTableWidget" name="twJob">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>50</y>
-     <width>1000</width>
-     <height>501</height>
+     <x>20</x>
+     <y>40</y>
+     <width>751</width>
+     <height>321</height>
     </rect>
    </property>
    <property name="minimumSize">
@@ -82,6 +82,262 @@
      <string>참조5</string>
     </property>
    </column>
+  </widget>
+  <widget class="QTableWidget" name="twJobSchd">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>410</y>
+     <width>751</width>
+     <height>301</height>
+    </rect>
+   </property>
+   <column>
+    <property name="text">
+     <string>순서</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>실행주기</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>실행월</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>실행일</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>실행시</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>실행분</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>실행요일</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>반복분</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>즉시실행여부</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>사용여부</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>삭제여부</string>
+    </property>
+   </column>
+  </widget>
+  <widget class="QPushButton" name="btn_add_job">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>370</y>
+     <width>56</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>추가</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_save">
+   <property name="geometry">
+    <rect>
+     <x>960</x>
+     <y>720</y>
+     <width>56</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>저장</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_add_jobSchd">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>720</y>
+     <width>56</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>추가</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>780</x>
+     <y>40</y>
+     <width>241</width>
+     <height>571</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QLabel" name="labelExecParm1">
+      <property name="text">
+       <string>실행인자1</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLineEdit" name="edit_exec_parm1">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="labelExecParm2">
+      <property name="text">
+       <string>실행인자2</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLineEdit" name="edit_exec_parm2">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="labelExecParm3">
+      <property name="text">
+       <string>실행인자3</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QLineEdit" name="edit_exec_parm3">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="labelExecParm4">
+      <property name="text">
+       <string>실행인자4</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QLineEdit" name="edit_exec_parm4">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QLabel" name="labelExecParm5">
+      <property name="text">
+       <string>실행인자5</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QLineEdit" name="edit_exec_parm5">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0">
+     <widget class="QLabel" name="labelExecParm6">
+      <property name="text">
+       <string>실행인자6</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1">
+     <widget class="QLineEdit" name="edit_exec_parm6">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="0">
+     <widget class="QLabel" name="labelExecParm7">
+      <property name="text">
+       <string>실행인자7</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="1">
+     <widget class="QLineEdit" name="edit_exec_parm7">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="0">
+     <widget class="QLabel" name="labelExecParm8">
+      <property name="text">
+       <string>실행인자8</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="1">
+     <widget class="QLineEdit" name="edit_exec_parm8">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="0">
+     <widget class="QLabel" name="labelExecParm9">
+      <property name="text">
+       <string>실행인자9</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="1">
+     <widget class="QLineEdit" name="edit_exec_parm9">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="0">
+     <widget class="QLabel" name="labelExecParm10">
+      <property name="text">
+       <string>실행인자10</string>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="1">
+     <widget class="QLineEdit" name="edit_exec_parm10">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>
