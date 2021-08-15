@@ -318,7 +318,7 @@ class JobExec(Base,KTable):
     exec_parm9 = KColumn(String(200), nullable = True)
     exec_parm10 = KColumn(String(200), nullable = True)
 
-    job = relationship('Job',primaryjoin = job_id==Job.job_id, foreign_keys = [Job.job_id], passive_deletes = True)
+    job = relationship('Job',primaryjoin = job_id==Job.job_id, foreign_keys = [Job.job_id], passive_deletes = True,overlaps="job")
 
     def __init__(self, *args, **kwargs):
         KTable.__init__(self)
@@ -379,7 +379,8 @@ class JobAct(Base,KTable):
     exec_seq = KColumn(Integer, nullable = False)
     use_yn = KColumn(String(1), nullable = False)
 
-    jobact = relationship('JobAct',primaryjoin = and_(job_id==JobAct.job_id , act_id==JobAct.act_id), foreign_keys = [JobAct.job_id , JobAct.act_id], passive_deletes = True)
+    job = relationship('Job',primaryjoin = job_id==Job.job_id, foreign_keys = [Job.job_id], passive_deletes = True,overlaps="job")
+    act = relationship('Act',primaryjoin = act_id==Act.act_id, foreign_keys = [Act.act_id], passive_deletes = True)
 
     def __init__(self, *args, **kwargs):
         KTable.__init__(self)
@@ -480,7 +481,7 @@ class ActFunc(Base,KTable):
     exec_seq = KColumn(Integer, nullable = False)
     use_yn = KColumn(String(1), nullable = False)
 
-    act = relationship('Act',primaryjoin = act_id==Act.act_id, foreign_keys = [Act.act_id], passive_deletes = True)
+    act = relationship('Act',primaryjoin = act_id==Act.act_id, foreign_keys = [Act.act_id], passive_deletes = True,overlaps="act")
     func = relationship('Func',primaryjoin = func_id==Func.func_id, foreign_keys = [Func.func_id], passive_deletes = True)
 
     def __init__(self, *args, **kwargs):
@@ -493,28 +494,6 @@ class ActFunc(Base,KTable):
 
     def __repr__(self):
         return "<ActFunc('%s', '%s', '%s', '%s', '%s'" % (str(self.act_id), str(self.func_id), str(self.act_func_rel_desc), str(self.exec_seq), str(self.use_yn) + KTable.__repr__(self))
-
-class JobAct(Base,KTable):
-    __tablename__ = 'kadm_job_act'
-
-    job_id = KColumn(String(20), primary_key = True, nullable = False)
-    act_id = KColumn(String(20), primary_key = True, nullable = False)
-    job_act_rel_desc = KColumn(String(1000), nullable = True)
-    exec_seq = KColumn(Integer, nullable = False)
-    use_yn = KColumn(String(1), nullable = False)
-
-    jobact = relationship('JobAct',primaryjoin = and_(job_id==JobAct.job_id , act_id==JobAct.act_id), foreign_keys = [JobAct.job_id , JobAct.act_id], passive_deletes = True)
-
-    def __init__(self, *args, **kwargs):
-        KTable.__init__(self)
-        self.job_id =  kwargs.pop('job_id')
-        self.act_id =  kwargs.pop('act_id')
-        self.job_act_rel_desc =  kwargs.pop('job_act_rel_desc',None)
-        self.exec_seq =  kwargs.pop('exec_seq')
-        self.use_yn =  kwargs.pop('use_yn')
-
-    def __repr__(self):
-        return "<JobAct('%s', '%s', '%s', '%s', '%s'" % (str(self.job_id), str(self.act_id), str(self.job_act_rel_desc), str(self.exec_seq), str(self.use_yn) + KTable.__repr__(self))
 
 class JobFuncExec(Base,KTable):
     __tablename__ = 'kadm_job_func_exec'
@@ -537,9 +516,9 @@ class JobFuncExec(Base,KTable):
     exec_parm9 = KColumn(String(200), nullable = True)
     exec_parm10 = KColumn(String(200), nullable = True)
 
-    job = relationship('Job',primaryjoin = job_id==Job.job_id, foreign_keys = [Job.job_id], passive_deletes = True)
-    act = relationship('Act',primaryjoin = act_id==Act.act_id, foreign_keys = [Act.act_id], passive_deletes = True)
-    func = relationship('Func',primaryjoin = func_id==Func.func_id, foreign_keys = [Func.func_id], passive_deletes = True)
+    job = relationship('Job',primaryjoin = job_id==Job.job_id, foreign_keys = [Job.job_id], passive_deletes = True,overlaps="job")
+    act = relationship('Act',primaryjoin = act_id==Act.act_id, foreign_keys = [Act.act_id], passive_deletes = True,overlaps="act")
+    func = relationship('Func',primaryjoin = func_id==Func.func_id, foreign_keys = [Func.func_id], passive_deletes = True,overlaps="func")
 
     def __init__(self, *args, **kwargs):
         KTable.__init__(self)
@@ -564,36 +543,6 @@ class JobFuncExec(Base,KTable):
     def __repr__(self):
         return "<JobFuncExec('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.job_id), str(self.act_id), str(self.func_id), str(self.exec_dtm), str(self.exec_stat_cd), str(self.sta_dtm), str(self.end_dtm), str(self.exec_parm1), str(self.exec_parm2), str(self.exec_parm3), str(self.exec_parm4), str(self.exec_parm5), str(self.exec_parm6), str(self.exec_parm7), str(self.exec_parm8), str(self.exec_parm9), str(self.exec_parm10) + KTable.__repr__(self))
 
-class JobFuncExecMsg(Base,KTable):
-    __tablename__ = 'kadm_job_func_exec_msg'
-
-    job_id = KColumn(String(20), nullable = False)
-    act_id = KColumn(String(20), nullable = False)
-    func_id = KColumn(String(20), nullable = False)
-    exec_dtm = KColumn(DATE, nullable = False)
-    seq = KColumn(Integer, nullable = True)
-    req_url = KColumn(String(1000), nullable = True)
-    page_cnts = KColumn(String(4000), nullable = True)
-    ecpt_cnts = KColumn(String(4000), nullable = True)
-    rmk_cnts = KColumn(String(4000), nullable = True)
-
-    jobfuncexec = relationship('JobFuncExec',primaryjoin = and_(job_id==JobFuncExec.job_id , act_id==JobFuncExec.act_id , func_id==JobFuncExec.func_id , exec_dtm==JobFuncExec.exec_dtm), foreign_keys = [JobFuncExec.job_id , JobFuncExec.act_id , JobFuncExec.func_id , JobFuncExec.exec_dtm], passive_deletes = True)
-
-    def __init__(self, *args, **kwargs):
-        KTable.__init__(self)
-        self.job_id =  kwargs.pop('job_id')
-        self.act_id =  kwargs.pop('act_id')
-        self.func_id =  kwargs.pop('func_id')
-        self.exec_dtm =  kwargs.pop('exec_dtm')
-        self.seq =  kwargs.pop('seq',None)
-        self.req_url =  kwargs.pop('req_url',None)
-        self.page_cnts =  kwargs.pop('page_cnts',None)
-        self.ecpt_cnts =  kwargs.pop('ecpt_cnts',None)
-        self.rmk_cnts =  kwargs.pop('rmk_cnts',None)
-
-    def __repr__(self):
-        return "<JobFuncExecMsg('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.job_id), str(self.act_id), str(self.func_id), str(self.exec_dtm), str(self.seq), str(self.req_url), str(self.page_cnts), str(self.ecpt_cnts), str(self.rmk_cnts) + KTable.__repr__(self))
-
 class FuncTgtTbl(Base,KTable):
     __tablename__ = 'kadm_func_tgt_tbl'
 
@@ -602,8 +551,8 @@ class FuncTgtTbl(Base,KTable):
     finl_chg_yymm = KColumn(String(6), nullable = True)
     finl_chg_ymd = KColumn(String(8), nullable = True)
 
-    func = relationship('Func',primaryjoin = func_id==Func.func_id, foreign_keys = [Func.func_id], passive_deletes = True)
-    tbl = relationship('Tbl',primaryjoin = tbl_nm==Tbl.tbl_nm, foreign_keys = [Tbl.tbl_nm], passive_deletes = True)
+    func = relationship('Func',primaryjoin = func_id==Func.func_id, foreign_keys = [Func.func_id], passive_deletes = True,overlaps="func")
+    tbl = relationship('Tbl',primaryjoin = tbl_nm==Tbl.tbl_nm, foreign_keys = [Tbl.tbl_nm], passive_deletes = True,overlaps="tbl")
 
     def __init__(self, *args, **kwargs):
         KTable.__init__(self)
@@ -687,6 +636,7 @@ class ComCdDtl(Base,KTable):
     ref4 = KColumn(String(100), nullable = True)
     ref5 = KColumn(String(100), nullable = True)
 
+    comcdlst = relationship('ComCdLst',primaryjoin = com_cd_grp==ComCdLst.com_cd_grp, foreign_keys = [ComCdLst.com_cd_grp], passive_deletes = True)
 
     def __init__(self, *args, **kwargs):
         KTable.__init__(self)
