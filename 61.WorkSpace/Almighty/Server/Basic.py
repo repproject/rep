@@ -8,9 +8,13 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.exc import PendingRollbackError
 
 def merge(table):
+    mergeNC(table)
+    s.commit()
+    return True
+
+def mergeNC(table):
     table.updateChg()
     s.merge(table)
-    s.commit()
     return True
 
 def insert(table):
@@ -18,16 +22,28 @@ def insert(table):
     s.commit()
     return True
 
+def insertNC(table):
+    s.add(table)
+    return True
+
 def mergeList(tableList):
-    for table in tableList:
-        table.updateChg()
-        s.merge(table)
+    mergeListNC(tableList)
     s.commit()
+
+def mergeListNC(tableList):
+    for table in tableList:
+        print(table)
+        mergeNC(table)
 
 def insertList(tableList):
     for table in tableList:
         s.add(table)
     s.commit()
+    return True
+
+def insertListNC(tableList):
+    for table in tableList:
+        s.add(table)
     return True
 
 # def inup(table):

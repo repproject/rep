@@ -12,6 +12,7 @@ import math
 import requests
 import time
 from common.common.Log import *
+import common.common.Telegram
 
 userid = 1000000001
 #blog = None
@@ -205,14 +206,14 @@ class BatchRowCounter:
         self.Name = Name
 
     def Cnt(self,count = 1):
+        #blog = logging.getLogger('Batch')
         self.count += count
-        global Log
 
         #N = Number P = Percent
         if(self.unit == "N"):
             if((self.printCount + self.interval <= self.count)): #기출력 값보다
                 self.printCount += self.interval
-                Log.info(self.Name + "BatchRowCounter : [" + str(self.printCount) + "/" + str(self.totalRowCount) + "]")
+                #blog.info(self.Name + "BatchRowCounter : [" + str(self.printCount) + "/" + str(self.totalRowCount) + "]")
 
         if (self.MessageUnit == "N"):
             if ((self.MessagePrintCount + self.MessageInterval <= self.count)):  # 기출력 값보다
@@ -222,12 +223,19 @@ class BatchRowCounter:
         if(self.unit == "P"):
             if(self.printCount + math.floor(self.totalRowCount*self.interval/100) <= self.count): #기출력 값보다
                 self.printCount += math.floor(self.totalRowCount*self.interval/100)
-                Log.info(self.Name + "BatchRowCounter : [" + str(self.printCount) + "/" + str(self.totalRowCount) + "]")
+                #blog.info(self.Name + "BatchRowCounter : [" + str(self.printCount) + "/" + str(self.totalRowCount) + "]")
 
         if(self.MessageUnit == "P"):
             if((self.MessagePrintCount + math.floor(self.totalRowCount*self.MessageInterval/100)) <= self.count): #기출력 값보다
                 self.MessagePrintCount += math.floor(self.totalRowCount*self.MessageInterval/100)
                 sendTelegramMessage(self.Name + "BatchRowCounter : [" + str(self.MessagePrintCount) + "/" + str(self.totalRowCount) + "]")
+
+    def getCount(self):
+        return self.count
+
+def sendTelegramMessage(str):
+    common.common.Telegram.sendTelegramMessage(str)
+
 
 
 

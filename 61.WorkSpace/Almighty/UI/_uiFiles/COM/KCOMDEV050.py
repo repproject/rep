@@ -2,6 +2,7 @@ from UI._uiFiles.UIBasic import *
 from PyQt5.QtWidgets import QTableView
 import common.database.Relfect
 from DAO.KADM import *
+from common.common.URL import *
 
 pgm_id = 'KCOMDEV050'
 pgm_nm = '파싱관리'
@@ -29,6 +30,7 @@ class KCOMDEV050(QWidget, KWidget, form_class) :
         self.btn_add_out_2.clicked.connect(self.addOutDefault)
         self.btn_del_out.clicked.connect(self.delOut)
         self.btn_multiCol.clicked.connect(self.popMultiCol)
+        self.btn_search_url.clicked.connect(self.searchRequest)
 
     def findPasi(self):
         try:
@@ -167,21 +169,55 @@ class KCOMDEV050(QWidget, KWidget, form_class) :
             return False
         return True
 
+    def searchRequest(self):
+        try:
+            #print(self.edit_url.text())
+            #url = self.edit_url.text()
+            url = 'http://www.neonet.co.kr/novo-rebank/view/market_price/MarketPriceData.neo?action=COMPLEX_PERIOD_DATA&trend_graph=N&lcode=01&mcode=134&sname=%BE%CF%BB%E7%B5%BF&complex_cd=A0030748&pyung_cd=1&period_gbn=month&start_sdate=200809&end_sdate=202108'
+            page = get_html(url, 'GET')
+            dPage = page.decode('euc-kr')
+            setTreeWidgetByXML(self.twRslt,dPage)
+
+            #x = etree.parse(rslt)
+            #etree.tostring(x, pretty_print=True)
+            #print(x)
+            #self.textEditResult.setText(str(rslt)[2:])
+        except Exception as e :
+            print(traceback.format_exc())
+
     def keyPressEvent(self, qKeyEvent):
         if qKeyEvent.key() == QtCore.Qt.Key_Return:
             self.search()
         else:
             pass
 
+
+
 if __name__ == "__main__":
+    url = 'http://www.neonet.co.kr/novo-rebank/view/market_price/MarketPriceData.neo?action=COMPLEX_PERIOD_DATA&trend_graph=N&lcode=01&mcode=134&sname=%BE%CF%BB%E7%B5%BF&complex_cd=A0030748&pyung_cd=1&period_gbn=month&start_sdate=200809&end_sdate=202108'
+    rslt = get_html(url, 'GET')
+    r = rslt.decode('euc-kr')
+
+            #print(cchild.items())
+            #print(child.tag, child.attrib)
+
+        #print(child)
+        #print(child.tag, child.attrib)
+    #print(root.tag)
+    #print(root.attrib)
+
+
+    #root = tree.getroot()
+    #print(root)
+
     #QApplication : 프로그램을 실행시켜주는 클래스
-    app = QApplication(sys.argv)
-
-    #WindowClass의 인스턴스 생성
-    myWindow = KCOMDEV050()
-
-    #프로그램 화면을 보여주는 코드
-    myWindow.show()
-
-    #프로그램을 이벤트루프로 진입시키는(프로그램을 작동시키는) 코드
-    app.exec_()
+    # app = QApplication(sys.argv)
+    #
+    # #WindowClass의 인스턴스 생성
+    # myWindow = KCOMDEV050()
+    #
+    # #프로그램 화면을 보여주는 코드
+    # myWindow.show()
+    #
+    # #프로그램을 이벤트루프로 진입시키는(프로그램을 작동시키는) 코드
+    # app.exec_()

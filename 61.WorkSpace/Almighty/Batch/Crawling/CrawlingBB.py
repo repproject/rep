@@ -8,6 +8,7 @@ from bs4 import BeautifulSoup
 import urllib
 from common.Batch.Crawling import *
 from common.common.Log import *
+from common.common.Telegram import *
 
 userid = 1000000011
 
@@ -90,55 +91,6 @@ class CrawlingBBCmpxTyp(Crawling):
 #                 insertBasicByTBLDic('KMIG_BB_LV1_REGN', dicKMIG_BB_LV1_REGN)
 #             except pymysql.IntegrityError as err:  # 기존 중복 가능
 #                 Log.debug(batchContext.getLogName() + "부동산뱅크 LV1 지역 중복" + dicKMIG_BB_LV1_REGN['BB_LV1_REGN_CD'] + "/" + dicKMIG_BB_LV1_REGN['BB_LV1_REGN_NM'])
-
-
-#
-#
-# #Lv4 부동산뱅크 물건형별월별시세
-# class CrawlingBBCmpxTypMarketPrice(CrawlingMultiBB):
-#     funcName = "CrawlingBBCmpxTypMarketPrice"
-#     fetchSqlId =  "selectBBCmpxTyp"
-#     sqlReportFetchId = "selectNewBBCmpxTypMonthPrc"
-#     SVC_ID = "BBMarketPrice"
-#
-#     # [LV3 구현]각 Lv3 Class(웹사이트(url) 별로) URL을 만드는 부분을 정의
-#     def selfMakeURL(self, dicStrdData=None,reCnt = None):
-#         url = URL.URLMaker(self.SVC_ID)
-#         url.add("complex_cd",dicStrdData['BB_CMPX_ID'])
-#         url.add("pyung_cd", dicStrdData['BB_CMPX_TYP_SEQ'])
-#         url.add("period_gbn", "month")
-#         url.add("start_sdate", "198001")
-#         url.add("end_sdate", "203001")
-#         return url.getURL()
-#
-#     #[LV3 구현]Page > 변환 > Parse > DB 반영
-#     def selfSaveDB(self,page,dicStrdData):
-#         soup = BeautifulSoup(page, 'html.parser')
-#         te = soup.findAll("market_price")
-#         tableName = "KMIG_BB_CMPX_TYP_MON_PRC"
-#         listdicTable = list()
-#         for t in te:
-#             dicKMIG_BB_CMPX_TYP_MON_PRC = setSoup2TableDic(tableName,t)
-#             dicKMIG_BB_CMPX_TYP_MON_PRC['BB_CMPX_ID'] = dicStrdData['BB_CMPX_ID']
-#             dicKMIG_BB_CMPX_TYP_MON_PRC['BB_CMPX_TYP_SEQ'] = dicStrdData['BB_CMPX_TYP_SEQ']
-#             dicKMIG_BB_CMPX_TYP_MON_PRC['STD_YYMM'] = dicKMIG_BB_CMPX_TYP_MON_PRC['STD_YYMM'].replace(".","").replace(",","")
-#             dicKMIG_BB_CMPX_TYP_MON_PRC['STD_YMD'] = dicKMIG_BB_CMPX_TYP_MON_PRC['STD_YMD'].replace(".", "").replace(",","")
-#             dicKMIG_BB_CMPX_TYP_MON_PRC['DOWN_PRC'] = dicKMIG_BB_CMPX_TYP_MON_PRC['DOWN_PRC'].replace(".", "").replace(",","")
-#             dicKMIG_BB_CMPX_TYP_MON_PRC['UP_PRC'] = dicKMIG_BB_CMPX_TYP_MON_PRC['UP_PRC'].replace(".", "").replace(",","")
-#             dicKMIG_BB_CMPX_TYP_MON_PRC['CHG_PRC'] = dicKMIG_BB_CMPX_TYP_MON_PRC['CHG_PRC'].replace(".", "").replace(",","")
-#             dicKMIG_BB_CMPX_TYP_MON_PRC['DOWN_JS_PRC'] = dicKMIG_BB_CMPX_TYP_MON_PRC['DOWN_JS_PRC'].replace(".", "").replace(",","")
-#             dicKMIG_BB_CMPX_TYP_MON_PRC['UP_JS_PRC'] = dicKMIG_BB_CMPX_TYP_MON_PRC['UP_JS_PRC'].replace(".", "").replace(",","")
-#             dicKMIG_BB_CMPX_TYP_MON_PRC['CHG_JS_PRC'] = dicKMIG_BB_CMPX_TYP_MON_PRC['CHG_JS_PRC'].replace(".", "").replace(",","")
-#             dicKMIG_BB_CMPX_TYP_MON_PRC['REG_USER_ID'] = userid
-#             dicKMIG_BB_CMPX_TYP_MON_PRC['CHG_USER_ID'] = userid
-#             listdicTable.append(dict(dicKMIG_BB_CMPX_TYP_MON_PRC))
-#
-#         try:
-#             insertBasicByTBLDicList(tableName, listdicTable)
-#         except pymysql.IntegrityError as e:  # 기존 중복 가능
-#             Log.debug(batchContext.getLogName() + str(e))
-#             Log.debug(batchContext.getLogName() + "부동산뱅크 물건형별 월별시세 중복" + dicStrdData['BB_CMPX_ID'] + "/" + str(dicStrdData['BB_CMPX_TYP_SEQ']))
-
 
 if __name__ == '__main__':
     batchContext = simpleBatchContext("CrawlingBBCmpxTyp")

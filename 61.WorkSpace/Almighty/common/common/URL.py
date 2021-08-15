@@ -1,7 +1,12 @@
 from urllib import parse
 import urllib.parse
+import urllib.request
 import Server.COM
 import time
+import traceback
+import urllib
+import xml.etree.ElementTree as ET
+#import PyQt5.QtWidgets.QTreeWidget
 
 KB부동산과거시세조회URL = "http://nland.kbstar.com/quics?page=B047172&cc=b028364:b057487"
 KB부동산과거시세조회Json = "http://nland.kbstar.com/quics?page=&QAction=763359&RType=json"
@@ -14,6 +19,28 @@ KB부동산지도조회Json = "http://nland.kbstar.com/quics?page=B046949&QActio
 NaverTimeStamp = 1.1
 NaverComplexListURL = "https://new.land.naver.com/api/regions/complexes?cortarNo="
 NaverComplexDtlURL = "https://new.land.naver.com/api/complexes/"
+
+
+def setTreeWidgetByXML(tw, page):
+    pageRoot = ET.fromstring(page)
+    twRoot = tw.invisibleRootItem()
+
+    # for child in root:
+    #     #print(type(child))
+    #     #print(child.items())
+    #     for cchild in child:
+    #         print(len(cchild))
+    #         for ccchild in cchild:
+    #             if ccchild == None:
+    #                 print('None')
+    #             print('#######################')
+    #             print(cchild.tag)
+    #             print(cchild.text)
+    #             pass
+    # pass
+
+def setTreeWidgetItemByElement(twItem,element):
+    item = QTreeWidgetItem()
 
 def setSoup2TableDic(strSvcId,strPasiId,soup):
     dicTBL = getTableDic(tableName)
@@ -107,18 +134,16 @@ def get_html(url,method = "GET",data = None):
 
 #            if resp.status_code == 200:
 #                _html = resp
+#            print(resp)
             return resp
         except Exception as e:
-            print(e)
+            print(traceback.format_exc())
             print("Connection refused by the server..")
             print("Let me sleep for 10 seconds")
             print("ZZzzzz...")
             time.sleep(10)
             print("Was a nice sleep, now let me continue...")
             continue
-
-
-
 
 def makeGetURL(JOB_CL,SITE_CL,TR_ID,dicGetParam):
     #작업분류 (JOB_CL - NV-Naver부동산 KB-KB부동산)
@@ -255,28 +280,37 @@ def getURLNVSaleInquery(CMPX_CTGR, NV_CMPX_ID):
 
 
 #JSON을 TABLE DIC으로 변환한다.
-def setSoup2TableDic(tableName,soup):
-    global Log
-    dicTBL = getTableDic(tableName)
-    for col in dicMigMapp[tableName].keys():
-        try:
-            dicTBL[dicMigMapp[tableName][col]] = soup.find(col).text
-        except Exception as e:
-            pass
-            Log.debug("migNaverComplexList soup Parsing Error" + str(e) + col)
-    return dicTBL
+# def setSoup2TableDic(tableName,soup):
+#     global Log
+#     dicTBL = getTableDic(tableName)
+#     for col in dicMigMapp[tableName].keys():
+#         try:
+#             dicTBL[dicMigMapp[tableName][col]] = soup.find(col).text
+#         except Exception as e:
+#             pass
+#             Log.debug("migNaverComplexList soup Parsing Error" + str(e) + col)
+#     return dicTBL
 
 if __name__ == '__main__':
     #http://www.neonet.co.kr/novo-rebank/view/market_price/RegionData.neo?offerings_gbn=AT&update=140228&target=complex_cd&lcode=11&mcode=712&sname=%BE%D0%B7%AE%B8%E9
+    #http://www.neonet.co.kr/novo-rebank/view/market_price/MarketPriceData.neo?action=COMPLEX_PERIOD_DATA&trend_graph=N&lcode=01&mcode=134&sname=%BE%CF%BB%E7%B5%BF&complex_cd=A0030748&pyung_cd=1&period_gbn=month&start_sdate=200809&end_sdate=202108
+
+    url = "http://www.neonet.co.kr/novo-rebank/view/market_price/MarketPriceData.neo?action=COMPLEX_PERIOD_DATA&trend_graph=N&lcode=01&mcode=134&sname=%BE%CF%BB%E7%B5%BF&complex_cd=A0030748&pyung_cd=1&period_gbn=month&start_sdate=200809&end_sdate=202108"
+    #url = "http://naver.com"
+    pae = get_html(url)
+    p = pae.decode('euc-kr')
+
+
+    #print(urllib.parse.urldecode(pae, encoding='euckr'))
 
     #%BE%D0%B7%AE%B8%E9
     #%BE%D0%B7%AE%B8%E9
-    query = {
-        'target': 'complex_cd',
-        'lcode': '01',
-        'mcode': '100',
-        'sname': '압량면'
-    }
-    #target=complex_cd&lcode=01&mcode=100&sname=만리동
-    print(urllib.parse.urlencode(query, encoding='euckr'))
+    # query = {
+    #     'target': 'complex_cd',
+    #     'lcode': '01',
+    #     'mcode': '100',
+    #     'sname': '압량면'
+    # }
+    # #target=complex_cd&lcode=01&mcode=100&sname=만리동
+    # print(urllib.parse.urlencode(query, encoding='euckr'))
 

@@ -122,7 +122,7 @@ class KCOMDEV060(QWidget, KWidget, form_class) :
     def save(self):
         try:
             if self.preSave():
-                self.twPasiCdExec.mergeRow()
+                self.twPasiCdExec.mergeRow(self.twPasiCdExec.currentRow())
         except : error()
 
     def preSave(self):

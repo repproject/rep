@@ -33,6 +33,7 @@ class Crawling:
     rowCounterInterval = "N"
     MessageInterval = 10
     MessageUnit = "P"
+    commitCount = 1
 
     #URL Making 기준정보
     dicStrdDataList = None
@@ -60,21 +61,27 @@ class Crawling:
 
     #초기화
     def __init__(self,strPasiId,strSvcId,batchContext = None):
-        #funcName Validation Check
-        self.batchContext = batchContext
-        self.pasiId = strPasiId
-        self.svcId = strSvcId
+        try:
+            #funcName Validation Check
+            self.batchContext = batchContext
+            self.pasiId = strPasiId
+            self.svcId = strSvcId
 
-        rslt = Server.COM.getPasi(self.pasiId, self.svcId)
-        blog.error(rslt)
-        self.tableSvcPasi = rslt[0]
-        self.tableSvc = rslt[1]
-        self.tableSite = rslt[2]
-        self.tableSvcPasiItemIn = Server.COM.getiItemParm(self.svcId,self.pasiId,'I')
-        for tb in self.tableSvcPasiItemIn:
-            if isNull(tb[0].tbl_nm) or isNull(tb[0].col_nm):
-                self.dicParam[tb[0].item_nm] = tb[0].item_val
-        self.sleepStamp = self.tableSite.slep_sec
+            rslt = Server.COM.getPasi(self.pasiId, self.svcId)
+            if rslt == None:
+                blog.error(self.batchContext.getLogName() + 'Pasi is not registered : [pasi_id : ' + self.pasiId + "][svc_id : " + self.svcId + "]")
+                raise TypeError('Pasi is not registered : [pasi_id : ' + self.pasiId + "][svc_id : " + self.svcId + "]")
+            self.tableSvcPasi = rslt[0]
+            self.tableSvc = rslt[1]
+            self.tableSite = rslt[2]
+            self.tableSvcPasiItemIn = Server.COM.getiItemParm(self.svcId,self.pasiId,'I')
+            for tb in self.tableSvcPasiItemIn:
+                if isNull(tb[0].tbl_nm) or isNull(tb[0].col_nm):
+                    self.dicParam[tb[0].item_nm] = tb[0].item_val
+            self.sleepStamp = self.tableSite.slep_sec
+        except:
+            blog.error(traceback.format_exc())
+            sendTelegramMessage("Crawling 초기화 Error : " + str(traceback.format_exc()))
 
     def run(self):
         try:
@@ -83,17 +90,17 @@ class Crawling:
             self.crawl()    #URL 호출 후 삽입
         except :
             blog.error(traceback.format_exc())
+            sendTelegramMessage("Batch 수행 에러 : " + str(traceback.format_exc()))
         try:
             #self.report()   #report 및 마지막 정의
             pass
         except Exception as e:
-            blog.error("Batch Report 출력 에러" + str(e))
-            sendTelegramMessage("Batch Report 출력 에러" + str(e))
+            blog.error("Batch Report 출력 에러" + str(traceback.format_exc()))
+            sendTelegramMessage("Batch Report 출력 에러" + str(traceback.format_exc()))
         #self.end()      #report 및 마지막 정의
 
     def startLog(self):
         #기본로그 출력
-        os.chdir(sys.path[0])
         global blog
         blog = Logger(LogName=self.batchContext.getLogName(), Level="DEBUG", name = "Batch").logger
         blog.info(self.batchContext.getLogName()+"####################START[" + self.batchContext.getFuncName() + "]####################")
@@ -102,12 +109,12 @@ class Crawling:
     #Lv2 구현
     def ready(self):
         self.dicPasi = getDicFromListTable(Server.COM.getPasi(self.pasiId,self.svcId))[0]
-        if isNotNull(self.dicPasi.get('parm_load_func_nm',None)):
-            self.Strd = eval(self.dicPasi.get('parm_load_func_nm',''))
-            self.dicStrd = getDicFromListTable(self.Strd)
-            #self.dicStrdDataList = self.getListStrdDataList()
+        if self.dicPasi == None :
+            blog.error(self.batchContext.getLogName() + "Pasi 정보가 없습니다.")
+            raise TypeError
+        self.dicStrd = self.getListStrdDataList()
         #rowCounter 세팅
-        #self.setRowCounter(self.Strd.__len__())
+        self.setRowCounter(self.Strd.__len__())
         self.outParam = Server.COM.getiItemParm2(self.svcId, self.pasiId, 'O')
         self.outMultiParam = Server.COM.getiItemParmMulti(self.svcId, self.pasiId, 'O')
         a = copy.deepcopy(self.outParam)
@@ -125,25 +132,21 @@ class Crawling:
             for tb in self.tableSvcPasiItemIn:
                 if isNotNull(tb[0].tbl_nm) and isNotNull(tb[0].col_nm):
                     self.dicParam[tb[0].item_nm] = sd[tb[0].col_nm]
-            try:
-                reCnt = 0
-                while True:
-                    reCnt = reCnt + 1
-                    self.debugDicStrdData(self.dicStrd)
-                    url = self.makeURL(sd,reCnt)
-                    page = self.request(url)
-                    cPage = self.convertPage(page)
-                    self.selfSaveDB(cPage,sd,url)
-                    time.sleep(self.sleepStamp)
-                    if self.isReCrwal(url,page,self.dicStrd,reCnt) == False:
-                        self.rowCounter.Cnt()
-                        break
-
-                gc.collect()
-            except Exception as e: blog.error(traceback.format_exc())
-                #error()
-#                blog.error(self.batchContext.getLogName() + traceback.format_exc())
-#                sendTelegramMessage(traceback.format_exc())
+            reCnt = 0
+            while True:
+                reCnt = reCnt + 1
+                self.debugDicStrdData(self.dicStrd)
+                url = self.makeURL(sd,reCnt)
+                print(url)
+                page = self.request(url)
+                cPage = self.convertPage(page)
+                self.selfSaveDB(cPage,sd,url)
+                time.sleep(self.sleepStamp)
+                if self.isReCrwal(url,page,self.dicStrd,reCnt) == False:
+                    self.rowCounter.Cnt()
+                    break
+            self.CountCommit()
+            gc.collect()
 
     def makeURL(self, dicStrdData=None, reCnt=None):
         for tb in self.tableSvcPasiItemIn:
@@ -158,11 +161,6 @@ class Crawling:
             pass
         return self.url
 
-        # print('makeURL')
-        # url = self.selfMakeURL(dicStrdData,reCnt)
-        # blog.info(self.batchContext.getLogName() + " ReCnt : " + str(reCnt) + url.printURL())
-        # return url
-
     def report(self):
         # Report
         dicNewRowList = REP_DAO.fetch(self.sqlReportFetchId, "")
@@ -174,13 +172,10 @@ class Crawling:
             blog.info(self.batchContext.getLogName() + str(dicNewRowList))
             sendTelegramMessage(self.batchContext.getLogName() + str(dicNewRowList))
 
-#    def end(self):
-#       blog.info(self.batchContext.getLogName() + "####################END[" + self.batchContext.getFuncName() + "]####################")
-#        sendTelegramMessage("END[" + self.batchContext.getFuncName() + "]")
-
-    #[LV4 구현]각 Lv4 Class(웹사이트(url) 별로) URL을 만드는 부분을 정의
-    #def selfMakeURL(self,dicStrdData = None):
-    #    return "http://test.com"
+    def end(self):
+        commit()
+        blog.info(self.batchContext.getLogName() + "####################END[" + self.batchContext.getFuncName() + "]####################")
+        sendTelegramMessage("END[" + self.batchContext.getFuncName() + "]")
 
     #[LV4 구현]Page > 변환 > Parse > DB 반영
     def selfSaveDB(self,cPage,dicStrdData = None,url = None):
@@ -265,7 +260,7 @@ class Crawling:
 
     def request(self,url):
         page = get_html(url,self.tableSvc.req_way_cd,self.dicParam)
-        blog.debug(self.batchContext.getLogName() + str(page))
+        #blog.debug(self.batchContext.getLogName() + " PRINT PAGE : " + str(page))
         return page
 
     def getFuncName(self):
@@ -273,20 +268,34 @@ class Crawling:
 
     def setRowCounter(self,totalRowCount = None):
         if totalRowCount == None:
-            blog.Info("totalRowCount 미정의 Error")
+            blog.Info(self.batchContext.getLogName() + "totalRowCount 미정의 Error")
             return None
         else:
             self.rowCounter = BatchRowCounter(self.batchContext.getLogName(), totalRowCount,self.rowCountNumber,self.rowCounterInterval,self.MessageInterval,self.MessageUnit)
 
     def getListStrdDataList(self):
-        return REP_DAO.fetch(self.fetchSqlId, "")
+        r"""
+            등록된 함수를
+        :return:
+        """
+        if isNotNull(self.dicPasi.get('parm_load_func_nm',None)):
+            self.Strd = eval(self.dicPasi.get('parm_load_func_nm', ''))
+            return getDicFromListTable(self.Strd)
+        else :
+            blog.error(self.batchContext.getLogName() + "parm_load_func_nm is empty ==> dicPasi : " + str(self.dicPasi))
+            raise ValueError
 
     def isReCrwal(self,url,page,dicStrdData,reCnt):
         return False
 
     def debugDicStrdData(self,dicStrdData = None):
-#        blog.debug(self.batchContext.getLogName() + "DicStrdData : " + str(dicStrdData))
+        blog.debug(self.batchContext.getLogName() + "DicStrdData : " + str(dicStrdData))
         pass
+
+    def CountCommit(self):
+        cnt = self.rowCounter.getCount()
+        if cnt % self.commitCount == 0:
+            commit()
 
 class DataStrd:
     #Crawling의 기준 data list
@@ -304,7 +313,7 @@ class DataStrd:
         return self.listStrdData[self.index]
 
 if __name__ == '__main__':
-    batchContext = simpleBatchContext("CrawlingBBCmpxTyp")
+    batchContext = simpleBatchContext("CrawlingBBCmpxTypPrice")
     #CrawlObject = Crawling('BBRegnLv2','BBRegn',batchContext)
-    CrawlObject = Crawling('BBCmpx', 'BBRegn', batchContext)
+    CrawlObject = Crawling('BBCmpxTypPrice', 'BBPastMarketPrice', batchContext)
     CrawlObject.run()
