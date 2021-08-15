@@ -436,6 +436,41 @@ class JobActExec(Base,KTable):
     def __repr__(self):
         return "<JobActExec('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.job_id), str(self.exec_dtm), str(self.act_id), str(self.exec_stat_cd), str(self.sta_dtm), str(self.end_dtm), str(self.exec_parm1), str(self.exec_parm2), str(self.exec_parm3), str(self.exec_parm4), str(self.exec_parm5), str(self.exec_parm6), str(self.exec_parm7), str(self.exec_parm8), str(self.exec_parm9), str(self.exec_parm10) + KTable.__repr__(self))
 
+class Func(Base,KTable):
+    __tablename__ = 'kadm_func'
+
+    func_id = KColumn(String(20), primary_key = True, nullable = False)
+    func_nm = KColumn(String(100), nullable = False)
+    func_desc = KColumn(String(1000), nullable = True)
+    func_cl_cd = KColumn(String(20), nullable = False, kcom_cd_domain = True, kcom_cd_grp = 'FUNC_CL')
+    tgt_tbl_nm = KColumn(String(50), nullable = True)
+    src_func_nm = KColumn(String(100), nullable = True)
+    use_yn = KColumn(String(1), nullable = False)
+    ref1 = KColumn(String(100), nullable = True)
+    ref2 = KColumn(String(100), nullable = True)
+    ref3 = KColumn(String(100), nullable = True)
+    ref4 = KColumn(String(100), nullable = True)
+    ref5 = KColumn(String(100), nullable = True)
+
+
+    def __init__(self, *args, **kwargs):
+        KTable.__init__(self)
+        self.func_id =  kwargs.pop('func_id')
+        self.func_nm =  kwargs.pop('func_nm')
+        self.func_desc =  kwargs.pop('func_desc',None)
+        self.func_cl_cd =  kwargs.pop('func_cl_cd')
+        self.tgt_tbl_nm =  kwargs.pop('tgt_tbl_nm',None)
+        self.src_func_nm =  kwargs.pop('src_func_nm',None)
+        self.use_yn =  kwargs.pop('use_yn')
+        self.ref1 =  kwargs.pop('ref1',None)
+        self.ref2 =  kwargs.pop('ref2',None)
+        self.ref3 =  kwargs.pop('ref3',None)
+        self.ref4 =  kwargs.pop('ref4',None)
+        self.ref5 =  kwargs.pop('ref5',None)
+
+    def __repr__(self):
+        return "<Func('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.func_id), str(self.func_nm), str(self.func_desc), str(self.func_cl_cd), str(self.tgt_tbl_nm), str(self.src_func_nm), str(self.use_yn), str(self.ref1), str(self.ref2), str(self.ref3), str(self.ref4), str(self.ref5) + KTable.__repr__(self))
+
 class ActFunc(Base,KTable):
     __tablename__ = 'kadm_act_func'
 
@@ -480,6 +515,54 @@ class JobAct(Base,KTable):
 
     def __repr__(self):
         return "<JobAct('%s', '%s', '%s', '%s', '%s'" % (str(self.job_id), str(self.act_id), str(self.job_act_rel_desc), str(self.exec_seq), str(self.use_yn) + KTable.__repr__(self))
+
+class JobFuncExec(Base,KTable):
+    __tablename__ = 'kadm_job_func_exec'
+
+    job_id = KColumn(String(20), primary_key = True, nullable = False)
+    act_id = KColumn(String(20), primary_key = True, nullable = False)
+    func_id = KColumn(String(20), primary_key = True, nullable = False)
+    exec_dtm = KColumn(String(14), primary_key = True, nullable = False)
+    exec_stat_cd = KColumn(String(20), nullable = True, kcom_cd_domain = True, kcom_cd_grp = 'EXEC_STAT')
+    sta_dtm = KColumn(String(14), nullable = True)
+    end_dtm = KColumn(String(14), nullable = True)
+    exec_parm1 = KColumn(String(200), nullable = True)
+    exec_parm2 = KColumn(String(200), nullable = True)
+    exec_parm3 = KColumn(String(200), nullable = True)
+    exec_parm4 = KColumn(String(200), nullable = True)
+    exec_parm5 = KColumn(String(200), nullable = True)
+    exec_parm6 = KColumn(String(200), nullable = True)
+    exec_parm7 = KColumn(String(200), nullable = True)
+    exec_parm8 = KColumn(String(200), nullable = True)
+    exec_parm9 = KColumn(String(200), nullable = True)
+    exec_parm10 = KColumn(String(200), nullable = True)
+
+    job = relationship('Job',primaryjoin = job_id==Job.job_id, foreign_keys = [Job.job_id], passive_deletes = True)
+    act = relationship('Act',primaryjoin = act_id==Act.act_id, foreign_keys = [Act.act_id], passive_deletes = True)
+    func = relationship('Func',primaryjoin = func_id==Func.func_id, foreign_keys = [Func.func_id], passive_deletes = True)
+
+    def __init__(self, *args, **kwargs):
+        KTable.__init__(self)
+        self.job_id =  kwargs.pop('job_id')
+        self.act_id =  kwargs.pop('act_id')
+        self.func_id =  kwargs.pop('func_id')
+        self.exec_dtm =  kwargs.pop('exec_dtm')
+        self.exec_stat_cd =  kwargs.pop('exec_stat_cd',None)
+        self.sta_dtm =  kwargs.pop('sta_dtm',None)
+        self.end_dtm =  kwargs.pop('end_dtm',None)
+        self.exec_parm1 =  kwargs.pop('exec_parm1',None)
+        self.exec_parm2 =  kwargs.pop('exec_parm2',None)
+        self.exec_parm3 =  kwargs.pop('exec_parm3',None)
+        self.exec_parm4 =  kwargs.pop('exec_parm4',None)
+        self.exec_parm5 =  kwargs.pop('exec_parm5',None)
+        self.exec_parm6 =  kwargs.pop('exec_parm6',None)
+        self.exec_parm7 =  kwargs.pop('exec_parm7',None)
+        self.exec_parm8 =  kwargs.pop('exec_parm8',None)
+        self.exec_parm9 =  kwargs.pop('exec_parm9',None)
+        self.exec_parm10 =  kwargs.pop('exec_parm10',None)
+
+    def __repr__(self):
+        return "<JobFuncExec('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.job_id), str(self.act_id), str(self.func_id), str(self.exec_dtm), str(self.exec_stat_cd), str(self.sta_dtm), str(self.end_dtm), str(self.exec_parm1), str(self.exec_parm2), str(self.exec_parm3), str(self.exec_parm4), str(self.exec_parm5), str(self.exec_parm6), str(self.exec_parm7), str(self.exec_parm8), str(self.exec_parm9), str(self.exec_parm10) + KTable.__repr__(self))
 
 class JobFuncExecMsg(Base,KTable):
     __tablename__ = 'kadm_job_func_exec_msg'
