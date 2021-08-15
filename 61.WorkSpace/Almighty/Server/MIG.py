@@ -17,10 +17,14 @@ def getBBLv3Regn():
 def getBBCmpxCrawl():
     now = datetime.now()
     strd = now - timedelta(days = 2)
-
     return s.query(BbCmpx).filter(~(s.query(BbCmpxTyp).filter(BbCmpx.bb_cmpx_id == BbCmpxTyp.bb_cmpx_id,BbCmpxTyp.chg_dtm > strd).exists())).all()
 
-def getBBCmpxTyp(): return s.query(BbCmpxTyp).all()
+def getBBCmpxTypCrawl():
+    now = datetime.now()
+    strd = now - timedelta(days = 2)
+    return s.query(BbCmpxTyp).filter(~(s.query(BbCmpxTypMonPrc).filter(BbCmpxTyp.bb_cmpx_id == BbCmpxTypMonPrc.bb_cmpx_id,
+                                                                       BbCmpxTyp.bb_cmpx_typ_seq == BbCmpxTypMonPrc.bb_cmpx_typ_seq,
+                                                                       BbCmpxTypMonPrc.chg_dtm > strd).exists())).all()
 
 # def test():
 #     #BbCmpx_alias = aliased(BbCmpx)

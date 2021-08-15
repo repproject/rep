@@ -33,7 +33,7 @@ class Crawling:
     rowCounterInterval = "N"
     MessageInterval = 10
     MessageUnit = "P"
-    commitCount = 1000
+    commitCount = 500
 
     #URL Making 기준정보
     dicStrdDataList = None
@@ -114,6 +114,8 @@ class Crawling:
             raise TypeError
         self.dicStrd = self.getListStrdDataList()
         #rowCounter 세팅
+        blog.info(self.batchContext.getLogName()+ "총 건수 : " + str(self.Strd.__len__()))
+        sendTelegramMessage(self.batchContext.getFuncName() + "총 건수 : " + str(self.Strd.__len__()))
         self.setRowCounter(self.Strd.__len__())
         self.outParam = Server.COM.getiItemParm2(self.svcId, self.pasiId, 'O')
         self.outMultiParam = Server.COM.getiItemParmMulti(self.svcId, self.pasiId, 'O')
@@ -179,7 +181,7 @@ class Crawling:
 
     #[LV4 구현]Page > 변환 > Parse > DB 반영
     def selfSaveDB(self,cPage,dicStrdData = None,url = None):
-        blog.info(" Page : " + str(cPage))
+        blog.debug(" Page : " + str(cPage))
         if len(self.crawlCdExec) > 0:
             self.reCurParse(cPage,self.crawlCdExec[0],dicStrdData)
         pass
@@ -197,7 +199,7 @@ class Crawling:
                     delattr(tb,'reg_user_id')
                     delattr(tb,'reg_dtm')
 
-                blog.info(listTable)
+                blog.debug(listTable)
                 mergeListNC(listTable)
                 # for tb in self.getTableListByOutMapping(self.svcId, self.pasiId, p,strd):
                 #     try:

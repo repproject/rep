@@ -6,13 +6,8 @@
       <change beforePath="$PROJECT_DIR$/../../42.DA5/wordict5_참조모델표준화.db" beforeDir="false" afterPath="$PROJECT_DIR$/../../42.DA5/wordict5_참조모델표준화.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../44.SQL/4400.기본SQL/ALTER.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../44.SQL/4400.기본SQL/ALTER.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/KADM.py" beforeDir="false" afterPath="$PROJECT_DIR$/DAO/KADM.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/REP_JOB.py" beforeDir="false" afterPath="$PROJECT_DIR$/REP_JOB.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/COM.py" beforeDir="false" afterPath="$PROJECT_DIR$/Server/COM.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMBAT010.py" beforeDir="false" afterPath="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMBAT010.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMBAT010.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMBAT010.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMDEV030.py" beforeDir="false" afterPath="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMDEV030.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMMAN010.py" beforeDir="false" afterPath="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMMAN010.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/MIG.py" beforeDir="false" afterPath="$PROJECT_DIR$/Server/MIG.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/Batch/Crawling.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/Batch/Crawling.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,13 +22,37 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/UI/_uiFiles/COM/KCOMBAT010.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="380">
-                  <caret line="103" column="57" selection-start-line="103" selection-start-column="57" selection-end-line="103" selection-end-column="57" />
+                <state relative-caret-position="2109">
+                  <caret line="111" column="24" lean-forward="true" selection-start-line="111" selection-start-column="24" selection-end-line="111" selection-end-column="24" />
                   <folding>
                     <element signature="e#0#38#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/common/Batch/Crawling.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="475">
+                  <caret line="117" column="98" selection-start-line="117" selection-start-column="98" selection-end-line="117" selection-end-column="98" />
+                  <folding>
+                    <element signature="e#0#9#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Server/MIG.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="410">
+                  <caret line="23" column="36" lean-forward="true" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+                  <folding>
+                    <element signature="e#0#43#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -42,22 +61,10 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Batch/Crawling/CrawlingBB.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="340">
-                  <caret line="61" column="16" selection-start-line="61" selection-start-column="16" selection-end-line="61" selection-end-column="16" />
+                <state relative-caret-position="359">
+                  <caret line="62" column="52" lean-forward="true" selection-start-line="62" selection-start-column="52" selection-end-line="62" selection-end-column="52" />
                   <folding>
                     <element signature="e#46#77#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/DAO/KADM.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="19">
-                  <caret line="349" column="52" selection-start-line="349" selection-start-column="52" selection-end-line="349" selection-end-column="52" />
-                  <folding>
-                    <element signature="e#0#24#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -79,13 +86,25 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/common/ui/comUi.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="342">
-                  <caret line="296" column="41" selection-start-line="296" selection-start-column="35" selection-end-line="296" selection-end-column="41" />
+                <state relative-caret-position="722">
+                  <caret line="301" column="19" lean-forward="true" selection-start-line="301" selection-start-column="19" selection-end-line="301" selection-end-column="19" />
                   <folding>
                     <element signature="e#0#26#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/DAO/KMIG.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="182">
+                  <caret line="140" column="19" selection-start-line="140" selection-start-column="4" selection-end-line="140" selection-end-column="19" />
+                  <folding>
+                    <element signature="e#0#43#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -104,9 +123,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>isNotn</find>
-      <find>current</find>
-      <find>pasi</find>
       <find>search</find>
       <find>setBasic</find>
       <find>parse</find>
@@ -133,7 +149,10 @@
       <find>twJobSchd</find>
       <find>setDic</find>
       <find>kwargs</find>
+      <find>INFO</find>
       <find>SetDic</find>
+      <find>setB</find>
+      <find>getBBCmpxTyp</find>
     </findStrings>
     <replaceStrings>
       <replace>Column</replace>
@@ -205,7 +224,6 @@
         <option value="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMDEV060.py" />
         <option value="$PROJECT_DIR$/common/Batch/Batch.py" />
         <option value="$PROJECT_DIR$/Server/Basic.py" />
-        <option value="$PROJECT_DIR$/Server/MIG.py" />
         <option value="$PROJECT_DIR$/Batch/Crawling/CrawlingBB.py" />
         <option value="$PROJECT_DIR$/common/Batch/Basic.py" />
         <option value="$PROJECT_DIR$/common/common/Telegram.py" />
@@ -215,7 +233,6 @@
         <option value="$PROJECT_DIR$/common/common/Func.py" />
         <option value="$PROJECT_DIR$/DAO/KMIG.py" />
         <option value="$PROJECT_DIR$/common/database/repSqlAlchemy.py" />
-        <option value="$PROJECT_DIR$/common/Batch/Crawling.py" />
         <option value="$PROJECT_DIR$/REP_JOB.py" />
         <option value="$PROJECT_DIR$/common/Batch/Job.py" />
         <option value="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMDEV030.py" />
@@ -223,6 +240,8 @@
         <option value="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMMAN010.py" />
         <option value="$PROJECT_DIR$/DAO/KADM.py" />
         <option value="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMBAT010.py" />
+        <option value="$PROJECT_DIR$/Server/MIG.py" />
+        <option value="$PROJECT_DIR$/common/Batch/Crawling.py" />
       </list>
     </option>
   </component>
@@ -250,30 +269,34 @@
             <path>
               <item name="Almighty" type="b2602c69:ProjectViewProjectNode" />
               <item name="Almighty" type="462c0819:PsiDirectoryNode" />
+              <item name="Batch" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Almighty" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Almighty" type="462c0819:PsiDirectoryNode" />
+              <item name="Batch" type="462c0819:PsiDirectoryNode" />
+              <item name="Crawling" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Almighty" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Almighty" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Almighty" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Almighty" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="Batch" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Almighty" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Almighty" type="462c0819:PsiDirectoryNode" />
               <item name="DAO" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Almighty" type="b2602c69:ProjectViewProjectNode" />
               <item name="Almighty" type="462c0819:PsiDirectoryNode" />
               <item name="Server" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Almighty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Almighty" type="462c0819:PsiDirectoryNode" />
-              <item name="UI" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Almighty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Almighty" type="462c0819:PsiDirectoryNode" />
-              <item name="UI" type="462c0819:PsiDirectoryNode" />
-              <item name="_uiFiles" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Almighty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Almighty" type="462c0819:PsiDirectoryNode" />
-              <item name="UI" type="462c0819:PsiDirectoryNode" />
-              <item name="_uiFiles" type="462c0819:PsiDirectoryNode" />
-              <item name="COM" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -315,7 +338,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.KCOMMAN010">
+  <component name="RunManager" selected="Python.Crawling">
     <configuration name="Crawling" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Almighty" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -452,9 +475,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.Crawling" />
         <item itemvalue="Python.KCOMMAN010" />
         <item itemvalue="Python.Job" />
-        <item itemvalue="Python.Crawling" />
         <item itemvalue="Python.KCOMDEV050" />
         <item itemvalue="Python.KCOMDEV060" />
       </list>
@@ -470,13 +493,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1618235387781</updated>
-    </task>
-    <task id="LOCAL-00001" summary="메인 화면 및 메뉴 관리 화면 완성">
-      <created>1626348376359</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1626348376359</updated>
     </task>
     <task id="LOCAL-00002" summary="테이블클래스생성 프로그램 Commit">
       <created>1626551016319</created>
@@ -814,7 +830,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629056610945</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="JobSchdExec 추가&#10;스케줄러 가져오기">
+      <created>1629065575342</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1629065575342</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TodoView">
@@ -901,7 +924,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="메뉴 lv2 출력 순서 반영" />
     <MESSAGE value="프로그램명 추가&#10;메뉴관리 조회 출력순서 반영" />
     <MESSAGE value="설명컬럼 보완&#10;Enter Key 조회 이벤트 공통추가 기타 등등" />
     <MESSAGE value="테이블클래스생성 - 도메인정보 테이블컬럼관리 도메인정보에서 불러오도록 변경&#10;setCellText 함수생성(그리드 Cell 종류에 관계없이 세팅)" />
@@ -926,7 +948,8 @@
     <MESSAGE value="JOB테이블 등록완료" />
     <MESSAGE value="Job Class 등록" />
     <MESSAGE value="join overlap 해결" />
-    <option name="LAST_COMMIT_MESSAGE" value="join overlap 해결" />
+    <MESSAGE value="JobSchdExec 추가&#10;스케줄러 가져오기" />
+    <option name="LAST_COMMIT_MESSAGE" value="JobSchdExec 추가&#10;스케줄러 가져오기" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1108,16 +1131,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DAO/KMIG.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="150" lean-forward="true" selection-start-line="150" selection-end-line="150" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/common/common/Log.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-9">
@@ -1134,16 +1147,6 @@
           <caret line="14" column="24" lean-forward="true" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/Batch/Crawling.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="181" column="41" selection-start-line="181" selection-start-column="41" selection-end-line="181" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1209,16 +1212,6 @@
           <caret line="21" column="32" lean-forward="true" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server/MIG.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="28" column="38" lean-forward="true" selection-start-line="28" selection-start-column="38" selection-end-line="28" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1305,16 +1298,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server/COM.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="626">
-          <caret line="137" column="22" selection-start-line="137" selection-start-column="22" selection-end-line="137" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/UI/_uiFiles/COM/KCOMDEV040.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
@@ -1335,16 +1318,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/common/ui/comUi.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="296" column="41" selection-start-line="296" selection-start-column="35" selection-end-line="296" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DAO/KADM.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
@@ -1355,22 +1328,72 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/UI/_uiFiles/COM/KCOMBAT010.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2109">
+          <caret line="111" column="24" lean-forward="true" selection-start-line="111" selection-start-column="24" selection-end-line="111" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/COM.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/ui/comUi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="722">
+          <caret line="301" column="19" lean-forward="true" selection-start-line="301" selection-start-column="19" selection-end-line="301" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Batch/Crawling/CrawlingBB.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="61" column="16" selection-start-line="61" selection-start-column="16" selection-end-line="61" selection-end-column="16" />
+        <state relative-caret-position="359">
+          <caret line="62" column="52" lean-forward="true" selection-start-line="62" selection-start-column="52" selection-end-line="62" selection-end-column="52" />
           <folding>
             <element signature="e#46#77#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/UI/_uiFiles/COM/KCOMBAT010.py">
+    <entry file="file://$PROJECT_DIR$/DAO/KMIG.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="103" column="57" selection-start-line="103" selection-start-column="57" selection-end-line="103" selection-end-column="57" />
+        <state relative-caret-position="182">
+          <caret line="140" column="19" selection-start-line="140" selection-start-column="4" selection-end-line="140" selection-end-column="19" />
           <folding>
-            <element signature="e#0#38#0" expanded="true" />
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/MIG.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="410">
+          <caret line="23" column="36" lean-forward="true" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/Batch/Crawling.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="117" column="98" selection-start-line="117" selection-start-column="98" selection-end-line="117" selection-end-column="98" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
