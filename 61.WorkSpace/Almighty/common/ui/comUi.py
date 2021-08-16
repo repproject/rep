@@ -309,8 +309,6 @@ class TableWidget(QTableWidget,TableListBind):
     def setWidths(self,widths):
         for key in widths.keys():
             self.widths[key.lower()] = widths[key]
-            print(self.columns)
-            print(self.columns.index(key.lower()),key,widths[key])
             self.setColumnWidth(self.columns.index(key.lower()),self.widths[key.lower()])
 
     def setAligns(self,aligns): self.aligns    = aligns
@@ -425,6 +423,7 @@ class TableWidget(QTableWidget,TableListBind):
         model.removeRow(0)
         for i in range(0,self.rowCount()):
             self.removeRow(0)
+        self.setDic = {}
 
     def mergeRow(self,n=None):
         if n == None: n = self.currentRow()

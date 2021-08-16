@@ -34,6 +34,22 @@ def getFunc():
     setCodeByTable(Func)
     return result
 
+def getJobAct(strJobId):
+    result = s.query(JobAct).filter_by(job_id=strJobId).all()
+    setCodeByTable(JobAct)
+    return result
+
+def getJobAct(strActId):
+    result = s.query(ActFunc).filter_by(act_id=strActId).all()
+    setCodeByTable(ActFunc)
+    return result
+
+def getFuncTbl(strFuncId):
+    result = s.query(ActFunc,FuncTgtTbl).join(FuncTgtTbl.tbl).where(ActFunc.func_id==strFuncId).all()
+    setCodeByTable(ActFunc)
+    setCodeByTable(FuncTgtTbl)
+    return result
+
 def getCodeLst(strComCdGrp,strComCdGrpNm):
     return s.query(ComCdLst).filter(ComCdLst.com_cd_grp.like("%"+strComCdGrp+"%")).filter(ComCdLst.com_cd_grp_nm.like("%"+strComCdGrpNm+"%")).all()
 

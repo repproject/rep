@@ -25,16 +25,19 @@ class KCOMBAT020(QWidget, KWidget, form_class) :
         self.btn_add_func.clicked.connect(self.addFunc)
         self.btn_save_func.clicked.connect(self.saveFunc)
 
-        #self.btn_search.clicked.connect(self.search)
-        #self.twComCdGrp.clicked.connect(self.search2)
+        self.twJob.clicked.connect(self.searchJobAct)
+        self.btn_add_job_act.clicked.connect(self.addJobAct)
+        self.btn_save_job_act.clicked.connect(self.saveJobAct)
 
+        self.twAct.clicked.connect(self.searchActFunc)
+        self.twJobAct.clicked.connect(self.searchActFunc)
+        self.btn_add_act_func.clicked.connect(self.addActFunc)
+        self.btn_save_act_func.clicked.connect(self.saveActFunc)
 
-        # self.twSite.clicked.connect(self.searchSvc)
-        # self.twSvc.clicked.connect(self.searchSvcPasi)
-        # self.btn_add_svc.clicked.connect(self.addSvc)
-        # self.btn_del_svc.clicked.connect(self.delSvc)
-        # self.btn_add_svc_pasi.clicked.connect(self.addSvcPasi)
-        # self.btn_del_svc_pasi.clicked.connect(self.delSvcPasi)
+        self.twFunc.clicked.connect(self.searchFuncTbl)
+        self.twActFunc.clicked.connect(self.searchFuncTbl)
+        self.btn_add_func_tbl.clicked.connect(self.addFuncTbl)
+        self.btn_save_func_tbl.clicked.connect(self.saveFuncTbl)
 
         Columns = ['job_id', 'job_nm', 'job_desc', 'job_cl_cd', 'use_yn', 'ref1', 'ref2', 'ref3', 'ref4', 'ref5']
         Widths = {'job_id':70, 'job_nm':150, 'job_desc':150, 'job_cl_cd':150, 'use_yn':50, 'ref1':50, 'ref2':50, 'ref3':50, 'ref4':50, 'ref5':50}
@@ -59,6 +62,8 @@ class KCOMBAT020(QWidget, KWidget, form_class) :
             self.twJob.setListTable(self.getJob())
             #Table Widget Setting
             self.twJobAct.removeAll()
+            self.twActFunc.removeAll()
+            self.twFuncTbl.removeAll()
         except : error()
 
     def getJob(self) : return Server.COM.getJob()
@@ -85,6 +90,7 @@ class KCOMBAT020(QWidget, KWidget, form_class) :
             self.twAct.setListTable(self.getAct())
             #Table Widget Setting
             self.twActFunc.removeAll()
+            self.twFuncTbl.removeAll()
         except : error()
 
     def getAct(self) : return Server.COM.getAct()
@@ -131,6 +137,125 @@ class KCOMBAT020(QWidget, KWidget, form_class) :
             alert("Func를 선택해야합니다.")
             return False
         return True
+
+    def searchJobAct(self):
+        try:
+            strJobId = self.twJob.getTextByColName(self.twJob.currentRow(),"job_id")
+            Columns3 = ['ACT_ID', 'JOB_ACT_REL_DESC', 'EXEC_SEQ', 'USE_YN']
+            Widths3 = {'ACT_ID':100, 'JOB_ACT_REL_DESC':200, 'EXEC_SEQ':70, 'USE_YN':50}
+            SetDic = {'job_id':strJobId}
+            self.twFunc.setBasic(columns=Columns3, widths=Widths3, tableClass=JobAct, setDic=SetDic)
+
+            self.twJobAct.setListTable(self.getJobAct(strJobId))
+            #Table Widget Setting
+            self.twActFunc.removeAll()
+            self.twFuncTbl.removeAll()
+
+        except : error()
+
+    def getJobAct(self,strJobId) : return Server.COM.getJobAct(strJobId)
+
+    def addJobAct(self):
+        try:
+            if self.preaddJobAct():
+                self.twJobAct.addTWRow()
+        except : error()
+
+    def preaddJobAct(self):
+        if self.twJob.currentRow() == -1:
+            alert("Job을 선택해야합니다.")
+            return False
+        return True
+
+    def saveJobAct(self):
+        try:
+            if self.preSaveJobAct():
+                self.twJobAct.mergeRow()
+        except : error()
+
+    def preSaveJobAct(self):
+        if self.twJobAct.currentRow() == -1:
+            alert("JobAct를 선택해야합니다.")
+            return False
+        return True
+
+    def searchActFunc(self):
+        try:
+            strActId = self.sender().getTextByColName(self.sender().currentRow(),"act_id")
+            Columns3 = ['FUNC_ID','ACT_FUNC_REL_DESC','EXEC_SEQ','USE_YN']
+            Widths3 = {'FUNC_ID':100,'ACT_FUNC_REL_DESC':200,'EXEC_SEQ':50,'USE_YN':50}
+            SetDic = {'act_id':strActId}
+            self.twFunc.setBasic(columns=Columns3, widths=Widths3, tableClass=ActFunc, setDic=SetDic)
+
+            self.twActFunc.setListTable(self.getActFunc(strActId))
+            #Table Widget Setting
+            self.twFuncTbl.removeAll()
+        except : error()
+
+    def getActFunc(self,strActId) : return Server.COM.getActFunc(strActId)
+
+    def addActFunc(self):
+        try:
+            if self.preaddActFunc():
+                self.twActFunc.addTWRow()
+        except : error()
+
+    def preaddActFunc(self):
+        if isNull(self.twActFunc.setDic.get('act_id',None)):
+            alert("Act를 선택해야합니다.")
+            return False
+        return True
+
+    def saveActFunc(self):
+        try:
+            if self.preSaveActFunc():
+                self.twActFunc.mergeRow()
+        except : error()
+
+    def preSaveActFunc(self):
+        if self.twActFunc.currentRow() == -1:
+            alert("Action을 선택해야합니다.")
+            return False
+        return True
+
+    def searchFuncTbl(self):
+        try:
+            strFuncId = self.sender().getTextByColName(self.sender().currentRow(),"func_id")
+            Columns3 = ['TBL_NM','tbl_desc','FINL_CHG_YYMM','FINL_CHG_YMD']
+            Widths3 = {'TBL_NM':200,'tbl_desc':200,'FINL_CHG_YYMM':100,'FINL_CHG_YMD':100}
+            SetDic = {'func_id':strFuncId}
+            self.twFuncTbl.setBasic(columns=Columns3, widths=Widths3, tableClass=FuncTgtTbl, setDic=SetDic)
+
+            self.twFuncTbl.setListTable(self.getFuncTbl(strFuncId))
+            #Table Widget Setting
+        except : error()
+
+    def getFuncTbl(self,strFuncId) : return Server.COM.getFuncTbl(strFuncId)
+
+    def addFuncTbl(self):
+        try:
+            if self.preaddFuncTbl():
+                self.twFuncTbl.addTWRow()
+        except : error()
+
+    def preaddFuncTbl(self):
+        if isNull(self.twFuncTbl.setDic.get('func_id',None)):
+            alert("Func를 선택해야합니다.")
+            return False
+        return True
+
+    def saveFuncTbl(self):
+        try:
+            if self.preSaveFuncTbl():
+                self.twFuncTbl.mergeRow()
+        except : error()
+
+    def preSaveFuncTbl(self):
+        if self.twFuncTbl.currentRow() == -1:
+            alert("행을 선택해야합니다.")
+            return False
+        return True
+
 
 
 
