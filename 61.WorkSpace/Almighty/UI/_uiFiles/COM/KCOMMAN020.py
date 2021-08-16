@@ -140,7 +140,7 @@ class KCOMMAN020(QWidget, KWidget, form_class) :
             self.tw.setCurrentItem(item)
             self.selectedItem = item
 
-            new_menu = Menu(new_menu_id, new_menu_lv, new_prt_seq, None, new_up_menu_id, None)
+            new_menu = Menu(menu_id=new_menu_id, menu_lv=new_menu_lv, prt_seq = new_prt_seq, up_menu_id=new_up_menu_id)
             item.__setattr__('menu', new_menu)
 
             self.edit_menu_id.setText(new_menu_id)
@@ -151,7 +151,7 @@ class KCOMMAN020(QWidget, KWidget, form_class) :
             self.edit_fst_reg_ymd.setText(None)
             self.edit_pgm_id.setText(None)
         except Exception as e :
-            print(e)
+            print(traceback.format_exc())
 
     def edit_menu_nm_Changed(self):
         self.selectedItem.setText(0,self.edit_menu_nm.text())
