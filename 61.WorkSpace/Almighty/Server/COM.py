@@ -24,6 +24,16 @@ def getJob():
     setCodeByTable(Job)
     return result
 
+def getAct():
+    result = s.query(Act).all()
+    setCodeByTable(Act)
+    return result
+
+def getFunc():
+    result = s.query(Func).all()
+    setCodeByTable(Func)
+    return result
+
 def getCodeLst(strComCdGrp,strComCdGrpNm):
     return s.query(ComCdLst).filter(ComCdLst.com_cd_grp.like("%"+strComCdGrp+"%")).filter(ComCdLst.com_cd_grp_nm.like("%"+strComCdGrpNm+"%")).all()
 
