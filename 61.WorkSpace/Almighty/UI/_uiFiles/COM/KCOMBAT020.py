@@ -144,7 +144,7 @@ class KCOMBAT020(QWidget, KWidget, form_class) :
             Columns3 = ['ACT_ID', 'JOB_ACT_REL_DESC', 'EXEC_SEQ', 'USE_YN']
             Widths3 = {'ACT_ID':100, 'JOB_ACT_REL_DESC':200, 'EXEC_SEQ':70, 'USE_YN':50}
             SetDic = {'job_id':strJobId}
-            self.twFunc.setBasic(columns=Columns3, widths=Widths3, tableClass=JobAct, setDic=SetDic)
+            self.twJobAct.setBasic(columns=Columns3, widths=Widths3, tableClass=JobAct, setDic=SetDic)
 
             self.twJobAct.setListTable(self.getJobAct(strJobId))
             #Table Widget Setting
@@ -185,7 +185,7 @@ class KCOMBAT020(QWidget, KWidget, form_class) :
             Columns3 = ['FUNC_ID','ACT_FUNC_REL_DESC','EXEC_SEQ','USE_YN']
             Widths3 = {'FUNC_ID':100,'ACT_FUNC_REL_DESC':200,'EXEC_SEQ':50,'USE_YN':50}
             SetDic = {'act_id':strActId}
-            self.twFunc.setBasic(columns=Columns3, widths=Widths3, tableClass=ActFunc, setDic=SetDic)
+            self.twActFunc.setBasic(columns=Columns3, widths=Widths3, tableClass=ActFunc, setDic=SetDic)
 
             self.twActFunc.setListTable(self.getActFunc(strActId))
             #Table Widget Setting

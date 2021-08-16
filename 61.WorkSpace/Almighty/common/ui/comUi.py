@@ -148,6 +148,11 @@ class TableListBind():
         except : error()
 
     def setListTable(self, listTable):
+        if isNull(self.getColumns()):
+            logging.error("setListTable 지정된 컬럼이 없습니다. setColumns, setBasic이 필수입니다.")
+            raise TypeError
+            return False
+
         self.listTable = listTable
         self.setIsRowType()
         self.setDicColAttr()

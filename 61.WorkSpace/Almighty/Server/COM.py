@@ -39,13 +39,13 @@ def getJobAct(strJobId):
     setCodeByTable(JobAct)
     return result
 
-def getJobAct(strActId):
+def getActFunc(strActId):
     result = s.query(ActFunc).filter_by(act_id=strActId).all()
     setCodeByTable(ActFunc)
     return result
 
 def getFuncTbl(strFuncId):
-    result = s.query(ActFunc,FuncTgtTbl).join(FuncTgtTbl.tbl).where(ActFunc.func_id==strFuncId).all()
+    result = s.query(FuncTgtTbl,Tbl).join(FuncTgtTbl.tbl).where(FuncTgtTbl.func_id==strFuncId).all()
     setCodeByTable(ActFunc)
     setCodeByTable(FuncTgtTbl)
     return result
