@@ -14,7 +14,6 @@ def main():
 
 if __name__ == '__main__':
     str = "hello"
-    print(type(str))
     #try:
 #        main()
     # except Exception as e:

@@ -5,12 +5,17 @@ from sqlalchemy.orm import *
 import logging
 from datetime import date, timedelta, datetime
 
-engine = create_engine("mysql+pymysql://repwas:0(repwas)@rep.iptime.org/rep", echo=True, future=True)  # 엔진생성
-s = Session(engine)
-
 sqla_logger = logging.getLogger('sqlalchemy')
 sqla_logger.propagate = False
 sqla_logger.setLevel(level=logging.ERROR)
+
+# active_db_url = 'mysql+pymysql://repwas:0(repwas)@rep.iptime.org/rep'
+# db_log_file_name = 'db.log'
+# db_handler = logging.FileHandler(db_log_file_name)
+# db_handler.setLevel(logging.ERROR)
+# sqla_logger.addHandler(db_handler)
+engine = create_engine("mysql+pymysql://repwas:0(repwas)@rep.iptime.org/rep", echo=False, future=True)  # 엔진생성 #echo = print SQL
+s = Session(engine)
 
 def getEngine():  # 엔진생성
     return engine

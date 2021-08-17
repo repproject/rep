@@ -29,7 +29,7 @@ class Crawling:
 
     #[LV3/선택]rowCounter 설정값
     rowCounter = None       #Multi호출시 RowCounter Setting용
-    rowCountNumber = 1
+    rowCountNumber = 500
     rowCounterInterval = "N"
     MessageInterval = 10
     MessageUnit = "P"
@@ -268,7 +268,7 @@ class Crawling:
 
     def request(self,url):
         page = get_html(url,self.tableSvc.req_way_cd,self.dicParam)
-        #blog.debug(self.batchContext.getLogName() + " PRINT PAGE : " + str(page))
+        blog.debug(self.batchContext.getLogName() + " PRINT PAGE : " + str(page))
         return page
 
     def getFuncName(self):
