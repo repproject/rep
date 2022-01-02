@@ -18,7 +18,7 @@
     <rect>
      <x>20</x>
      <y>40</y>
-     <width>751</width>
+     <width>951</width>
      <height>321</height>
     </rect>
    </property>
@@ -88,7 +88,7 @@
     <rect>
      <x>20</x>
      <y>410</y>
-     <width>751</width>
+     <width>951</width>
      <height>301</height>
     </rect>
    </property>
@@ -164,7 +164,7 @@
   <widget class="QPushButton" name="btn_save">
    <property name="geometry">
     <rect>
-     <x>960</x>
+     <x>1160</x>
      <y>720</y>
      <width>56</width>
      <height>31</height>
@@ -187,10 +187,10 @@
     <string>추가</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>780</x>
+     <x>980</x>
      <y>40</y>
      <width>241</width>
      <height>571</height>

@@ -28,7 +28,7 @@ class KCOMBAT010(QWidget, KWidget, form_class) :
         self.btn_save.clicked.connect(self.save)
 
         Columns = ['job_id', 'job_nm', 'job_desc', 'job_cl_cd', 'ref1', 'ref2', 'ref3', 'ref4', 'ref5']
-        Widths = {'job_id':70, 'job_nm':150, 'job_desc':150, 'job_cl_cd':150, 'ref1':50, 'ref2':50, 'ref3':50, 'ref4':50, 'ref5':50}
+        Widths = {'job_id':120, 'job_nm':150, 'job_desc':150, 'job_cl_cd':150, 'ref1':50, 'ref2':50, 'ref3':50, 'ref4':50, 'ref5':50}
         self.twJob.setBasic(columns = Columns,widths = Widths,tableClass = Job)
 
         #set TableWidget by listTable
@@ -44,8 +44,8 @@ class KCOMBAT010(QWidget, KWidget, form_class) :
     def searchJobSchd(self):
         self.job_id = self.twJob.getTextByColName(self.twJob.currentRow(), "job_id")
 
-        Columns = ['JOB_SEQ','EXEC_PERD_CD','EXEC_MM','EXEC_DD','EXEC_HH','EXEC_MI','EXEC_DAY_CD','CYCL_MI','IMDI_EXEC_YN','USE_YN','DEL_YN']
-        Widths = {'JOB_SEQ':30,'EXEC_PERD_CD':50,'EXEC_MM':50,'EXEC_DD':50,'EXEC_HH':50,'EXEC_MI':50,'EXEC_DAY_CD':70,'CYCL_MI':50,'IMDI_EXEC_YN':50,'USE_YN':50,'DEL_YN':50}
+        Columns = ['job_seq','EXEC_PERD_CD','EXEC_MM','EXEC_DD','EXEC_HH','EXEC_MI','EXEC_DAY_CD','CYCL_MI','IMDI_EXEC_YN','USE_YN','DEL_YN']
+        Widths = {'job_seq':30,'EXEC_PERD_CD':80,'EXEC_MM':65,'EXEC_DD':65,'EXEC_HH':65,'EXEC_MI':65,'EXEC_DAY_CD':80,'CYCL_MI':65,'IMDI_EXEC_YN':115,'USE_YN':80,'DEL_YN':80}
         SetDic = {'job_id': self.job_id}
         self.twJobSchd.setBasic(columns = Columns,widths = Widths,tableClass = JobSchd,setDic=SetDic)
         self.twJobSchd.setListTable(self.getJobSchd(self.job_id))
@@ -59,11 +59,11 @@ class KCOMBAT010(QWidget, KWidget, form_class) :
     def searchJobSchdExec(self):
         strJobSeq = self.twJobSchd.getTextByColName(self.twJobSchd.currentRow(), "job_seq")
         self.JobSchdExec = self.getJobSchdExec(self.job_id,strJobSeq)
-        if self.JobSchdExec != None:
+        if isNotNull(self.JobSchdExec):
             setTable2Edit(self, self.JobSchdExec)
 
     def getJobSchdExec(self,strJobId,strJobSeq):
-        JobSchdExec = Server.COM.getJobSchdExec(strJobId,strJobSeq)
+        return Server.COM.getJobSchdExec(strJobId,int(strJobSeq))
 
     def addJob(self):
         try:
