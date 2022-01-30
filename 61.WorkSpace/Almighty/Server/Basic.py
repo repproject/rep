@@ -32,7 +32,6 @@ def mergeList(tableList):
 
 def mergeListNC(tableList):
     for table in tableList:
-        print(table)
         mergeNC(table)
 
 def insertList(tableList):

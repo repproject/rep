@@ -1,7 +1,6 @@
 from PyQt5.QtWidgets import QTableView
 import Server.COM
 from common.ui.comUi import *
-from common.ui.comPopUp import *
 import common.database.Relfect
 from UI._uiFiles.UIBasic import *
 from Server.Basic import *

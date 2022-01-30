@@ -40,19 +40,19 @@ class KCOMBAT020(QWidget, KWidget, form_class) :
         self.btn_save_func_tbl.clicked.connect(self.saveFuncTbl)
 
         Columns = ['job_id', 'job_nm', 'job_desc', 'job_cl_cd', 'use_yn', 'ref1', 'ref2', 'ref3', 'ref4', 'ref5']
-        Widths = {'job_id':70, 'job_nm':150, 'job_desc':150, 'job_cl_cd':150, 'use_yn':50, 'ref1':50, 'ref2':50, 'ref3':50, 'ref4':50, 'ref5':50}
+        Widths = {'job_id':100, 'job_nm':150, 'job_desc':150, 'job_cl_cd':150, 'use_yn':50, 'ref1':50, 'ref2':50, 'ref3':50, 'ref4':50, 'ref5':50}
         self.twJob.setBasic(columns = Columns,widths = Widths,tableClass = Job)
 
         self.searchJob()
 
         Columns = ['act_id', 'act_nm', 'act_desc', 'use_yn', 'ref1', 'ref2', 'ref3', 'ref4', 'ref5']
-        Widths = {'act_id':70, 'act_nm':150, 'act_desc':150, 'use_yn':50, 'ref1':50, 'ref2':50, 'ref3':50, 'ref4':50, 'ref5':50}
+        Widths = {'act_id':100, 'act_nm':150, 'act_desc':150, 'use_yn':50, 'ref1':50, 'ref2':50, 'ref3':50, 'ref4':50, 'ref5':50}
         self.twAct.setBasic(columns = Columns,widths = Widths,tableClass = Act)
 
         self.searchAct()
 
         Columns3 = ['func_id', 'func_nm', 'func_desc', 'func_cl_cd', 'src_func_nm', 'use_yn', 'ref1', 'ref2', 'ref3', 'ref4', 'ref5']
-        Widths3 = {'func_id':70, 'func_nm':150, 'func_desc':150, 'func_cl_cd':100, 'src_func_nm':200, 'use_yn':50, 'ref1':50, 'ref2':50, 'ref3':50, 'ref4':50, 'ref5':50}
+        Widths3 = {'func_id':100, 'func_nm':150, 'func_desc':150, 'func_cl_cd':100, 'src_func_nm':200, 'use_yn':50, 'ref1':50, 'ref2':50, 'ref3':50, 'ref4':50, 'ref5':50}
         self.twFunc.setBasic(columns = Columns3,widths = Widths3,tableClass = Func)
 
         self.searchFunc()
@@ -97,7 +97,8 @@ class KCOMBAT020(QWidget, KWidget, form_class) :
 
     def addAct(self):
         try:
-            self.twAct.addTWRow()
+            n = self.twAct.addTWRow()
+            self.twAct.setTextByColName(n, 'use_yn', 'Y')
         except : error()
 
     def saveAct(self):
@@ -145,8 +146,8 @@ class KCOMBAT020(QWidget, KWidget, form_class) :
             Widths3 = {'ACT_ID':100, 'JOB_ACT_REL_DESC':200, 'EXEC_SEQ':70, 'USE_YN':50}
             SetDic = {'job_id':strJobId}
             self.twJobAct.setBasic(columns=Columns3, widths=Widths3, tableClass=JobAct, setDic=SetDic)
-
             self.twJobAct.setListTable(self.getJobAct(strJobId))
+
             #Table Widget Setting
             self.twActFunc.removeAll()
             self.twFuncTbl.removeAll()
@@ -158,13 +159,27 @@ class KCOMBAT020(QWidget, KWidget, form_class) :
     def addJobAct(self):
         try:
             if self.preaddJobAct():
-                self.twJobAct.addTWRow()
+                act_id = self.twAct.getTextByColName(self.twAct.currentRow(),'act_id')
+                n = self.twJobAct.addTWRow()
+                self.twJobAct.setTextByColName(n, 'act_id', act_id)
+                self.twJobAct.setTextByColName(n, 'use_yn', 'Y')
+                if n == 0: self.twJobAct.setTextByColName(n, 'exec_seq', 1)
+                else : self.twJobAct.getTextByColName(n-1, 'exec_seq')
         except : error()
 
     def preaddJobAct(self):
         if self.twJob.currentRow() == -1:
             alert("Job을 선택해야합니다.")
             return False
+        if self.twAct.currentRow() == -1:
+            alert("Act를 선택해야합니다.")
+            return False
+        act_id = self.twAct.getTextByColName(self.twAct.currentRow(), 'act_id')
+        for i in range(self.twJobAct.rowCount()):
+            if self.twJobAct.getTextByColName(i, 'act_id') == act_id:
+                alert("중복된 Act 입니다.")
+                return False
+
         return True
 
     def saveJobAct(self):
@@ -256,19 +271,22 @@ class KCOMBAT020(QWidget, KWidget, form_class) :
             return False
         return True
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    # def addJobActSelection(self):
+    #     try :
+    #         if self.preAddJobActSelection():
+    #             act_id = self.twAct.getTextByColName(self.twAct.currentRow(),'act_id')
+    #             n = self.twJobAct.addTWRow()
+    #             self.twJobAct.setTextByColName(n,'act_id',act_id)
+    #     except: error()
+    #
+    # def preAddJobActSelection(self):
+    #     if self.twJob.currentRow() == -1:
+    #         alert("Job을 선택하셔야합니다.")
+    #         return False
+    #     if self.twAct.currentRow() == -1:
+    #         alert("Act를 선택하셔야합니다.")
+    #         return False
+    #     return True
 
 
 
@@ -335,11 +353,7 @@ class KCOMBAT020(QWidget, KWidget, form_class) :
                n = self.twSvcPasi.addTWRow()
         except : error()
 
-    def preAddSvc(self):
-        if self.twSite.currentItem() == None:
-            alert("사이트를 선택하셔야합니다.")
-            return False
-        return True
+
 
     def preAddSvcPasi(self):
         if self.twSvc.currentRow() == -1:
@@ -385,6 +399,12 @@ class KCOMBAT020(QWidget, KWidget, form_class) :
 
     def getSvc(self,strSiteCd):
         return Server.COM.getSvc(strSiteCd)
+
+
+
+    #def preJobActSelection(self):
+
+
 
 if __name__ == "__main__":
     #QApplication : 프로그램을 실행시켜주는 클래스

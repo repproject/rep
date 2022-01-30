@@ -160,8 +160,11 @@ def getTablePasiItem(strSvcId,strPasiId,strItemNm,strInOutClCd):
 def getJobSchd(strJobId):
     return s.query(JobSchd).filter_by(job_id=strJobId).all()
 
+def getJobSchdSeqExec():
+    return s.query(JobSchdExec,JobSchd,Job).join(JobSchdExec.jobschd).join(JobSchd.job).all()
+
 def getJobSchdExec(strJobId,strJobSeq):
-    return s.query(Job)
+    return s.query(JobSchdExec).filter_by(job_id=strJobId).filter_by(job_seq=strJobSeq).all()
 
 if __name__ == "__main__":
     #rslt = getPasiFinder({'searchText':""})
@@ -170,4 +173,5 @@ if __name__ == "__main__":
     #merge(rslt[0][0])
     #rslt = getiItemParmMulti('BBRegn','BBCmpx','O')
     #print(rslt)
+    print(getJobSchdExec('a',0))
     pass

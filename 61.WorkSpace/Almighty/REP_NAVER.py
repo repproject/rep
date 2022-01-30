@@ -1,16 +1,18 @@
 # -*- coding:utf-8 -*-
 # import REP_DAO
 
-from REP_DAO import *
-from common.common.URL import *
-import REP_MIG
+#from REP_DAO import *
+#from common.common.URL import *
+#import REP_MIG
 
 
-# def get_naver_realasset():
-#     url = 'http://land.naver.com/article/articleList.nhn?' \
-#           + 'rletTypeCd=A01&tradeTypeCd=A1&hscpTypeCd=A01%3AA03%3AA04' \
-#           + '&cortarNo=1168010600'\
-#           + '&page=' + str('1')
+def get_naver_realasset():
+    url = 'http://land.naver.com/article/articleList.nhn?' \
+          + 'rletTypeCd=A01&tradeTypeCd=A1&hscpTypeCd=A01%3AA03%3AA04' \
+          + '&cortarNo=1168010600'\
+          + '&page=' + str('1')
+
+    print(url)
 #
 #     r = requests.get(url)
 #     soup = BeautifulSoup(r.text, "html5lib")
@@ -50,22 +52,22 @@ import REP_MIG
 #     df = pd.DataFrame(value_list, columns=cols)
 #     return df
 
-def get_naver_realasset():
-    global json
-    dicLeglCodeList = fetch("selectLeglLv3Dong", "")
-    print(dicLeglCodeList)
+#def get_naver_realasset():
+#    global json
+#    dicLeglCodeList = fetch("selectLeglLv3Dong", "")
+#    print(dicLeglCodeList)
+#
+#    for dicLeglCode in dicLeglCodeList:
+#        time.sleep(NaverTimeStamp)
+#        url = NaverComplexListURL + dicLeglCode['LEGL_DONG_CD']
+#        print(url)
+#
+#        page = REP_MIG.get_html(url)
+#        print(page)
 
-    for dicLeglCode in dicLeglCodeList:
-        time.sleep(NaverTimeStamp)
-        url = NaverComplexListURL + dicLeglCode['LEGL_DONG_CD']
-        print(url)
-
-        page = REP_MIG.get_html(url)
-        print(page)
-
-        jsonPage = json.loads(page)
-        for json in jsonPage['complexList']:
-            print(json)
+#        jsonPage = json.loads(page)
+#        for json in jsonPage['complexList']:
+#            print(json)
 
             #print(sJSon['주택형일련번호'], sJSon['주택형'])
             #dicRetComplex = {'CMPX_IDF_ID': Complex['CMPX_IDF_ID'], 'HOUSE_TYP_SEQ': sJSon['주택형일련번호'],HOUSE_TYP_NM': sJSon['주택형']}
@@ -90,4 +92,11 @@ def get_naver_realasset():
 
 
 if __name__ == '__main__':
-    get_naver_realasset()
+    url = 'http://land.naver.com/article/articleList.nhn?' \
+          + 'rletTypeCd=A01&tradeTypeCd=A1&hscpTypeCd=A01%3AA03%3AA04' \
+          + '&cortarNo=1168010600'\
+          + '&page=' + str('1')
+
+    print(url)
+    #get_naver_realasset()
+    #get_naver_realasset()

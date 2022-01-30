@@ -307,7 +307,7 @@ class TableWidget(QTableWidget,TableListBind):
         if len(headers) > 0 : self.setHorizontalHeaderLabels(headers)
 
     def setListTable(self,listTable):
-        self.removeAll()
+        self.removeAllRows()
         super(TableWidget,self).setListTable(listTable)
         self.setByTableList()
 
@@ -424,11 +424,15 @@ class TableWidget(QTableWidget,TableListBind):
         else: return cw
 
     def removeAll(self):
+        self.removeAllRows()
+        self.setDic = {}
+
+    def removeAllRows(self):
         model = self.model()
         model.removeRow(0)
         for i in range(0,self.rowCount()):
             self.removeRow(0)
-        self.setDic = {}
+
 
     def mergeRow(self,n=None):
         if n == None: n = self.currentRow()
@@ -485,6 +489,7 @@ class TableWidget(QTableWidget,TableListBind):
             self.setRowValues(n)
 
     def getTextByColName(self,n,colName):
+        if n == -1: return False
         for m in range(0,self.columnCount()):
             if self.item(n,m).colName == colName:
                 return self.item(n,m).text()
@@ -497,6 +502,7 @@ class TableWidget(QTableWidget,TableListBind):
                     text = ""
                 else: text = str(text)
                 self.setCellText(n,m,text)
+                break
 
     def setCellText(self,n,m,text):
         cw = self.cellWidget(n, m)
