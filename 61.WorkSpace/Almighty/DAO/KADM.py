@@ -522,7 +522,7 @@ class ActFunc(Base,KTable):
     exec_seq = KColumn(Integer, nullable = False)
     use_yn = KColumn(String(1), nullable = False)
 
-    act = relationship('Act',primaryjoin = act_id==Act.act_id, foreign_keys = [Act.act_id], passive_deletes = True,overlaps="act")
+    act = relationship('Act',primaryjoin = act_id==Act.act_id, foreign_keys = [Act.act_id], passive_deletes = True,overlaps="act") #
     func = relationship('Func',primaryjoin = func_id==Func.func_id, foreign_keys = [Func.func_id], passive_deletes = True)
 
     def __init__(self, *args, **kwargs):

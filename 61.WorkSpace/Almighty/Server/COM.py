@@ -128,6 +128,10 @@ def getiItemParm(strSvcId,strPasiId,InOutClCd):
     setCodeByTable([SvcPasiItem,TblCol,Tbl])
     return s.query(SvcPasiItem,TblCol,Tbl).filter_by(svc_id=strSvcId).filter(SvcPasiItem.pasi_id.in_([strPasiId,'default'])).filter_by(in_out_cl_cd=InOutClCd).all()
 
+def getiItemParm2(strSvcId,strPasiId,InOutClCd):
+    setCodeByTable([SvcPasiItem,TblCol,Tbl])
+    return s.query(SvcPasiItem,TblCol,Tbl).outerjoin(SvcPasiItem.tblcol).outerjoin(TblCol.tbl).where(and_(SvcPasiItem.pasi_id.in_([strPasiId,'default']),SvcPasiItem.svc_id == strSvcId,SvcPasiItem.in_out_cl_cd == InOutClCd)).all()
+
 def FuncTbl(strSvcId,strPasiId,InOutClCd):
     setCodeByTable([SvcPasiItem,TblCol,Tbl])
     return s.query(SvcPasiItem,TblCol,Tbl).outerjoin(SvcPasiItem.tblcol).outerjoin(TblCol.tbl).where(and_(SvcPasiItem.pasi_id.in_([strPasiId,'default']),SvcPasiItem.svc_id == strSvcId,SvcPasiItem.in_out_cl_cd == InOutClCd)).all()
@@ -171,7 +175,7 @@ if __name__ == "__main__":
     #rslt = getMenuLv(1)
     #print(rslt[0][0])
     #merge(rslt[0][0])
-    #rslt = getiItemParmMulti('BBRegn','BBCmpx','O')
-    #print(rslt)
-    print(getJobSchdExec('a',0))
+    rslt = getiItemParmMulti('BBRegn','BBCmpx','O')
+    print(rslt)
+    #print(getJobSchdExec('a',0))
     pass

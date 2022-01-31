@@ -120,11 +120,13 @@ class Crawling:
             self.setRowCounter(self.Strd.__len__())
         else:   #기준값이 없는경우
             self.setRowCounter(1) #ROW Counter는 1개
+
         self.outParam = Server.COM.getiItemParm2(self.svcId, self.pasiId, 'O')
         self.outMultiParam = Server.COM.getiItemParmMulti(self.svcId, self.pasiId, 'O')
         a = copy.deepcopy(self.outParam)
         b = copy.deepcopy(self.outMultiParam)
         self.outAllTblParam = a + b
+        #print(self.outAllTblParam)
         for param in self.outAllTblParam:
             if param[0].tbl_nm == 'm' and param[1] == None: #Multi용 테이블 리스트를 제거
                 self.outAllTblParam.remove(param)
