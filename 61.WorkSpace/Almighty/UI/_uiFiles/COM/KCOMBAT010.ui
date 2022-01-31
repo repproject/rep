@@ -59,6 +59,11 @@
    </column>
    <column>
     <property name="text">
+     <string>사용여부</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
      <string>참조1</string>
     </property>
    </column>

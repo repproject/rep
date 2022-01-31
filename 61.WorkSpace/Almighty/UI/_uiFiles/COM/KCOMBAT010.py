@@ -27,8 +27,8 @@ class KCOMBAT010(QWidget, KWidget, form_class) :
         self.btn_add_jobSchd.clicked.connect(self.addJobSchd)
         self.btn_save.clicked.connect(self.save)
 
-        Columns = ['job_id', 'job_nm', 'job_desc', 'job_cl_cd', 'ref1', 'ref2', 'ref3', 'ref4', 'ref5']
-        Widths = {'job_id':120, 'job_nm':150, 'job_desc':150, 'job_cl_cd':150, 'ref1':50, 'ref2':50, 'ref3':50, 'ref4':50, 'ref5':50}
+        Columns = ['job_id', 'job_nm', 'job_desc', 'job_cl_cd', 'use_yn', 'ref1', 'ref2', 'ref3', 'ref4', 'ref5']
+        Widths = {'job_id':120, 'job_nm':150, 'job_desc':150, 'job_cl_cd':150, 'use_yn' : 50, 'ref1':50, 'ref2':50, 'ref3':50, 'ref4':50, 'ref5':50}
         self.twJob.setBasic(columns = Columns,widths = Widths,tableClass = Job)
 
         #set TableWidget by listTable
