@@ -241,7 +241,7 @@ class KCOMBAT020(QWidget, KWidget, form_class) :
             SetDic = {'func_id':strFuncId}
             self.twFuncTbl.setBasic(columns=Columns3, widths=Widths3, tableClass=FuncTgtTbl, setDic=SetDic)
 
-            self.twFuncTbl.setListTable(self.getFuncTbl(strFuncId))
+            self.twFuncTbl.setListTable(self.FuncTbl(strFuncId))
             #Table Widget Setting
         except : error()
 

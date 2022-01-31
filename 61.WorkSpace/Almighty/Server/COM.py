@@ -128,7 +128,7 @@ def getiItemParm(strSvcId,strPasiId,InOutClCd):
     setCodeByTable([SvcPasiItem,TblCol,Tbl])
     return s.query(SvcPasiItem,TblCol,Tbl).filter_by(svc_id=strSvcId).filter(SvcPasiItem.pasi_id.in_([strPasiId,'default'])).filter_by(in_out_cl_cd=InOutClCd).all()
 
-def getiItemParm2(strSvcId,strPasiId,InOutClCd):
+def FuncTbl(strSvcId,strPasiId,InOutClCd):
     setCodeByTable([SvcPasiItem,TblCol,Tbl])
     return s.query(SvcPasiItem,TblCol,Tbl).outerjoin(SvcPasiItem.tblcol).outerjoin(TblCol.tbl).where(and_(SvcPasiItem.pasi_id.in_([strPasiId,'default']),SvcPasiItem.svc_id == strSvcId,SvcPasiItem.in_out_cl_cd == InOutClCd)).all()
 
