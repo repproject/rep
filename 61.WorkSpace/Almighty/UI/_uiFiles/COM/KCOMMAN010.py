@@ -18,6 +18,8 @@ import os
 pgm_id = 'KCOMMAN010'
 pgm_nm = "form"
 form_class = uic.loadUiType(pgm_id + ".ui")[0]
+path = os.getcwd()
+print(path)
 basic_ui_route = 'UI._uiFiles.COM.'
 user_id = 1000000001
 

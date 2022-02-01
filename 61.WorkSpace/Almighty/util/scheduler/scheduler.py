@@ -1,3 +1,7 @@
+import sys
+print(sys.path)
+
+
 from apscheduler.schedulers.background import BackgroundScheduler
 from Server.ADM import *
 from common.Batch.Basic import *
@@ -37,13 +41,10 @@ def doSchedule():    #JOB수행
 
     sched.start()
 
+    print(blog)
+    blog.info("REP Scheduler Start...")
     while True:
-        print("Running...")
         time.sleep(1)
 
-def test():
-    sendTelegramMessage('hi')
-
 if __name__ == '__main__':
-    #test()
     doSchedule()
