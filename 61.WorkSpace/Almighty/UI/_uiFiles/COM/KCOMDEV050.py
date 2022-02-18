@@ -178,7 +178,11 @@ class KCOMDEV050(QWidget, KWidget, form_class) :
             #print(self.edit_url.text())
             url = self.edit_url.text()
             page = get_html(url, 'GET')
-            dPage = page.decode('euc-kr')
+            try:
+                dPage = page.decode('euc-kr')
+            except UnicodeDecodeError:
+                dPage = page
+                print(dPage)
             setTreeWidgetByXML(self.twRslt,dPage)
             self.twRslt.setSelectionMode(PyQt5.QtGui.QAbstractView.MultiSelection)
 
