@@ -2,6 +2,7 @@ from common.database.repSqlAlchemy import *
 import common.ui.comUi
 from DAO.KADM import *
 from DAO.KMIG import *
+from DAO.KRED import *
 from sqlalchemy.sql.expression import func
 from datetime import datetime, timedelta
 
@@ -26,6 +27,13 @@ def getBBCmpxTypCrawl():
                                                                        BbCmpxTyp.bb_cmpx_typ_seq == BbCmpxTypMonPrc.bb_cmpx_typ_seq,
                                                                        BbCmpxTypMonPrc.chg_dtm > strd).exists())).all()
 
+def getLegalDongLv2():
+    rslt = s.query(LeglDong, StdYymm).filter(LeglDong.lv_cd == '2', LeglDong.legl_dong_cd == '4145000000',
+                                      StdYymm.std_yymm < '2023').all()
+    for t in rslt:
+        t[0].legl_dong_cd = t[0].legl_dong_cd[:5]
+    return rslt
+
 # def test():
 #     #BbCmpx_alias = aliased(BbCmpx)
 #
@@ -41,6 +49,6 @@ def getBBCmpxTypCrawl():
 if __name__ == "__main__":
     #rslt = getPasiFinder({'searchText':""})
     #rslt = getBBCmpxCrawl()
-    rslt = getBBCmpxCrawl()
+    rslt = getLegalDongLv2()
     print(rslt)
     pass
