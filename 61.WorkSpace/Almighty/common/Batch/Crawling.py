@@ -102,7 +102,7 @@ class Crawling:
     def startLog(self):
         #기본로그 출력
         global blog
-        blog = Logger(LogName=self.batchContext.getLogName(), Level="DEBUG", name = "Batch").logger
+        blog = Logger(LogName=self.batchContext.getLogName(), Level="INFO", name = "Batch").logger
         blog.info(self.batchContext.getLogName()+"####################START[" + self.batchContext.getFuncName() + "]####################")
         sendTelegramMessage("START[" + self.batchContext.getFuncName() + "]")
 
@@ -244,7 +244,8 @@ class Crawling:
 
     def convertPage(self,page):
         if self.tableSvcPasi.pasi_way_cd == 'SOUP':
-            return BeautifulSoup(page, 'html.parser')
+            #return BeautifulSoup(page, 'html.parser')
+            return BeautifulSoup(page, 'lxml-xml')
         else:
             print('convertPage error')
             raise Exception
@@ -272,7 +273,8 @@ class Crawling:
                 dicTableList[tb[2].cls_nm][tb[1].col_nm] = strd[tb[0].item_nm]
             else:
                 #기준정보가 아닌 경우 page에서 값을 가져온다.
-                dicTableList[tb[2].cls_nm][tb[1].col_nm] = self.getParsetext(tb[0],p)
+                str = self.getParsetext(tb[0],p)
+                dicTableList[tb[2].cls_nm][tb[1].col_nm] = str
         return getListTableFromDic(dicTableList)
 
     def getParsetext(self,t,p):
@@ -283,7 +285,11 @@ class Crawling:
         :return:
         """
         if self.tableSvcPasi.pasi_way_cd == 'SOUP':
-            str = p.find(t.item_nm).text
+            try:
+                str = p.find(t.item_nm).text
+            except AttributeError as e:
+                str = None
+                blog.debug("Attribute Not found : item :[" + t.item_nm + "]")
             #BeautifulShop의 경우 아래의 함수로 값을 가져온다.
             if isNotNull(t.excp_str):
                 excpList = t.excp_str.split("||")
@@ -351,7 +357,6 @@ class DataStrd:
         return self.listStrdData[self.index]
 
 if __name__ == '__main__':
-    batchContext = simpleBatchContext("CrawlingBBCmpxTypPrice")
-    CrawlObject = Crawling('BBRegnLv1','BBRegn',batchContext)
-    #CrawlObject = Crawling('BBMarketPrice', 'BBMarketPrice', batchContext)
+    batchContext = simpleBatchContext("AptTradeDtl")
+    CrawlObject = Crawling('AptTradeDtl','AptTradeDtl',batchContext)
     CrawlObject.run()

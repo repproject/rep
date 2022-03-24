@@ -5,6 +5,8 @@ from DAO.KMIG import *
 from DAO.KRED import *
 from sqlalchemy.sql.expression import func
 from datetime import datetime, timedelta
+import copy
+
 
 def getBBLv1Regn():
     return s.query(BbLv1Regn).all()
@@ -28,11 +30,14 @@ def getBBCmpxTypCrawl():
                                                                        BbCmpxTypMonPrc.chg_dtm > strd).exists())).all()
 
 def getLegalDongLv2():
-    rslt = s.query(LeglDong, StdYymm).filter(LeglDong.lv_cd == '2', LeglDong.legl_dong_cd == '4145000000',
-                                      StdYymm.std_yymm < '2023').all()
-    for t in rslt:
+    t = datetime.now()
+    ymd = str(t.year) + str(t.month).zfill(2) + str(t.day).zfill(2)
+    rslt = s.query(LeglDong, StdYymm).filter(LeglDong.lv_cd == '2', StdYymm.std_yymm <= ymd, StdYymm.std_yymm >= '200601').order_by(StdYymm.std_yymm).all() #실거래가 시행이 06년 #'200601'
+    #, LeglDong.legl_dong_cd == '4145000000'
+    rslt2 = copy.deepcopy(rslt)
+    for t in rslt2:
         t[0].legl_dong_cd = t[0].legl_dong_cd[:5]
-    return rslt
+    return rslt2
 
 # def test():
 #     #BbCmpx_alias = aliased(BbCmpx)
@@ -49,6 +54,7 @@ def getLegalDongLv2():
 if __name__ == "__main__":
     #rslt = getPasiFinder({'searchText':""})
     #rslt = getBBCmpxCrawl()
+
     rslt = getLegalDongLv2()
     print(rslt)
     pass
