@@ -212,7 +212,12 @@ class KCOMBAT020(QWidget, KWidget, form_class) :
     def addActFunc(self):
         try:
             if self.preaddActFunc():
-                self.twActFunc.addTWRow()
+                func_id = self.twFunc.getTextByColName(self.twFunc.currentRow(),'func_id')
+                n = self.twActFunc.addTWRow()
+                self.twActFunc.setTextByColName(n, 'func_id', func_id)
+                self.twActFunc.setTextByColName(n, 'use_yn', 'Y')
+                if n == 0: self.twActFunc.setTextByColName(n, 'exec_seq', 1)
+                else : self.twActFunc.getTextByColName(n-1, 'exec_seq')
         except : error()
 
     def preaddActFunc(self):
@@ -241,7 +246,7 @@ class KCOMBAT020(QWidget, KWidget, form_class) :
             SetDic = {'func_id':strFuncId}
             self.twFuncTbl.setBasic(columns=Columns3, widths=Widths3, tableClass=FuncTgtTbl, setDic=SetDic)
 
-            self.twFuncTbl.setListTable(self.FuncTbl(strFuncId))
+            self.twFuncTbl.setListTable(self.getFuncTbl(strFuncId))
             #Table Widget Setting
         except : error()
 
