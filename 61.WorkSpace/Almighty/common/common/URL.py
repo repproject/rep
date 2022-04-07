@@ -8,6 +8,8 @@ import urllib
 import xml.etree.ElementTree as ET
 from PyQt5.QtWidgets import *
 from common.common.Func import *
+import json
+from bs4 import BeautifulSoup
 
 KB부동산과거시세조회URL = "http://nland.kbstar.com/quics?page=B047172&cc=b028364:b057487"
 KB부동산과거시세조회Json = "http://nland.kbstar.com/quics?page=&QAction=763359&RType=json"
@@ -21,26 +23,57 @@ NaverTimeStamp = 1.1
 NaverComplexListURL = "https://new.land.naver.com/api/regions/complexes?cortarNo="
 NaverComplexDtlURL = "https://new.land.naver.com/api/complexes/"
 
+def setTreeWidgetByjson(tw, page):
+    """
+        json으로 이루어진 page를 TreeWidget으로 출력한다.
+    :param tw: 대상 qTableWidget
+    :param page: json page
+    :return:
+    """
+    soup = BeautifulSoup(page, 'html.parser')   #파싱을 위한 객체화
+    l = str(soup)
+    j = json.loads(l)                           #json 객체로 로딩
+
+    twRoot = tw.invisibleRootItem()
+    setTreeWidgetItemByjson(twRoot,j)
+
+def setTreeWidgetItemByjson(twItem,j):
+    """
+        json타입의 data를 TreeWidgetItem으로 생성하여
+        TreeWidget에 추가한다.
+    :param twItem: QTableWidgetItem
+    :param j: 파싱중인 json data
+    :return:
+    """
+
+    if str(type(j)) == "<class 'dict'>": #dictinoray 타입인 경우
+        for k in j.keys():
+            item = QTreeWidgetItem()
+            item.setText(0, "<" + k + ">")
+            item.setText(1, str(j[k]))
+            twItem.addChild(item)
+            item.setExpanded(True)
+            if type(j[k]) != "<class 'str'>" and str(type(j[k])) != "<class 'bool'>" and str(type(j[k])) != "<class 'int'>":
+                print("setTreeWidgetItemByjson start...")
+                setTreeWidgetItemByjson(item,j[k])
+    elif str(type(j)) == "<class 'list'>":  #list 타입인 경우
+        i=0
+        for j2 in j:
+            item = QTreeWidgetItem()
+            item.setText(0, "[" + str(i) + "]")
+            item.setText(1, str(j2))
+            twItem.addChild(item)
+            item.setExpanded(True)
+            if str(type(j2)) == "<class 'list'>" or str(type(j2)) == "<class 'dict'>":
+                print("setTreeWidgetItemByjson start...")
+                setTreeWidgetItemByjson(item,j2)
+            i = i + 1
+    return True
 
 def setTreeWidgetByXML(tw, page):
     pageRoot = ET.fromstring(page)
     twRoot = tw.invisibleRootItem()
-
     setTreeWidgetItemByElement(twRoot, pageRoot, level = 0)
-
-    # for child in root:
-    #     #print(type(child))
-    #     #print(child.items())
-    #     for cchild in child:
-    #         print(len(cchild))
-    #         for ccchild in cchild:
-    #             if ccchild == None:
-    #                 print('None')
-    #             print('#######################')
-    #             print(cchild.tag)
-    #             print(cchild.text)
-    #             pass
-    # pass
 
 def setTreeWidgetItemByElement(twItem,element,level):
     #print(element.tag, element.attrib, element.text)
@@ -52,13 +85,6 @@ def setTreeWidgetItemByElement(twItem,element,level):
     item.setText(1, element.text)
     twItem.addChild(item)
     item.setExpanded(True)
-
-    #setting Value
-    # if isNotNull(element.text.replace(' ','').replace('\n','').replace('\t','')):
-    #     valueItem = QTreeWidgetItem()
-    #     valueItem.setText(0,element.text)
-    #     item.addChild(valueItem)
-    #     valueItem.__setattr__('type', 'tag')
 
     for e in element:
         setTreeWidgetItemByElement(item,e,0)
