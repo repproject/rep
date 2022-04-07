@@ -67,6 +67,7 @@ class Crawling:
             self.pasiId = strPasiId
             self.svcId = strSvcId
 
+            #입력받은 pasi_id로 Pasing 정보를 가져옴
             rslt = Server.COM.getPasi(self.pasiId, self.svcId)
             if rslt == None:
                 blog.error(self.batchContext.getLogName() + 'Pasi is not registered : [pasi_id : ' + self.pasiId + "][svc_id : " + self.svcId + "]")
@@ -108,6 +109,12 @@ class Crawling:
 
     #Lv2 구현
     def ready(self):
+        """
+            1. 파싱정보에 등록된 인자로드함수로 기준정보를 가져옴
+            2. 파라미터 및 코드실행 기준정보를 가져옴.
+
+        :return:
+        """
         self.dicPasi = getDicFromListTable(Server.COM.getPasi(self.pasiId,self.svcId))[0]
         if self.dicPasi == None :   #기준값이 없는경우(1번 크롤링)
             blog.error(self.batchContext.getLogName() + "Pasi 정보가 없습니다.")
@@ -115,8 +122,8 @@ class Crawling:
         self.dicStrd = self.getListStrdDataList()
         #rowCounter 세팅
         if isNotNull(self.Strd):    #기준값이 있는경우
-            blog.info(self.batchContext.getLogName()+ "총 건수 : " + str(self.Strd.__len__()))
-            sendTelegramMessage(self.batchContext.getFuncName() + "총 건수 : " + str(self.Strd.__len__()))
+            blog.info(self.batchContext.getLogName()+ "배치 수행전 예상 호출 총 건수 : " + str(self.Strd.__len__()))
+            sendTelegramMessage(self.batchContext.getFuncName() + "배치 수행전 예상 호출 총 건수 : " + str(self.Strd.__len__()))
             self.setRowCounter(self.Strd.__len__())
         else:   #기준값이 없는경우
             self.setRowCounter(1) #ROW Counter는 1개
@@ -132,11 +139,17 @@ class Crawling:
                 self.outAllTblParam.remove(param)
         self.crawlCdExec = Server.COM.getCrawlCdExec(self.tableSvcPasi.svc_id, self.tableSvcPasi.pasi_id, 0)
         if isNull(self.crawlCdExec):
-            blog.error(self.batchContext.getLogName() + "코드실행 정보가 없습니다. 코드실행관리에서 등록하세요")
-            raise TypeError
+            blog.info(self.batchContext.getLogName() + "코드실행 정보가 없습니다. 코드실행관리에서 등록하세요")
+            sendTelegramMessage(self.batchContext.getFuncName() + "코드실행 정보가 없습니다. 코드실행관리에서 등록하세요")
+            #raise TypeError
 
     # Lv2 구현
     def crawl(self):
+        """
+        1. 기준 정보를 Inparam 매핑정보를 사용해 url를 조합한다.
+        2. 조합한 url을 호출한다.
+        :return:
+        """
         if self.dicStrd != None:
             for sd in self.dicStrd:
                 #item에 컬럼값이 등록되면 기준Data 세팅
@@ -176,6 +189,12 @@ class Crawling:
             gc.collect()
 
     def makeURL(self, dicStrdData=None, reCnt=None):
+        """
+        self,dicParam = url get방식의 파라미터를 가지고 있는 Dictionary
+        :param dicStrdData: url기준정보를 가지고 있는 dictionary
+        :param reCnt: 같은 url을 여러번 크롤링 하는 경우 (page가 있는 경우)
+        :return:
+        """
         for tb in self.tableSvcPasiItemIn:
             if isNotNull(tb[0].tbl_nm) and isNotNull(tb[0].col_nm):
                 self.dicParam[tb[0].item_nm]=dicStrdData[tb[0].col_nm]
@@ -219,7 +238,7 @@ class Crawling:
 
         for p in pasiPage:
             if self.tableSvcPasi.pasi_way_cd == 'SOUP':
-                listTable = self.getTableListByOutMapping(self.svcId, self.pasiId, p,strd)
+                listTable = self.getTableListByOutMapping(self.svcId, self.pasiId, p, strd)
                 for tb in listTable:
                     delattr(tb,'reg_user_id')
                     delattr(tb,'reg_dtm')
