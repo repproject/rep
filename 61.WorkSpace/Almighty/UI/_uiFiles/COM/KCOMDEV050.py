@@ -4,6 +4,8 @@ import common.database.Relfect
 from DAO.KADM import *
 from common.common.URL import *
 import PyQt5.QtGui
+from Server.Basic import *
+import json
 
 pgm_id = 'KCOMDEV050'
 pgm_nm = '파싱관리'
@@ -13,6 +15,7 @@ class KCOMDEV050(QWidget, KWidget, form_class) :
     result = None
     svc_id = None
     pasi_id = None
+    tbl_nm = None
 
     def __init__(self):
         try:
@@ -32,7 +35,8 @@ class KCOMDEV050(QWidget, KWidget, form_class) :
         self.btn_del_out.clicked.connect(self.delOut)
         self.btn_multiCol.clicked.connect(self.popMultiCol)
         self.btn_search_url.clicked.connect(self.searchRequest)
-        self.addItem.clicked.connect(self.addItemfromRslt)
+        self.addItem.clicked.connect(self.addItemfromRslt) #조회결과로 OUT추가
+        self.btn_add_table.clicked.connect(self.addTable)
 
     def findPasi(self):
         try:
@@ -51,6 +55,30 @@ class KCOMDEV050(QWidget, KWidget, form_class) :
                 setDic2Edit(self,result)
                 self.search()
         except: error()
+
+    def addTable(self):
+        try:
+            dicParam = {}
+            dicParam['Columns'] = ['tbl_nm','tbl_desc','cls_nm']
+            dicParam['Headers'] = ['테이블명', '테이블설명','클래스명']
+            dicParam['Widths'] = {'tbl_nm' : 100, 'tbl_desc' : 100, 'cls_nm' : 70}
+            dicParam['tableClass'] = DAO.KADM.Tbl
+            dicParam['Function'] = 'Server.ADM.getTblLst'
+            result = finderPop(self,dicParam)
+            if isNotNull(result):
+                self.result = result
+                self.tbl_nm = result['tbl_nm']
+                self.getTblColLst()
+        except: error()
+
+    def getTblColLst(self):
+        colLst = Server.ADM.getTblColLst(self.tbl_nm)
+        for col in colLst:
+            n = self.twOut.addTWRow()
+            self.twOut.setTextByColName(n, "tbl_nm", self.tbl_nm)
+            self.twOut.setTextByColName(n, "col_nm", col.col_nm)
+            self.twOut.setTextByColName(n, "pasi_id", self.pasi_id)
+        return True
 
     def popMultiCol(self):
         try:
@@ -83,7 +111,6 @@ class KCOMDEV050(QWidget, KWidget, form_class) :
                 self.twIn.setBasic(columns = Columns, widths = Widths, tableClass = SvcPasiItem, setDic = SetDic)
                 self.twIn.setListTable(self.getSvcPasiItem(self.svc_id,self.pasi_id,'I'))
 
-
                 Columns2 = ['PASI_ID','ITEM_NM', 'ITEM_VAL', 'ITEM_SRC_CL_CD', 'TBL_NM', 'COL_NM', 'EXCP_STR' , 'ITEM_DESC']
                 Widths2 = {'PASI_ID':100,'ITEM_NM':120, 'ITEM_VAL':100, 'ITEM_SRC_CL_CD':70, 'TBL_NM':150, 'COL_NM':150, 'EXCP_STR':70, 'ITEM_DESC':200}
                 SetDic2 = {'svc_id': self.svc_id, 'in_out_cl_cd': 'O'}
@@ -111,7 +138,6 @@ class KCOMDEV050(QWidget, KWidget, form_class) :
                 self.twIn.setColumnLower("tbl_nm")
                 self.twOut.setColumnLower("col_nm")
                 self.twOut.setColumnLower("tbl_nm")
-
                 self.twIn.mergeList()
                 self.twOut.mergeList()
         except : error()
@@ -175,21 +201,18 @@ class KCOMDEV050(QWidget, KWidget, form_class) :
 
     def searchRequest(self):
         try:
-            #print(self.edit_url.text())
             url = self.edit_url.text()
             page = get_html(url, 'GET')
             try:
                 dPage = page.decode('euc-kr')
             except UnicodeDecodeError:
                 dPage = page
-                print(dPage)
-            setTreeWidgetByXML(self.twRslt,dPage)
-            self.twRslt.setSelectionMode(PyQt5.QtGui.QAbstractView.MultiSelection)
 
-            #x = etree.parse(rslt)
-            #etree.tostring(x, pretty_print=True)
-            #print(x)
-            #self.textEditResult.setText(str(rslt)[2:])
+            if dPage[0] == '<': #xml판단 조건문
+                setTreeWidgetByXML(self.twRslt,dPage)
+            else:               #아니면 json 이라고 간주
+                setTreeWidgetByjson(self.twRslt, dPage)
+            self.twRslt.setSelectionMode(PyQt5.QtGui.QAbstractView.MultiSelection)
         except Exception as e :
             print(traceback.format_exc())
 
@@ -202,9 +225,17 @@ class KCOMDEV050(QWidget, KWidget, form_class) :
     def addItemfromRslt(self):
         if self.preAddItemfromRslt():
             items = self.twRslt.selectedItems()
+
+            n2 = self.twOut.currentRow()
+
             for item in items:
-                n = self.addOut()
+                if n2 == -1: #선택된 ROW가 없는 경우 신규 ROW 추가
+                    n = self.addOut()
+                else:
+                    n = n2
                 self.twOut.setTextByColName(n, "item_nm", item.text(0)[1:-1])
+
+
 
     def preAddItemfromRslt(self):
         items = self.twRslt.selectedItems()
