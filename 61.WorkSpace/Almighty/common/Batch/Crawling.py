@@ -231,11 +231,12 @@ class Crawling:
         pass
 
     def reCurParse(self,page,cdex,strd):
-        #코드실행에 등록된 명령대로 파싱
+        #코드실행에 등록된 명령대로 1차 파싱
         if cdex[1].cd_exec_cl_cd == "F": #Function
             strExec = cdex[1].exec_cd_cnts + "(" + '"' + str(cdex[0].exec_parm_val) + '"' + ")"
             pasiPage = eval(strExec)
 
+        #단위 페이지를 파싱하여 INSERT
         for p in pasiPage:
             if self.tableSvcPasi.pasi_way_cd == 'SOUP':
                 listTable = self.getTableListByOutMapping(self.svcId, self.pasiId, p, strd)
@@ -271,10 +272,10 @@ class Crawling:
 
     def getTableListByOutMapping(self,strSvcId,strPasiId,p,strd):
         r"""
-
-        :param strSvcId:
-        :param strPasiId:
-        :param p:
+            단위 페이지를 파싱한다.
+        :param strSvcId: 서비스ID
+        :param strPasiId: 파싱ID
+        :param p: page
         :param strd:
         :return: TableList Type
         """
