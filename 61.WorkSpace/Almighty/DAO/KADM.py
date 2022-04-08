@@ -696,3 +696,37 @@ class ComCdDtl(Base,KTable):
 
     def __repr__(self):
         return "<ComCdDtl('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.com_cd_grp), str(self.com_cd), str(self.com_cd_nm), str(self.com_cd_desc), str(self.prnt_seq), str(self.eff_sta_ymd), str(self.eff_end_ymd), str(self.ref1), str(self.ref2), str(self.ref3), str(self.ref4), str(self.ref5) + KTable.__repr__(self))
+
+class StdYymm(Base,KTable):
+    __tablename__ = 'kadm_std_yymm'
+
+    std_yymm = KColumn(String(6), primary_key = True, nullable = False)
+
+    def __init__(self, *args, **kwargs):
+        KTable.__init__(self)
+        self.std_yymm =  kwargs.pop('std_yymm')
+
+    def __repr__(self):
+        return "<StdYymm('%s'" % (str(self.std_yymm) + KTable.__repr__(self))
+
+class TlgrUser(Base,KTable):
+    __tablename__ = 'kadm_tlgr_user'
+
+    tlgr_user_id = KColumn(String(10), primary_key = True, nullable = False)
+    tlgr_user_nm = KColumn(String(50), nullable = True)
+    rcv_tgt_yn = KColumn(String(1), nullable = False)
+    send_cl_cd = KColumn(String(2), nullable = True, kcom_cd_domain = True, kcom_cd_grp = '')
+    seq = KColumn(Integer, nullable = True)
+
+
+    def __init__(self, *args, **kwargs):
+        KTable.__init__(self)
+        self.tlgr_user_id =  kwargs.pop('tlgr_user_id')
+        self.tlgr_user_nm =  kwargs.pop('tlgr_user_nm',None)
+        self.rcv_tgt_yn =  kwargs.pop('rcv_tgt_yn')
+        self.send_cl_cd =  kwargs.pop('send_cl_cd','M')
+        self.seq =  kwargs.pop('seq','100')
+
+    def __repr__(self):
+        return "<TlgrUser('%s', '%s', '%s', '%s', '%s'" % (str(self.tlgr_user_id), str(self.tlgr_user_nm), str(self.rcv_tgt_yn), str(self.send_cl_cd), str(self.seq) + KTable.__repr__(self))
+
