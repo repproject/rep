@@ -32,29 +32,18 @@ def getBBCmpxTypCrawl():
 def getLegalDongLv2():
     t = datetime.now()
     ymd = str(t.year) + str(t.month).zfill(2) + str(t.day).zfill(2)
-    rslt = s.query(LeglDong, StdYymm).filter(LeglDong.lv_cd == '2', StdYymm.std_yymm <= ymd, StdYymm.std_yymm >= '200601').order_by(StdYymm.std_yymm).all() #실거래가 시행이 06년 #'200601'
-    #, LeglDong.legl_dong_cd == '4145000000'
+    rslt = s.query(LeglDong, StdYymm).filter(LeglDong.lv_cd == '2', StdYymm.std_yymm <= ymd,StdYymm.std_yymm >= '202202',LeglDong.legl_dong_cd=='4145000000').order_by(
+        StdYymm.std_yymm).all()  # 실거래가 시행이 06년 #'200601'
     rslt2 = copy.deepcopy(rslt)
     for t in rslt2:
         t[0].legl_dong_cd = t[0].legl_dong_cd[:5]
     return rslt2
 
-# def test():
-#     #BbCmpx_alias = aliased(BbCmpx)
-#
-#     now = datetime.now()
-#     strd = now - timedelta(days = 2)
-#
-#     return s.query(BbCmpx) \
-#         .filter(session.query(BbCmpxTyp) \
-#                 .filter(BbCmpx.bb_cmpx_id != BbCmpxTyp.bb_cmpx_id) \
-#                 .filter(BbCmpxTyp.chg_dtm < strd) \
-#                 .exists())
+def getLegalDongLv3():
+    rslt = s.query(LeglDong).filter(LeglDong.lv_cd == '3').order_by(LeglDong.legl_dong_cd).all()
+    return rslt
 
 if __name__ == "__main__":
-    #rslt = getPasiFinder({'searchText':""})
-    #rslt = getBBCmpxCrawl()
-
     rslt = getLegalDongLv2()
     print(rslt)
     pass
