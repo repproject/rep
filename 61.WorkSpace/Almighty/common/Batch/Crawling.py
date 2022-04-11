@@ -17,6 +17,7 @@ import Server.COM
 import time
 import copy
 import os
+import json
 
 #LV1 크롤링 클래스
 class Crawling:
@@ -163,7 +164,7 @@ class Crawling:
                     url = self.makeURL(sd,reCnt)
                     blog.info("CALL URL : " + url)
                     page = self.request(url)
-                    cPage = self.convertPage(page)
+                    cPage = self.convertPage(page)  #page를 객체화(BeutifulShop)형태로 변경
                     self.selfSaveDB(cPage,sd,url)
                     time.sleep(self.sleepStamp)
                     if self.isReCrwal(url,page,self.dicStrd,reCnt) == False:
@@ -209,14 +210,15 @@ class Crawling:
 
     def report(self):
         # Report
-        dicNewRowList = REP_DAO.fetch(self.sqlReportFetchId, "")
-        blog.info(self.batchContext.getLogName() + "####################Batch Report####################")
-        sendTelegramMessage("[Batch Report]")
-        blog.info(self.batchContext.getLogName() + "신규 건 수  : " + str(dicNewRowList.__len__()) + " 건")
-        sendTelegramMessage("신규 건수 : " + str(dicNewRowList.__len__()) + " 건")
-        if dicNewRowList.__len__() > 0:
-            blog.info(self.batchContext.getLogName() + str(dicNewRowList))
-            sendTelegramMessage(self.batchContext.getLogName() + str(dicNewRowList))
+        #dicNewRowList = REP_DAO.fetch(self.sqlReportFetchId, "")
+        #blog.info(self.batchContext.getLogName() + "####################Batch Report####################")
+        #sendTelegramMessage("[Batch Report]")
+        #blog.info(self.batchContext.getLogName() + "신규 건 수  : " + str(dicNewRowList.__len__()) + " 건")
+        #sendTelegramMessage("신규 건수 : " + str(dicNewRowList.__len__()) + " 건")
+        #if dicNewRowList.__len__() > 0:
+        #    blog.info(self.batchContext.getLogName() + str(dicNewRowList))
+        #    sendTelegramMessage(self.batchContext.getLogName() + str(dicNewRowList))
+        pass
 
     def end(self):
         commit()
@@ -263,9 +265,19 @@ class Crawling:
         return True
 
     def convertPage(self,page):
+        """
+        Page를 객체화된 형태로 변경한다.
+        :param page: page정보(String)
+        :return: BeautifulShop 객체
+        """
         if self.tableSvcPasi.pasi_way_cd == 'SOUP':
             #return BeautifulSoup(page, 'html.parser')
             return BeautifulSoup(page, 'lxml-xml')
+        elif self.tableSvcPasi.pasi_way_cd == 'JSON':
+            soup = BeautifulSoup(page, 'html.parser')  # 파싱을 위한 객체화
+            l = str(soup)
+            j = json.loads(l)  # json 객체로 로딩
+            return j
         else:
             print('convertPage error')
             raise Exception
