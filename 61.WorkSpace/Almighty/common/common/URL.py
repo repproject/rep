@@ -54,7 +54,6 @@ def setTreeWidgetItemByjson(twItem,j):
             twItem.addChild(item)
             item.setExpanded(True)
             if type(j[k]) != "<class 'str'>" and str(type(j[k])) != "<class 'bool'>" and str(type(j[k])) != "<class 'int'>":
-                print("setTreeWidgetItemByjson start...")
                 setTreeWidgetItemByjson(item,j[k])
     elif str(type(j)) == "<class 'list'>":  #list 타입인 경우
         i=0
