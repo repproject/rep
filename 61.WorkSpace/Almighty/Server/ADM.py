@@ -23,6 +23,33 @@ def getJobFuncAct(job_id):
         .order_by(JobAct.exec_seq,ActFunc.exec_seq).all()
     return result
 
+def getImdiJobList(blog):
+    """
+        scheduler에서 즉시 실행할 Job 목록을 가져옴.
+        외부에서 변경 후 Commit된 정보를 가져오지 못해 별도 Session을 Create 하도록 변경.
+        추후 이슈에 대해선 파악 필요 refresh가 대안이 될 수 있으나 가져온 instance에 대하여 refresh 하는 용도로 보임
+        시간이 없으니 일단 new Session으로 해결
+    :return:
+    """
+    s2 = Session(engine)
+    rslt = s2.query(JobSchd,Job).join(JobSchd.job).filter(JobSchd.imdi_exec_yn == 'Y',JobSchd.del_yn == 'N', JobSchd.use_yn == 'Y').all()
+    s2.close()
+    return rslt
+
+def updateImdiJobN(job_id,job_seq):
+    """
+    즉시실행 이후 다음 실행 하지 않기 위하여 즉시실행여부를 'N'으로 세팅
+    update 최초 문장으로 update 작업시 select 이후 add commit 순서로 추후 작업 필요
+    :param job_id:
+    :param job_seq:
+    :return:
+    """
+    rslt = s.query(JobSchd).filter(JobSchd.job_id == job_id, JobSchd.job_seq == int(job_seq)).all()
+    rslt[0].imdi_exec_yn = 'N'
+    s.add(rslt[0])
+    s.commit()
+    return True
+
 def getTblLst(dicParam):
     return s.query(Tbl).filter(or_(Tbl.tbl_nm.like("%" + dicParam['searchText'] + "%"),Tbl.tbl_desc.like("%" + dicParam['searchText'] + "%"))).all()
 
@@ -32,10 +59,14 @@ def getTblColLst(tbl_nm):
 def getRcvUserList():
     return s.query(TlgrUser).filter(TlgrUser.rcv_tgt_yn == 'Y').order_by(TlgrUser.send_cl_cd).all()
 
+
+
+
+
 #SELECT TLGR_USER_ID FROM kadm_tlgr_user WHERE RCV_TGT_YN = 'Y' ORDER BY SEND_CL_CD DESC
 
 if __name__ == '__main__':
-    r = getJobSchdExec()
+    r = updateImdiJobN('GOIN001',1)
     print(r)
     pass
 
