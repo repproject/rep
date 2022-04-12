@@ -46,6 +46,8 @@ def updateImdiJobN(job_id,job_seq):
     """
     rslt = s.query(JobSchd).filter(JobSchd.job_id == job_id, JobSchd.job_seq == int(job_seq)).all()
     rslt[0].imdi_exec_yn = 'N'
+    rslt[0].chg_user_id = user.getUserId()
+    rslt[0].chg_dtm = datetime.datetime.now()
     s.add(rslt[0])
     s.commit()
     return True
@@ -58,12 +60,6 @@ def getTblColLst(tbl_nm):
 
 def getRcvUserList():
     return s.query(TlgrUser).filter(TlgrUser.rcv_tgt_yn == 'Y').order_by(TlgrUser.send_cl_cd).all()
-
-
-
-
-
-#SELECT TLGR_USER_ID FROM kadm_tlgr_user WHERE RCV_TGT_YN = 'Y' ORDER BY SEND_CL_CD DESC
 
 if __name__ == '__main__':
     r = updateImdiJobN('GOIN001',1)
