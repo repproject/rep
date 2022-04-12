@@ -13,6 +13,12 @@ def merge(table):
     return True
 
 def mergeNC(table):
+    """
+        table객체를 merge 하는 함수이나
+        table.updateChg를 통하여 등록일시, 수정일시, 수정자ID, 등록자ID 등의 ROW 기본컬럼을 update한다.
+    :param table:
+    :return:
+    """
     table.updateChg()
     s.merge(table)
     return True
