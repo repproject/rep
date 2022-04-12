@@ -52,6 +52,25 @@ def updateImdiJobN(job_id,job_seq):
     s.commit()
     return True
 
+def terminateJob(job_id,exec_dtm,exec_stat_cd,message):
+    """
+        job종료
+    :param job_id:
+    :param exec_dtm:
+    :param exec_stat_cd:
+    :return:
+    """
+
+    rslt = s.query(JobExec).filter(JobExec.job_id == job_id, JobExec.exec_dtm == exec_dtm).first()
+    rslt.exec_stat_cd = exec_stat_cd
+    rslt.end_dtm = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+    rslt.chg_user_id = user.getUserId()
+    rslt.chg_dtm = datetime.datetime.now()
+    rslt.msg_cnts = message
+    s.add(rslt)
+    s.commit()
+    return True
+
 def getTblLst(dicParam):
     return s.query(Tbl).filter(or_(Tbl.tbl_nm.like("%" + dicParam['searchText'] + "%"),Tbl.tbl_desc.like("%" + dicParam['searchText'] + "%"))).all()
 
