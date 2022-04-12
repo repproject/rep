@@ -37,7 +37,7 @@ def doSchedule():    #JOB수행
 
         if execPerdCd == 'DAY' or execPerdCd == 'DD' or execPerdCd == 'HH' or execPerdCd == 'MM': #주기작업(요일,월,일,시간)의 경우
             if execPerdCd == 'DD':
-                sched.add_job(doJob, 'cron', month='*',day='*',hour=execHH, minute=execMI, second=1,day_of_week = '*', id=jobId, args=[jobId])
+                sched.add_job(do, 'cron', month='*',day='*',hour=execHH, minute=execMI, second=1,day_of_week = '*', id=jobId+str(jobSeq), args=[jobId,jobSeq])
 
     sched.start()
 
