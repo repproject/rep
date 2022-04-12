@@ -278,6 +278,7 @@ class JobSchd(Base,KTable):
     imdi_exec_yn = KColumn(String(1), nullable = True)
     use_yn = KColumn(String(1), nullable = True)
     del_yn = KColumn(String(1), nullable = True)
+    chg_yn = KColumn(String(1), nullable=True)
 
     job = relationship('Job',primaryjoin = job_id==Job.job_id, foreign_keys = [Job.job_id], passive_deletes = True)
 
@@ -295,9 +296,10 @@ class JobSchd(Base,KTable):
         self.imdi_exec_yn =  kwargs.pop('imdi_exec_yn',None)
         self.use_yn =  kwargs.pop('use_yn',None)
         self.del_yn =  kwargs.pop('del_yn',None)
+        self.chg_yn = kwargs.pop('del_yn', None)
 
     def __repr__(self):
-        return "<JobSchd('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.job_id), str(self.job_seq), str(self.exec_perd_cd), str(self.exec_mm), str(self.exec_dd), str(self.exec_hh), str(self.exec_mi), str(self.exec_day_cd), str(self.cycl_mi), str(self.imdi_exec_yn), str(self.use_yn), str(self.del_yn) + KTable.__repr__(self))
+        return "<JobSchd('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.job_id), str(self.job_seq), str(self.exec_perd_cd), str(self.exec_mm), str(self.exec_dd), str(self.exec_hh), str(self.exec_mi), str(self.exec_day_cd), str(self.cycl_mi), str(self.imdi_exec_yn), str(self.use_yn), str(self.del_yn), str(self.chg_yn) + KTable.__repr__(self))
 
 class JobExec(Base,KTable):
     __tablename__ = 'kadm_job_exec'
@@ -317,8 +319,9 @@ class JobExec(Base,KTable):
     exec_parm8 = KColumn(String(200), nullable = True)
     exec_parm9 = KColumn(String(200), nullable = True)
     exec_parm10 = KColumn(String(200), nullable = True)
+    msg_cnts = KColumn(String(4000), nullable = True)
 
-    job = relationship('Job',primaryjoin = job_id==Job.job_id, foreign_keys = [Job.job_id], passive_deletes = True,overlaps="job")
+    job = relationship('Job',primaryjoin = job_id==Job.job_id, foreign_keys = [Job.job_id], passive_deletes = True)
 
     def __init__(self, *args, **kwargs):
         KTable.__init__(self)
@@ -337,9 +340,10 @@ class JobExec(Base,KTable):
         self.exec_parm8 =  kwargs.pop('exec_parm8',None)
         self.exec_parm9 =  kwargs.pop('exec_parm9',None)
         self.exec_parm10 =  kwargs.pop('exec_parm10',None)
+        self.msg_cnts =  kwargs.pop('msg_cnts',None)
 
     def __repr__(self):
-        return "<JobExec('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.job_id), str(self.exec_dtm), str(self.exec_stat_cd), str(self.sta_dtm), str(self.end_dtm), str(self.exec_parm1), str(self.exec_parm2), str(self.exec_parm3), str(self.exec_parm4), str(self.exec_parm5), str(self.exec_parm6), str(self.exec_parm7), str(self.exec_parm8), str(self.exec_parm9), str(self.exec_parm10) + KTable.__repr__(self))
+        return "<JobExec('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.job_id), str(self.exec_dtm), str(self.exec_stat_cd), str(self.sta_dtm), str(self.end_dtm), str(self.exec_parm1), str(self.exec_parm2), str(self.exec_parm3), str(self.exec_parm4), str(self.exec_parm5), str(self.exec_parm6), str(self.exec_parm7), str(self.exec_parm8), str(self.exec_parm9), str(self.exec_parm10), str(self.msg_cnts) + KTable.__repr__(self))
 
 class JobSchdExec(Base, KTable):
     __tablename__ = 'kadm_job_schd_exec'
