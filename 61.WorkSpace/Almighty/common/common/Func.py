@@ -6,11 +6,14 @@ def isNotNull(instance):
     return True
 
 def isNull(instance):
-    if instance == None:
+    try:
+        if instance == None:
+            return True
+        elif len(instance) == 0:
+            return True
+        return False
+    except TypeError:
         return True
-    elif len(instance) == 0:
-        return True
-    return False
 
 def StrReplace(str,delimiter,chgdelimiter=''):
     return str.replace(delimiter,chgdelimiter)
