@@ -27,6 +27,8 @@ userid = '1000000001'
 def do(job_id,job_seq):
     """
     Job을 실행하는 함수이다.
+    현재 크롤링 타입만 수행 가능하도록 구현되어 있다.
+    다른구분값을 추가하면 됨.
     :param job_id:
     :return:
     """
