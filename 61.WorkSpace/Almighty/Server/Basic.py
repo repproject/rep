@@ -6,6 +6,7 @@ import pymysql
 import common.common.Table
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.exc import PendingRollbackError
+from sqlalchemy import update
 
 def merge(table):
     mergeNC(table)
@@ -14,8 +15,9 @@ def merge(table):
 
 def mergeNC(table):
     """
-        table객체를 merge 하는 함수이나
-        table.updateChg를 통하여 등록일시, 수정일시, 수정자ID, 등록자ID 등의 ROW 기본컬럼을 update한다.
+        NC = Not Commit
+        성능을 위하여 Commit하지 않은 함수를 의미
+        table.updateChg를 통하여 수정일시, 수정자ID, 등록자ID 등의 ROW 기본컬럼을 update한다.
     :param table:
     :return:
     """
@@ -50,18 +52,6 @@ def insertListNC(tableList):
     for table in tableList:
         s.add(table)
     return True
-
-# def inup(table):
-#     s.add(table)
-#     s.commit()
-#
-# def inUpList(tableList):
-#     for table in tableList:
-#         try:
-#             s.add(table)
-#         except pymysql.IntegrityError as e:
-#             table.updateChg()
-#     s.commit()
 
 dic = {}
 
