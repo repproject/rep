@@ -168,9 +168,11 @@ class BbCmpxTypMonPrc(Base,KTable):
 class DealDtl(Base,KTable):
     __tablename__ = 'kmig_deal_dtl'
 
+    job_id = KColumn(String(20), nullable = False)
+    exec_dtm = KColumn(DATE, nullable = False)
     gov_legl_dong_cd = KColumn(String(10), nullable = False)
     deal_yymm = KColumn(String(6), nullable = False)
-    real_deal_seq = KColumn(Integer, primary_key = True, unique=True, autoincrement=True)
+    real_deal_seq = KColumn(Integer, primary_key = True, nullable = False, unique=True, autoincrement=True)
     real_deal_cmpx_knd = KColumn(String(20), nullable = True)
     deal_amt = KColumn(Integer, nullable = True)
     cmpl_yy = KColumn(String(4), nullable = True)
@@ -203,9 +205,11 @@ class DealDtl(Base,KTable):
 
     def __init__(self, *args, **kwargs):
         KTable.__init__(self)
+        self.job_id =  kwargs.pop('job_id',None)
+        self.exec_dtm =  kwargs.pop('exec_dtm',None)
         self.gov_legl_dong_cd =  kwargs.pop('gov_legl_dong_cd',None)
         self.deal_yymm =  kwargs.pop('deal_yymm',None)
-        #self.real_deal_seq =  kwargs.pop('real_deal_seq',0)
+        #self.real_deal_seq =  kwargs.pop('real_deal_seq')
         self.real_deal_cmpx_knd =  kwargs.pop('real_deal_cmpx_knd',None)
         self.deal_amt =  kwargs.pop('deal_amt',None)
         self.cmpl_yy =  kwargs.pop('cmpl_yy',None)
@@ -236,8 +240,6 @@ class DealDtl(Base,KTable):
         self.rles_yn_val =  kwargs.pop('rles_yn_val',None)
 
     def __repr__(self):
-        return "<DealDtl('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.gov_legl_dong_cd), str(self.deal_yymm), str(self.real_deal_seq), str(self.real_deal_cmpx_knd), str(self.deal_amt), str(self.cmpl_yy), str(self.deal_yy), str(self.road_nm), str(self.road_nm_cmpx_orgl_num_cd), str(self.road_nm_cmpx_vice_num_cd), str(self.road_nm_sgg_cd), str(self.road_nm_seq_cd), str(self.road_nm_ong_ung_cd), str(self.road_nm_cd), str(self.legl_dong_nm), str(self.legl_dong_orgl_num_cd), str(self.legl_dong_vice_num_cd), str(self.legl_dong_sgg_cd), str(self.legl_dong_umd_cd), str(self.legl_dong_hnum_cd), str(self.real_deal_cmpx_nm), str(self.deal_mm), str(self.deal_ymd), str(self.seq), str(self.only_area), str(self.agnt_whrb_addr), str(self.regn_cd), str(self.hnum), str(self.flr), str(self.rles_rsn_occr_dd), str(self.rles_yn_val) + KTable.__repr__(self))
-
-
+        return "<DealDtl('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.job_id), str(self.exec_dtm), str(self.gov_legl_dong_cd), str(self.deal_yymm), str(self.real_deal_seq), str(self.real_deal_cmpx_knd), str(self.deal_amt), str(self.cmpl_yy), str(self.deal_yy), str(self.road_nm), str(self.road_nm_cmpx_orgl_num_cd), str(self.road_nm_cmpx_vice_num_cd), str(self.road_nm_sgg_cd), str(self.road_nm_seq_cd), str(self.road_nm_ong_ung_cd), str(self.road_nm_cd), str(self.legl_dong_nm), str(self.legl_dong_orgl_num_cd), str(self.legl_dong_vice_num_cd), str(self.legl_dong_sgg_cd), str(self.legl_dong_umd_cd), str(self.legl_dong_hnum_cd), str(self.real_deal_cmpx_nm), str(self.deal_mm), str(self.deal_ymd), str(self.seq), str(self.only_area), str(self.agnt_whrb_addr), str(self.regn_cd), str(self.hnum), str(self.flr), str(self.rles_rsn_occr_dd), str(self.rles_yn_val) + KTable.__repr__(self))
 
 
