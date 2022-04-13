@@ -59,14 +59,18 @@ class Crawling:
     outMultiParam = []
     outAllTblParam = []
     crawlCdExec = None
+    jobId = None
+    execDtm = None
 
     #초기화
-    def __init__(self,strPasiId,strSvcId,batchContext = None):
+    def __init__(self,strPasiId,strSvcId,batchContext = None,JobExec = None):
         try:
             #funcName Validation Check
             self.batchContext = batchContext
             self.pasiId = strPasiId
             self.svcId = strSvcId
+            self.jobId = JobExec.job_id
+            self.execDtm = JobExec.exec_dtm
 
             #입력받은 pasi_id로 Pasing 정보를 가져옴
             rslt = Server.COM.getPasi(self.pasiId, self.svcId)
@@ -307,6 +311,11 @@ class Crawling:
                 #기준정보가 아닌 경우 page에서 값을 가져온다.
                 str = self.getParsetext(tb[0],p)
                 dicTableList[tb[2].cls_nm][tb[1].col_nm] = str
+
+        for key in dicTableList.keys():
+            dicTableList[key]['job_id'] = self.jobId
+            dicTableList[key]['exec_dtm'] = self.execDtm
+
         return getListTableFromDic(dicTableList)
 
     def getParsetext(self,t,p):
