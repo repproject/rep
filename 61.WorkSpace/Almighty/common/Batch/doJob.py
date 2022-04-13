@@ -36,7 +36,7 @@ def do(job_id,job_seq):
         blog.info("Do Job Start : " + job_id + "/" + str(job_seq))
         listFunc = getJobFuncAct(job_id)
 
-        jobSchdExec = Server.COM.getJobSchdExec(job_id, int(job_seq))
+        jobSchdExec = Server.COM.getJobSchdExecFirst(job_id, int(job_seq))
 
         #JOB 실행정보 기록 'R(실행중)'
         je = writeJobExec(job_id,job_seq,'R')
@@ -56,7 +56,7 @@ def do(job_id,job_seq):
             job = Func[0]
             if function.func_cl_cd == 'CRWL':
                 batchContext = simpleBatchContext("[" + job.job_id + "][" + job.job_nm + "][" + function.func_id + "][" + function.func_nm +"][" + function.func_cl_cd + "]")
-                CrawlObject =  common.Batch.Crawling.Crawling(function.src_func_nm, function.ref1, batchContext)
+                CrawlObject =  common.Batch.Crawling.Crawling(function.src_func_nm, function.ref1, batchContext, je)
                 CrawlObject.run()
         writeJobExec(job_id, job_seq, 'T', exec_dtm, 'JOB 정상종료? : [' + job.job_id + "][" + job.job_nm + "]")
     except :
@@ -64,7 +64,7 @@ def do(job_id,job_seq):
         error()
 
 def writeJobExec(job_id,job_seq,exec_stat_cd,exec_dtm=None,message=''):
-    jobSchdExec = Server.COM.getJobSchdExec(job_id, int(job_seq))
+    jobSchdExec = Server.COM.getJobSchdExecFirst(job_id, int(job_seq))
 
     # JOB 실행정보 기록
     nowStrTime = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
