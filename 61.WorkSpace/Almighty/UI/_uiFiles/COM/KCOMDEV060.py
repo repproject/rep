@@ -130,11 +130,11 @@ class KCOMDEV060(QWidget, KWidget, form_class) :
             alert('선택된 파싱코드실행이 없습니다.')
             return False
 
-        if isNull(self.twPasiCdExec.getTextByColName(self.twCdExec.currentRow(),"cd_exec_id")):
+        if isNull(self.twPasiCdExec.getTextByColName(self.twPasiCdExec.currentRow(),"cd_exec_id")):
             alert('코드실행ID가 빈값입니다')
             return False
 
-        if isNull(self.twPasiCdExec.getTextByColName(self.twCdExec.currentRow(),"seq")):
+        if isNull(self.twPasiCdExec.getTextByColName(self.twPasiCdExec.currentRow(),"seq")):
             alert('일련번호가 빈값입니다')
             return False
         return True

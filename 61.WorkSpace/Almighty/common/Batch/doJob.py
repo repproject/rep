@@ -12,6 +12,7 @@ import Server.ADM
 import common.Batch.Crawling
 from common.Batch.Basic import *
 import datetime
+import DAO.KADM
 
 userid = '1000000001'
 
@@ -32,16 +33,16 @@ def do(job_id,job_seq):
     :param job_id:
     :return:
     """
+    blog.info("Do Job Start : " + job_id + "/" + str(job_seq))
+    listFunc = getJobFuncAct(job_id)
+
+    jobSchdExec = Server.COM.getJobSchdExecFirst(job_id, int(job_seq))
+
+    #JOB 실행정보 기록 'R(실행중)'
+    je = writeJobExec(job_id,job_seq,'R')
+    exec_dtm = je.exec_dtm
+
     try:
-        blog.info("Do Job Start : " + job_id + "/" + str(job_seq))
-        listFunc = getJobFuncAct(job_id)
-
-        jobSchdExec = Server.COM.getJobSchdExecFirst(job_id, int(job_seq))
-
-        #JOB 실행정보 기록 'R(실행중)'
-        je = writeJobExec(job_id,job_seq,'R')
-        exec_dtm = je.exec_dtm
-
         if len(listFunc) == 0:  #Function이 등록되지 않은 경우
             logMessage = "Function is not registerd in job : " + job_id
             blog.error(logMessage)
@@ -65,12 +66,14 @@ def do(job_id,job_seq):
 
 def writeJobExec(job_id,job_seq,exec_stat_cd,exec_dtm=None,message=''):
     jobSchdExec = Server.COM.getJobSchdExecFirst(job_id, int(job_seq))
+    if isNull(jobSchdExec):
+        jobSchdExec = DAO.KADM.JobSchdExec(job_id = job_id,job_seq = job_seq)
 
     # JOB 실행정보 기록
     nowStrTime = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
 
     if exec_stat_cd == 'R': #JOB이 신규로 실행중
-        je = JobExec(job_id=jobSchdExec.job_id
+        je = JobExec(job_id=job_id
                      , exec_dtm=nowStrTime
                      , exec_stat_cd=exec_stat_cd
                      , sta_dtm=nowStrTime
@@ -107,5 +110,7 @@ if __name__ == '__main__':
     #print(datetime.datetime.now().strftime("%Y%m%d%H%M%S"))
     #blog.info("START JOB doJOB main...")
     #blog.info("parameter : " + *args)
-    do('GOIN001',1)
+    #jobSchdExec = Server.COM.getJobSchdExecFirst('NVDC002', 1)
+    #print(jobSchdExec)
+    do('NVDC002',1)
     #main()

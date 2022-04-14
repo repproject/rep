@@ -278,7 +278,7 @@ class JobSchd(Base,KTable):
     imdi_exec_yn = KColumn(String(1), nullable = True)
     use_yn = KColumn(String(1), nullable = True)
     del_yn = KColumn(String(1), nullable = True)
-    chg_yn = KColumn(String(1), nullable=True)
+    chg_yn = KColumn(String(1), nullable=False)
 
     job = relationship('Job',primaryjoin = job_id==Job.job_id, foreign_keys = [Job.job_id], passive_deletes = True)
 
@@ -296,7 +296,7 @@ class JobSchd(Base,KTable):
         self.imdi_exec_yn =  kwargs.pop('imdi_exec_yn',None)
         self.use_yn =  kwargs.pop('use_yn',None)
         self.del_yn =  kwargs.pop('del_yn',None)
-        self.chg_yn = kwargs.pop('del_yn', None)
+        self.chg_yn = kwargs.pop('del_yn', 'N')
 
     def __repr__(self):
         return "<JobSchd('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.job_id), str(self.job_seq), str(self.exec_perd_cd), str(self.exec_mm), str(self.exec_dd), str(self.exec_hh), str(self.exec_mi), str(self.exec_day_cd), str(self.cycl_mi), str(self.imdi_exec_yn), str(self.use_yn), str(self.del_yn), str(self.chg_yn) + KTable.__repr__(self))

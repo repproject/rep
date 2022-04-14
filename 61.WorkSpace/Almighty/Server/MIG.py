@@ -40,7 +40,7 @@ def getLegalDongLv2():
     return rslt2
 
 def getLegalDongLv3():
-    rslt = s.query(LeglDong).filter(LeglDong.lv_cd == '3').filter(LeglDong.legl_dong_cd == '4113310100').order_by(LeglDong.legl_dong_cd).all()
+    rslt = s.query(LeglDong).filter(LeglDong.lv_cd == '3').order_by(LeglDong.legl_dong_cd).all()
     return rslt
 
 if __name__ == "__main__":

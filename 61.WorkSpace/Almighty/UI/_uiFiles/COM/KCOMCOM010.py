@@ -1,9 +1,11 @@
 from PyQt5.QtWidgets import QTableView
 import Server.COM
+import Server.ADM
 from common.ui.comUi import *
 import common.database.Relfect
 from UI._uiFiles.UIBasic import *
 from Server.Basic import *
+
 from DAO.KADM import *
 import copy
 
@@ -27,7 +29,7 @@ class KCOMCOM010(QDialog, KWidget, form_class) :
         # TableWidget.convert_to_TableWidget(self.twFinder)
         # self.twFinder.init()
 
-        self.edt_pop.setText(self.dicParam['searchText'])
+        self.edt_pop.setText(self.dicParam.pop('searchText','%'))
         self.twFinder.setColumnCount(len(self.dicParam['Headers']))
         self.twFinder.setHorizontalHeaderLabels(self.dicParam['Headers'])
         self.twFinder.setBasic(columns = self.dicParam['Columns'], headers = self.dicParam['Headers']
@@ -41,6 +43,7 @@ class KCOMCOM010(QDialog, KWidget, form_class) :
         self.dicParam['searchText'] =  self.edt_pop.text()
         #Server 함수 호출
         strExec = self.dicParam['Function']+"(self.dicParam)"
+        print(strExec)
         rslt = eval(strExec)
         self.twFinder.setListTable(rslt)
         self.twFinder.resizeRowsToContents()

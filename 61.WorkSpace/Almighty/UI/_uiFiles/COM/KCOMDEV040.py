@@ -40,7 +40,7 @@ class KCOMDEV040(QWidget, KWidget, form_class) :
     def getTblLst(self,strTblNm,strTblDesc,strColNm,strColDesc):
         if len(strTblNm) == 0 and len(strTblDesc) == 0 and len(strColNm) == 0 and len(strColDesc) == 0:
             self.isAllSearch = True
-        return Server.COM.getTblLst(strTblNm,strTblDesc,strColNm,strColDesc)
+        return Server.COM.getTblLst(strTblNm,strTblDesc)
 
     def reflectTbl(self):
         try:

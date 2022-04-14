@@ -108,7 +108,7 @@ class Crawling:
     def startLog(self):
         #기본로그 출력
         global blog
-        blog = Logger(LogName=self.batchContext.getLogName(), Level="INFO", name = "Batch").logger
+        blog = Logger(LogName=self.batchContext.getLogName(), Level="DEBUG", name = "Batch").logger
         blog.info(self.batchContext.getLogName()+"####################START[" + self.batchContext.getFuncName() + "]####################")
         sendTelegramMessage("START[" + self.batchContext.getFuncName() + "]")
 
@@ -168,6 +168,7 @@ class Crawling:
                     url = self.makeURL(sd,reCnt)
                     blog.info("CALL URL : " + url)
                     page = self.request(url)
+                    print(page)
                     cPage = self.convertPage(page)  #page를 객체화(BeutifulShop)형태로 변경
                     self.selfSaveDB(cPage,sd,url)
                     time.sleep(self.sleepStamp)
@@ -184,7 +185,9 @@ class Crawling:
                 url = self.makeURL(None,reCnt)
                 blog.info("CALL URL : " + url)
                 page = self.request(url)
+                blog.debug("PAGE : " + page)
                 cPage = self.convertPage(page)
+                blog.debug("convert Page : " + cPage)
                 self.selfSaveDB(cPage,None,url)
                 time.sleep(self.sleepStamp)
                 if self.isReCrwal(url,page,self.dicStrd,reCnt) == False:
@@ -241,17 +244,20 @@ class Crawling:
         if cdex[1].cd_exec_cl_cd == "F": #Function
             strExec = cdex[1].exec_cd_cnts + "(" + '"' + str(cdex[0].exec_parm_val) + '"' + ")"
             pasiPage = eval(strExec)
+        elif cdex[1].cd_exec_cl_cd == "L":  # list
+            strExec = cdex[1].exec_cd_cnts + str(cdex[0].exec_parm_val)
+            pasiPage = eval(strExec)
 
         #단위 페이지를 파싱하여 INSERT
         for p in pasiPage:
-            if self.tableSvcPasi.pasi_way_cd == 'SOUP':
-                listTable = self.getTableListByOutMapping(self.svcId, self.pasiId, p, strd)
-                for tb in listTable:
-                    delattr(tb,'reg_user_id')
-                    delattr(tb,'reg_dtm')
+            #if self.tableSvcPasi.pasi_way_cd == 'SOUP':
+            listTable = self.getTableListByOutMapping(self.svcId, self.pasiId, p, strd)
+            for tb in listTable:
+                delattr(tb,'reg_user_id')
+                delattr(tb,'reg_dtm')
 
-                blog.debug(listTable)
-                mergeListNC(listTable)
+            blog.debug(listTable)
+            mergeListNC(listTable)
                 # for tb in self.getTableListByOutMapping(self.svcId, self.pasiId, p,strd):
                 #     try:
                 #         try:
@@ -274,6 +280,9 @@ class Crawling:
         :param page: page정보(String)
         :return: BeautifulShop 객체
         """
+        print("===========self.tableSvcPasi.pasi_way_cd===============")
+        print(self.tableSvcPasi.pasi_way_cd)
+
         if self.tableSvcPasi.pasi_way_cd == 'SOUP':
             #return BeautifulSoup(page, 'html.parser')
             return BeautifulSoup(page, 'lxml-xml')
@@ -325,19 +334,27 @@ class Crawling:
         :param p: 파싱한 Page
         :return:
         """
-        if self.tableSvcPasi.pasi_way_cd == 'SOUP':
-            try:
+
+        try:
+            if self.tableSvcPasi.pasi_way_cd == 'SOUP':
                 str = p.find(t.item_nm).text
-            except AttributeError as e:
-                str = None
-                blog.debug("Attribute Not found : item :[" + t.item_nm + "]")
-            #BeautifulShop의 경우 아래의 함수로 값을 가져온다.
-            if isNotNull(t.excp_str):
-                excpList = t.excp_str.split("||")
-                for excp in excpList:
-                    str = StrReplace(str,excp)
-            return str
-        else : raise Exception
+            elif self.tableSvcPasi.pasi_way_cd == 'JSON':
+                try:
+                    str = p[t.item_nm]
+                except KeyError:
+                    blog.debug("정의된 값이 존재하지 않음 : " + t.item_nm )
+                    str = ""
+            else:
+                raise Exception
+        except AttributeError as e:
+            str = None
+            blog.debug("Attribute Not found : item :[" + t.item_nm + "]")
+        #BeautifulShop의 경우 아래의 함수로 값을 가져온다.
+        if isNotNull(t.excp_str):
+            excpList = t.excp_str.split("||")
+            for excp in excpList:
+                str = StrReplace(str,excp)
+        return str
 
     def request(self,url):
         page = get_html(url,self.tableSvc.req_way_cd,self.dicParam)
