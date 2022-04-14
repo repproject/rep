@@ -57,11 +57,11 @@ def setTable2Edit(form,table):
             getattr(form,'edit_'+colname).setText(text)
         except AttributeError as ae:
             setTable2EditErrorList = (
-            "'KCOMMAN020' object has no attribute 'edit_reg_user_id'",
-            "'KCOMMAN020' object has no attribute 'edit_reg_dtm'",
-            "'KCOMMAN020' object has no attribute 'edit_chg_user_id'",
-            "'KCOMMAN020' object has no attribute 'edit_chg_dtm'")
-            if str(ae) not in setTable2EditErrorList: error()
+            "object has no attribute 'edit_reg_user_id'",
+            "object has no attribute 'edit_reg_dtm'",
+            "object has no attribute 'edit_chg_user_id'",
+            "object has no attribute 'edit_chg_dtm'")
+            if str(ae)[13:] not in setTable2EditErrorList: error()
         except : error()
     return True
 
@@ -496,13 +496,17 @@ class TableWidget(QTableWidget,TableListBind):
         return False
 
     def setTextByColName(self,n,colName,text):
-        for m in range(0,self.columnCount()):
-            if self.getCellObject(n,m).colName == colName:
-                if text == None:
-                    text = ""
-                else: text = str(text)
-                self.setCellText(n,m,text)
-                break
+        if self.isSet:
+            for m in range(0,self.columnCount()):
+                if self.getCellObject(n,m).colName == colName:
+                    if text == None:
+                        text = ""
+                    else: text = str(text)
+                    self.setCellText(n,m,text)
+                    break
+        else:
+            logging.error("미조회 Error.. 조회 후 수행 가능합니다.")
+
 
     def setCellText(self,n,m,text):
         cw = self.cellWidget(n, m)
