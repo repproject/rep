@@ -7,7 +7,7 @@ import json
 from REP_COM import *
 import REP_Main
 import datetime
-from REP_TLGR_MSG import *
+from common.common.Telegram import *
 
 
 def migRetBigAreaCode():    #박지일

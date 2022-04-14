@@ -1,9 +1,7 @@
 from idna import unicode
 
 import requests
-import REP_JOB
 import telegram
-import REP_TLGR_MSG
 my_token = '495069941:AAHXf-j_f97clXuEI5P0lpnbyPKcUfmVtYs'
 chat_id = 436714227
 import mybatis_mapper2sql

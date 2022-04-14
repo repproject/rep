@@ -5,28 +5,11 @@ from REP_COM import *
 from REP_TABLE import *
 from common.common import URL
 import REP_MIG
-from REP_TLGR_MSG import *
+from common.common.Telegram import *
 import json
 import time
 
 userid = 1000000011
-
-#Lv3
-class CrawlingMultiNaver(REP_MIG.CrawlingBasicMulti):
-    siteCode = 'NV'
-    sleepStamp = dicSiteBasic[siteCode]['SLEP_TIME']
-
-    #[LV4 구현]각 Lv3 Class(웹사이트(url) 별로) URL을 만드는 부분을 정의
-    def selfMakeURL(self,dicStrdData = None,reCnt=None):
-        pass
-
-    #[LV4 구현]Page > 변환 > Parse > DB 반영
-    def selfSaveDB(self,page):
-        pass
-
-    #[LV4 구현]
-    def isReCrwal(self, url, page, dicStrdData, reCnt):
-        pass
 
 #Lv4 네이버 매물
 class CrawlingNVAtcl(CrawlingMultiNaver):

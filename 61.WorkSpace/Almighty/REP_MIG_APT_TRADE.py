@@ -1,10 +1,12 @@
-from bs4 import BeautifulSoup
+#from bs4 import BeautifulSoup
 import urllib
+import urllib.request
 import pymysql
 from datetime import datetime
 from REP_SQL import *
 from REP_COM import *
-from REP_DAO import *
+#from REP_DAO import *
+from bs4 import BeautifulSoup
 
 dicTable = { "GOV_LEGL_DONG_CD" : "",
           "REAL_DEAL_CMPX_KND" : "",
@@ -152,4 +154,49 @@ def migAptTrade():
 
 
 if __name__ == '__main__':
-    migAptTrade()
+    # import requests
+    #
+    # url = 'http://openapi.molit.go.kr:8081/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTrade'
+    # #svKey = 'Kwh2pvkxdt4AFFp%2F4hlBSpJ1H0xE2JjCdiHBt1MTRCfuhWoaMcf8JPKuHKn006RmNbI%2Byv%2B%2Bw4bIEeiU%2FSS6zw%3D%3D'
+    # svKey = 'Kwh2pvkxdt4AFFp/4hlBSpJ1H0xE2JjCdiHBt1MTRCfuhWoaMcf8JPKuHKn006RmNbI+yv++w4bIEeiU/SS6zw=='
+    # params = {'serviceKey': svKey, 'LAWD_CD': '11110', 'DEAL_YMD': '201512'}
+    # urlparm = '&'+
+    # url = url +
+    #
+    # response = requests.get(url, params=params)
+    # print(response.content)
+    #
+    # #migAptTrade()
+
+    url = "http://openapi.molit.go.kr/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTradeDev?serviceKey=Kwh2pvkxdt4AFFp%2F4hlBSpJ1H0xE2JjCdiHBt1MTRCfuhWoaMcf8JPKuHKn006RmNbI%2Byv%2B%2Bw4bIEeiU%2FSS6zw%3D%3D&DEAL_YMD=200603&LAWD_CD=41450"
+    # resultXML = urllib.request.urlopen(url)
+    # result = resultXML.read()
+    # # print(result)
+    # xmlsoup = BeautifulSoup(result, 'lxml-xml')
+    # te = xmlsoup.findAll("item")
+    #
+    # page = get_html(url, self.tableSvc.req_way_cd, self.dicParam)
+
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; U; Mac OS X 10_6_1; en-US) AppleWebKit/530.5 (KHTML, like Gecko) Chrome/ Safari/530.5'}
+    preReq = urllib.request.Request(url, headers=headers)
+    req = urllib.request.urlopen(preReq)
+    resp = req.read()
+    #bp = BeautifulSoup(resp, 'html.parser')
+    bp = BeautifulSoup(resp, 'lxml-xml')
+    p2 = bp.findAll("item")
+    #p2 = bp.findAll("거래금액")
+    print("p2p2p2p2p2p2p2p2p2p2p2p2")
+    print(p2)
+    #print(p2['거래금액'])
+
+    # print("ppppppppppppppppppppppppppppp")
+    for pp in p2 :
+        t = pp.find("거래금액")
+        print(t)
+
+
+    #a = bp.findAll("item")
+
+
+
