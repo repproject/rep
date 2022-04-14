@@ -152,6 +152,11 @@
      <string>삭제여부</string>
     </property>
    </column>
+   <column>
+    <property name="text">
+     <string>변경여부</string>
+    </property>
+   </column>
   </widget>
   <widget class="QPushButton" name="btn_add_job">
    <property name="geometry">

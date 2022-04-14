@@ -44,14 +44,25 @@ class KCOMBAT010(QWidget, KWidget, form_class) :
     def searchJobSchd(self):
         self.job_id = self.twJob.getTextByColName(self.twJob.currentRow(), "job_id")
 
-        Columns = ['job_seq','EXEC_PERD_CD','EXEC_MM','EXEC_DD','EXEC_HH','EXEC_MI','EXEC_DAY_CD','CYCL_MI','IMDI_EXEC_YN','USE_YN','DEL_YN']
-        Widths = {'job_seq':30,'EXEC_PERD_CD':80,'EXEC_MM':65,'EXEC_DD':65,'EXEC_HH':65,'EXEC_MI':65,'EXEC_DAY_CD':80,'CYCL_MI':65,'IMDI_EXEC_YN':115,'USE_YN':80,'DEL_YN':80}
+        Columns = ['job_seq','EXEC_PERD_CD','EXEC_MM','EXEC_DD','EXEC_HH','EXEC_MI','EXEC_DAY_CD','CYCL_MI','IMDI_EXEC_YN','USE_YN','DEL_YN','CHG_YN']
+        Widths = {'job_seq':30,'EXEC_PERD_CD':80,'EXEC_MM':65,'EXEC_DD':65,'EXEC_HH':65,'EXEC_MI':65,'EXEC_DAY_CD':80,'CYCL_MI':65,'IMDI_EXEC_YN':115,'USE_YN':80,'DEL_YN':80,'CHG_YN':80}
         SetDic = {'job_id': self.job_id}
         self.twJobSchd.setBasic(columns = Columns,widths = Widths,tableClass = JobSchd,setDic=SetDic)
         self.twJobSchd.setListTable(self.getJobSchd(self.job_id))
 
         # Table Widget Setting
         self.twJobSchd.resizeRowsToContents()
+
+        self.edit_exec_parm1.setText(None)
+        self.edit_exec_parm2.setText(None)
+        self.edit_exec_parm3.setText(None)
+        self.edit_exec_parm4.setText(None)
+        self.edit_exec_parm5.setText(None)
+        self.edit_exec_parm6.setText(None)
+        self.edit_exec_parm7.setText(None)
+        self.edit_exec_parm8.setText(None)
+        self.edit_exec_parm9.setText(None)
+        self.edit_exec_parm10.setText(None)
 
     def getJobSchd(self,strJobId):
         return Server.COM.getJobSchd(strJobId)
@@ -60,7 +71,18 @@ class KCOMBAT010(QWidget, KWidget, form_class) :
         strJobSeq = self.twJobSchd.getTextByColName(self.twJobSchd.currentRow(), "job_seq")
         self.JobSchdExec = self.getJobSchdExec(self.job_id,strJobSeq)
         if isNotNull(self.JobSchdExec):
-            setTable2Edit(self, self.JobSchdExec)
+            setTable2Edit(self, self.JobSchdExec[0])
+        else:
+            self.edit_exec_parm1.setText(None)
+            self.edit_exec_parm2.setText(None)
+            self.edit_exec_parm3.setText(None)
+            self.edit_exec_parm4.setText(None)
+            self.edit_exec_parm5.setText(None)
+            self.edit_exec_parm6.setText(None)
+            self.edit_exec_parm7.setText(None)
+            self.edit_exec_parm8.setText(None)
+            self.edit_exec_parm9.setText(None)
+            self.edit_exec_parm10.setText(None)
 
     def getJobSchdExec(self,strJobId,strJobSeq):
         return Server.COM.getJobSchdExec(strJobId,int(strJobSeq))
@@ -80,6 +102,7 @@ class KCOMBAT010(QWidget, KWidget, form_class) :
                 self.twJobSchd.setTextByColName(n, "use_yn", 'Y')
                 self.twJobSchd.setTextByColName(n, "del_yn", 'N')
                 self.twJobSchd.setTextByColName(n, "imdi_exec_yn", 'N')
+                self.twJobSchd.setTextByColName(n, "chg_yn", 'N')
 
         except : error()
 
@@ -95,14 +118,19 @@ class KCOMBAT010(QWidget, KWidget, form_class) :
                 self.twJob.mergeRow()
                 if self.twJobSchd.currentRow() > -1:
                     self.twJobSchd.mergeRow()
-                    if self.JobSchdExec == None:
+                    if isNull(self.JobSchdExec):
                         dicParam = {}
                         dicParam['job_id'] = self.job_id
                         dicParam['job_seq'] = self.twJobSchd.getTextByColName(self.twJobSchd.currentRow(), "job_seq")
                         kwargs = {**dicParam}
                         self.JobSchdExec = JobSchdExec(**kwargs)
 
-                    setEdit2Table(self,self.JobSchdExec)
+                    setEdit2Table(self,self.JobSchdExec[0])
+                    merge(self.JobSchdExec[0])
+
+                else:
+                    alert("Job 스케쥴이 미선택 되었습니다.")
+                    return False
         except : error()
 
     def preSave(self):
