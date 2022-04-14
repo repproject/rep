@@ -79,8 +79,11 @@ def getSvcInfo(strSvcId):
     setCodeByTable([Svc,Site])
     return s.query(Site,Svc).join(Svc.site).where(Svc.svc_id == strSvcId).all()
 
-def getTblLst(strTblNm,strTblDesc,strColNm,strColDesc):
+def getTblLst(strTblNm='%',strTblDesc='%'):
     setCodeByTable(Tbl)
+    print("print Parameter")
+    print(strTblNm)
+    print(strTblDesc)
     return s.query(Tbl).filter(Tbl.tbl_nm.like("%"+strTblNm+"%")).filter(Tbl.tbl_desc.like("%"+strTblDesc+"%")).all()
 
 def getColLst(strTblNm):
@@ -169,6 +172,9 @@ def getJobSchdSeqExec():
 
 def getJobSchdExec(strJobId,strJobSeq):
     return s.query(JobSchdExec).filter_by(job_id=strJobId).filter_by(job_seq=strJobSeq).all()
+
+def getJobSchdExecFirst(strJobId,strJobSeq):
+    return s.query(JobSchdExec).filter_by(job_id=strJobId).filter_by(job_seq=strJobSeq).first()
 
 if __name__ == "__main__":
     #rslt = getPasiFinder({'searchText':""})
