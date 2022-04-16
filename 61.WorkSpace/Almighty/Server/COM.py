@@ -20,7 +20,7 @@ def getMenuLv(lv):
     return result
 
 def getJob():
-    result = s.query(Job).all()
+    result = s.query(Job).order_by(Job.use_yn.desc()).all()
     setCodeByTable(Job)
     return result
 
