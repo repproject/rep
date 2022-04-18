@@ -59,8 +59,10 @@ def do(job_id,job_seq):
                 batchContext = simpleBatchContext("[" + job.job_id + "][" + job.job_nm + "][" + function.func_id + "][" + function.func_nm +"][" + function.func_cl_cd + "]")
                 CrawlObject =  common.Batch.Crawling.Crawling(function.src_func_nm, function.ref1, batchContext, je)
                 CrawlObject.run()
-        sendTelegramMessage('JOB 정상종료? : [' + job.job_id + "][" + job.job_nm + "]")
-        writeJobExec(job_id, job_seq, 'T', exec_dtm, 'JOB 정상종료? : [' + job.job_id + "][" + job.job_nm + "]")
+
+        message = 'JOB 정상종료 : [' + job.job_id + "][" + job.job_nm + "]"
+        sendTelegramMessage(message)
+        writeJobExec(job_id, job_seq, 'T', exec_dtm, message)
     except :
         writeJobExec(job_id,job_seq,'E',exec_dtm,str(traceback.format_exc()))
         error()
@@ -113,5 +115,5 @@ if __name__ == '__main__':
     #blog.info("parameter : " + *args)
     #jobSchdExec = Server.COM.getJobSchdExecFirst('NVDC002', 1)
     #print(jobSchdExec)
-    do('NVDC002',1)
+    do('NVDC006',1)
     #main()

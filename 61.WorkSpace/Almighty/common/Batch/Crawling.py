@@ -18,6 +18,7 @@ import time
 import copy
 import os
 import json
+from datetime import datetime
 
 #LV1 크롤링 클래스
 class Crawling:
@@ -69,8 +70,12 @@ class Crawling:
             self.batchContext = batchContext
             self.pasiId = strPasiId
             self.svcId = strSvcId
-            self.jobId = JobExec.job_id
-            self.execDtm = JobExec.exec_dtm
+            if JobExec == None:
+                self.jobId = 'NOJOB'
+                self.execDtm = datetime.now().strftime("%Y%m%d%H%M%S")
+            else:
+                self.jobId = JobExec.job_id
+                self.execDtm = JobExec.exec_dtm
 
             #입력받은 pasi_id로 Pasing 정보를 가져옴
             rslt = Server.COM.getPasi(self.pasiId, self.svcId)
@@ -80,9 +85,9 @@ class Crawling:
             self.tableSvcPasi = rslt[0]
             self.tableSvc = rslt[1]
             self.tableSite = rslt[2]
-            self.tableSvcPasiItemIn = Server.COM.getiItemParm(self.svcId,self.pasiId,'I')
+            self.tableSvcPasiItemIn = Server.COM.getiItemParm2(self.svcId,self.pasiId,'I')
             for tb in self.tableSvcPasiItemIn:
-                if isNull(tb[0].tbl_nm) or isNull(tb[0].col_nm):
+                if (isNull(tb[0].tbl_nm) or isNull(tb[0].col_nm)) and tb[0].dlmi_str == "GET":
                     self.dicParam[tb[0].item_nm] = tb[0].item_val
             self.sleepStamp = self.tableSite.slep_sec
         except:
@@ -138,7 +143,6 @@ class Crawling:
         a = copy.deepcopy(self.outParam)
         b = copy.deepcopy(self.outMultiParam)
         self.outAllTblParam = a + b
-        #print(self.outAllTblParam)
         for param in self.outAllTblParam:
             if param[0].tbl_nm == 'm' and param[1] == None: #Multi용 테이블 리스트를 제거
                 self.outAllTblParam.remove(param)
@@ -159,7 +163,7 @@ class Crawling:
             for sd in self.dicStrd:
                 #item에 컬럼값이 등록되면 기준Data 세팅
                 for tb in self.tableSvcPasiItemIn:
-                    if isNotNull(tb[0].tbl_nm) and isNotNull(tb[0].col_nm):
+                    if isNotNull(tb[0].tbl_nm) and isNotNull(tb[0].col_nm) and tb[0].dlmi_str == "GET":
                         self.dicParam[tb[0].item_nm] = sd[tb[0].col_nm]
                 reCnt = 0
                 while True:
@@ -168,7 +172,6 @@ class Crawling:
                     url = self.makeURL(sd,reCnt)
                     blog.info("CALL URL : " + url)
                     page = self.request(url)
-                    print(page)
                     cPage = self.convertPage(page)  #page를 객체화(BeutifulShop)형태로 변경
                     self.selfSaveDB(cPage,sd,url)
                     time.sleep(self.sleepStamp)
@@ -203,12 +206,18 @@ class Crawling:
         :param reCnt: 같은 url을 여러번 크롤링 하는 경우 (page가 있는 경우)
         :return:
         """
-        for tb in self.tableSvcPasiItemIn:
-            if isNotNull(tb[0].tbl_nm) and isNotNull(tb[0].col_nm):
+        sub_url = ""
+
+        for tb in self.tableSvcPasiItemIn: #debug 이상함
+            if tb[0].dlmi_str == "GET" and isNotNull(tb[0].tbl_nm) and isNotNull(tb[0].col_nm):
                 self.dicParam[tb[0].item_nm]=dicStrdData[tb[0].col_nm]
+            elif tb[0].dlmi_str != "GET":
+                sub_url += tb[0].dlmi_str + dicStrdData[tb[0].col_nm]
         self.url = self.tableSite.bas_prtc + "://"  # 프로토콜 http
         self.url += urllib.parse.quote(self.tableSite.bas_url + self.tableSvc.bas_svc_url,
                                        encoding=self.tableSite.enc_cd)
+        self.url += sub_url
+
         if self.tableSvc.req_way_cd == "GET":
             self.url += "?" + urllib.parse.urlencode(self.dicParam, encoding=self.tableSite.enc_cd)
         elif self.tableSvc.req_way_cd == "POST":
@@ -256,6 +265,7 @@ class Crawling:
                 delattr(tb,'reg_user_id')
                 delattr(tb,'reg_dtm')
 
+            blog.debug("=============INSERT BEOFRE TABLE LIST=================")
             blog.debug(listTable)
             mergeListNC(listTable)
                 # for tb in self.getTableListByOutMapping(self.svcId, self.pasiId, p,strd):
@@ -280,9 +290,6 @@ class Crawling:
         :param page: page정보(String)
         :return: BeautifulShop 객체
         """
-        print("===========self.tableSvcPasi.pasi_way_cd===============")
-        print(self.tableSvcPasi.pasi_way_cd)
-
         if self.tableSvcPasi.pasi_way_cd == 'SOUP':
             #return BeautifulSoup(page, 'html.parser')
             return BeautifulSoup(page, 'lxml-xml')
@@ -292,7 +299,6 @@ class Crawling:
             j = json.loads(l)  # json 객체로 로딩
             return j
         else:
-            print('convertPage error')
             raise Exception
 
     def getTableListByOutMapping(self,strSvcId,strPasiId,p,strd):
@@ -325,7 +331,12 @@ class Crawling:
             dicTableList[key]['job_id'] = self.jobId
             dicTableList[key]['exec_dtm'] = self.execDtm
 
-        return getListTableFromDic(dicTableList)
+        blog.debug("=======================AFTER PASING====================")
+        blog.debug(dicTableList)
+        rslt = getListTableFromDic(dicTableList)
+        blog.debug("=======================AFTER getListTableFromDic====================")
+        blog.debug(rslt)
+        return rslt
 
     def getParsetext(self,t,p):
         r"""
@@ -415,6 +426,6 @@ class DataStrd:
         return self.listStrdData[self.index]
 
 if __name__ == '__main__':
-    batchContext = simpleBatchContext("AptTradeDtl")
-    CrawlObject = Crawling('AptTradeDtl','AptTradeDtl',batchContext)
+    batchContext = simpleBatchContext("NVCmpxTyp")
+    CrawlObject = Crawling('NVCmpxTyp','NVComplexTyp',batchContext)
     CrawlObject.run()

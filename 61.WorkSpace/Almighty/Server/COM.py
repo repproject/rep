@@ -181,8 +181,10 @@ if __name__ == "__main__":
     #rslt = getMenuLv(1)
     #print(rslt[0][0])
     #merge(rslt[0][0])
-    print(getJobSchdExecFirst('NVDC002',1))
-    print(getJobSchdExecFirst('GOIN001', 1))
+    #print(getJobSchdExecFirst('NVDC002',1))
+    #print(getJobSchdExecFirst('GOIN001', 1))
+    for a in getiItemParm2('NVcomplexTyp','NVCmpxTyp','I'):
+        print(a)
     #rslt = getiItemParmMulti('BBRegn','BBCmpx','O')
     #print(rslt)
     #print(getJobSchdExec('a',0))

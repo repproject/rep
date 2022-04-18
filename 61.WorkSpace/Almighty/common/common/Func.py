@@ -13,7 +13,7 @@ def isNull(instance):
             return True
         return False
     except TypeError:
-        return True
+        return False
 
 def StrReplace(str,delimiter,chgdelimiter=''):
     return str.replace(delimiter,chgdelimiter)

@@ -49,8 +49,11 @@ def getLegalDongLv3():
 
     return rslt
 
+def getNvCmpx():
+    return s.query(NvCmpx).filter(NvCmpx.job_id == 'NVDC002',NvCmpx.exec_dtm == '20220418152736').all()
+
 if __name__ == "__main__":
-    print(getLegalDongLv2())
+    print(getNvCmpx())
     #date_only = date.today()
     #t = date_only - dateutil.relativedelta.relativedelta(months=3)
     #ym = str(t.year) + str(t.month).zfill(2)# + str(t.day).zfill(2)
