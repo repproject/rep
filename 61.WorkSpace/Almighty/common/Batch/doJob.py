@@ -33,7 +33,7 @@ def do(job_id,job_seq):
     :param job_id:
     :return:
     """
-    blog.info("Do Job Start : " + job_id + "/" + str(job_seq))
+    blog.info("Do Job Start : [" + job_id + "][" + str(job_seq) + "]")
     listFunc = getJobFuncAct(job_id)
 
     jobSchdExec = Server.COM.getJobSchdExecFirst(job_id, int(job_seq))
@@ -59,6 +59,7 @@ def do(job_id,job_seq):
                 batchContext = simpleBatchContext("[" + job.job_id + "][" + job.job_nm + "][" + function.func_id + "][" + function.func_nm +"][" + function.func_cl_cd + "]")
                 CrawlObject =  common.Batch.Crawling.Crawling(function.src_func_nm, function.ref1, batchContext, je)
                 CrawlObject.run()
+        sendTelegramMessage('JOB 정상종료? : [' + job.job_id + "][" + job.job_nm + "]")
         writeJobExec(job_id, job_seq, 'T', exec_dtm, 'JOB 정상종료? : [' + job.job_id + "][" + job.job_nm + "]")
     except :
         writeJobExec(job_id,job_seq,'E',exec_dtm,str(traceback.format_exc()))
