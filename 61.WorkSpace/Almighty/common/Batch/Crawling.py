@@ -86,8 +86,8 @@ class Crawling:
                     self.dicParam[tb[0].item_nm] = tb[0].item_val
             self.sleepStamp = self.tableSite.slep_sec
         except:
-            blog.error(traceback.format_exc())
             sendTelegramMessage("Crawling 초기화 Error : " + str(traceback.format_exc()))
+            blog.error(traceback.format_exc())
 
     def run(self):
         try:
@@ -108,7 +108,7 @@ class Crawling:
     def startLog(self):
         #기본로그 출력
         global blog
-        blog = Logger(LogName=self.batchContext.getLogName(), Level="DEBUG", name = "Batch").logger
+        blog = Logger(LogName=self.batchContext.getLogName(), Level="INFO", name = "Batch").logger
         blog.info(self.batchContext.getLogName()+"####################START[" + self.batchContext.getFuncName() + "]####################")
         sendTelegramMessage("START[" + self.batchContext.getFuncName() + "]")
 

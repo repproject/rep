@@ -104,8 +104,8 @@ class KCOMDEV050(QWidget, KWidget, form_class) :
     def search(self):
         try:
             if self.preSearch():
-                Columns = ['PASI_ID','ITEM_NM', 'ITEM_VAL', 'TBL_NM', 'COL_NM', 'ITEM_DESC']
-                Widths = {'PASI_ID':100,'ITEM_NM':120, 'ITEM_VAL':100, 'TBL_NM':150, 'COL_NM':150, 'ITEM_DESC':200}
+                Columns = ['PASI_ID','DLMI_STR','ITEM_NM', 'ITEM_VAL', 'TBL_NM', 'COL_NM', 'ITEM_DESC']
+                Widths = {'PASI_ID':100,'DLMI_STR':100,'ITEM_NM':120, 'ITEM_VAL':100, 'TBL_NM':150, 'COL_NM':150, 'ITEM_DESC':200}
                 SetDic = {'svc_id': self.svc_id,'in_out_cl_cd':'I'}
                 self.pasi_id = self.edit_pasi_id.text()
                 self.twIn.setBasic(columns = Columns, widths = Widths, tableClass = SvcPasiItem, setDic = SetDic)

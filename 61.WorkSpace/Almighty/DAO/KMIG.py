@@ -166,6 +166,9 @@ class BbCmpxTypMonPrc(Base,KTable):
         return "<BbCmpxTypMonPrc('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.bb_cmpx_id), str(self.bb_cmpx_typ_seq), str(self.std_yymm), str(self.std_ymd), str(self.down_prc), str(self.up_prc), str(self.chg_prc), str(self.down_js_prc), str(self.up_js_prc), str(self.chg_js_prc) + KTable.__repr__(self))
 
 class DealDtl(Base,KTable):
+    """
+        customized Table Class
+    """
     __tablename__ = 'kmig_deal_dtl'
 
     job_id = KColumn(String(20), nullable = False)

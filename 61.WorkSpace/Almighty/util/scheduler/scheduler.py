@@ -16,6 +16,7 @@ import Server.Basic
 def doSchedule():    #JOB수행
     try:
         sched = BackgroundScheduler()
+        sched.start()
         listJobExec = getJobSchd()
 
         for jobExec in listJobExec:
@@ -42,7 +43,7 @@ def doSchedule():    #JOB수행
                 if execPerdCd == 'DD':
                     sched.add_job(do, 'cron', month='*',day='*',hour=execHH, minute=execMI, second=1,day_of_week = '*', id=jobId+str(jobSeq), args=[jobId,jobSeq])
 
-        sched.start()
+
         blog.info("REP Scheduler Start...")
 
         while True:
@@ -59,9 +60,9 @@ def doSchedule():    #JOB수행
                     sched.add_job(do, id=jobId + str(jobSeq) + str(datetime.datetime.now()),
                                   args=[imdiExec[0].job_id, int(imdiExec[0].job_seq)])
                     blog.info("REP Scheduler IMmediate Add Job Complete!!!")
-                try:
-                    sched.start()
-                except : error()
+                #try:
+                    #sched.start()
+                #except : error()
             time.sleep(10) #즉시실행 Batch가 2번 실행되는 이슈가 존재. 10초로 변경해서 해결했으나 궁극적인 해결은 아님 Await기능을 찾아 해결 필요
     except : error()
 
