@@ -33,9 +33,11 @@ def getBBCmpxTypCrawl():
 def getLegalDongLv2():
     #3개월치 가져오도록 세팅
     date_only = date.today()
-    t = date_only - dateutil.relativedelta.relativedelta(months=3)
+    t = date_only - dateutil.relativedelta.relativedelta(months=2)
     ym = str(t.year) + str(t.month).zfill(2)# + str(t.day).zfill(2)
-    rslt = s.query(LeglDong, StdYymm).filter(LeglDong.lv_cd == '2', StdYymm.std_yymm <= ym,StdYymm.std_yymm >= ym).order_by(
+    todayym = str(date_only.year) + str(date_only.month).zfill(2)
+
+    rslt = s.query(LeglDong, StdYymm).filter(LeglDong.lv_cd == '2', StdYymm.std_yymm <= todayym,StdYymm.std_yymm >= ym).order_by(
         StdYymm.std_yymm).all()  # 실거래가 시행이 06년 #'200601' #,LeglDong.legl_dong_cd=='4145000000'
     rslt2 = copy.deepcopy(rslt)
     for t in rslt2:
@@ -48,10 +50,11 @@ def getLegalDongLv3():
     return rslt
 
 if __name__ == "__main__":
-    date_only = date.today()
-    t = date_only - dateutil.relativedelta.relativedelta(months=3)
-    ym = str(t.year) + str(t.month).zfill(2)# + str(t.day).zfill(2)
-    print(ym)
+    print(getLegalDongLv2())
+    #date_only = date.today()
+    #t = date_only - dateutil.relativedelta.relativedelta(months=3)
+    #ym = str(t.year) + str(t.month).zfill(2)# + str(t.day).zfill(2)
+    #print(ym)
     #t = datetime.now()
     #t.
     #print(t)
