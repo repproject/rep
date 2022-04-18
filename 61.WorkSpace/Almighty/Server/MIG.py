@@ -5,6 +5,7 @@ from DAO.KMIG import *
 from DAO.KRED import *
 from sqlalchemy.sql.expression import func
 from datetime import datetime, timedelta
+import dateutil.relativedelta
 import copy
 
 
@@ -30,9 +31,11 @@ def getBBCmpxTypCrawl():
                                                                        BbCmpxTypMonPrc.chg_dtm > strd).exists())).all()
 
 def getLegalDongLv2():
-    t = datetime.now()
-    ymd = str(t.year) + str(t.month).zfill(2) + str(t.day).zfill(2)
-    rslt = s.query(LeglDong, StdYymm).filter(LeglDong.lv_cd == '2', StdYymm.std_yymm <= ymd,StdYymm.std_yymm >= '201011').order_by(
+    #3개월치 가져오도록 세팅
+    date_only = date.today()
+    t = date_only - dateutil.relativedelta.relativedelta(months=3)
+    ym = str(t.year) + str(t.month).zfill(2)# + str(t.day).zfill(2)
+    rslt = s.query(LeglDong, StdYymm).filter(LeglDong.lv_cd == '2', StdYymm.std_yymm <= ym,StdYymm.std_yymm >= ym).order_by(
         StdYymm.std_yymm).all()  # 실거래가 시행이 06년 #'200601' #,LeglDong.legl_dong_cd=='4145000000'
     rslt2 = copy.deepcopy(rslt)
     for t in rslt2:
@@ -41,11 +44,19 @@ def getLegalDongLv2():
 
 def getLegalDongLv3():
     rslt = s.query(LeglDong).filter(LeglDong.lv_cd == '3').order_by(LeglDong.legl_dong_cd).all()
+
     return rslt
 
 if __name__ == "__main__":
-    str = datetime.now().strftime('%Y%m')
-    print(str)
+    date_only = date.today()
+    t = date_only - dateutil.relativedelta.relativedelta(months=3)
+    ym = str(t.year) + str(t.month).zfill(2)# + str(t.day).zfill(2)
+    print(ym)
+    #t = datetime.now()
+    #t.
+    #print(t)
+    #str = datetime.now().strftime('%Y%m')
+    #print(str)
     #rslt = getLegalDongLv2()
     #print(rslt)
     pass
