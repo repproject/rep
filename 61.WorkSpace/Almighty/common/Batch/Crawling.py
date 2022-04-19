@@ -38,7 +38,6 @@ class Crawling:
     commitCount = 100
 
     #URL Making 기준정보
-    dicStrdDataList = None
     Strd = None
     dicStrd = None
 
