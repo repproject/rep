@@ -114,7 +114,7 @@ class Crawling:
     def startLog(self):
         #기본로그 출력
         global blog
-        blog = Logger(LogName=self.batchContext.getLogName(), Level="DEBUG", name = "Batch").logger
+        blog = Logger(LogName=self.batchContext.getLogName(), Level="INFO", name = "Batch").logger
         blog.info(self.batchContext.getLogName()+"####################START[" + self.batchContext.getFuncName() + "]####################")
         sendTelegramMessage("START[" + self.batchContext.getFuncName() + "]")
 
@@ -162,15 +162,16 @@ class Crawling:
         """
         if self.dicStrd != None:
             for sd in self.dicStrd:
-                blog.debug(self.batchContext.getLogName() + "단위 CRAWL START !!!")
+                blog.debug(self.batchContext.getLogName() + "========================단위 CRAWL START !!!==========================")
                 #item에 컬럼값이 등록되면 기준Data 세팅
                 for tb in self.tableSvcPasiItemIn:
                     if isNotNull(tb[0].tbl_nm) and isNotNull(tb[0].col_nm) and tb[0].dlmi_str == "GET":
                         self.dicParam[tb[0].item_nm] = sd[tb[0].col_nm]
                 reCnt = 0
+                blog.debug(self.batchContext.getLogName() + "dicParam Setting 완료")
                 while True:
                     reCnt = reCnt + 1
-                    self.debugDicStrdData(self.dicStrd)
+                    blog.debug(self.batchContext.getLogName() + "make URL 이전")
                     url = self.makeURL(sd,reCnt)
                     blog.info("CALL URL : " + url)
                     page = self.request(url)

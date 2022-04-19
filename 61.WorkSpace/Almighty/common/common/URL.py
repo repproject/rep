@@ -10,6 +10,7 @@ from PyQt5.QtWidgets import *
 from common.common.Func import *
 import json
 from bs4 import BeautifulSoup
+from common.common.Log import *
 
 KB부동산과거시세조회URL = "http://nland.kbstar.com/quics?page=B047172&cc=b028364:b057487"
 KB부동산과거시세조회Json = "http://nland.kbstar.com/quics?page=&QAction=763359&RType=json"
@@ -157,19 +158,23 @@ class URLMaker:
 def getURLQuote(url,type="utf-8"):
     return urllib.urlretrieve(urllib.quote(url.encode(type), '/:'))
 
+
+# resp = get(url)
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Macintosh; U; Mac OS X 10_6_1; en-US) AppleWebKit/530.5 (KHTML, like Gecko) Chrome/ Safari/530.5'}
+
+blog = logging.getLogger('Batch')
+
 def get_html(url,method = "GET",data = None):
     _html = ""
     resp = ''
     while resp == '':
         try:
-            # resp = get(url)
-            headers = {
-                'User-Agent': 'Mozilla/5.0 (Macintosh; U; Mac OS X 10_6_1; en-US) AppleWebKit/530.5 (KHTML, like Gecko) Chrome/ Safari/530.5'}
+
             if method == "GET":
                 preReq = urllib.request.Request(url, headers=headers)
-                req = urllib.request.urlopen(preReq)
+                req = urllib.request.urlopen(preReq) #성능 많이 잡아 먹음 0.15초
                 resp = req.read()
-
                 #resp = requests.get(url, headers=headers, verify=False)
                 #resp = requests.get(url, headers=headers)
             elif method == "POST":
