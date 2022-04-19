@@ -123,7 +123,8 @@ class KCOMBAT010(QWidget, KWidget, form_class) :
                         dicParam['job_id'] = self.job_id
                         dicParam['job_seq'] = self.twJobSchd.getTextByColName(self.twJobSchd.currentRow(), "job_seq")
                         kwargs = {**dicParam}
-                        self.JobSchdExec = JobSchdExec(**kwargs)
+                        self.JobSchdExec = []
+                        self.JobSchdExec.append(JobSchdExec(**kwargs))
 
                     setEdit2Table(self,self.JobSchdExec[0])
                     merge(self.JobSchdExec[0])

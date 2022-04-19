@@ -20,6 +20,11 @@ import os
 import json
 from datetime import datetime
 
+#Multi Proccessing 용 import [출처] Python Multiprocessing(Pool)을 사용한 데이터 처리 속도 개선|작성자 SungWook Kang
+import multiprocessing as mp
+from multiprocessing import Pool
+import threading
+
 #LV1 크롤링 클래스
 class Crawling:
     funcName = None         #함수명(Lv4필수)
@@ -36,6 +41,12 @@ class Crawling:
     MessageInterval = 10
     MessageUnit = "P"
     commitCount = 100
+
+    #Multi Processing Thread
+    MultiProcessCnt = 1000
+    MultiThreadCnt = 1000
+    num_cores = 0
+    num_threads = 0
 
     #URL Making 기준정보
     Strd = None
@@ -61,6 +72,7 @@ class Crawling:
     crawlCdExec = None
     jobId = None
     execDtm = None
+    JobExec = None
 
     #초기화
     def __init__(self,strPasiId,strSvcId,batchContext = None,JobExec = None):
@@ -75,6 +87,13 @@ class Crawling:
             else:
                 self.jobId = JobExec.job_id
                 self.execDtm = JobExec.exec_dtm
+                self.jobExec = JobExec
+                if self.jobExec.exec_parm6 != None:
+                    self.num_cores = int(self.jobExec.exec_parm6)
+                    if self.jobExec.exec_parm7 != None:
+                        self.num_threads = int(self.jobExec.exec_parm7)
+
+
 
             #입력받은 pasi_id로 Pasing 정보를 가져옴
             rslt = Server.COM.getPasi(self.pasiId, self.svcId)
@@ -93,11 +112,44 @@ class Crawling:
             sendTelegramMessage("Crawling 초기화 Error : " + str(traceback.format_exc()))
             blog.error(traceback.format_exc())
 
+    def threadCrwal(self,listdicStrd):
+        for i in range(0,self.num_threads):
+            p = threading.Thread(target=self.crawl,args=(listdicStrd[i],))
+            p.start()
+
     def run(self):
         try:
             self.startLog() #START Log
             self.ready()    #크롤링 전 사전 Data 준비 작업
-            self.crawl()    #URL 호출 후 삽입
+            if self.num_cores > 0:
+                #num_cores = mp.cpu_count()
+                #num_cores = int(num_cores/3)
+                blog.info("Number of Core : " + str(self.num_cores))
+                pool = Pool(self.num_cores)
+                listdicStrd = []
+
+                if self.num_threads > 0:
+                    listlistdicStrd = []
+                    for i in range(0,int(len(self.dicStrd)/self.MultiThreadCnt)):
+                        listlistdicStrd.append(self.dicStrd[i*self.MultiThreadCnt:i*self.MultiThreadCnt+self.MultiThreadCnt])
+                        if i % self.num_threads == 0:
+                            l = copy.deepcopy(listlistdicStrd)
+                            listdicStrd.append(l)
+                            listlistdicStrd = []
+                    listlistdicStrd.append(self.dicStrd[(int(len(self.dicStrd)/self.MultiThreadCnt)):])
+                    listdicStrd.append(listlistdicStrd)
+                    pool.map(self.threadCrwal, listdicStrd)
+                    pool.close()
+                    pool.join()
+                else:
+                    for i in range(0,int(len(self.dicStrd)/self.MultiProcessCnt)):
+                        listdicStrd.append(self.dicStrd[i*self.MultiProcessCnt:i*self.MultiProcessCnt+self.MultiProcessCnt])
+                    listdicStrd.append(self.dicStrd[(int(len(self.dicStrd)/self.MultiProcessCnt)):])
+                pool.map(self.crawl,listdicStrd)
+                pool.close()
+                pool.join()
+            else:
+                self.crawl(self.dicStrd)    #URL 호출 후 삽입
         except Exception as e :
             blog.error(traceback.format_exc())
             sendTelegramMessage("Batch 수행 에러 : " + str(traceback.format_exc()))
@@ -153,14 +205,14 @@ class Crawling:
             #raise TypeError
 
     # Lv2 구현
-    def crawl(self):
+    def crawl(self,dicStrd):
         """
         1. 기준 정보를 Inparam 매핑정보를 사용해 url를 조합한다.
         2. 조합한 url을 호출한다.
         :return:
         """
-        if self.dicStrd != None:
-            for sd in self.dicStrd:
+        if dicStrd != None:
+            for sd in dicStrd:
                 blog.debug(self.batchContext.getLogName() + "========================단위 CRAWL START !!!==========================")
                 #item에 컬럼값이 등록되면 기준Data 세팅
                 for tb in self.tableSvcPasiItemIn:
@@ -179,7 +231,7 @@ class Crawling:
                     blog.debug(self.batchContext.getLogName() + "SLEEP 전 ")
                     time.sleep(self.sleepStamp)
                     blog.debug(self.batchContext.getLogName() + "SLEEP 후 ")
-                    if self.isReCrwal(url,page,self.dicStrd,reCnt) == False:
+                    if self.isReCrwal(url,page,dicStrd,reCnt) == False:
                         blog.debug(self.batchContext.getLogName() + "Cnt 전 ")
                         self.rowCounter.Cnt()
                         blog.debug(self.batchContext.getLogName() + "Cnt 후 ")
@@ -203,7 +255,7 @@ class Crawling:
                 blog.debug("convert Page : " + cPage)
                 self.selfSaveDB(cPage,None,url)
                 time.sleep(self.sleepStamp)
-                if self.isReCrwal(url,page,self.dicStrd,reCnt) == False:
+                if self.isReCrwal(url,page,dicStrd,reCnt) == False:
                     self.rowCounter.Cnt()
                     break
             self.CountCommit()
@@ -450,6 +502,8 @@ class DataStrd:
         return self.listStrdData[self.index]
 
 if __name__ == '__main__':
-    batchContext = simpleBatchContext("NVCmpxTyp")
-    CrawlObject = Crawling('NVCmpxTyp','NVComplexTyp',batchContext)
-    CrawlObject.run()
+    pass
+    #print(num_cores)
+    #batchContext = simpleBatchContext("NVCmpxTyp")
+    #CrawlObject = Crawling('NVCmpxTyp','NVComplexTyp',batchContext)
+    #CrawlObject.run()

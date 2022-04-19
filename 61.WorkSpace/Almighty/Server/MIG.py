@@ -56,7 +56,7 @@ def getLeglDongLv2LandValue(): #공시지가 도로명 주소 get
     return rslt2
 
 def getNvCmpx():
-    return s.query(NvCmpx).filter(NvCmpx.job_id == 'NVDC002',NvCmpx.exec_dtm == '20220418152736', NvCmpx.nv_cmpx_id >= '1448').all()
+    return s.query(NvCmpx).filter(NvCmpx.job_id == 'NVDC002',NvCmpx.exec_dtm == '20220418152736', NvCmpx.nv_cmpx_id >= '7425').all()
 
 def getOlvRoadNm():
     return s.query(OlvRoadNm).filter(OlvRoadNm.job_id == 'LVIN001',OlvRoadNm.exec_dtm == '20220419131229').order_by(OlvRoadNm.gov_legl_dong_cd).all()
