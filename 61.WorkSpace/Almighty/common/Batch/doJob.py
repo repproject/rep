@@ -62,8 +62,12 @@ def do(job_id,job_seq):
 
         message = 'JOB 정상종료 : [' + job.job_id + "][" + job.job_nm + "]"
         sendTelegramMessage(message)
+        blog.info(message)
         writeJobExec(job_id, job_seq, 'T', exec_dtm, message)
-    except :
+    except Exception as e:
+        message = 'JOB 오류종료 : [' + job.job_id + "][" + job.job_nm + "]"
+        blog.error(message)
+        sendTelegramMessage(message)
         writeJobExec(job_id,job_seq,'E',exec_dtm,str(traceback.format_exc()))
         error()
 
@@ -115,5 +119,5 @@ if __name__ == '__main__':
     #blog.info("parameter : " + *args)
     #jobSchdExec = Server.COM.getJobSchdExecFirst('NVDC002', 1)
     #print(jobSchdExec)
-    do('NVDC006',1)
+    do('LVIN002',1)
     #main()

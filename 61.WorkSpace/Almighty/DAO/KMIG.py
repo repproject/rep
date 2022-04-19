@@ -416,3 +416,31 @@ class OlvRoadNm(Base,KTable):
     def __repr__(self):
         return "<OlvRoadNm('%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.job_id), str(self.exec_dtm), str(self.gov_legl_dong_cd), str(self.road_nm_cd), str(self.road_nm), str(self.munt_parm_val) + KTable.__repr__(self))
 
+class OlvApt(Base,KTable):
+    __tablename__ = 'kmig_olv_apt'
+
+    job_id = KColumn(String(20), primary_key = True, nullable = False)
+    exec_dtm = KColumn(String(14), primary_key = True, nullable = False)
+    road_nm_cd = KColumn(String(20), nullable = False)
+    apt_cd = KColumn(String(20), primary_key = True, nullable = False)
+    apt_nm = KColumn(String(200), nullable = True)
+    hnum = KColumn(String(100), nullable = True)
+    noti_dd = KColumn(String(8), nullable = True)
+    x_coor_val = KColumn(FLOAT, nullable = True)
+    y_coor_val = KColumn(FLOAT, nullable = True)
+
+
+    def __init__(self, *args, **kwargs):
+        KTable.__init__(self)
+        self.job_id =  kwargs.pop('job_id')
+        self.exec_dtm =  kwargs.pop('exec_dtm')
+        self.road_nm_cd =  kwargs.pop('road_nm_cd')
+        self.apt_cd =  kwargs.pop('apt_cd')
+        self.apt_nm =  kwargs.pop('apt_nm',None)
+        self.hnum =  kwargs.pop('hnum',None)
+        self.noti_dd =  kwargs.pop('noti_dd',None)
+        self.x_coor_val =  kwargs.pop('x_coor_val',None)
+        self.y_coor_val =  kwargs.pop('y_coor_val',None)
+
+    def __repr__(self):
+        return "<OlvApt('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.job_id), str(self.exec_dtm), str(self.road_nm_cd), str(self.apt_cd), str(self.apt_nm), str(self.hnum), str(self.noti_dd), str(self.x_coor_val), str(self.y_coor_val) + KTable.__repr__(self))

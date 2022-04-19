@@ -58,8 +58,11 @@ def getLeglDongLv2LandValue(): #공시지가 도로명 주소 get
 def getNvCmpx():
     return s.query(NvCmpx).filter(NvCmpx.job_id == 'NVDC002',NvCmpx.exec_dtm == '20220418152736', NvCmpx.nv_cmpx_id >= '1448').all()
 
+def getOlvRoadNm():
+    return s.query(OlvRoadNm).filter(OlvRoadNm.job_id == 'LVIN001',OlvRoadNm.exec_dtm == '20220419131229').order_by(OlvRoadNm.gov_legl_dong_cd).all()
+
 if __name__ == "__main__":
-    print(len(getNvCmpx()))
+    print(getOlvRoadNm())
     #date_only = date.today()
     #t = date_only - dateutil.relativedelta.relativedelta(months=3)
     #ym = str(t.year) + str(t.month).zfill(2)# + str(t.day).zfill(2)

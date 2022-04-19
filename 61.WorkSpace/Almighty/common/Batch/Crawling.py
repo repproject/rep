@@ -99,9 +99,10 @@ class Crawling:
             self.startLog() #START Log
             self.ready()    #크롤링 전 사전 Data 준비 작업
             self.crawl()    #URL 호출 후 삽입
-        except :
+        except Exception as e :
             blog.error(traceback.format_exc())
             sendTelegramMessage("Batch 수행 에러 : " + str(traceback.format_exc()))
+            raise e
         try:
             #self.report()   #report 및 마지막 정의
             pass
@@ -272,31 +273,36 @@ class Crawling:
             strExec = cdex[1].exec_cd_cnts + str(cdex[0].exec_parm_val)
             pasiPage = eval(strExec)
 
-        #단위 페이지를 파싱하여 INSERT
-        for p in pasiPage:
-            #if self.tableSvcPasi.pasi_way_cd == 'SOUP':
-            listTable = self.getTableListByOutMapping(self.svcId, self.pasiId, p, strd)
-            for tb in listTable:
-                delattr(tb,'reg_user_id')
-                delattr(tb,'reg_dtm')
+        if pasiPage != None:
+            #단위 페이지를 파싱하여 INSERT
+            for p in pasiPage:
+                #if self.tableSvcPasi.pasi_way_cd == 'SOUP':
+                listTable = self.getTableListByOutMapping(self.svcId, self.pasiId, p, strd)
+                for tb in listTable:
+                    delattr(tb,'reg_user_id')
+                    delattr(tb,'reg_dtm')
 
-            blog.debug("=============INSERT BEOFRE TABLE LIST=================")
-            blog.debug(listTable)
-            mergeListNC(listTable)
-                # for tb in self.getTableListByOutMapping(self.svcId, self.pasiId, p,strd):
-                #     try:
-                #         try:
-                #             insert(tb)
-                #         except IntegrityError as ie:
-                #             #rollback()
-                #             #blog.error(traceback.format_exc())
-                #             # delattr(tb,'reg_user_id')
-                #             # delattr(tb,'reg_dtm')
-                #             merge(tb)
-                #             pass
-                #     except PendingRollbackError as pre:
-                #         pass
-                #     print("ok")
+                blog.debug("=============INSERT BEOFRE TABLE LIST=================")
+                blog.debug(listTable)
+                mergeListNC(listTable)
+                    # for tb in self.getTableListByOutMapping(self.svcId, self.pasiId, p,strd):
+                    #     try:
+                    #         try:
+                    #             insert(tb)
+                    #         except IntegrityError as ie:
+                    #             #rollback()
+                    #             #blog.error(traceback.format_exc())
+                    #             # delattr(tb,'reg_user_id')
+                    #             # delattr(tb,'reg_dtm')
+                    #             merge(tb)
+                    #             pass
+                    #     except PendingRollbackError as pre:
+                    #         pass
+                    #     print("ok")
+    #        except TypeError:
+            #pasiPage가 반복이 불가능한 경우 ERROR 발생
+    #            blog.error()
+    #            return True
         return True
 
     def convertPage(self,page):
