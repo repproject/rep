@@ -35,7 +35,7 @@ class Crawling:
     rowCounterInterval = "N"
     MessageInterval = 10
     MessageUnit = "P"
-    commitCount = 1
+    commitCount = 100
 
     #URL Making 기준정보
     dicStrdDataList = None
@@ -114,7 +114,7 @@ class Crawling:
     def startLog(self):
         #기본로그 출력
         global blog
-        blog = Logger(LogName=self.batchContext.getLogName(), Level="INFO", name = "Batch").logger
+        blog = Logger(LogName=self.batchContext.getLogName(), Level="DEBUG", name = "Batch").logger
         blog.info(self.batchContext.getLogName()+"####################START[" + self.batchContext.getFuncName() + "]####################")
         sendTelegramMessage("START[" + self.batchContext.getFuncName() + "]")
 
@@ -188,7 +188,7 @@ class Crawling:
                 blog.debug(self.batchContext.getLogName() + "COMMIT전 ")
                 self.CountCommit()
                 blog.debug(self.batchContext.getLogName() + "COMMIT후 ")
-                gc.collect()
+
                 blog.debug(self.batchContext.getLogName() + "단위 CRAWL END !!!")
         else:
             #null인경우 1번실행용도
@@ -432,6 +432,7 @@ class Crawling:
         cnt = self.rowCounter.getCount()
         if cnt % self.commitCount == 0:
             commit()
+            gc.collect()
 
 class DataStrd:
     #Crawling의 기준 data list
