@@ -81,8 +81,8 @@ def getRcvUserList():
     return s.query(TlgrUser).filter(TlgrUser.rcv_tgt_yn == 'Y').order_by(TlgrUser.send_cl_cd).all()
 
 if __name__ == '__main__':
-    r = updateImdiJobN('GOIN001',1)
-    print(r)
+    #r = updateImdiJobN('GOIN001',1)
+    print(getLeglDongLv2LandValue())
     pass
 
 
