@@ -64,20 +64,21 @@ class Site(Base,KTable):
     bas_url = KColumn(String(1000), nullable = True)
     bas_prtc = KColumn(String(10), nullable = True)
     enc_cd = KColumn(String(20), nullable = True, kcom_cd_domain = True, kcom_cd_grp = 'ENC')
+    han_enc_yn = KColumn(String(1), nullable = False)
     site_desc = KColumn(String(500), nullable = True)
-
 
     def __init__(self, *args, **kwargs):
         KTable.__init__(self)
         self.site_cd =  kwargs.pop('site_cd')
-        self.slep_sec =  kwargs.pop('slep_sec','')
-        self.bas_url =  kwargs.pop('bas_url','')
-        self.bas_prtc =  kwargs.pop('bas_prtc','')
-        self.enc_cd =  kwargs.pop('enc_cd','')
-        self.site_desc =  kwargs.pop('site_desc','')
+        self.slep_sec =  kwargs.pop('slep_sec',None)
+        self.bas_url =  kwargs.pop('bas_url',None)
+        self.bas_prtc =  kwargs.pop('bas_prtc',None)
+        self.enc_cd =  kwargs.pop('enc_cd',None)
+        self.han_enc_yn =  kwargs.pop('han_enc_yn')
+        self.site_desc =  kwargs.pop('site_desc',None)
 
     def __repr__(self):
-        return "<Site('%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.site_cd), str(self.slep_sec), str(self.bas_url), str(self.bas_prtc), str(self.enc_cd), str(self.site_desc) + KTable.__repr__(self))
+        return "<Site('%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.site_cd), str(self.slep_sec), str(self.bas_url), str(self.bas_prtc), str(self.enc_cd), str(self.han_enc_yn), str(self.site_desc) + KTable.__repr__(self))
 
 class Svc(Base,KTable):
     __tablename__ = 'kadm_svc'

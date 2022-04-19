@@ -15,6 +15,7 @@ import Server.Basic
 
 def doSchedule():    #JOB수행
     try:
+        blog = Logger(LogName='scheduler', Level="DEBUG", name="scheduler").logger
         sched = BackgroundScheduler()
         sched.start()
         listJobExec = getJobSchd()
@@ -48,7 +49,9 @@ def doSchedule():    #JOB수행
 
         while True:
             #즉시실행된 Job 목록을 추출한다.
+            blog.debug("Find Immediate Job...")
             ImdiExecList = getImdiJobList(blog)
+            blog.debug(ImdiExecList)
 
             if len(ImdiExecList) > 0 :
                 for imdiExec in ImdiExecList:
@@ -64,6 +67,7 @@ def doSchedule():    #JOB수행
                     #sched.start()
                 #except : error()
             time.sleep(10) #즉시실행 Batch가 2번 실행되는 이슈가 존재. 10초로 변경해서 해결했으나 궁극적인 해결은 아님 Await기능을 찾아 해결 필요
+
     except : error()
 
 if __name__ == '__main__':

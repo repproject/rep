@@ -161,6 +161,7 @@ class Crawling:
         """
         if self.dicStrd != None:
             for sd in self.dicStrd:
+                blog.debug(self.batchContext.getLogName() + "단위 CRAWL START !!!")
                 #item에 컬럼값이 등록되면 기준Data 세팅
                 for tb in self.tableSvcPasiItemIn:
                     if isNotNull(tb[0].tbl_nm) and isNotNull(tb[0].col_nm) and tb[0].dlmi_str == "GET":
@@ -174,12 +175,20 @@ class Crawling:
                     page = self.request(url)
                     cPage = self.convertPage(page)  #page를 객체화(BeutifulShop)형태로 변경
                     self.selfSaveDB(cPage,sd,url)
+                    blog.debug(self.batchContext.getLogName() + "SLEEP 전 ")
                     time.sleep(self.sleepStamp)
+                    blog.debug(self.batchContext.getLogName() + "SLEEP 후 ")
                     if self.isReCrwal(url,page,self.dicStrd,reCnt) == False:
+                        blog.debug(self.batchContext.getLogName() + "Cnt 전 ")
                         self.rowCounter.Cnt()
+                        blog.debug(self.batchContext.getLogName() + "Cnt 후 ")
                         break
+
+                blog.debug(self.batchContext.getLogName() + "COMMIT전 ")
                 self.CountCommit()
+                blog.debug(self.batchContext.getLogName() + "COMMIT후 ")
                 gc.collect()
+                blog.debug(self.batchContext.getLogName() + "단위 CRAWL END !!!")
         else:
             #null인경우 1번실행용도
             reCnt = 0
@@ -214,12 +223,18 @@ class Crawling:
             elif tb[0].dlmi_str != "GET":
                 sub_url += tb[0].dlmi_str + dicStrdData[tb[0].col_nm]
         self.url = self.tableSite.bas_prtc + "://"  # 프로토콜 http
-        self.url += urllib.parse.quote(self.tableSite.bas_url + self.tableSvc.bas_svc_url,
-                                       encoding=self.tableSite.enc_cd)
+        if self.tableSite.han_enc_yn == "Y":
+            self.url += urllib.parse.quote(self.tableSite.bas_url + self.tableSvc.bas_svc_url,
+                                           encoding=self.tableSite.enc_cd)
+        else:
+            self.url += self.tableSite.bas_url + self.tableSvc.bas_svc_url
         self.url += sub_url
 
         if self.tableSvc.req_way_cd == "GET":
-            self.url += "?" + urllib.parse.urlencode(self.dicParam, encoding=self.tableSite.enc_cd)
+            if self.tableSite.han_enc_yn == "Y":
+                self.url += "?" + urllib.parse.urlencode(self.dicParam, encoding=self.tableSite.enc_cd)
+            else:
+                self.url += "?" + urllib.parse.urlencode(self.dicParam)
         elif self.tableSvc.req_way_cd == "POST":
             pass
         return self.url
@@ -351,6 +366,8 @@ class Crawling:
                 str = p.find(t.item_nm).text
             elif self.tableSvcPasi.pasi_way_cd == 'JSON':
                 try:
+                    #print(p)
+                    #print(t.item_nm)
                     str = p[t.item_nm]
                 except KeyError:
                     blog.debug("정의된 값이 존재하지 않음 : " + t.item_nm )

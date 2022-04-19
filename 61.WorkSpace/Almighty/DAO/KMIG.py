@@ -393,3 +393,26 @@ class NvCmpxTyp(Base,KTable):
     def __repr__(self):
         return "<NvCmpxTyp('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.job_id), str(self.exec_dtm), str(self.nv_cmpx_id), str(self.nv_cmpx_typ_seq), str(self.cmpx_typ_nm), str(self.sply_area), str(self.only_area), str(self.only_pyng_nm), str(self.cmpx_typ_pyng_nm), str(self.gpln_cors), str(self.door_strc), str(self.room_cnt_str), str(self.bath_cnt_str), str(self.soh_hshl_cnt), str(self.sply_area_num), str(self.only_area_num), str(self.ret_typ_cd), str(self.avg_mntn_amt), str(self.smmr_mntn_amt), str(self.wntr_mntn_amt), str(self.deal_lmit_ymd), str(self.deal_psbl_ymd), str(self.dcnt_prc_str) + KTable.__repr__(self))
 
+class OlvRoadNm(Base,KTable):
+    __tablename__ = 'kmig_olv_road_nm'
+
+    job_id = KColumn(String(20), primary_key = True, nullable = False)
+    exec_dtm = KColumn(String(14), primary_key = True, nullable = False)
+    gov_legl_dong_cd = KColumn(String(10), nullable = False)
+    road_nm_cd = KColumn(String(20), primary_key = True, nullable = False)
+    road_nm = KColumn(String(200), nullable = True)
+    munt_parm_val = KColumn(String(200), nullable = True)
+
+
+    def __init__(self, *args, **kwargs):
+        KTable.__init__(self)
+        self.job_id =  kwargs.pop('job_id')
+        self.exec_dtm =  kwargs.pop('exec_dtm')
+        self.gov_legl_dong_cd =  kwargs.pop('gov_legl_dong_cd')
+        self.road_nm_cd =  kwargs.pop('road_nm_cd')
+        self.road_nm =  kwargs.pop('road_nm',None)
+        self.munt_parm_val =  kwargs.pop('munt_parm_val',None)
+
+    def __repr__(self):
+        return "<OlvRoadNm('%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.job_id), str(self.exec_dtm), str(self.gov_legl_dong_cd), str(self.road_nm_cd), str(self.road_nm), str(self.munt_parm_val) + KTable.__repr__(self))
+

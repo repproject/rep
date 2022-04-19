@@ -28,8 +28,8 @@ class KCOMDEV030(QWidget, KWidget, form_class) :
         self.btn_add_svc_pasi.clicked.connect(self.addSvcPasi)
         self.btn_del_svc_pasi.clicked.connect(self.delSvcPasi)
 
-        Columns = ['site_cd', 'slep_sec', 'bas_url', 'bas_prtc', 'enc_cd']
-        Widths = {'site_cd': 120, 'slep_sec': 50, 'bas_url': 200, 'bas_prtc': 30, 'enc_cd': 50}
+        Columns = ['site_cd', 'slep_sec', 'bas_url', 'bas_prtc', 'enc_cd', 'han_enc_yn']
+        Widths = {'site_cd': 120, 'slep_sec': 50, 'bas_url': 200, 'bas_prtc': 30, 'enc_cd': 50,'han_enc_yn':30}
         self.twSite.setBasic(columns=Columns, widths=Widths, tableClass=Site)
 
         self.search()
@@ -74,7 +74,8 @@ class KCOMDEV030(QWidget, KWidget, form_class) :
 
     def addSite(self):
         try:
-            self.twSite.addTWRow()
+            n = self.twSite.addTWRow()
+            self.twSite.setTextByColName(n, "han_enc_yn", 'Y')
         except : error()
 
     def addSvc(self):

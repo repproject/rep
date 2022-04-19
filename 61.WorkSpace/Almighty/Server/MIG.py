@@ -46,14 +46,20 @@ def getLegalDongLv2():
 
 def getLegalDongLv3():
     rslt = s.query(LeglDong).filter(LeglDong.lv_cd == '3').order_by(LeglDong.legl_dong_cd).all()
-
     return rslt
 
+def getLeglDongLv2LandValue(): #공시지가 도로명 주소 get
+    rslt = s.query(LeglDong,ComCdDtl).filter(LeglDong.lv_cd == '2',ComCdDtl.com_cd_grp=="HG_CS").order_by(LeglDong.legl_dong_cd,ComCdDtl.prnt_seq).all() #,LeglDong.legl_dong_cd == '4145000000'
+    rslt2 = copy.deepcopy(rslt)
+    for t in rslt2:
+        t[0].legl_dong_cd = t[0].legl_dong_cd[:5]
+    return rslt2
+
 def getNvCmpx():
-    return s.query(NvCmpx).filter(NvCmpx.job_id == 'NVDC002',NvCmpx.exec_dtm == '20220418152736').all()
+    return s.query(NvCmpx).filter(NvCmpx.job_id == 'NVDC002',NvCmpx.exec_dtm == '20220418152736', NvCmpx.nv_cmpx_id >= '1448').all()
 
 if __name__ == "__main__":
-    print(getNvCmpx())
+    print(len(getNvCmpx()))
     #date_only = date.today()
     #t = date_only - dateutil.relativedelta.relativedelta(months=3)
     #ym = str(t.year) + str(t.month).zfill(2)# + str(t.day).zfill(2)

@@ -47,6 +47,11 @@
      <string>인코딩코드</string>
     </property>
    </column>
+   <column>
+    <property name="text">
+     <string>한글인코딩여부</string>
+    </property>
+   </column>
   </widget>
   <widget class="QPushButton" name="btn_add">
    <property name="geometry">
