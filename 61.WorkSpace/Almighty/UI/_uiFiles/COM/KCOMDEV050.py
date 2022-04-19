@@ -37,6 +37,7 @@ class KCOMDEV050(QWidget, KWidget, form_class) :
         self.btn_search_url.clicked.connect(self.searchRequest)
         self.addItem.clicked.connect(self.addItemfromRslt) #조회결과로 OUT추가
         self.btn_add_table.clicked.connect(self.addTable)
+        self.btn_add_url.clicked.connect(self.addURL)
 
     def findPasi(self):
         try:
@@ -236,8 +237,6 @@ class KCOMDEV050(QWidget, KWidget, form_class) :
                     n = n2
                 self.twOut.setTextByColName(n, "item_nm", item.text(0)[1:-1])
 
-
-
     def preAddItemfromRslt(self):
         items = self.twRslt.selectedItems()
         if isNotNull(items):
@@ -255,6 +254,31 @@ class KCOMDEV050(QWidget, KWidget, form_class) :
             return False
 
         if self.twOut.isSet == False:
+            alert("조회 후 추가 가능합니다.")
+            return False
+
+    def addURL(self):
+        if self.preAddURL() == False:
+            return False
+
+        url = self.edit_url.text()
+        url = urllib.parse.unquote(url)
+        strUrlQuery = urllib.parse.urlparse(url)
+        strQuerySplitList = strUrlQuery.query.split('&')
+        dicQueryParam = {}
+        for strQuery in strQuerySplitList:
+            strsplit = strQuery.split('=')
+            dicQueryParam[strsplit[0]] = strsplit[1]
+
+        for dqp in dicQueryParam:
+            n = self.twIn.addTWRow()
+            self.twIn.setTextByColName(n, "pasi_id", self.pasi_id)
+            self.twIn.setTextByColName(n, "dlmi_str", "GET")
+            self.twIn.setTextByColName(n, "item_nm", dqp)
+            self.twIn.setTextByColName(n, "item_val", dicQueryParam[dqp])
+
+    def preAddURL(self):
+        if self.twIn.isSet == False:
             alert("조회 후 추가 가능합니다.")
             return False
 
