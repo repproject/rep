@@ -44,7 +44,7 @@ class Crawling:
 
     #Multi Processing Thread
     MultiProcessCnt = 1000
-    MultiThreadCnt = 1000
+    MultiThreadCuttingCnt = 1000
     num_cores = 0
     num_threads = 0
 
@@ -88,13 +88,10 @@ class Crawling:
                 self.jobId = JobExec.job_id
                 self.execDtm = JobExec.exec_dtm
                 self.jobExec = JobExec
-                if self.jobExec.exec_parm6 != None:
+                if self.jobExec.exec_parm6 != None and self.jobExec.exec_parm6 != '' and len(self.jobExec.exec_parm6) > 0:
                     self.num_cores = int(self.jobExec.exec_parm6)
-                    if self.jobExec.exec_parm7 != None:
+                    if self.jobExec.exec_parm7 != None and self.jobExec.exec_parm6 != '' and len(self.jobExec.exec_parm7) > 0:
                         self.num_threads = int(self.jobExec.exec_parm7)
-
-
-
             #입력받은 pasi_id로 Pasing 정보를 가져옴
             rslt = Server.COM.getPasi(self.pasiId, self.svcId)
             if rslt == None:
@@ -112,44 +109,66 @@ class Crawling:
             sendTelegramMessage("Crawling 초기화 Error : " + str(traceback.format_exc()))
             blog.error(traceback.format_exc())
 
-    def threadCrwal(self,listdicStrd):
-        for i in range(0,self.num_threads):
-            p = threading.Thread(target=self.crawl,args=(listdicStrd[i],))
-            p.start()
-
     def run(self):
         try:
             self.startLog() #START Log
             self.ready()    #크롤링 전 사전 Data 준비 작업
+
+            #multi Processing 코딩
             if self.num_cores > 0:
                 #num_cores = mp.cpu_count()
                 #num_cores = int(num_cores/3)
-                blog.info("Number of Core : " + str(self.num_cores))
+                blog.info("Number of Core   : " + str(self.num_cores))
+                blog.info("Number of Thread : " + str(self.num_threads))
                 pool = Pool(self.num_cores)
-                listdicStrd = []
+
+                listMultiProcessParam = [] #멀티프로세싱 파라미터 리스트
 
                 if self.num_threads > 0:
-                    listlistdicStrd = []
-                    for i in range(0,int(len(self.dicStrd)/self.MultiThreadCnt)):
-                        listlistdicStrd.append(self.dicStrd[i*self.MultiThreadCnt:i*self.MultiThreadCnt+self.MultiThreadCnt])
-                        if i % self.num_threads == 0:
-                            l = copy.deepcopy(listlistdicStrd)
-                            listdicStrd.append(l)
-                            listlistdicStrd = []
-                    listlistdicStrd.append(self.dicStrd[(int(len(self.dicStrd)/self.MultiThreadCnt)):])
-                    listdicStrd.append(listlistdicStrd)
-                    pool.map(self.threadCrwal, listdicStrd)
+                    listThreadParm = []
+                    listlistParm = []
+                    dicMultiThreadParam = {}
+
+                    for i in range(0,int(len(self.dicStrd)/self.MultiThreadCuttingCnt)):
+                        dicMultiThreadParam['listDicStrd'] = copy.deepcopy(self.dicStrd[i*self.MultiThreadCuttingCnt:i*self.MultiThreadCuttingCnt+self.MultiThreadCuttingCnt])
+                        dicMultiThreadParam['dicParam'] = copy.deepcopy(self.dicParam)
+                        listThreadParm.append(copy.deepcopy(dicMultiThreadParam))
+
+                        if i % self.num_threads == 1:
+                            listlistParm.append(copy.deepcopy(listThreadParm))
+                            listThreadParm = []
+
+                    dicMultiThreadParam['listDicStrd'] = copy.deepcopy(self.dicStrd[int(len(self.dicStrd)/self.MultiThreadCuttingCnt)*self.MultiThreadCuttingCnt:])
+                    dicMultiThreadParam['dicParam'] = self.dicParam
+                    listThreadParm.append(dicMultiThreadParam)
+                    listlistParm.append(listThreadParm)
+
+                    pool.map(self.threadCrwal, listlistParm)
                     pool.close()
                     pool.join()
                 else:
+                    dicMultiProcessParam = {}
                     for i in range(0,int(len(self.dicStrd)/self.MultiProcessCnt)):
-                        listdicStrd.append(self.dicStrd[i*self.MultiProcessCnt:i*self.MultiProcessCnt+self.MultiProcessCnt])
-                    listdicStrd.append(self.dicStrd[(int(len(self.dicStrd)/self.MultiProcessCnt)):])
-                pool.map(self.crawl,listdicStrd)
-                pool.close()
-                pool.join()
+                        dicMultiProcessParam['listDicStrd'] = copy.deepcopy(self.dicStrd[i*self.MultiProcessCnt:i*self.MultiProcessCnt+self.MultiProcessCnt])
+                        dicMultiProcessParam['dicParam'] = copy.deepcopy(self.dicParam)
+                        listMultiProcessParam.append(copy.deepcopy(dicMultiProcessParam))
+
+                    dicMultiProcessParam['listDicStrd'] = copy.deepcopy(self.dicStrd[(int(len(self.dicStrd)/self.MultiProcessCnt)):])
+                    dicMultiProcessParam['dicParam'] = copy.deepcopy(self.dicParam)
+                    listMultiProcessParam.append(copy.deepcopy(dicMultiProcessParam))
+
+                    pool.map(self.crawl, listMultiProcessParam)
+                    pool.close()
+                    pool.join()
+
+                self.dicStrd = None
+                gc.collect()
             else:
-                self.crawl(self.dicStrd)    #URL 호출 후 삽입
+                dicSingleProcessParam = {}
+                dicSingleProcessParam['listDicStrd'] = copy.deepcopy(self.dicStrd)
+                dicSingleProcessParam['dicParam'] = copy.deepcopy(self.dicParam)
+                self.crawl(dicSingleProcessParam)    #URL 호출 후 삽입
+                dicSingleProcessParam = {}
         except Exception as e :
             blog.error(traceback.format_exc())
             sendTelegramMessage("Batch 수행 에러 : " + str(traceback.format_exc()))
@@ -161,6 +180,11 @@ class Crawling:
             blog.error("Batch Report 출력 에러" + str(traceback.format_exc()))
             sendTelegramMessage("Batch Report 출력 에러" + str(traceback.format_exc()))
         #self.end()      #report 및 마지막 정의
+
+    def threadCrwal(self,listparm):
+        for i in range(0,len(listparm)):
+            p = threading.Thread(target=self.crawl,args=(listparm[i],))
+            p.start()
 
     def startLog(self):
         #기본로그 출력
@@ -205,12 +229,17 @@ class Crawling:
             #raise TypeError
 
     # Lv2 구현
-    def crawl(self,dicStrd):
+    def crawl(self,dicparm):
         """
         1. 기준 정보를 Inparam 매핑정보를 사용해 url를 조합한다.
         2. 조합한 url을 호출한다.
         :return:
         """
+        blog = logging.getLogger('Batch')
+        dicStrd = dicparm['listDicStrd']
+        dicParam = dicparm['dicParam']
+        ss = createSession()
+
         if dicStrd != None:
             for sd in dicStrd:
                 blog.debug(self.batchContext.getLogName() + "========================단위 CRAWL START !!!==========================")
@@ -223,24 +252,23 @@ class Crawling:
                 while True:
                     reCnt = reCnt + 1
                     blog.debug(self.batchContext.getLogName() + "make URL 이전")
-                    url = self.makeURL(sd,reCnt)
-                    blog.info("CALL URL : " + url)
+                    url = self.makeURL(sd,reCnt,dicParam = dicParam)
+                    blog.info(str(self.jobExec.exec_dtm) + "CALL URL : " + url)
                     page = self.request(url)
                     cPage = self.convertPage(page)  #page를 객체화(BeutifulShop)형태로 변경
-                    self.selfSaveDB(cPage,sd,url)
+                    self.selfSaveDB(cPage,sd,url,session = ss)
                     blog.debug(self.batchContext.getLogName() + "SLEEP 전 ")
                     time.sleep(self.sleepStamp)
                     blog.debug(self.batchContext.getLogName() + "SLEEP 후 ")
-                    if self.isReCrwal(url,page,dicStrd,reCnt) == False:
+                    if self.isReCrwal(url,page,cPage,dicStrd,reCnt) == False:
                         blog.debug(self.batchContext.getLogName() + "Cnt 전 ")
                         self.rowCounter.Cnt()
                         blog.debug(self.batchContext.getLogName() + "Cnt 후 ")
                         break
 
                 blog.debug(self.batchContext.getLogName() + "COMMIT전 ")
-                self.CountCommit()
+                self.CountCommit(session = ss)
                 blog.debug(self.batchContext.getLogName() + "COMMIT후 ")
-
                 blog.debug(self.batchContext.getLogName() + "단위 CRAWL END !!!")
         else:
             #null인경우 1번실행용도
@@ -253,15 +281,18 @@ class Crawling:
                 blog.debug("PAGE : " + page)
                 cPage = self.convertPage(page)
                 blog.debug("convert Page : " + cPage)
-                self.selfSaveDB(cPage,None,url)
+                self.selfSaveDB(cPage,None,url,session = ss)
                 time.sleep(self.sleepStamp)
                 if self.isReCrwal(url,page,dicStrd,reCnt) == False:
                     self.rowCounter.Cnt()
                     break
-            self.CountCommit()
-            gc.collect()
+            self.CountCommit(ss)
+            #gc.collect()
+        ss.commit()
+        ss.close()
+        gc.collect()
 
-    def makeURL(self, dicStrdData=None, reCnt=None):
+    def makeURL(self, dicStrdData=None, reCnt=None, dicParam = None):
         """
         self,dicParam = url get방식의 파라미터를 가지고 있는 Dictionary
         :param dicStrdData: url기준정보를 가지고 있는 dictionary
@@ -270,9 +301,17 @@ class Crawling:
         """
         sub_url = ""
 
+        if dicParam == None:
+            dicParam = self.dicParam
+
         for tb in self.tableSvcPasiItemIn: #debug 이상함
+            #값이 'reCnt'인경우에 page정보를 url에 삽입한다.(추후 별도 함수로 변경 필요)
+            if tb[0].item_val == 'reCnt':
+                dicParam[tb[0].item_nm] = reCnt
             if tb[0].dlmi_str == "GET" and isNotNull(tb[0].tbl_nm) and isNotNull(tb[0].col_nm):
-                self.dicParam[tb[0].item_nm]=dicStrdData[tb[0].col_nm]
+                dicParam[tb[0].item_nm]=dicStrdData[tb[0].col_nm]
+#            elif tb[0].dlmi_str == "GET":
+#                self.dicParam[tb[0].item_nm]=tb[0].item_val
             elif tb[0].dlmi_str != "GET":
                 sub_url += tb[0].dlmi_str + dicStrdData[tb[0].col_nm]
         self.url = self.tableSite.bas_prtc + "://"  # 프로토콜 http
@@ -285,9 +324,9 @@ class Crawling:
 
         if self.tableSvc.req_way_cd == "GET":
             if self.tableSite.han_enc_yn == "Y":
-                self.url += "?" + urllib.parse.urlencode(self.dicParam, encoding=self.tableSite.enc_cd)
+                self.url += "?" + urllib.parse.urlencode(dicParam, encoding=self.tableSite.enc_cd)
             else:
-                self.url += "?" + urllib.parse.urlencode(self.dicParam)
+                self.url += "?" + urllib.parse.urlencode(dicParam)
         elif self.tableSvc.req_way_cd == "POST":
             pass
         return self.url
@@ -310,13 +349,14 @@ class Crawling:
         sendTelegramMessage("END[" + self.batchContext.getFuncName() + "]")
 
     #[LV4 구현]Page > 변환 > Parse > DB 반영
-    def selfSaveDB(self,cPage,dicStrdData = None,url = None):
+    def selfSaveDB(self,cPage,dicStrdData = None,url = None, session = None):
         blog.debug(" Page : " + str(cPage))
         if len(self.crawlCdExec) > 0:
-            self.reCurParse(cPage,self.crawlCdExec[0],dicStrdData)
+            self.reCurParse(cPage,self.crawlCdExec[0],dicStrdData, session = session)
         pass
 
-    def reCurParse(self,page,cdex,strd):
+    def reCurParse(self,page,cdex,strd,session = None):
+        ss = session
         #코드실행에 등록된 명령대로 1차 파싱
         if cdex[1].cd_exec_cl_cd == "F": #Function
             strExec = cdex[1].exec_cd_cnts + "(" + '"' + str(cdex[0].exec_parm_val) + '"' + ")"
@@ -333,28 +373,14 @@ class Crawling:
                 for tb in listTable:
                     delattr(tb,'reg_user_id')
                     delattr(tb,'reg_dtm')
+                    tb.updateChg()
+                    try:
+                        ss.add(tb)
+                        blog.debug("merge 이후 : " + str(tb))
+                    except Exception as e:
+                        blog.error(traceback.format_exc())
 
-                blog.debug("=============INSERT BEOFRE TABLE LIST=================")
-                blog.debug(listTable)
-                mergeListNC(listTable)
-                    # for tb in self.getTableListByOutMapping(self.svcId, self.pasiId, p,strd):
-                    #     try:
-                    #         try:
-                    #             insert(tb)
-                    #         except IntegrityError as ie:
-                    #             #rollback()
-                    #             #blog.error(traceback.format_exc())
-                    #             # delattr(tb,'reg_user_id')
-                    #             # delattr(tb,'reg_dtm')
-                    #             merge(tb)
-                    #             pass
-                    #     except PendingRollbackError as pre:
-                    #         pass
-                    #     print("ok")
-    #        except TypeError:
-            #pasiPage가 반복이 불가능한 경우 ERROR 발생
-    #            blog.error()
-    #            return True
+
         return True
 
     def convertPage(self,page):
@@ -428,7 +454,7 @@ class Crawling:
                     #print(t.item_nm)
                     str = p[t.item_nm]
                 except KeyError:
-                    blog.debug("정의된 값이 존재하지 않음 : " + t.item_nm )
+                    blog.debug("getParsetext >> 정의된 값이 존재하지 않음 : " + t.item_nm )
                     str = ""
             else:
                 raise Exception
@@ -473,17 +499,18 @@ class Crawling:
             blog.error(self.batchContext.getLogName() + "parm_load_func_nm is empty ==> dicPasi : " + str(self.dicPasi))
             raise ValueError
 
-    def isReCrwal(self,url,page,dicStrdData,reCnt):
+    def isReCrwal(self,url,page,cPage,dicStrdData,reCnt):
         return False
 
     def debugDicStrdData(self,dicStrdData = None):
         blog.debug(self.batchContext.getLogName() + "DicStrdData : " + str(dicStrdData))
         pass
 
-    def CountCommit(self):
+    def CountCommit(self,session = None):
+        ss = session
         cnt = self.rowCounter.getCount()
         if cnt % self.commitCount == 0:
-            commit()
+            ss.commit()
             gc.collect()
 
 class DataStrd:
@@ -502,6 +529,8 @@ class DataStrd:
         return self.listStrdData[self.index]
 
 if __name__ == '__main__':
+    #num_cores = mp.cpu_count()
+    #print(num_cores)
     pass
     #print(num_cores)
     #batchContext = simpleBatchContext("NVCmpxTyp")
