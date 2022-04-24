@@ -166,7 +166,6 @@ class TableListBind():
         """
         if self.listTable != None:
             if len(self.listTable) > 0 :
-                print(self.listTable[0])
                 if str(type(self.listTable[0])) == "<class 'sqlalchemy.engine.row.Row'>":
                     self.isRowType = True
                 else : self.isRowType = False
@@ -185,7 +184,6 @@ class TableListBind():
             1. 테이블이 여러개인 경우 어떤 순서의 테이블이 필요한지 정의
         :return:
         """
-        print(self.listTable)
         if self.isRowType:
             for i,tb in enumerate(self.listTable[0]):
                 if tb != None: #20220424 Outer join 시 None 타입으로 간주되는 오류 수정위해 반영
