@@ -112,8 +112,8 @@ class KCOMDEV050(QWidget, KWidget, form_class) :
                 self.twIn.setBasic(columns = Columns, widths = Widths, tableClass = SvcPasiItem, setDic = SetDic)
                 self.twIn.setListTable(self.getSvcPasiItem(self.svc_id,self.pasi_id,'I'))
 
-                Columns2 = ['PASI_ID','ITEM_NM', 'ITEM_VAL', 'ITEM_SRC_CL_CD', 'TBL_NM', 'COL_NM', 'EXCP_STR' , 'ITEM_DESC']
-                Widths2 = {'PASI_ID':100,'ITEM_NM':120, 'ITEM_VAL':100, 'ITEM_SRC_CL_CD':70, 'TBL_NM':150, 'COL_NM':150, 'EXCP_STR':70, 'ITEM_DESC':200}
+                Columns2 = ['PASI_ID','ITEM_NM', 'ITEM_VAL', 'ITEM_SRC_CL_CD', 'TBL_NM', 'COL_NM', 'EXCP_STR' , 'ITEM_DESC', 'DEL_YN']
+                Widths2 = {'PASI_ID':100,'ITEM_NM':120, 'ITEM_VAL':100, 'ITEM_SRC_CL_CD':70, 'TBL_NM':150, 'COL_NM':150, 'EXCP_STR':70, 'ITEM_DESC':200, 'DEL_YN':50}
                 SetDic2 = {'svc_id': self.svc_id, 'in_out_cl_cd': 'O'}
                 self.twOut.setBasic(columns = Columns2, widths = Widths2, tableClass = SvcPasiItem, setDic = SetDic2)
                 self.twOut.setListTable(self.getSvcPasiItem(self.svc_id,self.pasi_id,'O'))
@@ -180,6 +180,7 @@ class KCOMDEV050(QWidget, KWidget, form_class) :
         try:
             n = self.twOut.addTWRow()
             self.twOut.setTextByColName(n,"pasi_id",self.edit_pasi_id.text())
+            self.twOut.setTextByColName(n, "del_yn", 'N')
             return n
         except : error()
 
