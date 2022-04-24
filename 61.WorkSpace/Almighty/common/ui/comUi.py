@@ -166,6 +166,7 @@ class TableListBind():
         """
         if self.listTable != None:
             if len(self.listTable) > 0 :
+                print(self.listTable[0])
                 if str(type(self.listTable[0])) == "<class 'sqlalchemy.engine.row.Row'>":
                     self.isRowType = True
                 else : self.isRowType = False
@@ -184,17 +185,19 @@ class TableListBind():
             1. 테이블이 여러개인 경우 어떤 순서의 테이블이 필요한지 정의
         :return:
         """
+        print(self.listTable)
         if self.isRowType:
             for i,tb in enumerate(self.listTable[0]):
-                for col in tb.__table__.c:
-                    colName = str(col).split('.')[1]
-                    if self.dicColAttr.get(colName):
-                        if self.dicColAttr[colName].get('isCompleteSet',False) == False:
-                            self.dicColAttr[colName] = {}
-                            self.dicColAttr[colName]['tablename'] = tb.__class__.__name__
-                            self.dicColAttr[colName]['tableClass'] = tb.__class__
-                            self.dicColAttr[colName]['tableseq'] = i #사용
-                            self.dicColAttr[colName]['isCompleteSet'] = True #사용
+                if tb != None: #20220424 Outer join 시 None 타입으로 간주되는 오류 수정위해 반영
+                    for col in tb.__table__.c:
+                        colName = str(col).split('.')[1]
+                        if self.dicColAttr.get(colName):
+                            if self.dicColAttr[colName].get('isCompleteSet',False) == False:
+                                self.dicColAttr[colName] = {}
+                                self.dicColAttr[colName]['tablename'] = tb.__class__.__name__
+                                self.dicColAttr[colName]['tableClass'] = tb.__class__
+                                self.dicColAttr[colName]['tableseq'] = i #사용
+                                self.dicColAttr[colName]['isCompleteSet'] = True #사용
         else:
             for colname in self.columns:
                 self.dicColAttr[colname] = {}
