@@ -8,11 +8,12 @@
 # import B2B_COM_Data
 # import sys
 
+import DAO.KADM
 import Server.ADM
+from batch.Crawling.CrawlingmNV import *
 import common.Batch.Crawling
 from common.Batch.Basic import *
 import datetime
-import DAO.KADM
 
 userid = '1000000001'
 
@@ -56,8 +57,16 @@ def do(job_id,job_seq):
             function = Func[4]
             job = Func[0]
             if function.func_cl_cd == 'CRWL':
-                batchContext = simpleBatchContext("[" + job.job_id + "][" + job.job_nm + "][" + function.func_id + "][" + function.func_nm +"][" + function.func_cl_cd + "]")
+                batchContext = simpleBatchContext("[" + job.job_id + "][" + job.job_nm + "][" + function.func_id + "][" + function.func_nm +"][" + function.func_cl_cd + "][" + exec_dtm + "]")
                 CrawlObject =  common.Batch.Crawling.Crawling(function.src_func_nm, function.ref1, batchContext, je)
+                CrawlObject.run()
+            elif function.func_cl_cd == 'CRWC':
+                batchContext = simpleBatchContext(
+                    "[" + job.job_id + "][" + job.job_nm + "][" + function.func_id + "][" + function.func_nm + "][" + function.func_cl_cd + "][" + exec_dtm + "]")
+                execStr = function.ref2 + "(function.src_func_nm, function.ref1, batchContext, je)"
+                #print(execStr)
+                CrawlObject = eval(execStr)
+                #CrawlObject = CrawlingmNVAtcl(function.src_func_nm, function.ref1, batchContext, je)
                 CrawlObject.run()
 
         message = 'JOB 정상종료 : [' + job.job_id + "][" + job.job_nm + "]"
@@ -119,5 +128,6 @@ if __name__ == '__main__':
     #blog.info("parameter : " + *args)
     #jobSchdExec = Server.COM.getJobSchdExecFirst('NVDC002', 1)
     #print(jobSchdExec)
-    do('LVIN002',1)
+    #do('GOIN001',1)
+    do('NVDC005', 1)
     #main()

@@ -194,6 +194,7 @@ def get_html(url,method = "GET",data = None):
             print("ZZzzzz...")
             time.sleep(10)
             print("Was a nice sleep, now let me continue...")
+            sendTelegramMessage("Connection refused by the server..")
             continue
 
 def makeGetURL(JOB_CL,SITE_CL,TR_ID,dicGetParam):

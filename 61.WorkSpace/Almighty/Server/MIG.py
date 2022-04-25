@@ -61,8 +61,11 @@ def getNvCmpx():
 def getOlvRoadNm():
     return s.query(OlvRoadNm).filter(OlvRoadNm.job_id == 'LVIN001',OlvRoadNm.exec_dtm == '20220419131229').order_by(OlvRoadNm.gov_legl_dong_cd).all()
 
+def getNvCmpxTyp():
+    return s.query(NvCmpxTyp).order_by(NvCmpxTyp.nv_cmpx_id,NvCmpxTyp.nv_cmpx_typ_seq).filter(NvCmpxTyp.job_id == 'NVDC006',NvCmpxTyp.exec_dtm == '20220418182200').all()
+
 if __name__ == "__main__":
-    print(getOlvRoadNm())
+    print(len(getNvCmpxTyp()))
     #date_only = date.today()
     #t = date_only - dateutil.relativedelta.relativedelta(months=3)
     #ym = str(t.year) + str(t.month).zfill(2)# + str(t.day).zfill(2)

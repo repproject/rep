@@ -140,7 +140,7 @@ class BatchContext:
     #     return self.dicFunc
 
     def setFuncName(self, funcName):
-        self.funcName = funcName
+        self.funcNamed = funcName
         self.setLogName()
 
     def setLogName(self):
@@ -228,6 +228,13 @@ class BatchRowCounter:
                 #blog.info(self.Name + "BatchRowCounter : [" + str(self.printCount) + "/" + str(self.totalRowCount) + "]")
 
         if(self.MessageUnit == "P"):
+            blog.debug("==============Message 내용 출력=================")
+            blog.debug("self.MessagePrintCount : " + str(self.MessagePrintCount))
+            blog.debug("self.totalRowCount : " + str(self.totalRowCount))
+            blog.debug("self.MessageInterval : " + str(self.MessageInterval))
+            blog.debug("self.count : " + str(self.count))
+            blog.debug("calc : " + str(self.MessagePrintCount + math.floor(self.totalRowCount*self.MessageInterval/100)))
+
             if((self.MessagePrintCount + math.floor(self.totalRowCount*self.MessageInterval/100)) <= self.count): #기출력 값보다
                 self.MessagePrintCount += math.floor(self.totalRowCount*self.MessageInterval/100)
                 sendTelegramMessage(self.Name + "BatchRowCounter : [" + str(self.MessagePrintCount) + "/" + str(self.totalRowCount) + "]")

@@ -39,8 +39,14 @@ def mergeList(tableList):
     s.commit()
 
 def mergeListNC(tableList):
-    for table in tableList:
-        mergeNC(table)
+    if str(type(tableList[0])) == "<class 'sqlalchemy.engine.row.Row'>": #MultiTable
+        for table in tableList:
+            for tb in table:
+                if tb != None:
+                    mergeNC(tb)
+    else:
+        for table in tableList:
+            mergeNC(table)
 
 def insertList(tableList):
     for table in tableList:

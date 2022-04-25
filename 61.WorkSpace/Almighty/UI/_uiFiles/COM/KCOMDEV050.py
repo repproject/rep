@@ -154,8 +154,8 @@ class KCOMDEV050(QWidget, KWidget, form_class) :
         try:
             n = self.twIn.addTWRow()
             for m, col in enumerate(self.twIn.columns):
-                self.twIn.setTextByColName(n,"pasi_id",self.pasi_id)
-                self.twIn.setTextByColName(n, "dlmi_str", "GET")
+                self.twIn.setTextByColName(n, "pasi_id"  ,self.pasi_id)
+                self.twIn.setTextByColName(n, "dlmi_str" ,"GET")
         except : error()
 
     def addInDefault(self):

@@ -52,7 +52,7 @@ class KCOMBAT020(QWidget, KWidget, form_class) :
         self.searchAct()
 
         Columns3 = ['func_id', 'func_nm', 'func_desc', 'func_cl_cd', 'src_func_nm', 'use_yn', 'ref1', 'ref2', 'ref3', 'ref4', 'ref5']
-        Widths3 = {'func_id':100, 'func_nm':150, 'func_desc':150, 'func_cl_cd':100, 'src_func_nm':200, 'use_yn':50, 'ref1':50, 'ref2':50, 'ref3':50, 'ref4':50, 'ref5':50}
+        Widths3 = {'func_id':150, 'func_nm':200, 'func_desc':150, 'func_cl_cd':100, 'src_func_nm':200, 'use_yn':50, 'ref1':50, 'ref2':50, 'ref3':50, 'ref4':50, 'ref5':50}
         self.twFunc.setBasic(columns = Columns3,widths = Widths3,tableClass = Func)
 
         self.searchFunc()

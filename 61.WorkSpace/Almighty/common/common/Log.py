@@ -5,7 +5,7 @@ from datetime import date, timedelta, datetime
 import sys, traceback
 
 class Logger:
-    def __init__(self, LogName="", Level="INFO", name = "Batch"):
+    def __init__(self, LogName="", Level="DEBUG", name = "Batch"):
         # 1. 시간 설정 (오늘 날짜)
         dt = datetime.now()
         access_day = dt.strftime('%Y%m%d')

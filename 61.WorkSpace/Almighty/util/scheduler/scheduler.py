@@ -51,7 +51,7 @@ def doSchedule():    #JOB수행
             #즉시실행된 Job 목록을 추출한다.
             blog.debug("Find Immediate Job...")
             ImdiExecList = getImdiJobList(blog)
-            blog.debug(ImdiExecList)
+            blog.debug("ImdiExecList : " + str(ImdiExecList))
 
             if len(ImdiExecList) > 0 :
                 for imdiExec in ImdiExecList:
@@ -60,9 +60,10 @@ def doSchedule():    #JOB수행
                     blog.info("Immediate execute Job : " + str(imdiExec[0]))
                     updateImdiJobN(imdiExec[0].job_id,imdiExec[0].job_seq) #Async로 작동하며 2번 실행되는 이슈 존재
                     sendTelegramMessage(message)
-                    sched.add_job(do, id=jobId + str(jobSeq) + str(datetime.datetime.now()),
+                    sched.add_job(do, id=jobId + str(jobSeq) + 'Y', #즉시실행여부를 분류하기 위하여 변경 ,
                                   args=[imdiExec[0].job_id, int(imdiExec[0].job_seq)])
                     blog.info("REP Scheduler IMmediate Add Job Complete!!!")
+                ImdiExecList = []
                 #try:
                     #sched.start()
                 #except : error()

@@ -125,7 +125,8 @@ def getPasiFinder(dicParam):
 
 def getSvcPasiItem(strSvcId,strPasiId,InOutClCd):
     setCodeByTable(SvcPasiItem)
-    return s.query(SvcPasiItem).filter_by(svc_id=strSvcId).filter(SvcPasiItem.pasi_id.in_([strPasiId,'default'])).filter_by(in_out_cl_cd=InOutClCd).all()
+    return s.query(SvcPasiItem,TblCol).outerjoin(SvcPasiItem.tblcol).where(and_(SvcPasiItem.pasi_id.in_([strPasiId,'default']),SvcPasiItem.svc_id == strSvcId,SvcPasiItem.in_out_cl_cd == InOutClCd)).order_by(TblCol.tbl_nm,TblCol.col_seq).all()
+    #return s.query(SvcPasiItem).filter_by(svc_id=strSvcId).filter(SvcPasiItem.pasi_id.in_([strPasiId,'default'])).filter_by(in_out_cl_cd=InOutClCd).all()
 
 def getiItemParm(strSvcId,strPasiId,InOutClCd):
     setCodeByTable([SvcPasiItem,TblCol,Tbl])
@@ -133,7 +134,7 @@ def getiItemParm(strSvcId,strPasiId,InOutClCd):
 
 def getiItemParm2(strSvcId,strPasiId,InOutClCd):
     setCodeByTable([SvcPasiItem,TblCol,Tbl])
-    return s.query(SvcPasiItem,TblCol,Tbl).outerjoin(SvcPasiItem.tblcol).outerjoin(TblCol.tbl).where(and_(SvcPasiItem.pasi_id.in_([strPasiId,'default']),SvcPasiItem.svc_id == strSvcId,SvcPasiItem.in_out_cl_cd == InOutClCd)).all()
+    return s.query(SvcPasiItem,TblCol,Tbl).outerjoin(SvcPasiItem.tblcol).outerjoin(TblCol.tbl).where(and_(SvcPasiItem.pasi_id.in_([strPasiId,'default']),SvcPasiItem.svc_id == strSvcId,SvcPasiItem.in_out_cl_cd == InOutClCd,SvcPasiItem.del_yn=='N')).all()
 
 def FuncTbl(strSvcId,strPasiId,InOutClCd):
     setCodeByTable([SvcPasiItem,TblCol,Tbl])
@@ -162,7 +163,7 @@ def getCrawlCdExec(strSvcId,strPasiId,upSec):
 
 def getTablePasiItem(strSvcId,strPasiId,strItemNm,strInOutClCd):
     setCodeByTable(SvcPasiItemCol)
-    return s.query(SvcPasiItemCol).filter_by(svc_id=strSvcId).filter_by(pasi_id=strPasiId).filter_by(item_nm=strItemNm).filter_by(in_out_cl_cd=strInOutClCd).all()
+    return s.query(SvcPasiItemCol,TblCol).filter_by(svc_id=strSvcId).filter_by(pasi_id=strPasiId).filter_by(item_nm=strItemNm).filter_by(in_out_cl_cd=strInOutClCd).all()
 
 def getJobSchd(strJobId):
     return s.query(JobSchd).filter_by(job_id=strJobId).all()
@@ -183,8 +184,8 @@ if __name__ == "__main__":
     #merge(rslt[0][0])
     #print(getJobSchdExecFirst('NVDC002',1))
     #print(getJobSchdExecFirst('GOIN001', 1))
-    for a in getiItemParm2('NVcomplexTyp','NVCmpxTyp','I'):
-        print(a)
+    for a in getSvcPasiItem('NVCmpxArticle','NVCmpxArticle','O'):
+        print(str(a) + "\n")
     #rslt = getiItemParmMulti('BBRegn','BBCmpx','O')
     #print(rslt)
     #print(getJobSchdExec('a',0))
