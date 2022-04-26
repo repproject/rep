@@ -20,6 +20,7 @@ def doSchedule():    #JOB수행
         sched.start()
         listJobExec = getJobSchd()
 
+
         for jobExec in listJobExec:
 
             #값 -> 변수로 세팅 숫자는 Integer로 변환
@@ -44,29 +45,31 @@ def doSchedule():    #JOB수행
                 if execPerdCd == 'DD':
                     sched.add_job(do, 'cron', month='*',day='*',hour=execHH, minute=execMI, second=1,day_of_week = '*', id=jobId+str(jobSeq), args=[jobId,jobSeq])
 
-
         blog.info("REP Scheduler Start...")
 
         while True:
             #즉시실행된 Job 목록을 추출한다.
             blog.debug("Find Immediate Job...")
-            ImdiExecList = getImdiJobList(blog)
-            blog.debug("ImdiExecList : " + str(ImdiExecList))
+            ss = createSession()
+            ImdiExecList = getImdiJobList(ss)
+            blog.debug("ImdiExecList[" + str(len(ImdiExecList)) + "]:" + str(ImdiExecList))
 
             if len(ImdiExecList) > 0 :
                 for imdiExec in ImdiExecList:
                     message = "REP Scheduler Immediate start..." + imdiExec[0].job_id + "/" + str(imdiExec[0].job_seq) + imdiExec[1].job_nm
                     blog.info(message)
                     blog.info("Immediate execute Job : " + str(imdiExec[0]))
-                    updateImdiJobN(imdiExec[0].job_id,imdiExec[0].job_seq) #Async로 작동하며 2번 실행되는 이슈 존재
+                    imdiExec[0].imdi_exec_yn = 'N'
+                    ss.add(imdiExec[0])
+                    ss.commit()
                     sendTelegramMessage(message)
                     sched.add_job(do, id=jobId + str(jobSeq) + 'Y', #즉시실행여부를 분류하기 위하여 변경 ,
                                   args=[imdiExec[0].job_id, int(imdiExec[0].job_seq)])
-                    blog.info("REP Scheduler IMmediate Add Job Complete!!!")
-                ImdiExecList = []
+                    blog.info("REP Scheduler Immediate Add Job Complete!!!")
                 #try:
                     #sched.start()
                 #except : error()
+            ss.close()
             time.sleep(10) #즉시실행 Batch가 2번 실행되는 이슈가 존재. 10초로 변경해서 해결했으나 궁극적인 해결은 아님 Await기능을 찾아 해결 필요
 
     except : error()
