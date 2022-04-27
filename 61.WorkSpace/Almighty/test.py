@@ -44,8 +44,9 @@ def sms_msg_cut(str, dstlen):
 
 
 if __name__== '__main__':
+    print(len(None))
 
-    url = "https://api.upbit.com/v1/market/all"
-    querystring = {"isDetails": "false"}
-    response = requests.request("GET", url, params=querystring)
-    print(response.text)
+#    url = "https://api.upbit.com/v1/market/all"
+#    querystring = {"isDetails": "false"}
+#    response = requests.request("GET", url, params=querystring)
+#    print(response.text)

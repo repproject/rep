@@ -40,7 +40,7 @@ def getLegalDongLv2(flag,job_id,act_id,func_id,exec_dtm):
         todayym = str(date_only.year) + str(date_only.month).zfill(2)
 
         # rslt = s.query(LeglDong, StdYymm).filter(LeglDong.lv_cd == '2', StdYymm.std_yymm <= todayym,StdYymm.std_yymm >= ym)\
-        rslt = s.query(StdYymm).filter(StdYymm.std_yymm <= todayym,StdYymm.std_yymm >= '200601') \
+        rslt = s.query(StdYymm).filter(StdYymm.std_yymm <= todayym,StdYymm.std_yymm >= '202004') \
             .order_by(StdYymm.std_yymm).all()  # 실거래가 시행이 06년 #'200601' #,LeglDong.legl_dong_cd=='4145000000'
 
         listFuncExecParm = []

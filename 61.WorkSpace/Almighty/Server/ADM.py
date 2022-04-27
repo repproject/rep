@@ -111,13 +111,19 @@ def getJobFuncExecStrdFirst(strjob_id,stract_id,strfunc_id,strexec_dtm):
     :return:
     """
     rslt = s.query(JobFuncExecStrd).filter(JobFuncExecStrd.job_id == strjob_id,JobFuncExecStrd.act_id == stract_id,JobFuncExecStrd.func_id == strfunc_id,JobFuncExecStrd.exec_dtm == strexec_dtm,JobFuncExecStrd.std_exec_stat_cd=='N').with_for_update().first()
-    rslt.std_exec_stat_cd = 'R'
-    s.add(rslt)
-    s.commit()
-    if isNull(rslt):
-        return False
+    if rslt != None:
+        rslt.std_exec_stat_cd = 'R'
+        s.add(rslt)
+        s.commit()
+        blog = logging.getLogger('Batch')
+        blog.info("Process Start Strd : " + str(rslt))
+        if isNull(rslt):
+            return False
+        else:
+            return rslt
     else:
-        return rslt
+        s.commit()
+        return False
 
 
 if __name__ == '__main__':

@@ -38,7 +38,7 @@ class Crawling:
     rowCounter = None       #Multi호출시 RowCounter Setting용
     rowCountNumber = 500
     rowCounterInterval = "N"
-    MessageInterval = 10
+    MessageInterval = 100
     MessageUnit = "P"
     commitCount = 100
 
@@ -141,6 +141,9 @@ class Crawling:
         :return:
         """
         self.dicStrd = self.getListStrdDataList()
+        if self.dicStrd == None:
+            return False
+
         #rowCounter 세팅
         if isNotNull(self.Strd):    #기준값이 있는경우
             blog.info(self.batchContext.getLogName()+ "배치 수행전 예상 호출 총 건수 : " + str(self.Strd.__len__()))
@@ -160,8 +163,9 @@ class Crawling:
                 dicSingleProcessParam['dicParam'] = copy.deepcopy(self.dicParam)
                 self.crawl(dicSingleProcessParam)    #URL 호출 후 삽입
                 dicSingleProcessParam = {}
+            blog.info(self.batchContext.getLogName() + "대기열 실행 기준 Data 없음")
         except Exception as e :
-            blog.error(traceback.format_exc())
+            blog.error(self.batchContext.getLogName() + traceback.format_exc())
             sendTelegramMessage("Batch 수행 에러 : " + str(traceback.format_exc()))
             raise
         try:
@@ -183,8 +187,6 @@ class Crawling:
         blog = Logger(LogName=self.batchContext.getLogName(), Level="INFO", name = "Batch").logger
         blog.info(self.batchContext.getLogName()+"####################START[" + self.batchContext.getFuncName() + "]####################")
         sendTelegramMessage("START[" + self.batchContext.getFuncName() + "]")
-
-
 
     # Lv2 구현
     def crawl(self,dicparm):
@@ -211,7 +213,7 @@ class Crawling:
                     reCnt = reCnt + 1
                     blog.debug(self.batchContext.getLogName() + "make URL 이전")
                     url = self.makeURL(sd,reCnt,dicParam = dicParam)
-                    blog.info(str(self.jobExec.exec_dtm) + "CALL URL : " + url)
+                    blog.info(self.batchContext.getLogName() + "CALL URL : " + url)
                     page = self.request(url)
                     cPage = self.convertPage(page)  #page를 객체화(BeutifulShop)형태로 변경
                     self.selfSaveDB(cPage,sd,url,session = ss)
@@ -444,7 +446,8 @@ class Crawling:
                 execStrd = self.dicPasi.get('parm_load_func_nm', '')
                 execStrd = execStrd[:-1] + "2,'" + self.job.job_id +"','"+ self.act.act_id + "','" + self.function.func_id + "','" + self.execDtm + "')"  # Crawling Object에서 수행하는 경우 2번으로 호출
                 self.Strd = eval(execStrd)
-                return getDicFromListTable(self.Strd)
+                if self.Strd != None and self.Strd != False: return getDicFromListTable(self.Strd)
+                else : return None
             else :
                 blog.info(self.batchContext.getLogName() + "parm_load_func_nm is null ==> dicPasi : " + str(self.dicPasi))
                 return None

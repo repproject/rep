@@ -1,7 +1,8 @@
 def isNotNull(instance):
     if instance == None:
         return False
-    elif len(instance) == 0:
+
+    if len(instance) == 0:
         return False
     return True
 

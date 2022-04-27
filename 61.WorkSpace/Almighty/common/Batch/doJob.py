@@ -78,13 +78,13 @@ def do(job_id,job_seq):
                             ll.append(act)
                             ll.append(function)
                             ll.append(je)
+                            ll.append(i)
                             listParam.append(ll)
-                        print(str(len(listParam)))
                         pool.map(runCrawling, listParam)
                         pool.close()
                         pool.join()
                     else:
-                        runCrawling([job, act, function, je])
+                        runCrawling([job, act, function, je,1])
                 elif function.func_cl_cd == 'CRWC':
                     batchContext = simpleBatchContext(
                         "[" + job.job_id + "][" + job.job_nm + "][" + function.func_id + "][" + function.func_nm + "][" + function.func_cl_cd + "][" + exec_dtm + "]")
@@ -115,7 +115,8 @@ def runCrawling(list):
     act = copy.deepcopy(list[1])
     function = copy.deepcopy(list[2])
     je = copy.deepcopy(list[3])
-    batchContext = simpleBatchContext("[" + job.job_id + "][" + job.job_nm + "][" + function.func_id + "][" + function.func_nm + "][" + function.func_cl_cd + "][" + je.exec_dtm + "]")
+    process_number = copy.deepcopy(list[4])
+    batchContext = simpleBatchContext("[" + job.job_id + "][" + job.job_nm + "][" + function.func_id + "][" + function.func_nm + "][" + function.func_cl_cd + "][" + je.exec_dtm + "][" + str(process_number) + "]")
     CrawlObject = common.Batch.Crawling.Crawling(function.src_func_nm, function.ref1, batchContext, je, job, act, function)
     CrawlObject.run()
 
