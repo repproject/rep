@@ -739,3 +739,47 @@ class TlgrUser(Base,KTable):
     def __repr__(self):
         return "<TlgrUser('%s', '%s', '%s', '%s', '%s'" % (str(self.tlgr_user_id), str(self.tlgr_user_nm), str(self.rcv_tgt_yn), str(self.send_cl_cd), str(self.seq) + KTable.__repr__(self))
 
+class JobFuncExecStrd(Base,KTable):
+    __tablename__ = 'kadm_job_func_exec_strd'
+
+    job_id = KColumn(String(20), nullable = False)
+    act_id = KColumn(String(20), nullable = False)
+    func_id = KColumn(String(20), nullable = False)
+    exec_dtm = KColumn(String(14), nullable = False)
+    seq = KColumn(Integer, primary_key = True, nullable = False, unique=True, autoincrement=True)
+    std_exec_stat_cd = KColumn(String(20), nullable = False, kcom_cd_domain = True, kcom_cd_grp = '')
+    std_parm1 = KColumn(String(200), nullable = True)
+    std_parm2 = KColumn(String(200), nullable = True)
+    std_parm3 = KColumn(String(200), nullable = True)
+    std_parm4 = KColumn(String(200), nullable = True)
+    std_parm5 = KColumn(String(200), nullable = True)
+    std_parm6 = KColumn(String(200), nullable = True)
+    std_parm7 = KColumn(String(200), nullable = True)
+    std_parm8 = KColumn(String(200), nullable = True)
+    std_parm9 = KColumn(String(200), nullable = True)
+    std_parm10 = KColumn(String(200), nullable = True)
+
+    jobfuncexec = relationship('JobFuncExec',primaryjoin = and_(job_id==JobFuncExec.job_id , act_id==JobFuncExec.act_id , func_id==JobFuncExec.func_id , exec_dtm==JobFuncExec.exec_dtm), foreign_keys = [JobFuncExec.job_id , JobFuncExec.act_id , JobFuncExec.func_id , JobFuncExec.exec_dtm], passive_deletes = True)
+
+    def __init__(self, *args, **kwargs):
+        KTable.__init__(self)
+        self.job_id =  kwargs.pop('job_id')
+        self.act_id =  kwargs.pop('act_id')
+        self.func_id =  kwargs.pop('func_id')
+        self.exec_dtm =  kwargs.pop('exec_dtm')
+        #self.seq =  kwargs.pop('seq')
+        self.std_exec_stat_cd =  kwargs.pop('std_exec_stat_cd','N')
+        self.std_parm1 =  kwargs.pop('std_parm1',None)
+        self.std_parm2 =  kwargs.pop('std_parm2',None)
+        self.std_parm3 =  kwargs.pop('std_parm3',None)
+        self.std_parm4 =  kwargs.pop('std_parm4',None)
+        self.std_parm5 =  kwargs.pop('std_parm5',None)
+        self.std_parm6 =  kwargs.pop('std_parm6',None)
+        self.std_parm7 =  kwargs.pop('std_parm7',None)
+        self.std_parm8 =  kwargs.pop('std_parm8',None)
+        self.std_parm9 =  kwargs.pop('std_parm9',None)
+        self.std_parm10 =  kwargs.pop('std_parm10',None)
+
+    def __repr__(self):
+        return "<JobFuncExecStrd('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.job_id), str(self.act_id), str(self.func_id), str(self.exec_dtm), str(self.seq), str(self.std_exec_stat_cd), str(self.std_parm1), str(self.std_parm2), str(self.std_parm3), str(self.std_parm4), str(self.std_parm5), str(self.std_parm6), str(self.std_parm7), str(self.std_parm8), str(self.std_parm9), str(self.std_parm10) + KTable.__repr__(self))
+

@@ -73,14 +73,20 @@ class Crawling:
     jobId = None
     execDtm = None
     JobExec = None
+    job = None
+    act = None
+    function = None
 
     #초기화
-    def __init__(self,strPasiId,strSvcId,batchContext = None,JobExec = None):
+    def __init__(self,strPasiId,strSvcId,batchContext = None,JobExec = None, job = None, act = None, function = None):
         try:
             #funcName Validation Check
             self.batchContext = batchContext
             self.pasiId = strPasiId
             self.svcId = strSvcId
+            self.job = job
+            self.act = act
+            self.function = function
             if JobExec == None:
                 self.jobId = 'NOJOB'
                 self.execDtm = datetime.now().strftime("%Y%m%d%H%M%S")
@@ -105,65 +111,50 @@ class Crawling:
                 if (isNull(tb[0].tbl_nm) or isNull(tb[0].col_nm)) and tb[0].dlmi_str == "GET":
                     self.dicParam[tb[0].item_nm] = tb[0].item_val
             self.sleepStamp = self.tableSite.slep_sec
+
+            self.dicPasi = getDicFromListTable(Server.COM.getPasi(self.pasiId, self.svcId))[0]
+            if self.dicPasi == None:  # 기준값이 없는경우(1번 크롤링)
+                blog.error(self.batchContext.getLogName() + "Pasi 정보가 없습니다.")
+                raise TypeError
+
+            self.outParam = Server.COM.getiItemParm2(self.svcId, self.pasiId, 'O')
+            self.outMultiParam = Server.COM.getiItemParmMulti(self.svcId, self.pasiId, 'O')
+            a = copy.deepcopy(self.outParam)
+            b = copy.deepcopy(self.outMultiParam)
+            self.outAllTblParam = a + b
+            for param in self.outAllTblParam:
+                if param[0].tbl_nm == 'm' and param[1] == None:  # Multi용 테이블 리스트를 제거
+                    self.outAllTblParam.remove(param)
+            self.crawlCdExec = Server.COM.getCrawlCdExec(self.tableSvcPasi.svc_id, self.tableSvcPasi.pasi_id, 0)
+            if isNull(self.crawlCdExec):
+                blog.info(self.batchContext.getLogName() + "코드실행 정보가 없습니다. 코드실행관리에서 등록하세요")
+                sendTelegramMessage(self.batchContext.getFuncName() + "코드실행 정보가 없습니다. 코드실행관리에서 등록하세요")
+                # raise TypeError
         except:
             sendTelegramMessage("Crawling 초기화 Error : " + str(traceback.format_exc()))
             blog.error(traceback.format_exc())
 
+    #Lv2 구현
+    def ready(self):
+        """
+            기준정보를 세팅함.
+        :return:
+        """
+        self.dicStrd = self.getListStrdDataList()
+        #rowCounter 세팅
+        if isNotNull(self.Strd):    #기준값이 있는경우
+            blog.info(self.batchContext.getLogName()+ "배치 수행전 예상 호출 총 건수 : " + str(self.Strd.__len__()))
+            sendTelegramMessage(self.batchContext.getFuncName() + "배치 수행전 예상 호출 총 건수 : " + str(self.Strd.__len__()))
+            self.setRowCounter(self.Strd.__len__())
+            return True
+        else:   #기준값이 없는경우
+            self.setRowCounter(1) #ROW Counter는 1개
+            return False
+
     def run(self):
         try:
             self.startLog() #START Log
-            self.ready()    #크롤링 전 사전 Data 준비 작업
-
-            #multi Processing 코딩
-            if self.num_cores > 0:
-                #num_cores = mp.cpu_count()
-                #num_cores = int(num_cores/3)
-                blog.info("Number of Core   : " + str(self.num_cores))
-                blog.info("Number of Thread : " + str(self.num_threads))
-                pool = Pool(self.num_cores)
-
-                listMultiProcessParam = [] #멀티프로세싱 파라미터 리스트
-
-                if self.num_threads > 0:
-                    listThreadParm = []
-                    listlistParm = []
-                    dicMultiThreadParam = {}
-
-                    for i in range(0,int(len(self.dicStrd)/self.MultiThreadCuttingCnt)):
-                        dicMultiThreadParam['listDicStrd'] = copy.deepcopy(self.dicStrd[i*self.MultiThreadCuttingCnt:i*self.MultiThreadCuttingCnt+self.MultiThreadCuttingCnt])
-                        dicMultiThreadParam['dicParam'] = copy.deepcopy(self.dicParam)
-                        listThreadParm.append(copy.deepcopy(dicMultiThreadParam))
-
-                        if i % self.num_threads == 1:
-                            listlistParm.append(copy.deepcopy(listThreadParm))
-                            listThreadParm = []
-
-                    dicMultiThreadParam['listDicStrd'] = copy.deepcopy(self.dicStrd[int(len(self.dicStrd)/self.MultiThreadCuttingCnt)*self.MultiThreadCuttingCnt:])
-                    dicMultiThreadParam['dicParam'] = self.dicParam
-                    listThreadParm.append(dicMultiThreadParam)
-                    listlistParm.append(listThreadParm)
-
-                    pool.map(self.threadCrwal, listlistParm)
-                    pool.close()
-                    pool.join()
-                else:
-                    dicMultiProcessParam = {}
-                    for i in range(0,int(len(self.dicStrd)/self.MultiProcessCnt)):
-                        dicMultiProcessParam['listDicStrd'] = copy.deepcopy(self.dicStrd[i*self.MultiProcessCnt:i*self.MultiProcessCnt+self.MultiProcessCnt])
-                        dicMultiProcessParam['dicParam'] = copy.deepcopy(self.dicParam)
-                        listMultiProcessParam.append(copy.deepcopy(dicMultiProcessParam))
-
-                    dicMultiProcessParam['listDicStrd'] = copy.deepcopy(self.dicStrd[(int(len(self.dicStrd)/self.MultiProcessCnt)):])
-                    dicMultiProcessParam['dicParam'] = copy.deepcopy(self.dicParam)
-                    listMultiProcessParam.append(copy.deepcopy(dicMultiProcessParam))
-
-                    pool.map(self.crawl, listMultiProcessParam)
-                    pool.close()
-                    pool.join()
-
-                self.dicStrd = None
-                gc.collect()
-            else:
+            while self.ready():    #실행기준Data가 존재할때까지 실행
                 dicSingleProcessParam = {}
                 dicSingleProcessParam['listDicStrd'] = copy.deepcopy(self.dicStrd)
                 dicSingleProcessParam['dicParam'] = copy.deepcopy(self.dicParam)
@@ -172,7 +163,7 @@ class Crawling:
         except Exception as e :
             blog.error(traceback.format_exc())
             sendTelegramMessage("Batch 수행 에러 : " + str(traceback.format_exc()))
-            raise e
+            raise
         try:
             #self.report()   #report 및 마지막 정의
             pass
@@ -193,40 +184,7 @@ class Crawling:
         blog.info(self.batchContext.getLogName()+"####################START[" + self.batchContext.getFuncName() + "]####################")
         sendTelegramMessage("START[" + self.batchContext.getFuncName() + "]")
 
-    #Lv2 구현
-    def ready(self):
-        """
-            1. 파싱정보에 등록된 인자로드함수로 기준정보를 가져옴
-            2. 파라미터 및 코드실행 기준정보를 가져옴.
 
-        :return:
-        """
-        self.dicPasi = getDicFromListTable(Server.COM.getPasi(self.pasiId,self.svcId))[0]
-        if self.dicPasi == None :   #기준값이 없는경우(1번 크롤링)
-            blog.error(self.batchContext.getLogName() + "Pasi 정보가 없습니다.")
-            raise TypeError
-        self.dicStrd = self.getListStrdDataList()
-        #rowCounter 세팅
-        if isNotNull(self.Strd):    #기준값이 있는경우
-            blog.info(self.batchContext.getLogName()+ "배치 수행전 예상 호출 총 건수 : " + str(self.Strd.__len__()))
-            sendTelegramMessage(self.batchContext.getFuncName() + "배치 수행전 예상 호출 총 건수 : " + str(self.Strd.__len__()))
-            self.setRowCounter(self.Strd.__len__())
-        else:   #기준값이 없는경우
-            self.setRowCounter(1) #ROW Counter는 1개
-
-        self.outParam = Server.COM.getiItemParm2(self.svcId, self.pasiId, 'O')
-        self.outMultiParam = Server.COM.getiItemParmMulti(self.svcId, self.pasiId, 'O')
-        a = copy.deepcopy(self.outParam)
-        b = copy.deepcopy(self.outMultiParam)
-        self.outAllTblParam = a + b
-        for param in self.outAllTblParam:
-            if param[0].tbl_nm == 'm' and param[1] == None: #Multi용 테이블 리스트를 제거
-                self.outAllTblParam.remove(param)
-        self.crawlCdExec = Server.COM.getCrawlCdExec(self.tableSvcPasi.svc_id, self.tableSvcPasi.pasi_id, 0)
-        if isNull(self.crawlCdExec):
-            blog.info(self.batchContext.getLogName() + "코드실행 정보가 없습니다. 코드실행관리에서 등록하세요")
-            sendTelegramMessage(self.batchContext.getFuncName() + "코드실행 정보가 없습니다. 코드실행관리에서 등록하세요")
-            #raise TypeError
 
     # Lv2 구현
     def crawl(self,dicparm):
@@ -379,8 +337,7 @@ class Crawling:
                         blog.debug("merge 이후 : " + str(tb))
                     except Exception as e:
                         blog.error(traceback.format_exc())
-
-
+                listTable = None
         return True
 
     def convertPage(self,page):
@@ -430,11 +387,7 @@ class Crawling:
             dicTableList[key]['job_id'] = self.jobId
             dicTableList[key]['exec_dtm'] = self.execDtm
 
-        blog.debug("=======================AFTER PASING====================")
-        blog.debug(dicTableList)
         rslt = getListTableFromDic(dicTableList)
-        blog.debug("=======================AFTER getListTableFromDic====================")
-        blog.debug(rslt)
         return rslt
 
     def getParsetext(self,t,p):
@@ -450,8 +403,6 @@ class Crawling:
                 str = p.find(t.item_nm).text
             elif self.tableSvcPasi.pasi_way_cd == 'JSON':
                 try:
-                    #print(p)
-                    #print(t.item_nm)
                     str = p[t.item_nm]
                 except KeyError:
                     blog.debug("getParsetext >> 정의된 값이 존재하지 않음 : " + t.item_nm )
@@ -490,7 +441,9 @@ class Crawling:
         """
         if isNotNull(self.dicPasi.get('parm_load_func_nm',None)):
             if self.dicPasi.get('parm_load_func_nm',None) != 'null':
-                self.Strd = eval(self.dicPasi.get('parm_load_func_nm', ''))
+                execStrd = self.dicPasi.get('parm_load_func_nm', '')
+                execStrd = execStrd[:-1] + "2,'" + self.job.job_id +"','"+ self.act.act_id + "','" + self.function.func_id + "','" + self.execDtm + "')"  # Crawling Object에서 수행하는 경우 2번으로 호출
+                self.Strd = eval(execStrd)
                 return getDicFromListTable(self.Strd)
             else :
                 blog.info(self.batchContext.getLogName() + "parm_load_func_nm is null ==> dicPasi : " + str(self.dicPasi))

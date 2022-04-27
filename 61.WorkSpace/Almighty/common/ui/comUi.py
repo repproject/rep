@@ -162,6 +162,7 @@ class TableListBind():
         r"""
             Query에 대한 result가 Row Class(주로 MultiTable인경우 해당)을 구분하기 위해
             isRowType 변수를 세팅하는 함수. 바인딩된 listTable이 초기화 되는 경우 실행 필요
+            isRowType : True(MultiTable) isRowType : False(SingleTable)
         :return:
         """
         if self.listTable != None:
