@@ -10,6 +10,7 @@ import Server.COM
 import Server.MIG
 from Server.Basic import *
 from common.Batch.Basic import *
+from common.common.UserException import *
 
 from urllib import parse
 import urllib.parse
@@ -76,9 +77,12 @@ class Crawling:
     job = None
     act = None
     function = None
+    process_number = 0
+
+    tbJobFuncExecStrd = None #작업기능실행기준의 종료 상태를 update하기 위한 변수
 
     #초기화
-    def __init__(self,strPasiId,strSvcId,batchContext = None,JobExec = None, job = None, act = None, function = None):
+    def __init__(self,strPasiId,strSvcId,batchContext = None,JobExec = None, job = None, act = None, function = None, process_number = 0):
         try:
             #funcName Validation Check
             self.batchContext = batchContext
@@ -87,6 +91,8 @@ class Crawling:
             self.job = job
             self.act = act
             self.function = function
+            self.process_number = process_number
+
             if JobExec == None:
                 self.jobId = 'NOJOB'
                 self.execDtm = datetime.now().strftime("%Y%m%d%H%M%S")
@@ -98,6 +104,7 @@ class Crawling:
                     self.num_cores = int(self.jobExec.exec_parm6)
                     if self.jobExec.exec_parm7 != None and self.jobExec.exec_parm6 != '' and len(self.jobExec.exec_parm7) > 0:
                         self.num_threads = int(self.jobExec.exec_parm7)
+
             #입력받은 pasi_id로 Pasing 정보를 가져옴
             rslt = Server.COM.getPasi(self.pasiId, self.svcId)
             if rslt == None:
@@ -164,6 +171,10 @@ class Crawling:
                 self.crawl(dicSingleProcessParam)    #URL 호출 후 삽입
                 dicSingleProcessParam = {}
             blog.info(self.batchContext.getLogName() + "대기열 실행 기준 Data 없음")
+        except CrawlingEndException as e:
+            message = self.batchContext.getLogName() + "대기열 실행 기준 Data가 없습니다. 프로세스를 종료합니다.["+ str(self.process_number) + "]"
+            blog.info(message)
+            sendTelegramMessage(message)
         except Exception as e :
             blog.error(self.batchContext.getLogName() + traceback.format_exc())
             sendTelegramMessage("Batch 수행 에러 : " + str(traceback.format_exc()))
@@ -184,7 +195,7 @@ class Crawling:
     def startLog(self):
         #기본로그 출력
         global blog
-        blog = Logger(LogName=self.batchContext.getLogName(), Level="INFO", name = "Batch").logger
+        blog = Logger(LogName=self.batchContext.getLogFileName(), Level="INFO", name = "Batch").logger
         blog.info(self.batchContext.getLogName()+"####################START[" + self.batchContext.getFuncName() + "]####################")
         sendTelegramMessage("START[" + self.batchContext.getFuncName() + "]")
 
@@ -248,6 +259,10 @@ class Crawling:
                     break
             self.CountCommit(ss)
             #gc.collect()
+
+        self.tbJobFuncExecStrd.std_exec_stat_cd = 'T'
+        self.tbJobFuncExecStrd.updateChg()
+        ss.add(self.tbJobFuncExecStrd)
         ss.commit()
         ss.close()
         gc.collect()
@@ -444,10 +459,19 @@ class Crawling:
         if isNotNull(self.dicPasi.get('parm_load_func_nm',None)):
             if self.dicPasi.get('parm_load_func_nm',None) != 'null':
                 execStrd = self.dicPasi.get('parm_load_func_nm', '')
-                execStrd = execStrd[:-1] + "2,'" + self.job.job_id +"','"+ self.act.act_id + "','" + self.function.func_id + "','" + self.execDtm + "')"  # Crawling Object에서 수행하는 경우 2번으로 호출
-                self.Strd = eval(execStrd)
-                if self.Strd != None and self.Strd != False: return getDicFromListTable(self.Strd)
-                else : return None
+                execStrd = execStrd[:-1] + "2,'" + self.job.job_id +"','"+ self.act.act_id + "','" + self.function.func_id + "','" + self.execDtm + "'," + str(self.process_number) +")"  # Crawling Object에서 수행하는 경우 2번으로 호출
+                rslt = eval(execStrd)
+                if len(rslt) != 2:
+                    message = self.batchContext.getLogName()+"정의된 함수의 인자가 일치하지 않습니다.(2개 필요)"
+                    blog.error(message)
+                    sendTelegramMessage(message)
+                    raise Exception(message)
+                self.Strd = copy.deepcopy(rslt[0])
+                self.tbJobFuncExecStrd = copy.deepcopy(rslt[1])
+
+                if self.Strd != None and self.Strd != False:
+                    return getDicFromListTable(self.Strd)
+                else : raise CrawlingEndException #기준정보가 없으면 배치가 종료된 것 이므로
             else :
                 blog.info(self.batchContext.getLogName() + "parm_load_func_nm is null ==> dicPasi : " + str(self.dicPasi))
                 return None

@@ -40,11 +40,13 @@ def sms_msg_cut(str, dstlen):
     strlist.append (text)
     return strlist
 
-
-
+def test():
+    return (1,2)
 
 if __name__== '__main__':
-    print(len(None))
+    a = test()
+    print(a[1])
+    print()
 
 #    url = "https://api.upbit.com/v1/market/all"
 #    querystring = {"isDetails": "false"}

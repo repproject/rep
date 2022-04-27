@@ -740,6 +740,9 @@ class TlgrUser(Base,KTable):
         return "<TlgrUser('%s', '%s', '%s', '%s', '%s'" % (str(self.tlgr_user_id), str(self.tlgr_user_nm), str(self.rcv_tgt_yn), str(self.send_cl_cd), str(self.seq) + KTable.__repr__(self))
 
 class JobFuncExecStrd(Base,KTable):
+    """
+    customized Table (Auto Increment)
+    """
     __tablename__ = 'kadm_job_func_exec_strd'
 
     job_id = KColumn(String(20), nullable = False)
@@ -747,6 +750,7 @@ class JobFuncExecStrd(Base,KTable):
     func_id = KColumn(String(20), nullable = False)
     exec_dtm = KColumn(String(14), nullable = False)
     seq = KColumn(Integer, primary_key = True, nullable = False, unique=True, autoincrement=True)
+    pcsr_seq = KColumn(Integer, nullable = True)
     std_exec_stat_cd = KColumn(String(20), nullable = False, kcom_cd_domain = True, kcom_cd_grp = '')
     std_parm1 = KColumn(String(200), nullable = True)
     std_parm2 = KColumn(String(200), nullable = True)
@@ -768,6 +772,7 @@ class JobFuncExecStrd(Base,KTable):
         self.func_id =  kwargs.pop('func_id')
         self.exec_dtm =  kwargs.pop('exec_dtm')
         #self.seq =  kwargs.pop('seq')
+        self.pcsr_seq = kwargs.pop('pcsr_seq',None)
         self.std_exec_stat_cd =  kwargs.pop('std_exec_stat_cd','N')
         self.std_parm1 =  kwargs.pop('std_parm1',None)
         self.std_parm2 =  kwargs.pop('std_parm2',None)
@@ -781,5 +786,5 @@ class JobFuncExecStrd(Base,KTable):
         self.std_parm10 =  kwargs.pop('std_parm10',None)
 
     def __repr__(self):
-        return "<JobFuncExecStrd('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.job_id), str(self.act_id), str(self.func_id), str(self.exec_dtm), str(self.seq), str(self.std_exec_stat_cd), str(self.std_parm1), str(self.std_parm2), str(self.std_parm3), str(self.std_parm4), str(self.std_parm5), str(self.std_parm6), str(self.std_parm7), str(self.std_parm8), str(self.std_parm9), str(self.std_parm10) + KTable.__repr__(self))
+        return "<JobFuncExecStrd('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.job_id), str(self.act_id), str(self.func_id), str(self.exec_dtm), str(self.seq), str(self.pcsr_seq), str(self.std_exec_stat_cd), str(self.std_parm1), str(self.std_parm2), str(self.std_parm3), str(self.std_parm4), str(self.std_parm5), str(self.std_parm6), str(self.std_parm7), str(self.std_parm8), str(self.std_parm9), str(self.std_parm10) + KTable.__repr__(self))
 

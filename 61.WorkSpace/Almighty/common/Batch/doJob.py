@@ -26,7 +26,7 @@ def do(job_id,job_seq):
     :return:
     """
     blog.info("Do Job Start : [" + job_id + "][" + str(job_seq) + "]")
-    listFunc = getJobFuncAct(job_id)
+    listFunc = Server.ADM.getJobFuncAct(job_id)
 
     jobSchdExec = Server.COM.getJobSchdExecFirst(job_id, int(job_seq))
 
@@ -63,7 +63,7 @@ def do(job_id,job_seq):
             #기준Data사전세팅
             tbSvcPasi = Server.ADM.getSvcPasi(function.src_func_nm,function.ref1)
             execStrd = tbSvcPasi.parm_load_func_nm
-            execStrd = execStrd[:-1] + "1,'" + job.job_id +"','"+ act.act_id + "','" + function.func_id + "','" + exec_dtm + "')"  # Crawling Object에서 수행하는 경우 2번으로 호출
+            execStrd = execStrd[:-1] + "1,'" + job.job_id +"','"+ act.act_id + "','" + function.func_id + "','" + exec_dtm + "',0)"  # Crawling Object에서 수행하는 경우 2번으로 호출
             print(execStrd)
             eval(execStrd)
 
@@ -84,15 +84,23 @@ def do(job_id,job_seq):
                         pool.close()
                         pool.join()
                     else:
-                        runCrawling([job, act, function, je,1])
+                        ll = []
+                        ll.append(job)
+                        ll.append(act)
+                        ll.append(function)
+                        ll.append(je)
+                        ll.append(1)
+                        runCrawling(ll)
                 elif function.func_cl_cd == 'CRWC':
-                    batchContext = simpleBatchContext(
-                        "[" + job.job_id + "][" + job.job_nm + "][" + function.func_id + "][" + function.func_nm + "][" + function.func_cl_cd + "][" + exec_dtm + "]")
-                    execStr = function.ref2 + "(function.src_func_nm, function.ref1, batchContext, je)"
-                    #print(execStr)
-                    CrawlObject = eval(execStr)
-                    #CrawlObject = CrawlingmNVAtcl(function.src_func_nm, function.ref1, batchContext, je)
-                    CrawlObject.run()
+                    if num_cores > 1:
+                        return False
+                    else:
+                        #
+                        batchContext = simpleBatchContext(
+                            "[" + job.job_id + "][" + job.job_nm + "][" + function.func_id + "][" + function.func_nm + "][" + function.func_cl_cd + "][" + exec_dtm + "]")
+                        execStr = function.ref2 + "(function.src_func_nm, function.ref1, batchContext, je, job, act, function)"
+                        CrawlObject = eval(execStr)
+                        CrawlObject.run()
             except Exception as e:
                 #Function 오류 종료 업데이트
                 writeFuncExec(job_id, job_seq, act.act_id,function.func_id, 'E', exec_dtm, str(traceback.format_exc()))
@@ -117,7 +125,8 @@ def runCrawling(list):
     je = copy.deepcopy(list[3])
     process_number = copy.deepcopy(list[4])
     batchContext = simpleBatchContext("[" + job.job_id + "][" + job.job_nm + "][" + function.func_id + "][" + function.func_nm + "][" + function.func_cl_cd + "][" + je.exec_dtm + "][" + str(process_number) + "]")
-    CrawlObject = common.Batch.Crawling.Crawling(function.src_func_nm, function.ref1, batchContext, je, job, act, function)
+    batchContext.setLogFileName("[" + job.job_id + "][" + job.job_nm + "][" + function.func_id + "][" + function.func_nm + "][" + function.func_cl_cd + "][" + je.exec_dtm + "]")
+    CrawlObject = common.Batch.Crawling.Crawling(function.src_func_nm, function.ref1, batchContext, je, job, act, function,process_number)
     CrawlObject.run()
 
 def writeJobExec(job_id,job_seq,exec_stat_cd,exec_dtm=None,message=''):

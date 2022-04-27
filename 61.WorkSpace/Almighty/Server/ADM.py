@@ -101,8 +101,9 @@ def getRcvUserList():
 def getSvcPasi(pasi_id,svc_id):
     return s.query(SvcPasi).filter(SvcPasi.pasi_id == pasi_id,SvcPasi.svc_id == svc_id).first()
 
-def getJobFuncExecStrdFirst(strjob_id,stract_id,strfunc_id,strexec_dtm):
+def getJobFuncExecStrdFirst(strjob_id,stract_id,strfunc_id,strexec_dtm,process_number):
     """
+        병렬 처리를 위하여 삽입된 실행테이블을
     :param strjob_id: job_id
     :param stract_id:  act_id
     :param strfunc_id:  func_id
@@ -112,19 +113,20 @@ def getJobFuncExecStrdFirst(strjob_id,stract_id,strfunc_id,strexec_dtm):
     """
     rslt = s.query(JobFuncExecStrd).filter(JobFuncExecStrd.job_id == strjob_id,JobFuncExecStrd.act_id == stract_id,JobFuncExecStrd.func_id == strfunc_id,JobFuncExecStrd.exec_dtm == strexec_dtm,JobFuncExecStrd.std_exec_stat_cd=='N').with_for_update().first()
     if rslt != None:
-        rslt.std_exec_stat_cd = 'R'
+        rslt.std_exec_stat_cd = 'R' #진행중으로 상ㄷ태 변경
+        rslt.pcsr_seq = process_number
         s.add(rslt)
         s.commit()
-        blog = logging.getLogger('Batch')
-        blog.info("Process Start Strd : " + str(rslt))
-        if isNull(rslt):
-            return False
-        else:
-            return rslt
+
+        #blog = logging.getLogger('Batch')
+        #message = "Process Start Strd : " + str(rslt)
+        #blog.info(message)
+        return rslt
     else:
         s.commit()
-        return False
 
+        return False
+    s.commit()
 
 if __name__ == '__main__':
     #r = updateImdiJobN('GOIN001',1)

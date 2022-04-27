@@ -15,7 +15,7 @@ def sendTelegramMessage(str,token = my_token, id = None):
     listStr = splitStringSize(str,1000)
     bot = telegram.Bot(token=token)  # bot을 선언합니다.
     if token == my_token:
-        UserList = getRcvUserList()
+        UserList = Server.ADM.getRcvUserList()
         for user in UserList:
             str_chatid = user.tlgr_user_id
             try:

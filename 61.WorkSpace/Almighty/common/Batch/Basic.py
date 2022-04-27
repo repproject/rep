@@ -99,6 +99,7 @@ class BatchContext:
     funcName = ""
     LogName = ""
     ExecDtm = ""
+    LogFileName = ""
 
     def __init__(self, dicFunc, funcName="", userId=0000000000, ExecDtm = None):
         self.dicFunc = dicFunc
@@ -146,6 +147,12 @@ class BatchContext:
     def setLogName(self):
         self.LogName = "[" + self.getJOB_ID() + "][" + self.getACT_ID() + "][" + self.getFUNC_ID() + "][" + self.getFuncName() + "]"
 
+    def setLogFileName(self, lfn):
+        self.LogFileName = lfn
+
+    def getLogFileName(self):
+        return self.LogFileName
+
     # def debug(self,logMessage):
     #     logMessage = str(logMessage)
     #     self.Log.logger.debug(self.LogName + logMessage)
@@ -162,6 +169,7 @@ class simpleBatchContext:
     userId = 0000000000
     funcName = ""
     LogName = ""
+    LogFileName = ""
 
     def __init__(self, funcName="", userId=0000000000):
         self.funcName = funcName
@@ -182,6 +190,12 @@ class simpleBatchContext:
 
     def setLogName(self):
         self.LogName = "[" + self.getFuncName() + "]"
+
+    def setLogFileName(self, lfn):
+        self.LogFileName = lfn
+
+    def getLogFileName(self):
+        return self.LogFileName
 
 class BatchRowCounter:
     totalRowCount = 0   #총 건수

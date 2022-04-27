@@ -4,10 +4,12 @@ from DAO.KADM import *
 from DAO.KMIG import *
 from DAO.KRED import *
 from common.Batch.Basic import *
+from common.common.UserException import *
 from sqlalchemy.sql.expression import func
 from datetime import datetime, timedelta
 import dateutil.relativedelta
 import copy
+import Server.ADM
 
 
 def getBBLv1Regn():
@@ -31,7 +33,7 @@ def getBBCmpxTypCrawl():
                                                                        BbCmpxTyp.bb_cmpx_typ_seq == BbCmpxTypMonPrc.bb_cmpx_typ_seq,
                                                                        BbCmpxTypMonPrc.chg_dtm > strd).exists())).all()
 
-def getLegalDongLv2(flag,job_id,act_id,func_id,exec_dtm):
+def getLegalDongLv2(flag,job_id,act_id,func_id,exec_dtm,process_number):
     if flag == 1:
         # 3개월치 가져오도록 세팅
         date_only = date.today()
@@ -40,7 +42,7 @@ def getLegalDongLv2(flag,job_id,act_id,func_id,exec_dtm):
         todayym = str(date_only.year) + str(date_only.month).zfill(2)
 
         # rslt = s.query(LeglDong, StdYymm).filter(LeglDong.lv_cd == '2', StdYymm.std_yymm <= todayym,StdYymm.std_yymm >= ym)\
-        rslt = s.query(StdYymm).filter(StdYymm.std_yymm <= todayym,StdYymm.std_yymm >= '202004') \
+        rslt = s.query(StdYymm).filter(StdYymm.std_yymm <= todayym,StdYymm.std_yymm >= '200601') \
             .order_by(StdYymm.std_yymm).all()  # 실거래가 시행이 06년 #'200601' #,LeglDong.legl_dong_cd=='4145000000'
 
         listFuncExecParm = []
@@ -50,14 +52,14 @@ def getLegalDongLv2(flag,job_id,act_id,func_id,exec_dtm):
         commit()
 
     elif flag == 2:
-        rslt = getJobFuncExecStrdFirst(job_id,act_id,func_id,exec_dtm)
+        rslt = Server.ADM.getJobFuncExecStrdFirst(job_id,act_id,func_id,exec_dtm,process_number)
         if rslt == False:
-            return False
+            raise CrawlingEndException
         rr = s.query(LeglDong, StdYymm).filter(LeglDong.lv_cd == '2',StdYymm.std_yymm == rslt.std_parm1).all()  # 실거래가 시행이 06년 #'200601' #,LeglDong.legl_dong_cd=='4145000000'
         rslt2 = copy.deepcopy(rr)
         for t in rslt2:
             t[0].legl_dong_cd = t[0].legl_dong_cd[:5]
-        return rslt2
+        return (rslt2,rslt)
 
 def getLegalDongLv3():
     rslt = s.query(LeglDong).filter(LeglDong.lv_cd == '3').order_by(LeglDong.legl_dong_cd).all()
@@ -71,16 +73,43 @@ def getLeglDongLv2LandValue(): #공시지가 도로명 주소 get
     return rslt2
 
 def getNvCmpx():
-    return s.query(NvCmpx).filter(NvCmpx.job_id == 'NVDC002',NvCmpx.exec_dtm == '20220418152736').all()
+    return s.query(NvCmpx).all()
 
 def getOlvRoadNm():
     return s.query(OlvRoadNm).filter(OlvRoadNm.job_id == 'LVIN001',OlvRoadNm.exec_dtm == '20220419131229').order_by(OlvRoadNm.gov_legl_dong_cd).all()
 
-def getNvCmpxTyp():
-    return s.query(NvCmpxTyp).order_by(NvCmpxTyp.nv_cmpx_id,NvCmpxTyp.nv_cmpx_typ_seq).filter(NvCmpxTyp.job_id == 'NVDC006',NvCmpxTyp.exec_dtm == '20220418182200', NvCmpxTyp.nv_cmpx_id >= '104535').all()
+def getNvCmpxTyp(flag,job_id,act_id,func_id,exec_dtm,process_number):
+    """
+    네이버 매물 갱신 기준정보를
+    :param flag:
+    :param job_id:
+    :param act_id:
+    :param func_id:
+    :param exec_dtm:
+    :return:
+    """
+    if flag == 1:
+        rslt = s.query(LeglDong)
+        listFuncExecParm = []
+        for r in rslt:
+            tbJobFuncExecStrd = JobFuncExecStrd(job_id=job_id,act_id=act_id,func_id=func_id,exec_dtm=exec_dtm,std_parm1=r.legl_dong_cd)
+            mergeNC(tbJobFuncExecStrd)
+        commit()
+
+    elif flag == 2:
+        while True: #가져온 기준정보가 재수행이 필요 없다면
+            rslt = getJobFuncExecStrdFirst(job_id,act_id,func_id,exec_dtm,process_number)
+            if rslt == False:              #실행기준정보가 없는 경우
+                raise CrawlingEndException #Batch 종료를 위한 Exception
+            rr = s.query(NvCmpx,NvCmpxTyp).join(NvCmpxTyp.nvcmpx).filter(NvCmpx.legl_dong_cd == rslt.std_parm1).all()
+            if len(rr) > 0: #Crawling을 수행할 기준정보가 있으면 정상적으로 Return
+                rslt2 = copy.deepcopy(rr)
+                return (rslt2,rslt)
+        #return s.query(NvCmpxTyp).order_by(NvCmpxTyp.nv_cmpx_id,NvCmpxTyp.nv_cmpx_typ_seq).filter(NvCmpxTyp.job_id == 'NVDC006',NvCmpxTyp.exec_dtm == '20220418182200', NvCmpxTyp.nv_cmpx_id >= '104535').order_by(NvCmpxTyp.nv_cmpx_id).all()
 
 if __name__ == "__main__":
-    print(len(getNvCmpxTyp()))
+    print(getNvCmpxTyp(2,'a','b','c','2'))
+    #print(len(getNvCmpxTyp()))
     #date_only = date.today()
     #t = date_only - dateutil.relativedelta.relativedelta(months=3)
     #ym = str(t.year) + str(t.month).zfill(2)# + str(t.day).zfill(2)
