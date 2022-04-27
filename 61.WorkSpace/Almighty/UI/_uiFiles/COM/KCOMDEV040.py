@@ -27,6 +27,7 @@ class KCOMDEV040(QWidget, KWidget, form_class) :
         self.twTbl.clicked.connect(self.search2)
         self.btn_reflect_col.clicked.connect(self.reflectCol)
         self.btn_save_col.clicked.connect(self.saveCol)
+        self.btn_del_col.clicked.connect(self.delCol)
         #self.twCol.clicked.connect(self.search2)
 
     def search(self):
@@ -195,6 +196,18 @@ class KCOMDEV040(QWidget, KWidget, form_class) :
 
         if self.twTbl.getRowTable(self.twTbl.currentRow()) != None:
             alert("신규로 생성한 행만 삭제 가능합니다.")
+            return False
+        return True
+
+    def delCol(self):
+        try:
+            if self.preDelCol():
+                self.twCol.deleteRow()
+        except: error()
+
+    def preDelCol(self):
+        if self.twCol.currentItem() == None:
+            alert("컬럼을 선택하셔야합니다.")
             return False
         return True
 

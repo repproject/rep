@@ -341,6 +341,19 @@
     <string>저장</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="btn_del_col">
+   <property name="geometry">
+    <rect>
+     <x>510</x>
+     <y>790</y>
+     <width>56</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>삭제</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
