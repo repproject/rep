@@ -211,7 +211,11 @@ class KCOMDEV050(QWidget, KWidget, form_class) :
             except UnicodeDecodeError:
                 dPage = page
 
-            if dPage[0] == '<': #xml판단 조건문
+            print(dPage)
+            print(dPage[0])
+            print(str(dPage[0]))
+
+            if dPage[0] == '<' or dPage[0] == 60: #xml판단 조건문
                 setTreeWidgetByXML(self.twRslt,dPage)
             else:               #아니면 json 이라고 간주
                 setTreeWidgetByjson(self.twRslt, dPage)
