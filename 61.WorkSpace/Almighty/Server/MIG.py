@@ -104,7 +104,14 @@ def getNvCmpxTyp(flag,job_id,act_id,func_id,exec_dtm,process_number):
             rr = s.query(NvCmpx,NvCmpxTyp).join(NvCmpxTyp.nvcmpx).filter(NvCmpx.legl_dong_cd == rslt.std_parm1).all()
             if len(rr) > 0: #Crawling을 수행할 기준정보가 있으면 정상적으로 Return
                 rslt2 = copy.deepcopy(rr)
+                rslt.req_tgt_cnt = len(rr)
                 return (rslt2,rslt)
+            else: #여기코딩
+                rslt.std_exec_stat_cd = 'T'
+                rslt.req_tgt_cnt = 0
+                s.add(rslt)
+                s.commit()
+
         #return s.query(NvCmpxTyp).order_by(NvCmpxTyp.nv_cmpx_id,NvCmpxTyp.nv_cmpx_typ_seq).filter(NvCmpxTyp.job_id == 'NVDC006',NvCmpxTyp.exec_dtm == '20220418182200', NvCmpxTyp.nv_cmpx_id >= '104535').order_by(NvCmpxTyp.nv_cmpx_id).all()
 
 if __name__ == "__main__":

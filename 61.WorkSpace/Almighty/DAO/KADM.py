@@ -752,6 +752,7 @@ class JobFuncExecStrd(Base,KTable):
     seq = KColumn(Integer, primary_key = True, nullable = False, unique=True, autoincrement=True)
     pcsr_seq = KColumn(Integer, nullable = True)
     std_exec_stat_cd = KColumn(String(20), nullable = False, kcom_cd_domain = True, kcom_cd_grp = '')
+    req_tgt_cnt = KColumn(Integer, nullable = True)
     std_parm1 = KColumn(String(200), nullable = True)
     std_parm2 = KColumn(String(200), nullable = True)
     std_parm3 = KColumn(String(200), nullable = True)
@@ -774,6 +775,7 @@ class JobFuncExecStrd(Base,KTable):
         #self.seq =  kwargs.pop('seq')
         self.pcsr_seq = kwargs.pop('pcsr_seq',None)
         self.std_exec_stat_cd =  kwargs.pop('std_exec_stat_cd','N')
+        self.req_tgt_cnt =  kwargs.pop('req_tgt_cnt',None)
         self.std_parm1 =  kwargs.pop('std_parm1',None)
         self.std_parm2 =  kwargs.pop('std_parm2',None)
         self.std_parm3 =  kwargs.pop('std_parm3',None)
@@ -786,5 +788,4 @@ class JobFuncExecStrd(Base,KTable):
         self.std_parm10 =  kwargs.pop('std_parm10',None)
 
     def __repr__(self):
-        return "<JobFuncExecStrd('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.job_id), str(self.act_id), str(self.func_id), str(self.exec_dtm), str(self.seq), str(self.pcsr_seq), str(self.std_exec_stat_cd), str(self.std_parm1), str(self.std_parm2), str(self.std_parm3), str(self.std_parm4), str(self.std_parm5), str(self.std_parm6), str(self.std_parm7), str(self.std_parm8), str(self.std_parm9), str(self.std_parm10) + KTable.__repr__(self))
-
+        return "<JobFuncExecStrd('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.job_id), str(self.act_id), str(self.func_id), str(self.exec_dtm), str(self.seq), str(self.pcsr_seq), str(self.std_exec_stat_cd), str(self.req_tgt_cnt), str(self.std_parm1), str(self.std_parm2), str(self.std_parm3), str(self.std_parm4), str(self.std_parm5), str(self.std_parm6), str(self.std_parm7), str(self.std_parm8), str(self.std_parm9), str(self.std_parm10) + KTable.__repr__(self))

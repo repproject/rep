@@ -98,6 +98,8 @@ def do(job_id,job_seq):
                         #
                         batchContext = simpleBatchContext(
                             "[" + job.job_id + "][" + job.job_nm + "][" + function.func_id + "][" + function.func_nm + "][" + function.func_cl_cd + "][" + exec_dtm + "]")
+                        batchContext.setLogFileName(
+                            "[" + job.job_id + "][" + job.job_nm + "][" + function.func_id + "][" + function.func_nm + "][" + function.func_cl_cd + "][" + je.exec_dtm + "]")
                         execStr = function.ref2 + "(function.src_func_nm, function.ref1, batchContext, je, job, act, function)"
                         CrawlObject = eval(execStr)
                         CrawlObject.run()
@@ -221,6 +223,6 @@ if __name__ == '__main__':
     #blog.info("parameter : " + *args)
     #jobSchdExec = Server.COM.getJobSchdExecFirst('NVDC002', 1)
     #print(jobSchdExec)
-    do('GOIN001',1)
-    #do('NVDC005', 1)
+    #do('GOIN001',1)
+    do('NVDC005', 1)
     #main()

@@ -81,6 +81,7 @@ class NvCmpx(Base,KTable):
     bmak_yn = KColumn(String(1), nullable = True)
     mig_rsn = KColumn(String(20), nullable = True)
 
+    legldong = relationship('LeglDong',primaryjoin = legl_dong_cd==LeglDong.legl_dong_cd, foreign_keys = [LeglDong.legl_dong_cd], passive_deletes = True)
 
     def __init__(self, *args, **kwargs):
         KTable.__init__(self)
