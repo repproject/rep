@@ -89,7 +89,7 @@ def getNvCmpxTyp(flag,job_id,act_id,func_id,exec_dtm,process_number):
     :return:
     """
     if flag == 1:
-        rslt = s.query(LeglDong).order_by(LeglDong.legl_dong_cd).all()
+        rslt = s.query(LeglDong).filter(LeglDong.lv_cd == '3').order_by(LeglDong.legl_dong_cd).all()
         listFuncExecParm = []
         for r in rslt:
             tbJobFuncExecStrd = JobFuncExecStrd(job_id=job_id,act_id=act_id,func_id=func_id,exec_dtm=exec_dtm,std_parm1=r.legl_dong_cd)
