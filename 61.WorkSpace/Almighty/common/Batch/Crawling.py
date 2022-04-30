@@ -260,10 +260,10 @@ class Crawling:
             self.CountCommit(ss)
             #gc.collect()
 
+        ss.commit() #실행이력 종료 이후 Commit실패로 순서 변경
         self.tbJobFuncExecStrd.std_exec_stat_cd = 'T'
         self.tbJobFuncExecStrd.updateChg()
-        ss.add(self.tbJobFuncExecStrd)
-        ss.commit()
+        merge(self.tbJobFuncExecStrd)
         ss.close()
         gc.collect()
 
