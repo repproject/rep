@@ -1,11 +1,15 @@
 import gc
 from bs4 import BeautifulSoup
+
 from sqlalchemy.engine.row import Row
+import re
 
 from common.Batch.Batch import *
 from common.common.Telegram import *
 from common.common.URL import get_html
 from common.common.Table import *
+from common.common.Basic import *
+
 import Server.COM
 import Server.MIG
 from Server.Basic import *
@@ -20,6 +24,7 @@ import copy
 import os
 import json
 from datetime import datetime
+
 
 #Multi Proccessing 용 import [출처] Python Multiprocessing(Pool)을 사용한 데이터 처리 속도 개선|작성자 SungWook Kang
 import multiprocessing as mp
@@ -224,6 +229,7 @@ class Crawling:
                     reCnt = reCnt + 1
                     blog.debug(self.batchContext.getLogName() + "make URL 이전")
                     url = self.makeURL(sd,reCnt,dicParam = dicParam)
+                    #url = 'https://m.land.naver.com/complex/getComplexArticleList?order=date_&page=2&showR0=N&tradTpCd=&cortarNo=1129013000&hscpNo=127574&ptpNo=2'
                     blog.info(self.batchContext.getLogName() + "CALL URL : " + url)
                     page = self.request(url)
                     cPage = self.convertPage(page)  #page를 객체화(BeutifulShop)형태로 변경
@@ -261,6 +267,7 @@ class Crawling:
             #gc.collect()
 
         ss.commit() #실행이력 종료 이후 Commit실패로 순서 변경
+
         self.tbJobFuncExecStrd.std_exec_stat_cd = 'T'
         self.tbJobFuncExecStrd.updateChg()
         merge(self.tbJobFuncExecStrd)
@@ -352,6 +359,7 @@ class Crawling:
                     try:
                         ss.add(tb)
                         blog.debug("merge 이후 : " + str(tb))
+#                        ss.commit()
                     except Exception as e:
                         blog.error(traceback.format_exc())
                 listTable = None
@@ -417,24 +425,29 @@ class Crawling:
 
         try:
             if self.tableSvcPasi.pasi_way_cd == 'SOUP':
-                str = p.find(t.item_nm).text
+                sstr = p.find(t.item_nm).text
             elif self.tableSvcPasi.pasi_way_cd == 'JSON':
                 try:
-                    str = p[t.item_nm]
+                    sstr = p[t.item_nm]
                 except KeyError:
                     blog.debug("getParsetext >> 정의된 값이 존재하지 않음 : " + t.item_nm )
-                    str = ""
+                    sstr = ""
             else:
                 raise Exception
         except AttributeError as e:
-            str = None
+            sstr = None
             blog.debug("Attribute Not found : item :[" + t.item_nm + "]")
         #BeautifulShop의 경우 아래의 함수로 값을 가져온다.
+
+        #특수문자 제거
+        #str = re.sub('[^가-힝0-9a-zA-Z<>&.?:/#\(\)\[\]]', ' ', str)
+        sstr = removeNotUtf8(sstr)
+
         if isNotNull(t.excp_str):
             excpList = t.excp_str.split("||")
             for excp in excpList:
-                str = StrReplace(str,excp)
-        return str
+                sstr = StrReplace(sstr,excp)
+        return sstr
 
     def request(self,url):
         page = get_html(url,self.tableSvc.req_way_cd,self.dicParam)

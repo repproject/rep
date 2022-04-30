@@ -61,6 +61,34 @@ def getLegalDongLv2(flag,job_id,act_id,func_id,exec_dtm,process_number):
             t[0].legl_dong_cd = t[0].legl_dong_cd[:5]
         return (rslt2,rslt)
 
+def getCrawlVlaLegalDongLv2(flag,job_id,act_id,func_id,exec_dtm,process_number):
+    if flag == 1:
+        # 3개월치 가져오도록 세팅
+        date_only = date.today()
+        t = date_only - dateutil.relativedelta.relativedelta(months=2)
+        ym = str(t.year) + str(t.month).zfill(2)  # + str(t.day).zfill(2)
+        todayym = str(date_only.year) + str(date_only.month).zfill(2)
+
+        # rslt = s.query(LeglDong, StdYymm).filter(LeglDong.lv_cd == '2', StdYymm.std_yymm <= todayym,StdYymm.std_yymm >= ym)\
+        rslt = s.query(StdYymm).filter(StdYymm.std_yymm <= todayym,StdYymm.std_yymm >= ym) \
+            .order_by(StdYymm.std_yymm).all()  # 실거래가 시행이 06년 #'200601' #,LeglDong.legl_dong_cd=='4145000000'
+
+        listFuncExecParm = []
+        for r in rslt:
+            tbJobFuncExecStrd = JobFuncExecStrd(job_id=job_id,act_id=act_id,func_id=func_id,exec_dtm=exec_dtm,std_parm1=r.std_yymm)
+            mergeNC(tbJobFuncExecStrd)
+        commit()
+
+    elif flag == 2:
+        rslt = Server.ADM.getJobFuncExecStrdFirst(job_id,act_id,func_id,exec_dtm,process_number)
+        if rslt == False:
+            raise CrawlingEndException
+        rr = s.query(LeglDong, StdYymm).filter(LeglDong.lv_cd == '2',StdYymm.std_yymm == rslt.std_parm1).all()  # 실거래가 시행이 06년 #'200601' #,LeglDong.legl_dong_cd=='4145000000'
+        rslt2 = copy.deepcopy(rr)
+        for t in rslt2:
+            t[0].legl_dong_cd = t[0].legl_dong_cd[:5]
+        return (rslt2,rslt)
+
 def getLegalDongLv3():
     rslt = s.query(LeglDong).filter(LeglDong.lv_cd == '3').order_by(LeglDong.legl_dong_cd).all()
     return rslt
@@ -89,7 +117,7 @@ def getNvCmpxTyp(flag,job_id,act_id,func_id,exec_dtm,process_number):
     :return:
     """
     if flag == 1:
-        rslt = s.query(LeglDong).filter(LeglDong.lv_cd == '3').order_by(LeglDong.legl_dong_cd).all()
+        rslt = s.query(LeglDong).filter(LeglDong.lv_cd == '3').filter(LeglDong.legl_dong_cd >= '1129013000').order_by(LeglDong.legl_dong_cd).all()
         listFuncExecParm = []
         for r in rslt:
             tbJobFuncExecStrd = JobFuncExecStrd(job_id=job_id,act_id=act_id,func_id=func_id,exec_dtm=exec_dtm,std_parm1=r.legl_dong_cd)

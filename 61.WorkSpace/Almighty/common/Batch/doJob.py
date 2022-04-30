@@ -95,7 +95,6 @@ def do(job_id,job_seq):
                     if num_cores > 1:
                         return False
                     else:
-                        #
                         batchContext = simpleBatchContext(
                             "[" + job.job_id + "][" + job.job_nm + "][" + function.func_id + "][" + function.func_nm + "][" + function.func_cl_cd + "][" + exec_dtm + "]")
                         batchContext.setLogFileName(
@@ -132,6 +131,9 @@ def runCrawling(list):
     CrawlObject.run()
 
 def writeJobExec(job_id,job_seq,exec_stat_cd,exec_dtm=None,message=''):
+    if len(message)>2000:
+        message = message[:2000]
+
     jobSchdExec = Server.COM.getJobSchdExecFirst(job_id, int(job_seq))
     if isNull(jobSchdExec):
         jobSchdExec = DAO.KADM.JobSchdExec(job_id = job_id,job_seq = job_seq)

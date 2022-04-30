@@ -63,8 +63,9 @@ def doSchedule():    #JOB수행
                     ss.add(imdiExec[0])
                     ss.commit()
                     sendTelegramMessage(message)
-                    sched.add_job(do, id=jobId + str(jobSeq) + 'Y', #즉시실행여부를 분류하기 위하여 변경 ,
+                    r = sched.add_job(do, id=jobId + str(jobSeq) + 'Y', #즉시실행여부를 분류하기 위하여 변경 ,
                                   args=[imdiExec[0].job_id, int(imdiExec[0].job_seq)])
+                    blog.debug("add Job result : " + str(r))
                     blog.info("REP Scheduler Immediate Add Job Complete!!!")
                 #try:
                     #sched.start()

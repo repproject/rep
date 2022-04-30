@@ -1,6 +1,7 @@
 from common.database.repSqlAlchemy import *
 import common.ui.comUi
 from DAO.KADM import *
+from DAO.KRED import *
 
 class BbLv1Regn(Base,KTable):
     __tablename__ = 'kmig_bb_lv1_regn'
@@ -244,6 +245,61 @@ class DealDtl(Base,KTable):
 
     def __repr__(self):
         return "<DealDtl('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.job_id), str(self.exec_dtm), str(self.gov_legl_dong_cd), str(self.deal_yymm), str(self.real_deal_seq), str(self.real_deal_cmpx_knd), str(self.deal_amt), str(self.cmpl_yy), str(self.deal_yy), str(self.road_nm), str(self.road_nm_cmpx_orgl_num_cd), str(self.road_nm_cmpx_vice_num_cd), str(self.road_nm_sgg_cd), str(self.road_nm_seq_cd), str(self.road_nm_ong_ung_cd), str(self.road_nm_cd), str(self.legl_dong_nm), str(self.legl_dong_orgl_num_cd), str(self.legl_dong_vice_num_cd), str(self.legl_dong_sgg_cd), str(self.legl_dong_umd_cd), str(self.legl_dong_hnum_cd), str(self.real_deal_cmpx_nm), str(self.deal_mm), str(self.deal_ymd), str(self.seq), str(self.only_area), str(self.agnt_whrb_addr), str(self.regn_cd), str(self.hnum), str(self.flr), str(self.rles_rsn_occr_dd), str(self.rles_yn_val) + KTable.__repr__(self))
+
+class MigVlaDeal(Base,KTable):
+    __tablename__ = 'kmig_vla_deal'
+
+    job_id = KColumn(String(20), nullable = False)
+    exec_dtm = KColumn(String(14), nullable = False)
+    gov_legl_dong_cd = KColumn(String(10), nullable = False)
+    deal_yymm = KColumn(String(6), nullable = False)
+    vla_real_deal_seq = KColumn(INTEGER, primary_key = True, nullable = False, unique=True, autoincrement=True)
+    deal_amt_val = KColumn(String(200), nullable = True)
+    cmpl_yy = KColumn(String(4), nullable = True)
+    yy = KColumn(String(4), nullable = True)
+    rola_area_val = KColumn(String(200), nullable = True)
+    legl_dong_nm = KColumn(String(200), nullable = True)
+    vla_val = KColumn(String(200), nullable = True)
+    mm = KColumn(String(2), nullable = True)
+    ymd = KColumn(String(8), nullable = True)
+    only_area = KColumn(FLOAT, nullable = True)
+    hnum = KColumn(String(100), nullable = True)
+    regn_cd = KColumn(String(20), nullable = True)
+    flr = KColumn(String(200), nullable = True)
+    rles_yn = KColumn(String(1), nullable = True)
+    rles_rsn_occr_ymd = KColumn(String(8), nullable = True)
+    deal_typ = KColumn(String(200), nullable = True)
+    agnt_addr = KColumn(String(255), nullable = True)
+
+    legldong = relationship('LeglDong',primaryjoin = gov_legl_dong_cd==LeglDong.legl_dong_cd, foreign_keys = [LeglDong.legl_dong_cd], passive_deletes = True)
+
+    def __init__(self, *args, **kwargs):
+        KTable.__init__(self)
+        self.job_id =  kwargs.pop('job_id')
+        self.exec_dtm =  kwargs.pop('exec_dtm')
+        self.gov_legl_dong_cd =  kwargs.pop('gov_legl_dong_cd')
+        self.deal_yymm =  kwargs.pop('deal_yymm')
+#        self.vla_real_deal_seq =  kwargs.pop('vla_real_deal_seq')
+        self.deal_amt_val =  kwargs.pop('deal_amt_val',None)
+        self.cmpl_yy =  kwargs.pop('cmpl_yy',None)
+        self.yy =  kwargs.pop('yy',None)
+        self.rola_area_val =  kwargs.pop('rola_area_val',None)
+        self.legl_dong_nm =  kwargs.pop('legl_dong_nm',None)
+        self.vla_val =  kwargs.pop('vla_val',None)
+        self.mm =  kwargs.pop('mm',None)
+        self.ymd =  kwargs.pop('ymd',None)
+        self.only_area =  kwargs.pop('only_area',None)
+        self.hnum =  kwargs.pop('hnum',None)
+        self.regn_cd =  kwargs.pop('regn_cd',None)
+        self.flr =  kwargs.pop('flr',None)
+        self.rles_yn =  kwargs.pop('rles_yn',None)
+        self.rles_rsn_occr_ymd =  kwargs.pop('rles_rsn_occr_ymd',None)
+        self.deal_typ =  kwargs.pop('deal_typ',None)
+        self.agnt_addr =  kwargs.pop('agnt_addr',None)
+
+    def __repr__(self):
+        return "<MigVlaDeal('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.job_id), str(self.exec_dtm), str(self.gov_legl_dong_cd), str(self.deal_yymm), str(self.vla_real_deal_seq), str(self.deal_amt_val), str(self.cmpl_yy), str(self.yy), str(self.rola_area_val), str(self.legl_dong_nm), str(self.vla_val), str(self.mm), str(self.ymd), str(self.only_area), str(self.hnum), str(self.regn_cd), str(self.flr), str(self.rles_yn), str(self.rles_rsn_occr_ymd), str(self.deal_typ), str(self.agnt_addr) + KTable.__repr__(self))
+
 
 class MigNvCmpx(Base,KTable):
     __tablename__ = 'kmig_nv_cmpx'
