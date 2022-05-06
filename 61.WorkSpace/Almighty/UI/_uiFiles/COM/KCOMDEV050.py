@@ -179,8 +179,9 @@ class KCOMDEV050(QWidget, KWidget, form_class) :
     def addOut(self):
         try:
             n = self.twOut.addTWRow()
-            self.twOut.setTextByColName(n,"pasi_id",self.edit_pasi_id.text())
+            self.twOut.setTextByColName(n, "pasi_id",self.edit_pasi_id.text())
             self.twOut.setTextByColName(n, "del_yn", 'N')
+            self.twOut.setTextByColName(n, "seq", 1)
             return n
         except : error()
 
@@ -188,6 +189,8 @@ class KCOMDEV050(QWidget, KWidget, form_class) :
         try:
             n = self.twOut.addTWRow()
             self.twOut.setTextByColName(n, "pasi_id", 'default')
+            self.twOut.setTextByColName(n, "del_yn", 'N')
+            self.twOut.setTextByColName(n, "seq", 1)
         except : error()
 
     def delOut(self):
