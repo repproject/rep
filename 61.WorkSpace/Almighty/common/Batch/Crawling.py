@@ -74,7 +74,7 @@ class Crawling:
     dicParam = {}
     outParam = []
     outMultiParam = []
-    outAllTblParam = []
+    outAllTblParam = {}
     crawlCdExec = None
     jobId = None
     execDtm = None
@@ -83,6 +83,7 @@ class Crawling:
     act = None
     function = None
     process_number = 0
+    dicTableList = {}
 
     tbJobFuncExecStrd = None #작업기능실행기준의 종료 상태를 update하기 위한 변수
 
@@ -129,19 +130,21 @@ class Crawling:
                 blog.error(self.batchContext.getLogName() + "Pasi 정보가 없습니다.")
                 raise TypeError
 
-            self.outParam = Server.COM.getiItemParm2(self.svcId, self.pasiId, 'O')
-            self.outMultiParam = Server.COM.getiItemParmMulti(self.svcId, self.pasiId, 'O')
-            a = copy.deepcopy(self.outParam)
-            b = copy.deepcopy(self.outMultiParam)
-            self.outAllTblParam = a + b
-            for param in self.outAllTblParam:
-                if param[0].tbl_nm == 'm' and param[1] == None:  # Multi용 테이블 리스트를 제거
-                    self.outAllTblParam.remove(param)
+
             self.crawlCdExec = Server.COM.getCrawlCdExec(self.tableSvcPasi.svc_id, self.tableSvcPasi.pasi_id, 0)
             if isNull(self.crawlCdExec):
                 blog.info(self.batchContext.getLogName() + "코드실행 정보가 없습니다. 코드실행관리에서 등록하세요")
                 sendTelegramMessage(self.batchContext.getFuncName() + "코드실행 정보가 없습니다. 코드실행관리에서 등록하세요")
                 # raise TypeError
+            for ce in self.crawlCdExec:
+                self.outParam = Server.COM.getiItemParm2(self.svcId, self.pasiId, 'O')
+                self.outMultiParam = Server.COM.getiItemParmMulti(self.svcId, self.pasiId, 'O')
+                a = copy.deepcopy(self.outParam)
+                b = copy.deepcopy(self.outMultiParam)
+                self.outAllTblParam[ce[0].seq] = a + b
+                for param in self.outAllTblParam[ce[0].seq]:
+                    if param[0].tbl_nm == 'm' and param[1] == None:  # Multi용 테이블 리스트를 제거
+                        self.outAllTblParam.remove(param)
         except:
             sendTelegramMessage("Crawling 초기화 Error : " + str(traceback.format_exc()))
             blog.error(traceback.format_exc())
@@ -200,7 +203,7 @@ class Crawling:
     def startLog(self):
         #기본로그 출력
         global blog
-        blog = Logger(LogName=self.batchContext.getLogFileName(), Level="INFO", name = "Batch").logger
+        blog = Logger(LogName=self.batchContext.getLogFileName(), Level="DEBUG", name = "Batch").logger
         blog.info(self.batchContext.getLogName()+"####################START[" + self.batchContext.getFuncName() + "]####################")
         sendTelegramMessage("START[" + self.batchContext.getFuncName() + "]")
 
@@ -334,35 +337,42 @@ class Crawling:
     def selfSaveDB(self,cPage,dicStrdData = None,url = None, session = None):
         blog.debug(" Page : " + str(cPage))
         if len(self.crawlCdExec) > 0:
-            self.reCurParse(cPage,self.crawlCdExec[0],dicStrdData, session = session)
+            self.reCurParse(cPage,self.crawlCdExec,dicStrdData, session = session)
         pass
 
-    def reCurParse(self,page,cdex,strd,session = None):
+    def reCurParse(self,page,cdexlist,strd,session = None):
         ss = session
-        #코드실행에 등록된 명령대로 1차 파싱
-        if cdex[1].cd_exec_cl_cd == "F": #Function
-            strExec = cdex[1].exec_cd_cnts + "(" + '"' + str(cdex[0].exec_parm_val) + '"' + ")"
-            pasiPage = eval(strExec)
-        elif cdex[1].cd_exec_cl_cd == "L":  # list
-            strExec = cdex[1].exec_cd_cnts + str(cdex[0].exec_parm_val)
-            pasiPage = eval(strExec)
+        listTable = []
+        dicTableList = {}
 
-        if pasiPage != None:
-            #단위 페이지를 파싱하여 INSERT
-            for p in pasiPage:
-                #if self.tableSvcPasi.pasi_way_cd == 'SOUP':
-                listTable = self.getTableListByOutMapping(self.svcId, self.pasiId, p, strd)
-                for tb in listTable:
-                    delattr(tb,'reg_user_id')
-                    delattr(tb,'reg_dtm')
-                    tb.updateChg()
-                    try:
-                        ss.add(tb)
-                        blog.debug("merge 이후 : " + str(tb))
-#                        ss.commit()
-                    except Exception as e:
-                        blog.error(traceback.format_exc())
-                listTable = None
+        for cdex in cdexlist:
+            #코드실행에 등록된 명령대로 1차 파싱
+            if cdex[1].cd_exec_cl_cd == "F": #Function
+                strExec = cdex[1].exec_cd_cnts + "(" + '"' + str(cdex[0].exec_parm_val) + '"' + ")"
+                pasiPage = eval(strExec)
+            elif cdex[1].cd_exec_cl_cd == "L":  # list
+                strExec = cdex[1].exec_cd_cnts + str(cdex[0].exec_parm_val)
+                pasiPage = eval(strExec)
+
+            if pasiPage != None:
+                #단위 페이지를 파싱하여 INSERT
+                for p in pasiPage:
+                    #if self.tableSvcPasi.pasi_way_cd == 'SOUP':
+                    self.getTableListByOutMapping(self.svcId, self.pasiId, p, strd,cdex[0].seq)
+
+        listTable = getListTableFromDic(self.dicTableList)
+
+        for tb in listTable:
+            delattr(tb, 'reg_user_id')
+            delattr(tb, 'reg_dtm')
+            tb.updateChg()
+            try:
+                ss.add(tb)
+                blog.debug("merge 이후 : " + str(tb))
+            #                        ss.commit()
+            except Exception as e:
+                blog.error(traceback.format_exc())
+        listTable = None
         return True
 
     def convertPage(self,page):
@@ -382,7 +392,7 @@ class Crawling:
         else:
             raise Exception
 
-    def getTableListByOutMapping(self,strSvcId,strPasiId,p,strd):
+    def getTableListByOutMapping(self,strSvcId,strPasiId,p,strd,seq):
         r"""
             단위 페이지를 파싱한다.
         :param strSvcId: 서비스ID
@@ -391,29 +401,29 @@ class Crawling:
         :param strd:
         :return: TableList Type
         """
-        dicTableList = {}
+
 
         #Out Param기준정보를 가져온다
-        for tb in self.outAllTblParam:
+        for tb in self.outAllTblParam[seq]:
             #SvcPasiItem,TblCol,Tbl
             #테이블 클래스명을 세팅한다.
-            if tb[2].cls_nm not in dicTableList:
-                dicTableList[tb[2].cls_nm] = {}
+            if tb[2].cls_nm not in self.dicTableList:
+                self.dicTableList[tb[2].cls_nm] = {}
 
             if tb[0].item_src_cl_cd == 'ST': #기준정보
                 # 기준정보의경우 기준정보에서 값을 가져옴.
-                dicTableList[tb[2].cls_nm][tb[1].col_nm] = strd[tb[0].item_nm]
+                self.dicTableList[tb[2].cls_nm][tb[1].col_nm] = strd[tb[0].item_nm]
             else:
                 #기준정보가 아닌 경우 page에서 값을 가져온다.
                 str = self.getParsetext(tb[0],p)
-                dicTableList[tb[2].cls_nm][tb[1].col_nm] = str
+                self.dicTableList[tb[2].cls_nm][tb[1].col_nm] = str
 
-        for key in dicTableList.keys():
-            dicTableList[key]['job_id'] = self.jobId
-            dicTableList[key]['exec_dtm'] = self.execDtm
+        for key in self.dicTableList.keys():
+            self.dicTableList[key]['job_id'] = self.jobId
+            self.dicTableList[key]['exec_dtm'] = self.execDtm
 
-        rslt = getListTableFromDic(dicTableList)
-        return rslt
+
+        return True
 
     def getParsetext(self,t,p):
         r"""
