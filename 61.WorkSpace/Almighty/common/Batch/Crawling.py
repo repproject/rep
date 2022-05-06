@@ -203,7 +203,7 @@ class Crawling:
     def startLog(self):
         #기본로그 출력
         global blog
-        blog = Logger(LogName=self.batchContext.getLogFileName(), Level="DEBUG", name = "Batch").logger
+        blog = Logger(LogName=self.batchContext.getLogFileName(), Level="INFO", name = "Batch").logger
         blog.info(self.batchContext.getLogName()+"####################START[" + self.batchContext.getFuncName() + "]####################")
         sendTelegramMessage("START[" + self.batchContext.getFuncName() + "]")
 
