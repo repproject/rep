@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-05-10T13:54:33.891Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36" etag="WFBH7bl6QEceHHDqU-cC" version="17.5.0" type="github">
+<mxfile host="app.diagrams.net" modified="2022-05-10T14:26:22.091Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36" etag="UGz9Lk_NzwkFvViFLxsM" version="17.5.0" type="github">
   <diagram id="FWe1Anl-cKjqRQnevANy" name="Page-1">
     <mxGraphModel dx="2964" dy="2291" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -17,8 +17,8 @@
             <mxPoint x="-435.5" y="120" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="g0vXEvp_Msi_eeC9uGr0-16" value="&lt;div style=&quot;text-align: left&quot;&gt;&lt;b&gt;&lt;i&gt;GUD.01.01120-예치금입금안내&lt;/i&gt;&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;b&gt;&lt;i&gt;&lt;br&gt;&lt;/i&gt;&lt;/b&gt;&lt;/div&gt;RULE.BANK.001-예치금규칙안내&lt;br&gt;&lt;div style=&quot;text-align: left&quot;&gt;&amp;nbsp; RULE.BANK.002-예치금입금안내&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;청약공고일(금일) 까지 분양신청할 평형에 맞는 예치금을 채워야합니다.&lt;/div&gt;&lt;div&gt;부족금액 :&amp;nbsp;&lt;/div&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="-475.5" y="340" width="192.5" height="120" as="geometry" />
+        <mxCell id="g0vXEvp_Msi_eeC9uGr0-16" value="&lt;div style=&quot;text-align: left&quot;&gt;&lt;b&gt;&lt;i&gt;GUD.01.100200-예치금입금안내&lt;/i&gt;&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;b&gt;&lt;i&gt;&lt;br&gt;&lt;/i&gt;&lt;/b&gt;&lt;/div&gt;RULE.BANK.001-예치금규칙안내&lt;br&gt;&lt;div style=&quot;text-align: left&quot;&gt;&amp;nbsp; RULE.BANK.002-예치금입금안내&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;청약공고일(금일) 까지 분양신청할 평형에 맞는 예치금을 채워야합니다.&lt;/div&gt;&lt;div&gt;부족금액 :&amp;nbsp;&lt;/div&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-547.5" y="235" width="192.5" height="120" as="geometry" />
         </mxCell>
         <mxCell id="g0vXEvp_Msi_eeC9uGr0-18" value="N" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="-435.5" y="45" width="20" height="30" as="geometry" />
@@ -33,11 +33,11 @@
           <mxGeometry x="-475.5" y="-35" width="80" height="80" as="geometry" />
         </mxCell>
         <mxCell id="g0vXEvp_Msi_eeC9uGr0-26" value="순위판단" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="-349.5" y="-35" width="80" height="80" as="geometry" />
+          <mxGeometry x="-340" y="95" width="80" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="g0vXEvp_Msi_eeC9uGr0-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="g0vXEvp_Msi_eeC9uGr0-3" target="g0vXEvp_Msi_eeC9uGr0-26">
+        <mxCell id="g0vXEvp_Msi_eeC9uGr0-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="g0vXEvp_Msi_eeC9uGr0-3" target="g0vXEvp_Msi_eeC9uGr0-118">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="-328.5" as="targetPoint" />
+            <mxPoint x="-340" y="10" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="g0vXEvp_Msi_eeC9uGr0-14" value="Y" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
@@ -50,7 +50,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="g0vXEvp_Msi_eeC9uGr0-31" value="&lt;div style=&quot;text-align: left&quot;&gt;&lt;b&gt;&lt;i&gt;청약자격-3/순위판단&lt;/i&gt;&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;b&gt;&lt;i&gt;&lt;br&gt;&lt;/i&gt;&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;i&gt;필요항목 : 분양읍면동코드&lt;/i&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;i&gt;개인항목 : 세대주여부, 주택소유여부,&amp;nbsp;&lt;/i&gt;&lt;i&gt;세대원당첨사실, 청약통장가입기간&lt;/i&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;i&gt;판단기준 :&amp;nbsp;&lt;/i&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;i&gt;&lt;br&gt;&lt;/i&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;i&gt;- 사용자순위판단&lt;/i&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;i&gt;1. 세대구성원 모두 당첨사실없음.&lt;/i&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;i&gt;2. 무주택&amp;nbsp; -&amp;gt; 가점제&lt;/i&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;i&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;1주택 -&amp;gt; 추첨제&lt;/i&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;i&gt;3. 청약과열지역 -&amp;gt; 2년경과&lt;/i&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;i&gt;비규제 -&amp;gt; 6개월경과&lt;/i&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;i&gt;&lt;br&gt;&lt;/i&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;i&gt;return 순위,가점/추첨&lt;/i&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;i&gt;&lt;br&gt;&lt;/i&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;i&gt;-청약순위판단&lt;/i&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;i&gt;&amp;nbsp;85이하 투기과열지구 인경우는 가점제만&lt;/i&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;i&gt;이외는 추첨제 존재&lt;/i&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;i&gt;&lt;br&gt;&lt;/i&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;i&gt;- 안내기준일자(공고일,1순위,2순위) 에따라 안내 판단.&lt;/i&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;i&gt;&lt;br&gt;&lt;/i&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;i&gt;&lt;br&gt;&lt;/i&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;i&gt;&lt;br&gt;&lt;/i&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="-367.5" y="-340" width="237.5" height="300" as="geometry" />
+          <mxGeometry x="-355" y="-350" width="237.5" height="300" as="geometry" />
         </mxCell>
         <mxCell id="g0vXEvp_Msi_eeC9uGr0-34" value="나이판단&lt;br&gt;19세이상?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#DEDEDE;" vertex="1" parent="1">
           <mxGeometry x="-634" y="-40" width="80" height="80" as="geometry" />
@@ -143,43 +143,34 @@
           <mxGeometry width="20" height="30" as="geometry" />
         </mxCell>
         <mxCell id="g0vXEvp_Msi_eeC9uGr0-76" value="당첨제한&lt;br&gt;판단" style="rhombus;whiteSpace=wrap;html=1;fillColor=#B5B5B5;" vertex="1" parent="1">
-          <mxGeometry x="-241" y="-36" width="80" height="80" as="geometry" />
+          <mxGeometry x="-189.5" y="-45" width="80" height="80" as="geometry" />
         </mxCell>
         <mxCell id="g0vXEvp_Msi_eeC9uGr0-78" value="&lt;div style=&quot;text-align: left&quot;&gt;&lt;b&gt;&lt;i&gt;청약자격-4/당첨제한&lt;/i&gt;&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;b&gt;&lt;i&gt;&lt;br&gt;&lt;/i&gt;&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;i&gt;필요항목 : 분양읍면동코드&lt;/i&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;i&gt;개인항목 : 당첨여부(가점제?)-&amp;gt;당첨정보&lt;/i&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;i&gt;특별공급당첨여부,부적격여부-&amp;gt;당첨일자&lt;/i&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;i&gt;판단기준 :&amp;nbsp;&lt;/i&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;i&gt;&lt;br&gt;&lt;/i&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;div&gt;1. 재당첨 제한(청약과열지역)&lt;/div&gt;&lt;div&gt;2. 특별공급 제한&lt;/div&gt;&lt;div&gt;3. 가점제 제한&lt;/div&gt;&lt;div&gt;4. 부적격 당첨자 제한&lt;/div&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=#B5B5B5;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="-258.5" y="50" width="237.5" height="190" as="geometry" />
+          <mxGeometry x="-37.5" y="285" width="237.5" height="190" as="geometry" />
         </mxCell>
-        <mxCell id="g0vXEvp_Msi_eeC9uGr0-69" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="g0vXEvp_Msi_eeC9uGr0-26" target="g0vXEvp_Msi_eeC9uGr0-76">
+        <mxCell id="g0vXEvp_Msi_eeC9uGr0-69" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="g0vXEvp_Msi_eeC9uGr0-118" target="g0vXEvp_Msi_eeC9uGr0-76">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="-260" y="9.999999999999993" as="sourcePoint" />
-            <mxPoint x="-208.5" y="9.999999999999993" as="targetPoint" />
+            <mxPoint x="-218" y="-4" as="sourcePoint" />
+            <mxPoint x="-157" y="1" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="g0vXEvp_Msi_eeC9uGr0-70" value="" style="group" vertex="1" connectable="0" parent="1">
-          <mxGeometry x="-258.5" y="-50" width="20" height="59.99999999999999" as="geometry" />
-        </mxCell>
-        <mxCell id="g0vXEvp_Msi_eeC9uGr0-71" value="Y" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="g0vXEvp_Msi_eeC9uGr0-70">
-          <mxGeometry width="20" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="g0vXEvp_Msi_eeC9uGr0-80" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" edge="1" parent="g0vXEvp_Msi_eeC9uGr0-70" source="g0vXEvp_Msi_eeC9uGr0-71" target="g0vXEvp_Msi_eeC9uGr0-71">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
         <mxCell id="g0vXEvp_Msi_eeC9uGr0-81" value="당해지역?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="-11" y="-36" width="80" height="80" as="geometry" />
+          <mxGeometry x="40.5" y="-45" width="80" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="g0vXEvp_Msi_eeC9uGr0-82" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="g0vXEvp_Msi_eeC9uGr0-76" target="g0vXEvp_Msi_eeC9uGr0-81">
+        <mxCell id="g0vXEvp_Msi_eeC9uGr0-82" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;startArrow=none;" edge="1" parent="1" source="g0vXEvp_Msi_eeC9uGr0-138" target="g0vXEvp_Msi_eeC9uGr0-81">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="-70" y="80" as="sourcePoint" />
-            <mxPoint x="-20" y="30" as="targetPoint" />
+            <mxPoint x="-18.5" y="71" as="sourcePoint" />
+            <mxPoint x="31.5" y="21" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="g0vXEvp_Msi_eeC9uGr0-83" value="&lt;div style=&quot;text-align: left&quot;&gt;&lt;b&gt;&lt;i&gt;당첨가능-1/지역&lt;/i&gt;&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;b&gt;&lt;i&gt;&lt;br&gt;&lt;/i&gt;&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;i&gt;필요항목 : 분양시도코드&lt;/i&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;i&gt;개인항목 : 거주시도코드&lt;/i&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;i&gt;특별공급당첨여부,부적격여부-&amp;gt;당첨일자&lt;/i&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;i&gt;판단기준 :&amp;nbsp;&lt;/i&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;i&gt;&lt;br&gt;&lt;/i&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;대규모공공택지지구가 아니면&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;분양 시도코드가 거주시도인 경우&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="-110" y="-240" width="237.5" height="190" as="geometry" />
+          <mxGeometry x="-41.62" y="-350" width="237.5" height="190" as="geometry" />
         </mxCell>
         <mxCell id="g0vXEvp_Msi_eeC9uGr0-84" value="대규모&lt;br&gt;택지개발?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="-10.25" y="87" width="80" height="80" as="geometry" />
+          <mxGeometry x="41.25" y="78" width="80" height="80" as="geometry" />
         </mxCell>
         <mxCell id="g0vXEvp_Msi_eeC9uGr0-88" value="" style="group" vertex="1" connectable="0" parent="1">
-          <mxGeometry x="1" y="50" width="20" height="30" as="geometry" />
+          <mxGeometry x="52.5" y="41" width="20" height="30" as="geometry" />
         </mxCell>
         <mxCell id="g0vXEvp_Msi_eeC9uGr0-85" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="g0vXEvp_Msi_eeC9uGr0-88" source="g0vXEvp_Msi_eeC9uGr0-81" target="g0vXEvp_Msi_eeC9uGr0-84">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -191,49 +182,148 @@
           <mxGeometry width="20" height="30" as="geometry" />
         </mxCell>
         <mxCell id="g0vXEvp_Msi_eeC9uGr0-96" value="" style="group" vertex="1" connectable="0" parent="1">
-          <mxGeometry x="61" y="95" width="60" height="32.13000000000011" as="geometry" />
-        </mxCell>
-        <mxCell id="g0vXEvp_Msi_eeC9uGr0-90" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="g0vXEvp_Msi_eeC9uGr0-96" source="g0vXEvp_Msi_eeC9uGr0-84">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="70" y="-5" as="sourcePoint" />
-            <mxPoint x="60" y="32.13000000000011" as="targetPoint" />
-          </mxGeometry>
+          <mxGeometry x="100" y="66.87" width="60" height="32.13000000000011" as="geometry" />
         </mxCell>
         <mxCell id="g0vXEvp_Msi_eeC9uGr0-95" value="Y" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="g0vXEvp_Msi_eeC9uGr0-96">
           <mxGeometry width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="g0vXEvp_Msi_eeC9uGr0-97" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="g0vXEvp_Msi_eeC9uGr0-81">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="71" y="10" as="sourcePoint" />
-            <mxPoint x="121" y="4" as="targetPoint" />
+            <mxPoint x="122.5" y="1" as="sourcePoint" />
+            <mxPoint x="172.5" y="-5" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="g0vXEvp_Msi_eeC9uGr0-98" value="" style="group" vertex="1" connectable="0" parent="1">
-          <mxGeometry x="61" y="-27.13" width="60" height="32.13000000000011" as="geometry" />
+          <mxGeometry x="112.5" y="-36.129999999999995" width="60" height="32.13000000000011" as="geometry" />
         </mxCell>
         <mxCell id="g0vXEvp_Msi_eeC9uGr0-100" value="Y" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="g0vXEvp_Msi_eeC9uGr0-98">
           <mxGeometry width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="g0vXEvp_Msi_eeC9uGr0-111" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="160" y="43" width="120" height="60" as="geometry" />
-        </mxCell>
         <mxCell id="g0vXEvp_Msi_eeC9uGr0-112" value="차순위청약?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFFF;" vertex="1" parent="1">
-          <mxGeometry x="-349.5" y="105" width="80" height="80" as="geometry" />
+          <mxGeometry x="-340" y="235" width="80" height="80" as="geometry" />
         </mxCell>
         <mxCell id="g0vXEvp_Msi_eeC9uGr0-113" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="g0vXEvp_Msi_eeC9uGr0-26" target="g0vXEvp_Msi_eeC9uGr0-112">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="10" y="100" as="sourcePoint" />
-            <mxPoint x="60" y="50" as="targetPoint" />
+            <mxPoint x="19.5" y="230" as="sourcePoint" />
+            <mxPoint x="69.5" y="180" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="g0vXEvp_Msi_eeC9uGr0-114" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="g0vXEvp_Msi_eeC9uGr0-112">
+        <mxCell id="g0vXEvp_Msi_eeC9uGr0-114" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="g0vXEvp_Msi_eeC9uGr0-112" target="g0vXEvp_Msi_eeC9uGr0-127">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="110" y="100" as="sourcePoint" />
-            <mxPoint x="440" y="180" as="targetPoint" />
+            <mxPoint x="119.5" y="230" as="sourcePoint" />
+            <mxPoint x="449.5" y="310" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="g0vXEvp_Msi_eeC9uGr0-115" value="2순위까지 청약이 밀릴 경우 무조건 안내" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="-349.5" y="190" width="67.5" height="70" as="geometry" />
+          <mxGeometry x="-280" y="175" width="67.5" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="g0vXEvp_Msi_eeC9uGr0-116" value="희망시세차익&lt;br&gt;이상?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#C2C2C2;" vertex="1" parent="1">
+          <mxGeometry x="172.5" y="-44" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="g0vXEvp_Msi_eeC9uGr0-123" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="g0vXEvp_Msi_eeC9uGr0-118" target="g0vXEvp_Msi_eeC9uGr0-26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="g0vXEvp_Msi_eeC9uGr0-118" value="추첨제&lt;br&gt;존재?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="-340" y="-40" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="g0vXEvp_Msi_eeC9uGr0-124" value="Y" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-266.25" y="-36.13" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="g0vXEvp_Msi_eeC9uGr0-125" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="g0vXEvp_Msi_eeC9uGr0-26" target="g0vXEvp_Msi_eeC9uGr0-131">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="10" y="50" as="sourcePoint" />
+            <mxPoint x="60" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0vXEvp_Msi_eeC9uGr0-126" value="Y" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-290" y="99" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="g0vXEvp_Msi_eeC9uGr0-127" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;GUD.01.10020&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;div style=&quot;text-align: center ; height: 2px&quot;&gt;청약순위 안내&lt;/div&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-355" y="355" width="89" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="g0vXEvp_Msi_eeC9uGr0-128" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="g0vXEvp_Msi_eeC9uGr0-127" target="g0vXEvp_Msi_eeC9uGr0-129">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-310" y="466" as="targetPoint" />
+            <mxPoint x="-233.5" y="386" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0vXEvp_Msi_eeC9uGr0-129" value="end" style="triangle;whiteSpace=wrap;html=1;rotation=-90;" vertex="1" parent="1">
+          <mxGeometry x="-325.87" y="433.13" width="30.75" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="g0vXEvp_Msi_eeC9uGr0-130" value="&lt;div style=&quot;text-align: left&quot;&gt;&lt;b&gt;&lt;i&gt;GUD.01.10020-청약순위안내&lt;/i&gt;&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;/div&gt;&lt;br&gt;RULE.BANK.003-청약순위규칙안내&lt;br&gt;&lt;div style=&quot;text-align: left&quot;&gt;&amp;nbsp; RULE.BANK.004-청약순위안내&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;청약공고일(금일) 까지 분양신청할 평형에 맞는 예치금을 채워야합니다.&lt;/div&gt;&lt;div&gt;부족금액 :&amp;nbsp;&lt;/div&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-257.37" y="355" width="215.75" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="g0vXEvp_Msi_eeC9uGr0-131" value="가점&lt;br&gt;당첨&lt;br&gt;가능?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFCC;" vertex="1" parent="1">
+          <mxGeometry x="-189.49" y="86" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="g0vXEvp_Msi_eeC9uGr0-132" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="g0vXEvp_Msi_eeC9uGr0-131" target="g0vXEvp_Msi_eeC9uGr0-76">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-90" y="30" as="sourcePoint" />
+            <mxPoint x="-40" y="-20" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0vXEvp_Msi_eeC9uGr0-133" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="g0vXEvp_Msi_eeC9uGr0-84" target="g0vXEvp_Msi_eeC9uGr0-116">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="g0vXEvp_Msi_eeC9uGr0-134" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;COM.11.10020&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;div style=&quot;text-align: center ; height: 2px&quot;&gt;청약공고안내&lt;/div&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="-30" width="89" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="g0vXEvp_Msi_eeC9uGr0-135" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="g0vXEvp_Msi_eeC9uGr0-116" target="g0vXEvp_Msi_eeC9uGr0-134">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-90" y="30" as="sourcePoint" />
+            <mxPoint x="-40" y="-20" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0vXEvp_Msi_eeC9uGr0-136" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="g0vXEvp_Msi_eeC9uGr0-131" target="g0vXEvp_Msi_eeC9uGr0-129">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-90" y="30" as="sourcePoint" />
+            <mxPoint x="-149" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0vXEvp_Msi_eeC9uGr0-137" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="g0vXEvp_Msi_eeC9uGr0-112" target="g0vXEvp_Msi_eeC9uGr0-116">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-90" y="30" as="sourcePoint" />
+            <mxPoint x="-40" y="-20" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="213" y="270" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0vXEvp_Msi_eeC9uGr0-138" value="미달&lt;br&gt;가능?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFCC;" vertex="1" parent="1">
+          <mxGeometry x="-80" y="-44" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="g0vXEvp_Msi_eeC9uGr0-140" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="g0vXEvp_Msi_eeC9uGr0-76" target="g0vXEvp_Msi_eeC9uGr0-138">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-109.5" y="-5" as="sourcePoint" />
+            <mxPoint x="40.5" y="-5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0vXEvp_Msi_eeC9uGr0-142" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="g0vXEvp_Msi_eeC9uGr0-138" target="g0vXEvp_Msi_eeC9uGr0-116">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-90" y="30" as="sourcePoint" />
+            <mxPoint x="-40" y="-20" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="80" y="-100" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0vXEvp_Msi_eeC9uGr0-143" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="-60" y="-90" width="60" height="32.13000000000011" as="geometry" />
+        </mxCell>
+        <mxCell id="g0vXEvp_Msi_eeC9uGr0-144" value="Y" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="g0vXEvp_Msi_eeC9uGr0-143">
+          <mxGeometry width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="g0vXEvp_Msi_eeC9uGr0-145" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="-19.5" y="25" width="60" height="32.13000000000011" as="geometry" />
+        </mxCell>
+        <mxCell id="g0vXEvp_Msi_eeC9uGr0-146" value="N" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="g0vXEvp_Msi_eeC9uGr0-145">
+          <mxGeometry width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="g0vXEvp_Msi_eeC9uGr0-147" value="Y" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-150" y="48" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="g0vXEvp_Msi_eeC9uGr0-148" value="N" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-150" y="177" width="60" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
