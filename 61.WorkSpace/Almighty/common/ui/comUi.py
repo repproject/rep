@@ -245,7 +245,7 @@ class TableListBind():
     def getColumns(self):              return self.columns
     def getlistTable(self):            return self.listTable
     def getTableByColSeq(self,colname,table):
-        if self.isRowType:
+        if self.isRowType and table != None:
             return table[self.getTableSeqByColName(colname)]
         else : return table
 
@@ -358,6 +358,7 @@ class TableWidget(QTableWidget,TableListBind):
                             print("공통코드 미등록 >> " + colClass.kcom_cd_grp + " : table is None ")
                             error()
                     self.setCellWidget(n, m, combobox)
+                print(table)
                 if table == None : text = ""
                 else :
                     text = getattr(self.getTableByColSeq(col,table), col)

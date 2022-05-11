@@ -44,9 +44,22 @@ def test():
     return (1,2)
 
 if __name__== '__main__':
-    a = test()
-    print(a[1])
-    print()
+    dic = {}
+    dic['a'] = {}
+    dic['a']['b'] = 'ab'
+
+    dic2 = {}
+    dic2['a'] = {}
+    dic2['a']['c'] = 'ac'
+
+    dic3 = dic2 + dic
+    print(dic3)
+
+
+
+#    a = test()
+#    print(a[1])
+#    print()
 
 #    url = "https://api.upbit.com/v1/market/all"
 #    querystring = {"isDetails": "false"}

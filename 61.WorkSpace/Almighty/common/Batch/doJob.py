@@ -225,6 +225,6 @@ if __name__ == '__main__':
     #blog.info("parameter : " + *args)
     #jobSchdExec = Server.COM.getJobSchdExecFirst('NVDC002', 1)
     #print(jobSchdExec)
-    #do('GOIN001',1)
-    do('NVDC005', 1)
+    do('GOIN001',1)
+    #do('NVDC005', 1)
     #main()

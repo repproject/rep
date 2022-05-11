@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7458c797-b1cd-42ea-936d-154a1429df95" name="Default Changelist" comment="LogName에 프로세스넘버 추가">
-      <change beforePath="$PROJECT_DIR$/../../42.DA5/REP.damx" beforeDir="false" afterPath="$PROJECT_DIR$/../../42.DA5/REP.damx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../42.DA5/wordict5_참조모델표준화.db" beforeDir="false" afterPath="$PROJECT_DIR$/../../42.DA5/wordict5_참조모델표준화.db" afterDir="false" />
+    <list default="true" id="7458c797-b1cd-42ea-936d-154a1429df95" name="Default Changelist" comment="파싱코드 실행에 따라 파싱하도록 변경&#10;(여러 파싱값을 파싱하도록 변경)&#10;기타파일 Commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/KMIG.py" beforeDir="false" afterPath="$PROJECT_DIR$/DAO/KMIG.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAO/KADM.py" beforeDir="false" afterPath="$PROJECT_DIR$/DAO/KADM.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/MIG.py" beforeDir="false" afterPath="$PROJECT_DIR$/Server/MIG.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/Batch/Crawling.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/Batch/Crawling.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/Batch/doJob.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/Batch/doJob.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/common/Basic.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/common/Basic.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/database/repSqlAlchemy.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/database/repSqlAlchemy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/scheduler/scheduler.py" beforeDir="false" afterPath="$PROJECT_DIR$/util/scheduler/scheduler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/ui/comUi.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/ui/comUi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,119 +19,7 @@
     <favorites_list name="Almighty" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Server/MIG.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="413">
-              <caret line="124" column="16" selection-start-line="124" selection-start-column="16" selection-end-line="124" selection-end-column="16" />
-              <folding>
-                <element signature="e#0#43#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common/Batch/doJob.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="93" column="48" selection-start-line="93" selection-start-column="48" selection-end-line="93" selection-end-column="48" />
-              <folding>
-                <element signature="e#167#199#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common/Batch/Crawling.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret lean-forward="true" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Server/Basic.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="10" selection-start-line="10" selection-end-line="10" />
-              <folding>
-                <element signature="e#0#43#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common/common/Table.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="722">
-              <caret line="38" selection-start-line="38" selection-end-line="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Server/ADM.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="21" selection-start-line="21" selection-end-line="21" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common/common/Func.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="19" selection-start-line="19" selection-end-line="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/common/common/Basic.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="36" selection-start-line="36" selection-end-line="36" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/REP_NAVER.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1767">
-              <caret line="93" selection-start-line="93" selection-end-line="93" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common/common/URL.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2907">
-              <caret line="165" selection-start-line="165" selection-end-line="165" selection-end-column="33" />
-              <folding>
-                <element signature="e#0#24#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -146,26 +30,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>isRowType</find>
-      <find>NvCmpx</find>
-      <find>eval</find>
-      <find>JobFuncExec</find>
-      <find>write</find>
-      <find>def merge</find>
-      <find>writeJobExec</find>
-      <find>selfSave</find>
-      <find>VlaD</find>
-      <find>DEBUF</find>
-      <find>like</find>
-      <find>getNVCmplx</find>
-      <find>rslt</find>
-      <find>req_tgt_cnt</find>
-      <find>tbJobFuncExecStrd</find>
-      <find>do</find>
-      <find>getTableListByOutMapping</find>
-      <find>connect</find>
-      <find>pymysql.connect</find>
-      <find>INFO</find>
       <find>re.</find>
       <find>sstr</find>
       <find>\</find>
@@ -176,6 +40,26 @@
       <find>merge</find>
       <find>URL</find>
       <find>url</find>
+      <find>Crawling</find>
+      <find>crawl</find>
+      <find>crawl(</find>
+      <find>PasiItem</find>
+      <find>crawlCdExec</find>
+      <find>convertPage</find>
+      <find>outAllTblParam</find>
+      <find>getTableListByOutMapping</find>
+      <find>getListTableFromDic</find>
+      <find>dicTableList</find>
+      <find>ByOP</find>
+      <find>INFO</find>
+      <find>btn_add_out_2</find>
+      <find>btn_add_table</find>
+      <find>addOut</find>
+      <find>isRowType</find>
+      <find>getTableByColSeq</find>
+      <find>add</find>
+      <find>btn_add_out</find>
+      <find>setTWRow</find>
     </findStrings>
     <replaceStrings>
       <replace>twJob</replace>
@@ -217,6 +101,7 @@
       <dir>C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\bat</dir>
       <dir>C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\util\scheduler</dir>
       <dir>C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\Batch</dir>
+      <dir>C:\Users\Ceasar.DESKTOP-AQTREV4\PycharmProjects\rep\61.WorkSpace\Almighty\SQL</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -255,31 +140,31 @@
         <option value="$PROJECT_DIR$/common/common/URL.py" />
         <option value="$PROJECT_DIR$/Batch/Crawling/CrawlingmNV.py" />
         <option value="$PROJECT_DIR$/batch/Crawling/CrawlingmNV.py" />
-        <option value="$PROJECT_DIR$/common/ui/comUi.py" />
         <option value="$PROJECT_DIR$/common/common/Func.py" />
         <option value="$PROJECT_DIR$/Server/RED.py" />
         <option value="$PROJECT_DIR$/common/common/UserException.py" />
-        <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/common/Batch/Basic.py" />
         <option value="$PROJECT_DIR$/common/common/Telegram.py" />
         <option value="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMDEV040.py" />
         <option value="$PROJECT_DIR$/Server/ADM.py" />
         <option value="$PROJECT_DIR$/Server/Basic.py" />
         <option value="$PROJECT_DIR$/DAO/KRED.py" />
-        <option value="$PROJECT_DIR$/DAO/KADM.py" />
-        <option value="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMDEV050.py" />
         <option value="$PROJECT_DIR$/DAO/KMIG.py" />
         <option value="$PROJECT_DIR$/util/scheduler/scheduler.py" />
         <option value="$PROJECT_DIR$/common/database/repSqlAlchemy.py" />
-        <option value="$PROJECT_DIR$/Server/MIG.py" />
         <option value="$PROJECT_DIR$/common/common/Table.py" />
+        <option value="$PROJECT_DIR$/common/common/Basic.py" />
+        <option value="$PROJECT_DIR$/Server/MIG.py" />
+        <option value="$PROJECT_DIR$/DAO/KADM.py" />
+        <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/common/Batch/doJob.py" />
         <option value="$PROJECT_DIR$/common/Batch/Crawling.py" />
-        <option value="$PROJECT_DIR$/common/common/Basic.py" />
+        <option value="$PROJECT_DIR$/common/ui/comUi.py" />
+        <option value="$PROJECT_DIR$/UI/_uiFiles/COM/KCOMDEV050.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="x" value="-12" />
     <option name="y" value="-12" />
     <option name="width" value="1923" />
@@ -293,6 +178,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -302,86 +188,12 @@
             </path>
             <path>
               <item name="Almighty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Almighty" type="462c0819:PsiDirectoryNode" />
-              <item name="batch" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Almighty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Almighty" type="462c0819:PsiDirectoryNode" />
-              <item name="batch" type="462c0819:PsiDirectoryNode" />
-              <item name="Crawling" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Almighty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Almighty" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Almighty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Almighty" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="Batch" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Almighty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Almighty" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Almighty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Almighty" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Almighty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Almighty" type="462c0819:PsiDirectoryNode" />
-              <item name="Server" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Almighty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Almighty" type="462c0819:PsiDirectoryNode" />
-              <item name="UI" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Almighty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Almighty" type="462c0819:PsiDirectoryNode" />
-              <item name="UI" type="462c0819:PsiDirectoryNode" />
-              <item name="_uiFiles" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Almighty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Almighty" type="462c0819:PsiDirectoryNode" />
-              <item name="UI" type="462c0819:PsiDirectoryNode" />
-              <item name="_uiFiles" type="462c0819:PsiDirectoryNode" />
-              <item name="COM" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Almighty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Almighty" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Almighty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Almighty" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
-              <item name="scheduler" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Almighty" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-            <path>
-              <item name="Almighty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; Python 3.7 (rep) &gt;" type="70bed36:NamedLibraryElementNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -418,7 +230,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.KCOMMAN010">
+  <component name="RunManager" selected="Python.KCOMDEV050">
     <configuration name="Basic" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Almighty" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -432,27 +244,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/common/common/Basic.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Crawling" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Almighty" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/common/Batch" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/common/Batch/Crawling.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -545,21 +336,42 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Almighty" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.KCOMBAT010" />
       <item itemvalue="Python.doJob" />
       <item itemvalue="Python.KCOMMAN010" />
-      <item itemvalue="Python.Crawling" />
       <item itemvalue="Python.KCOMDEV050" />
       <item itemvalue="Python.Basic" />
+      <item itemvalue="Python.test" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.KCOMDEV050" />
         <item itemvalue="Python.KCOMMAN010" />
         <item itemvalue="Python.doJob" />
+        <item itemvalue="Python.test" />
         <item itemvalue="Python.Basic" />
-        <item itemvalue="Python.KCOMDEV050" />
-        <item itemvalue="Python.Crawling" />
       </list>
     </recent_temporary>
   </component>
@@ -573,34 +385,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1618235387781</updated>
-    </task>
-    <task id="LOCAL-00080" summary="scheduler 즉시 실행 여부 반영 update문 chg_user_id 및 chg_dtm 누락으로 추가 반영">
-      <created>1649774673899</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1649774673900</updated>
-    </task>
-    <task id="LOCAL-00081" summary="불필요 print문제거">
-      <created>1649774726892</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1649774726892</updated>
-    </task>
-    <task id="LOCAL-00082" summary="Try catch문 추가">
-      <created>1649774750703</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1649774750703</updated>
-    </task>
-    <task id="LOCAL-00083" summary="error message 발생 저장기능 추가 &#10;JOB실행 이력추가 (실행,저장,에러)">
-      <created>1649779613890</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1649779613890</updated>
     </task>
     <task id="LOCAL-00084" summary="주석추가">
       <created>1649779668323</created>
@@ -917,7 +701,35 @@
       <option name="project" value="LOCAL" />
       <updated>1651131201752</updated>
     </task>
-    <option name="localTasksCounter" value="129" />
+    <task id="LOCAL-00129" summary="이모티콘 제거 함수 추가&#10;작업실행 message insert시 2000byte로 제한&#10;빌라크롤링 추가&#10;스케줄러 add job 로그 추가">
+      <created>1651295413278</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1651295413278</updated>
+    </task>
+    <task id="LOCAL-00130" summary="파싱코드 실행에 따라 파싱하도록 변경&#10;(여러 파싱값을 파싱하도록 변경)&#10;기타파일 Commit">
+      <created>1651807859737</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1651807859737</updated>
+    </task>
+    <task id="LOCAL-00131" summary="파싱코드 실행에 따라 파싱하도록 변경&#10;(여러 파싱값을 파싱하도록 변경)&#10;기타파일 Commit">
+      <created>1651807895370</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1651807895370</updated>
+    </task>
+    <task id="LOCAL-00132" summary="파싱코드 실행에 따라 파싱하도록 변경&#10;(여러 파싱값을 파싱하도록 변경)&#10;기타파일 Commit">
+      <created>1652199555572</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1652199555572</updated>
+    </task>
+    <option name="localTasksCounter" value="133" />
     <servers />
   </component>
   <component name="TodoView">
@@ -930,22 +742,21 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="2575" height="1415" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1282" height="1400" extended-state="1" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4987715" visible="true" weight="0.09688854" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4987715" visible="true" weight="0.25361156" />
       <window_info id="Structure" order="1" sideWeight="0.5012285" side_tool="true" weight="0.10161481" />
       <window_info id="Favorites" order="2" sideWeight="0.50114155" side_tool="true" weight="0.10161481" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49972484" weight="0.31813678" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.8562426" visible="true" weight="0.6071707" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.59787315" weight="0.43413875" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.8526979" visible="true" weight="0.23382697" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.5970855" weight="0.43413875" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3299532" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.7719665" weight="0.35501567" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.7715636" visible="true" weight="0.3588328" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.3281372" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.14375739" side_tool="true" visible="true" weight="0.6071707" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.14730209" side_tool="true" weight="0.23382697" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.3281372" />
       <window_info anchor="bottom" id="Inspection Results" order="11" weight="0.32969603" />
       <window_info anchor="bottom" id="GitHub Pull Requests" order="12" weight="0.3299532" />
@@ -954,6 +765,28 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4987715" visible="true" weight="0.12445845" />
+      <window_info id="Structure" order="1" sideWeight="0.5012285" side_tool="true" weight="0.10161481" />
+      <window_info id="Favorites" order="2" sideWeight="0.50114155" side_tool="true" weight="0.10161481" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49972484" weight="0.31813678" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.8526979" visible="true" weight="0.23382697" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.5970855" weight="0.43413875" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3299532" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.7715636" weight="0.35463756" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3281372" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.14730209" side_tool="true" visible="true" weight="0.23382697" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.3281372" />
+      <window_info anchor="bottom" id="Inspection Results" order="11" weight="0.32969603" />
+      <window_info anchor="bottom" id="GitHub Pull Requests" order="12" weight="0.3299532" />
+      <window_info anchor="bottom" id="Messages" order="13" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout-to-restore>
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ORDER">
@@ -1006,8 +839,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="파싱관리 IN 그리드 추가시 구분자 문자열에 &quot;GET&quot; (기본 파라미터) 세팅되도록 변경." />
-    <MESSAGE value="PASING IN GET/일반 구분자 추가 반영&#10;네이버물건형 테이블 및 크롤링 추가" />
     <MESSAGE value="크롤링 클래스 - URL인코딩여부(한글인코딩 여부)추가&#10;공시지가 도로명 크롤링 추가" />
     <MESSAGE value="로그추가" />
     <MESSAGE value="URL -&gt; INPUT param Setting 개발" />
@@ -1031,7 +862,9 @@
     <MESSAGE value="NVCrawling 로그파일명 지정 &#10;작업기능실행기준 요청호출건수 컬럼 추가 및 update 로직 반영&#10;네이버 단지 법정동테이블 상위 테이블 지정 조인조건 추가&#10;mergeListNC 함수 index out Error 방지용 로직 추가&#10;작업실행기준 종속된 호출 Data없으면 상태코드 변경되지 않는 오류 수정" />
     <MESSAGE value="네이버 크롤링 Lv3 법정동만 가져오도록 변경" />
     <MESSAGE value="파싱관리 URL 조회시 xml 판단로직 == 60 (아스키 코드 &lt;&gt;&#10;추가 완료" />
-    <option name="LAST_COMMIT_MESSAGE" value="파싱관리 URL 조회시 xml 판단로직 == 60 (아스키 코드 &lt;&gt;&#10;추가 완료" />
+    <MESSAGE value="이모티콘 제거 함수 추가&#10;작업실행 message insert시 2000byte로 제한&#10;빌라크롤링 추가&#10;스케줄러 add job 로그 추가" />
+    <MESSAGE value="파싱코드 실행에 따라 파싱하도록 변경&#10;(여러 파싱값을 파싱하도록 변경)&#10;기타파일 Commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="파싱코드 실행에 따라 파싱하도록 변경&#10;(여러 파싱값을 파싱하도록 변경)&#10;기타파일 Commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1052,13 +885,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://C:/ProgramData/Anaconda3/envs/rep/Lib/site-packages/sqlalchemy/orm/state.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8740">
-          <caret line="476" selection-start-line="476" selection-end-line="476" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/REP_MIG_REAL_TRADE.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1197">
@@ -1232,16 +1058,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="836">
-          <caret line="47" column="14" selection-start-line="47" selection-start-column="14" selection-end-line="47" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/common/common/UserException.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1264,16 +1080,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Server/RED.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/ui/comUi.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="390" column="8" selection-start-line="390" selection-start-column="8" selection-end-line="390" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/UI/_uiFiles/COM/KCOMDEV040.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1299,33 +1105,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DAO/KADM.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="758" column="37" selection-start-line="758" selection-start-column="37" selection-end-line="758" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-            <element signature="e#29168#32183#0" />
-            <element signature="e#32220#33257#0" />
-            <element signature="e#33288#34390#0" />
-            <element signature="e#34425#35926#0" />
-            <element signature="e#35961#37845#0" />
-            <element signature="e#37879#38206#0" />
-            <element signature="e#38241#39156#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/UI/_uiFiles/COM/KCOMDEV050.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="217" column="48" selection-start-line="217" selection-start-column="48" selection-end-line="217" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DAO/KMIG.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
@@ -1340,26 +1119,6 @@
             <element signature="e#5671#6622#0" />
             <element signature="e#6664#8243#0" />
             <element signature="e#8277#13465#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/util/scheduler/scheduler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="716">
-          <caret line="64" column="48" lean-forward="true" selection-start-line="64" selection-start-column="48" selection-end-line="64" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server/COM.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="740">
-          <caret line="176" column="4" selection-start-line="176" selection-start-column="4" selection-end-line="176" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1418,13 +1177,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/common/common/Table.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="722">
-          <caret line="38" selection-start-line="38" selection-end-line="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Server/ADM.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
@@ -1432,6 +1184,13 @@
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/common/Func.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
         </state>
       </provider>
     </entry>
@@ -1452,49 +1211,123 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/common/common/Basic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="57" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/util/scheduler/scheduler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="45" column="62" selection-start-line="45" selection-start-column="62" selection-end-line="45" selection-end-column="62" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Server/MIG.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="124" column="16" selection-start-line="124" selection-start-column="16" selection-end-line="124" selection-end-column="16" />
+        <state relative-caret-position="169">
+          <caret line="114" column="19" lean-forward="true" selection-start-line="114" selection-start-column="19" selection-end-line="114" selection-end-column="19" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/common/common/Func.py">
+    <entry file="file://$PROJECT_DIR$/DAO/KADM.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        <state relative-caret-position="339">
+          <caret line="145" column="98" selection-start-line="145" selection-start-column="98" selection-end-line="145" selection-end-column="98" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+            <element signature="e#29168#32183#0" />
+            <element signature="e#32220#33257#0" />
+            <element signature="e#33288#34390#0" />
+            <element signature="e#34425#35926#0" />
+            <element signature="e#35961#37845#0" />
+            <element signature="e#37879#38206#0" />
+            <element signature="e#38241#39156#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/COM.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="164" column="34" lean-forward="true" selection-start-line="164" selection-start-column="34" selection-end-line="164" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/common/Table.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="29" column="4" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/common/Batch/doJob.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="93" column="48" selection-start-line="93" selection-start-column="48" selection-end-line="93" selection-end-column="48" />
+        <state relative-caret-position="113">
+          <caret line="192" column="47" lean-forward="true" selection-start-line="192" selection-start-column="47" selection-end-line="192" selection-end-column="47" />
           <folding>
             <element signature="e#167#199#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="569">
+          <caret line="51" column="18" selection-start-line="51" selection-start-column="18" selection-end-line="51" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/common/Batch/Crawling.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
+        <state relative-caret-position="3265">
+          <caret line="262" column="53" lean-forward="true" selection-start-line="262" selection-start-column="53" selection-end-line="262" selection-end-column="53" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/common/common/Basic.py">
+    <entry file="file://$PROJECT_DIR$/common/ui/comUi.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
+        <state relative-caret-position="4921">
+          <caret line="268" column="47" selection-start-line="268" selection-start-column="47" selection-end-line="268" selection-end-column="47" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2019.1/system/python_stubs/-457566821/PyQt5/QtWidgets/QTableWidget.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4446">
+          <caret line="239" column="8" selection-start-line="239" selection-start-column="8" selection-end-line="239" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UI/_uiFiles/COM/KCOMDEV050.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="491">
+          <caret line="143" column="24" selection-start-line="143" selection-start-column="24" selection-end-line="143" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
           </folding>
         </state>
       </provider>

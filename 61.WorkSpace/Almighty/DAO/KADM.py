@@ -134,6 +134,7 @@ class SvcPasiItem(Base,KTable):
 
     svc_id = KColumn(String(500), primary_key = True, nullable = False)
     pasi_id = KColumn(String(50), primary_key = True, nullable = False)
+    seq = KColumn(Integer, primary_key = True, nullable = False)
     in_out_cl_cd = KColumn(String(20), primary_key = True, nullable = False, kcom_cd_domain = True, kcom_cd_grp = 'IN_OUT_CL')
     item_nm = KColumn(String(200), primary_key = True, nullable = False)
     item_val = KColumn(String(200), nullable = True)
@@ -142,7 +143,7 @@ class SvcPasiItem(Base,KTable):
     col_nm = KColumn(String(50), nullable = True)
     item_desc = KColumn(String(500), nullable = True)
     excp_str = KColumn(String(200), nullable = True)
-    dlmi_str = KColumn(String(200), nullable = True)
+    dlmi_str = KColumn(String(200), nullable = True, kcom_cd_domain = True, kcom_cd_grp = 'REQ_WAY')
     del_yn = KColumn(String(1), nullable = True)
 
     svcpasi = relationship('SvcPasi',primaryjoin = and_(svc_id==SvcPasi.svc_id , pasi_id==SvcPasi.pasi_id), foreign_keys = [SvcPasi.svc_id , SvcPasi.pasi_id], passive_deletes = True)
@@ -152,6 +153,7 @@ class SvcPasiItem(Base,KTable):
         KTable.__init__(self)
         self.svc_id =  kwargs.pop('svc_id')
         self.pasi_id =  kwargs.pop('pasi_id')
+        self.seq =  kwargs.pop('seq')
         self.in_out_cl_cd =  kwargs.pop('in_out_cl_cd')
         self.item_nm =  kwargs.pop('item_nm')
         self.item_val =  kwargs.pop('item_val',None)
@@ -164,7 +166,8 @@ class SvcPasiItem(Base,KTable):
         self.del_yn =  kwargs.pop('del_yn','N')
 
     def __repr__(self):
-        return "<SvcPasiItem('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.svc_id), str(self.pasi_id), str(self.in_out_cl_cd), str(self.item_nm), str(self.item_val), str(self.item_src_cl_cd), str(self.tbl_nm), str(self.col_nm), str(self.item_desc), str(self.excp_str), str(self.dlmi_str), str(self.del_yn) + KTable.__repr__(self))
+        return "<SvcPasiItem('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" % (str(self.svc_id), str(self.pasi_id), str(self.seq), str(self.in_out_cl_cd), str(self.item_nm), str(self.item_val), str(self.item_src_cl_cd), str(self.tbl_nm), str(self.col_nm), str(self.item_desc), str(self.excp_str), str(self.dlmi_str), str(self.del_yn) + KTable.__repr__(self))
+
 
 class SvcPasiItemCol(Base,KTable):
     __tablename__ = 'kadm_svc_pasi_item_col'
