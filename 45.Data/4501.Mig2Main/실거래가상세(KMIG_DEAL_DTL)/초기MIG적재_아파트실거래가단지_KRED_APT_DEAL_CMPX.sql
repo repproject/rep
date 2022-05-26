@@ -1,0 +1,200 @@
+#초기 MIG 대상 엔티티 : 아파트실거래가단지
+#테이블명 : kred_apt_deal_cmpx
+#설명 : 실거래가상세MIG DATA에서 단지(물건) 정보만 추려 별도 테이블에 적재
+#작업섦명 : 
+# 1-1) 단지일련번호가 없는 단지들을 INSERT
+# 1-2) 단지일련번호가 있는 단지들을 INSERT 
+
+# 1-1) 단지일련번호가 없는 단지들을 INSERT
+insert kred_apt_deal_cmpx (
+REAL_DEAL_CMPX_NM
+,REAL_DEAL_CMPX_SEQ_VAL
+,LEGL_DONG_CD
+,HNUM
+,LEGL_DONG_ORGL_NUM_CD
+,LEGL_DONG_VICE_NUM_CD
+,LEGL_DONG_HNUM_CD
+,REG_USER_ID
+,REG_DTM
+,CHG_USER_ID
+,CHG_DTM
+)
+select REAL_DEAL_CMPX_NM
+     , seq
+     , concat(legl_dong_cd,legl_dong_umd_cd) legl_dong_cd
+     , hnum
+     , LEGL_DONG_ORGL_NUM_CD
+     , LEGL_DONG_VICE_NUM_CD
+     , LEGL_DONG_HNUM_CD
+     , 1000000001
+     , NOW()
+     , 1000000001
+     , NOW()
+from kred_deal_dtl
+where seq is null
+group by REAL_DEAL_CMPX_NM
+     , seq
+     , concat(legl_dong_cd,legl_dong_umd_cd) 
+     , hnum
+     , LEGL_DONG_ORGL_NUM_CD
+     , LEGL_DONG_VICE_NUM_CD
+     , LEGL_DONG_HNUM_CD
+;
+DESC kred_apt_deal_cmpx;
+select count(*) from kred_apt_deal_cmpx;
+# 1-2) 실거래가 단지 MIG seq 있는 단지mig
+insert kred_apt_deal_cmpx (
+REAL_DEAL_CMPX_NM
+,REAL_DEAL_CMPX_SEQ_VAL
+,LEGL_DONG_CD
+,HNUM
+,LEGL_DONG_ORGL_NUM_CD
+,LEGL_DONG_VICE_NUM_CD
+,LEGL_DONG_HNUM_CD
+,REG_USER_ID
+,REG_DTM
+,CHG_USER_ID
+,CHG_DTM
+)
+select distinct REAL_DEAL_CMPX_NM
+     , seq
+     , concat(legl_dong_cd,legl_dong_umd_cd) legl_dong_cd
+     , hnum
+     , LEGL_DONG_ORGL_NUM_CD
+     , LEGL_DONG_VICE_NUM_CD
+     , LEGL_DONG_HNUM_CD
+     , 1000000001
+     , NOW()
+     , 1000000001
+     , NOW()
+from kred_deal_dtl
+where seq is not null
+;
+#1-3)MIG이후 검증 - 일련번호 있는 경우는 문제없음
+SELECT *
+FROM KRED_DEAL_DTL DD
+WHERE DD.SEQ IS NOT NULL
+AND NOT EXISTS (
+	SELECT 1
+    FROM KRED_APT_DEAL_CMPX ADC
+    WHERE ADC.REAL_DEAL_CMPX_SEQ_VAL = DD.SEQ
+)
+;
+#1-3-1)MIG이후 검증 - 일련번호 있는 단지 속성 검증 
+SELECT 
+ ADC.REAL_DEAL_CMPX_ID
+,ADC.REAL_DEAL_CMPX_NM
+,DD.REAL_DEAL_CMPX_NM
+,ADC.REAL_DEAL_CMPX_SEQ_VAL
+,DD.SEQ
+,ADC.LEGL_DONG_CD
+,DD.LEGL_DONG_CD
+,DD.legl_dong_umd_cd
+,ADC.HNUM
+,DD.HNUM
+,ADC.LEGL_DONG_ORGL_NUM_CD
+,DD.LEGL_DONG_ORGL_NUM_CD
+,ADC.LEGL_DONG_VICE_NUM_CD
+,DD.LEGL_DONG_VICE_NUM_CD
+,ADC.LEGL_DONG_HNUM_CD
+,DD.LEGL_DONG_HNUM_CD
+FROM KRED_DEAL_DTL DD
+INNER JOIN KRED_APT_DEAL_CMPX ADC
+ON DD.SEQ = ADC.REAL_DEAL_CMPX_SEQ_VAL
+WHERE IFNULL(ADC.REAL_DEAL_CMPX_NM,'#') != IFNULL(DD.REAL_DEAL_CMPX_NM,'#')
+OR IFNULL(ADC.LEGL_DONG_CD,'#') != IFNULL(concat(DD.legl_dong_cd,DD.legl_dong_umd_cd),'#')
+OR IFNULL(ADC.HNUM,'#') != IFNULL(DD.HNUM,'#')
+OR IFNULL(ADC.LEGL_DONG_ORGL_NUM_CD,'#') != IFNULL(DD.LEGL_DONG_ORGL_NUM_CD,'#')
+OR IFNULL(ADC.LEGL_DONG_VICE_NUM_CD,'#') != IFNULL(DD.LEGL_DONG_VICE_NUM_CD,'#')
+OR IFNULL(ADC.LEGL_DONG_HNUM_CD,'#') != IFNULL(DD.LEGL_DONG_HNUM_CD,'#')
+;
+#1-4) mig 이후 검증 일치하지 않는 단지가 존재하는지.
+SELECT * 
+FROM KRED_DEAL_DTL DD
+WHERE NOT EXISTS(
+	SELECT 1
+    FROM KRED_APT_DEAL_CMPX ADC
+    WHERE IFNULL(ADC.REAL_DEAL_CMPX_NM,'#') = IFNULL(DD.REAL_DEAL_CMPX_NM,'#')
+    AND IFNULL(ADC.REAL_DEAL_CMPX_SEQ_VAL,'#') = IFNULL(DD.SEQ,'#')
+	AND IFNULL(ADC.LEGL_DONG_CD,'#') = IFNULL(concat(DD.legl_dong_cd,DD.legl_dong_umd_cd),'#')
+	AND IFNULL(ADC.HNUM,'#') = IFNULL(DD.HNUM,'#')
+	AND IFNULL(ADC.LEGL_DONG_ORGL_NUM_CD,'#') = IFNULL(DD.LEGL_DONG_ORGL_NUM_CD,'#')
+	AND IFNULL(ADC.LEGL_DONG_VICE_NUM_CD,'#') = IFNULL(DD.LEGL_DONG_VICE_NUM_CD,'#')
+	AND IFNULL(ADC.LEGL_DONG_HNUM_CD,'#') = IFNULL(DD.LEGL_DONG_HNUM_CD,'#')
+)
+;
+#2-1) 실거래가 단지 도로명 MIG 
+INSERT INTO KRED_APT_DEAL_CMPX_ROAD(
+    REAL_DEAL_CMPX_ID,
+    ROAD_NM_CMPX_ORGL_NUM_CD,
+    ROAD_NM_CMPX_VICE_NUM_CD,
+    ROAD_NM_SEQ_CD,
+    ROAD_NM_ONG_UNG_CD,
+    ROAD_NM_CD,
+    REG_USER_ID,
+    REG_DTM,
+    CHG_USER_ID,
+    CHG_DTM)       
+select  
+	CASE WHEN DD.SEQ IS NOT NULL
+			THEN (SELECT ADC.REAL_DEAL_CMPX_ID FROM kred_apt_deal_cmpx ADC WHERE ADC.REAL_DEAL_CMPX_SEQ_VAL = DD.SEQ)
+		 ELSE (
+			SELECT ADC.REAL_DEAL_CMPX_ID 
+            FROM kred_apt_deal_cmpx ADC
+			WHERE IFNULL(ADC.REAL_DEAL_CMPX_NM,'#') = IFNULL(DD.REAL_DEAL_CMPX_NM,'#')
+			AND IFNULL(ADC.REAL_DEAL_CMPX_SEQ_VAL,'#') = IFNULL(DD.SEQ,'#')
+			AND IFNULL(ADC.LEGL_DONG_CD,'#') = IFNULL(concat(DD.legl_dong_cd,DD.legl_dong_umd_cd),'#')
+			AND IFNULL(ADC.HNUM,'#') = IFNULL(DD.HNUM,'#')
+			AND IFNULL(ADC.LEGL_DONG_ORGL_NUM_CD,'#') = IFNULL(DD.LEGL_DONG_ORGL_NUM_CD,'#')
+			AND IFNULL(ADC.LEGL_DONG_VICE_NUM_CD,'#') = IFNULL(DD.LEGL_DONG_VICE_NUM_CD,'#')
+			AND IFNULL(ADC.LEGL_DONG_HNUM_CD,'#') = IFNULL(DD.LEGL_DONG_HNUM_CD,'#')
+		) END
+	  ,	DD.ROAD_NM_CMPX_ORGL_NUM_CD
+      , DD.ROAD_NM_CMPX_VICE_NUM_CD
+      , DD.ROAD_NM_SEQ_CD
+      , DD.ROAD_NM_ONG_UNG_CD
+      , DD.ROAD_NM_CD
+      , 1000000001
+      , NOW()
+      , 1000000001
+      , NOW()
+from kred_deal_dtl DD
+where DD.seq is null
+group by DD.seq
+	  ,	DD.ROAD_NM_CMPX_ORGL_NUM_CD
+      , DD.ROAD_NM_CMPX_VICE_NUM_CD
+      , DD.ROAD_NM_SEQ_CD
+      , DD.ROAD_NM_ONG_UNG_CD
+      , DD.ROAD_NM_CD
+;
+
+#3-1)실거래가물건형
+INSERT INTO KRED_APT_DEAL_CMPX_TYP(
+    REAL_DEAL_CMPX_ID,
+    ONLY_AREA,
+    REG_USER_ID,
+    REG_DTM,
+    CHG_USER_ID,
+    CHG_DTM)     
+select DISTINCT 
+	CASE WHEN DD.SEQ IS NOT NULL
+			THEN (SELECT ADC.REAL_DEAL_CMPX_ID FROM kred_apt_deal_cmpx ADC WHERE ADC.REAL_DEAL_CMPX_SEQ_VAL = DD.SEQ)
+		 ELSE (
+			SELECT ADC.REAL_DEAL_CMPX_ID 
+            FROM kred_apt_deal_cmpx ADC
+			WHERE IFNULL(ADC.REAL_DEAL_CMPX_NM,'#') = IFNULL(DD.REAL_DEAL_CMPX_NM,'#')
+			AND IFNULL(ADC.REAL_DEAL_CMPX_SEQ_VAL,'#') = IFNULL(DD.SEQ,'#')
+			AND IFNULL(ADC.LEGL_DONG_CD,'#') = IFNULL(concat(DD.legl_dong_cd,DD.legl_dong_umd_cd),'#')
+			AND IFNULL(ADC.HNUM,'#') = IFNULL(DD.HNUM,'#')
+			AND IFNULL(ADC.LEGL_DONG_ORGL_NUM_CD,'#') = IFNULL(DD.LEGL_DONG_ORGL_NUM_CD,'#')
+			AND IFNULL(ADC.LEGL_DONG_VICE_NUM_CD,'#') = IFNULL(DD.LEGL_DONG_VICE_NUM_CD,'#')
+			AND IFNULL(ADC.LEGL_DONG_HNUM_CD,'#') = IFNULL(DD.LEGL_DONG_HNUM_CD,'#')
+		) END
+	  ,	DD.ONLY_AREA
+      , 1000000001
+      , NOW()
+      , 1000000001
+      , NOW()
+from kred_deal_dtl DD
+where DD.seq is null
+;
